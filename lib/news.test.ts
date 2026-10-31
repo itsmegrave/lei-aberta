@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchNews, mixNews, NEWS_OUTLETS, parseFeed, type NewsItem } from "./news.ts";
+import { clip, fetchNews, mixNews, NEWS_OUTLETS, parseFeed, readOutlet, type NewsItem } from "./news.ts";
 
 const rss = `<?xml version="1.0"?><rss version="2.0"><channel><title>X</title>
 <item><title><![CDATA[Senado aprova PEC &amp; segue]]></title><link>https://a.com.br/1?x=1&amp;y=2</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><description><![CDATA[<p>texto longo</p>]]></description></item>
@@ -12,9 +12,44 @@ const rss = `<?xml version="1.0"?><rss version="2.0"><channel><title>X</title>
 test("parseFeed reads RSS items, decodes text and skips bad ones", () => {
   const items = parseFeed(rss, "A");
   assert.deepEqual(items, [
-    { title: "Senado aprova PEC & segue", url: "https://a.com.br/1?x=1&y=2", outlet: "A", date: "2026-10-29T20:59:00.000Z" },
+    { title: "Senado aprova PEC & segue", url: "https://a.com.br/1?x=1&y=2", outlet: "A", summary: "texto longo", date: "2026-10-29T20:59:00.000Z" },
     { title: "Câmara — votação", url: "https://a.com.br/3", outlet: "A", date: "2026-10-30T13:00:00.000Z" },
   ]);
+});
+
+test("parseFeed keeps the feed's summary (decoded, clipped) and preview image", () => {
+  const long = "palavra ".repeat(60);
+  const xml = `<rss><channel>
+<item><title>A</title><link>https://a/1</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><description>&lt;p&gt;Resumo &amp; mais&lt;/p&gt;</description><media:content url="https://img/a.jpg?w=1&amp;h=2" medium="image"/></item>
+<item><title>B</title><link>https://a/2</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><description><![CDATA[${long}]]></description><enclosure url="https://img/b.png" type="image/png"/></item>
+<item><title>C</title><link>https://a/3</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><content:encoded><![CDATA[<img src="https://img/c.webp"> texto]]></content:encoded></item>
+<item><title>D</title><link>https://a/4</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><description>D</description><enclosure url="https://a/audio.mp3" type="audio/mpeg"/><media:thumbnail url="http://insecure/x.jpg"/></item>
+</channel></rss>`;
+  const [a, b, c, d] = parseFeed(xml, "X");
+  assert.equal(a.summary, "Resumo & mais");
+  assert.equal(a.image, "https://img/a.jpg?w=1&h=2");
+  assert.ok(b.summary!.length <= 201 && b.summary!.endsWith("…"));
+  assert.equal(b.image, "https://img/b.png");
+  assert.equal(c.image, "https://img/c.webp");
+  assert.equal(c.summary, undefined);
+  assert.equal(d.summary, undefined, "a summary equal to the title is dropped");
+  assert.equal(d.image, undefined, "audio and http images are ignored");
+});
+
+test("clip cuts at a word boundary", () => {
+  assert.equal(clip("curto"), "curto");
+  assert.equal(clip("uma frase bem longa aqui", 12), "uma frase…");
+});
+
+test("readOutlet falls back to the next feed address", async () => {
+  const o = { id: "x", name: "X", feed: "https://x/a", fallbacks: ["https://x/b", "https://x/c"] };
+  const r = await readOutlet(o, async (url) => {
+    if (url.endsWith("a")) throw new Error("HTTP 404");
+    return url.endsWith("b") ? "<rss></rss>" : rss;
+  });
+  assert.equal(r.feed, "https://x/c");
+  assert.equal(r.items.length, 2);
+  await assert.rejects(readOutlet({ ...o, fallbacks: [] }, async () => { throw new Error("HTTP 403"); }), /x\/a: HTTP 403/);
 });
 
 test("parseFeed flags paywalled outlets", () => {

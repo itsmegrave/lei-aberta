@@ -11,6 +11,8 @@ export interface NewsOutlet {
   name: string;
   /** Public RSS (or Atom) feed of the outlet's politics section. */
   feed: string;
+  /** Other feed addresses to try, in order, when `feed` fails. */
+  fallbacks?: string[];
   /** The outlet limits free reading (subscription or monthly article cap). */
   paywall?: boolean;
 }
@@ -20,24 +22,28 @@ export interface NewsItem {
   url: string;
   outlet: string;
   paywall?: boolean;
+  /** The outlet's own short description of the story, as its feed gives it for previews; capped. */
+  summary?: string;
+  /** Preview image the outlet's feed points to (https), shown from the outlet's own server. */
+  image?: string;
   /** ISO timestamp. */
   date: string;
 }
 
 export const NEWS_OUTLETS: NewsOutlet[] = [
   { id: "g1", name: "g1", feed: "https://g1.globo.com/rss/g1/politica/" },
-  { id: "cnn-brasil", name: "CNN Brasil", feed: "https://www.cnnbrasil.com.br/politica/feed/" },
+  { id: "cnn-brasil", name: "CNN Brasil", feed: "https://www.cnnbrasil.com.br/politica/feed/", fallbacks: ["https://www.cnnbrasil.com.br/politica/feed", "https://www.cnnbrasil.com.br/feed/"] },
   { id: "poder360", name: "Poder360", feed: "https://www.poder360.com.br/feed/" },
   { id: "metropoles", name: "Metrópoles", feed: "https://www.metropoles.com/brasil/politica-brasil/feed" },
   { id: "bbc-brasil", name: "BBC News Brasil", feed: "https://feeds.bbci.co.uk/portuguese/rss.xml" },
-  { id: "jovem-pan", name: "Jovem Pan", feed: "https://jovempan.com.br/noticias/politica/feed" },
+  { id: "jovem-pan", name: "Jovem Pan", feed: "https://jovempan.com.br/noticias/politica/feed", fallbacks: ["https://jovempan.com.br/noticias/politica/feed/", "https://jovempan.com.br/feed"] },
   { id: "folha", name: "Folha de S.Paulo", feed: "https://feeds.folha.uol.com.br/poder/rss091.xml", paywall: true },
   { id: "estadao", name: "Estadão", feed: "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/politica/", paywall: true },
-  { id: "o-globo", name: "O Globo", feed: "https://oglobo.globo.com/rss/politica/", paywall: true },
+  { id: "o-globo", name: "O Globo", feed: "https://oglobo.globo.com/rss/politica/", fallbacks: ["https://oglobo.globo.com/rss/oglobo", "https://oglobo.globo.com/rss.xml"], paywall: true },
   { id: "veja", name: "Veja", feed: "https://veja.abril.com.br/politica/feed/", paywall: true },
   { id: "gazeta-do-povo", name: "Gazeta do Povo", feed: "https://www.gazetadopovo.com.br/feed/rss/republica.xml", paywall: true },
   { id: "cartacapital", name: "CartaCapital", feed: "https://www.cartacapital.com.br/politica/feed/" },
-  { id: "a-verdade", name: "A Verdade", feed: "https://averdade.org.br/feed/" },
+  { id: "a-verdade", name: "A Verdade", feed: "https://averdade.org.br/feed/", fallbacks: ["https://averdade.org.br/feed", "https://averdade.org.br/category/politica/feed/"] },
   { id: "agencia-brasil", name: "Agência Brasil", feed: "https://agenciabrasil.ebc.com.br/rss/politica/feed.xml" },
   { id: "agencia-camara", name: "Agência Câmara", feed: "https://www.camara.leg.br/noticias/rss/ultimas-noticias" },
   { id: "agencia-senado", name: "Agência Senado", feed: "https://www12.senado.leg.br/noticias/rss" },
@@ -52,6 +58,8 @@ function decode(s: string): string {
     .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
     .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
     .replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n.toLowerCase()] ?? m)
+    // Some feeds entity-encode their HTML, so tags show up only after decoding.
+    .replace(/<[^>]+>/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -59,6 +67,32 @@ function decode(s: string): string {
 function tag(block: string, name: string): string | undefined {
   const m = block.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)</${name}>`, "i"));
   return m ? decode(m[1]) : undefined;
+}
+
+function rawTag(block: string, name: string): string {
+  return block.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)</${name}>`, "i"))?.[1] ?? "";
+}
+
+const SUMMARY_MAX = 200;
+
+/** Cuts at a word boundary so the summary stays a short preview, like a link card. */
+export function clip(text: string, max = SUMMARY_MAX): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), max * 0.6)).replace(/[\s,.;:–—-]+$/, "")}…`;
+}
+
+/** The preview image the item points to: media:content / media:thumbnail / an image enclosure / the first <img>. */
+function imageOf(block: string): string | undefined {
+  const attrs = (re: RegExp) => [...block.matchAll(re)].map((m) => m[0]);
+  const url = (t: string) => t.match(/\burl="([^"]+)"/i)?.[1];
+  const media = attrs(/<media:(?:content|thumbnail)\b[^>]*>/gi).find((t) => !/medium="(?!image)/i.test(t) && !/type="(?!image)/i.test(t));
+  const enclosure = attrs(/<enclosure\b[^>]*>/gi).find((t) => /type="image\//i.test(t));
+  const html = (rawTag(block, "description") + rawTag(block, "content:encoded")).replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+  const img = html.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1];
+  const found = (media && url(media)) || (enclosure && url(enclosure)) || img;
+  const clean = found?.replace(/&amp;/g, "&");
+  return clean && /^https:\/\//.test(clean) ? clean : undefined;
 }
 
 /** Parses RSS 2.0 items or Atom entries into headlines. Items without a title, an http(s) link or a valid date are skipped. */
@@ -71,7 +105,17 @@ export function parseFeed(xml: string, outlet: string, paywall = false): NewsIte
     const raw = tag(b, "pubDate") ?? tag(b, "published") ?? tag(b, "updated") ?? tag(b, "dc:date");
     const time = raw ? Date.parse(raw) : NaN;
     if (!title || !link || !/^https?:\/\//.test(link) || Number.isNaN(time)) continue;
-    out.push({ title, url: link.replace(/&amp;/g, "&"), outlet, ...(paywall && { paywall }), date: new Date(time).toISOString() });
+    const summary = clip(tag(b, "description") ?? tag(b, "summary") ?? "");
+    const image = imageOf(b);
+    out.push({
+      title,
+      url: link.replace(/&amp;/g, "&"),
+      outlet,
+      ...(paywall && { paywall }),
+      ...(summary && summary !== title && { summary }),
+      ...(image && { image }),
+      date: new Date(time).toISOString(),
+    });
   }
   return out;
 }
@@ -101,7 +145,7 @@ export async function fetchNews(
   outlets: NewsOutlet[] = NEWS_OUTLETS,
   get: (url: string) => Promise<string> = fetchText,
 ): Promise<{ items: NewsItem[]; failed: string[] }> {
-  const results = await Promise.allSettled(outlets.map(async (o) => parseFeed(await get(o.feed), o.name, o.paywall)));
+  const results = await Promise.allSettled(outlets.map((o) => readOutlet(o, get).then((r) => r.items)));
   const failed: string[] = [];
   const items: NewsItem[] = [];
   results.forEach((r, i) => {
@@ -111,11 +155,26 @@ export async function fetchNews(
   return { items, failed };
 }
 
+/** Tries the outlet's feed, then its fallbacks, and returns the first one that gives headlines. */
+export async function readOutlet(o: NewsOutlet, get: (url: string) => Promise<string> = fetchText): Promise<{ items: NewsItem[]; feed: string; errors: string[] }> {
+  const errors: string[] = [];
+  for (const feed of [o.feed, ...(o.fallbacks ?? [])]) {
+    try {
+      const items = parseFeed(await get(feed), o.name, o.paywall);
+      if (items.length) return { items, feed, errors };
+      errors.push(`${feed}: no items`);
+    } catch (e) {
+      errors.push(`${feed}: ${e instanceof Error ? e.message : String(e)}`);
+    }
+  }
+  throw new Error(errors.join(" | "));
+}
+
 async function fetchText(url: string): Promise<string> {
   const res = await fetch(url, {
     headers: { "User-Agent": "LeiAbertaBot/1.0 (+https://lei-aberta.vercel.app)", Accept: "application/rss+xml, application/xml, text/xml" },
     signal: AbortSignal.timeout(8000),
   });
-  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.text();
 }
