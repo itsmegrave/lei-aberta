@@ -147,11 +147,6 @@ export function toRecord(
   };
 }
 
-const isWeekday = (isoDay: string) => {
-  const d = new Date(`${isoDay}T12:00:00Z`).getUTCDay();
-  return d !== 0 && d !== 6;
-};
-
 export interface DouResult {
   records: Policy[];
   /** Days or sections that could not be read, for the run log. */
@@ -168,15 +163,15 @@ export async function crawlDou(days: string[], { concurrency = 3, log = console.
       try {
         const html = await fetchText(leituraUrl(day, section));
         const items = parseLeitura(html);
-        // A regular Seção 1 with no table of contents means the page changed shape (or we got a block page).
-        // Weekends have no edition, so only weekdays count as errors.
-        if (!items.length && section === "do1" && isWeekday(day)) {
+        // A page without the embedded table of contents means the site changed shape (or served a block page).
+        // An empty table is normal: weekends, holidays, and most days of the extra edition.
+        if (!/id=["']params["']/i.test(html)) {
           const title = html.match(/<title[^>]*>([^<]*)/i)?.[1]?.trim() ?? "";
           errors.push(`${day} ${section}: no table of contents in page (${html.length} bytes, title "${title}")`);
         }
-        if (process.env.DOU_DEBUG) {
-          const sample = items.slice(0, 4).map((i) => `${i.artType ?? "?"}: ${i.title || i.titulo || ""}`).join(" | ");
-          log(`  [DOU ${day} ${section}] ${items.length} item(s), ${html.length} bytes, has params: ${/id=["']params["']/.test(html)}; ${sample}`);
+        if (process.env.DOU_DEBUG && items.length) {
+          const norms = items.filter((i) => /^(lei|medida|emenda)/i.test(i.artType ?? "")).map((i) => `${i.artType}: ${i.title || i.titulo}`);
+          log(`  [DOU ${day} ${section}] ${items.length} item(s), ${norms.length} law-type: ${norms.slice(0, 6).join(" | ")}`);
         }
         for (const item of items) {
           const header = isCatalogued(item);
