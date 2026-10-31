@@ -23,7 +23,7 @@ npm run build   # production build (npm start serves it)
 
 - `npm run test:unit`: logic in `lib/` and `crawlers/` (`*.test.ts`), on Node's built-in `node:test`.
 - `npm run test:ui`: React components (`components/**/*.test.tsx`) with Vitest, jsdom and React Testing Library. Shared setup is in `test/setup.ts`, and a sample law record is in `test/fixtures.ts`.
-- `npm run test:db`: the Postgres layer (`lib/db/*.db.test.ts`) against a real, migrated database. It runs only when `TEST_DATABASE_URL` is set, never against `DATABASE_URL`, and it only touches ids that start with `test-db-`. CI runs it against a throwaway Postgres after the migrations.
+- `npm run test:db`: the Postgres layer (`lib/**/*.db.test.ts`: the upsert and the queries in `lib/data.ts`) against a real, migrated database, one file at a time. It runs only when `TEST_DATABASE_URL` is set, never against `DATABASE_URL`, and it only touches ids that start with `test-db-`. CI runs it against a throwaway Postgres after the migrations.
 
 ## Hosting (Vercel)
 
@@ -74,7 +74,7 @@ The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Ma
 - Schema: `lib/db/schema.ts` (Drizzle). One `policies` table; filter fields are columns (`level`, `year`, `jurisdiction`, `executive_party`), `areas` and `parties` are indexed arrays, `authors`/`sources`/`executive` are JSON, and `search` is a Portuguese full-text vector over title and summary. `executive_party` is a copy of `executive.party` and is never mixed with `parties`.
 - Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`.
 - `npm run db:import-json` loads every record in `data/` into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
-- Neon is installed through the Vercel Marketplace and sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` on the project. On production deploys `scripts/db-deploy.sh` (the `vercel-build` script) applies migrations and syncs `data/` into the database; preview deploys share that database and skip it.
+- Neon is installed through the Vercel Marketplace and sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` on the project. On every Vercel deploy `scripts/db-deploy.sh` (the `vercel-build` script) applies migrations and syncs `data/` into the database. Preview deploys get their own Neon branch, so they never touch production data.
 - Crawlers: `crawlers/lib/store.ts` still writes `data/` (committed by the nightly jobs) and, when `CRAWL_DATABASE_URL` is set (the nightly jobs pass the `DATABASE_URL` repo secret), also upserts every changed record into Postgres and deletes removed ones in the same `save()`.
 - Local: any Postgres 16 works, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta`.
 

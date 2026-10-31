@@ -19,7 +19,7 @@ const testDb = process.env.TEST_DATABASE_URL;
 test("save mirrors changed and removed records into Postgres", { skip: !testDb && "TEST_DATABASE_URL not set" }, async () => {
   const { getDb, closeDb } = await import("../../lib/db/client.ts");
   const dir = await mkdtemp(path.join(tmpdir(), "store-db-"));
-  const ids = ["federal-lei-900001-2000", "federal-lei-900002-2000"];
+  const ids = ["test-db-store-1", "test-db-store-2"];
   const store = await openStore(dir, { databaseUrl: testDb });
   for (const id of ids) store.upsert({ ...rec, id, number: id }, { owner: true });
   await store.save();
