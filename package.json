@@ -19,6 +19,7 @@
     "crawl:federal": "node --experimental-strip-types --no-warnings crawlers/federal/run.ts",
     "crawl:estadual": "node --experimental-strip-types --no-warnings crawlers/estadual/run.ts",
     "crawl:diarios": "node --experimental-strip-types --no-warnings crawlers/diarios/run.ts",
+    "check:news": "node --experimental-strip-types --no-warnings scripts/check-news.ts",
     "check:links": "node --experimental-strip-types --no-warnings crawlers/federal/check-links.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --experimental-strip-types --no-warnings scripts/db-migrate.ts",
