@@ -1,9 +1,9 @@
 [
   {
-    "id": "federal-lcp-101-2000",
+    "id": "federal-lc-101-2000",
     "level": "federal",
     "jurisdiction": "Brasil",
-    "type": "lei complementar",
+    "type": "lei-complementar",
     "number": "101",
     "title": "Lei de Responsabilidade Fiscal",
     "summary": "Fixa limites de gasto e dívida para União, estados e municípios.",
@@ -33,6 +33,7 @@
         "label": "Lei Complementar nº 101/2000 (Planalto)",
         "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"
       }
-    ]
+    ],
+    "curated": true
   }
 ]
