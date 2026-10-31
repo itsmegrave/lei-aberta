@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { applyFilters, authorKeys, countBy, EMPTY_FILTERS, executiveKey, perAuthorState, perYear, type Filters } from "@/lib/catalog";
 import type { Policy } from "@/lib/types";
+import type { DataSource } from "@/lib/sources";
+import { Sources } from "./sources";
 import { area, AREAS, plural } from "@/lib/vocab";
 import { BrazilMap } from "./brazil-map";
 import { Facts } from "./facts";
@@ -15,7 +17,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { LevelPills, TopicGrid } from "./topics";
 import { YearChart } from "./year-chart";
 
-export function Home({ policies, sample }: { policies: Policy[]; updatedAt: string; sample: boolean }) {
+export function Home({ policies, sample, sources }: { policies: Policy[]; updatedAt: string; sample: boolean; sources: DataSource[] }) {
   const [f, setF] = useState<Filters>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Policy | null>(null);
   // Clicking the active value again clears it.
@@ -37,6 +39,9 @@ export function Home({ policies, sample }: { policies: Policy[]; updatedAt: stri
           Lei Aberta
         </div>
         <span className="flex-1" />
+        <a href="#fontes" className="text-muted-foreground hover:text-foreground mr-1 text-sm font-semibold">
+          Fontes
+        </a>
         <ThemeToggle />
       </nav>
 
@@ -92,6 +97,10 @@ export function Home({ policies, sample }: { policies: Policy[]; updatedAt: stri
             <p className="text-muted-foreground col-span-full py-8 text-center">Nenhuma lei com esses filtros. Tente outra palavra ou limpe os filtros.</p>
           )}
         </div>
+      </Section>
+
+      <Section id="fontes" title="De onde vêm os dados" lead="Cada lei aponta para o texto oficial. Estas são as fontes que coletamos, e quando foi a última coleta.">
+        <Sources sources={sources} />
       </Section>
 
       <footer className="text-muted-foreground mt-12 grid gap-1.5 border-t pt-4.5 text-[13px]">

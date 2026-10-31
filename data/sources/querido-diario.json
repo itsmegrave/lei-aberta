@@ -1,0 +1,23 @@
+{
+  "id": "querido-diario",
+  "name": "Querido Diário",
+  "publisher": "Open Knowledge Brasil",
+  "url": "https://queridodiario.ok.org.br/",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Municípios do Querido Diário"
+  ],
+  "covers": [
+    "lei municipal",
+    "decreto municipal"
+  ],
+  "description": "Diários oficiais de prefeituras, para as leis das cidades.",
+  "status": "planned",
+  "since": null,
+  "records": null,
+  "lastRun": null,
+  "lastSuccess": null,
+  "crawler": null
+}

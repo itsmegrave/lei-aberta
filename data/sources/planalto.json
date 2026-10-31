@@ -1,0 +1,25 @@
+{
+  "id": "planalto",
+  "name": "Planalto",
+  "publisher": "Presidência da República",
+  "url": "https://www.planalto.gov.br/ccivil_03/",
+  "levels": [
+    "federal"
+  ],
+  "coverage": [
+    "Brasil"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "medida provisória",
+    "decreto"
+  ],
+  "description": "Texto oficial de leis, medidas provisórias e decretos federais.",
+  "status": "building",
+  "since": 1988,
+  "records": null,
+  "lastRun": null,
+  "lastSuccess": null,
+  "crawler": null
+}
