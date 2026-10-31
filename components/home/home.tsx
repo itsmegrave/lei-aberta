@@ -5,7 +5,7 @@ import { applyFilters, authorKeys, countBy, EMPTY_FILTERS, executiveKey, perAuth
 import type { Policy } from "@/lib/types";
 import type { DataSource } from "@/lib/sources";
 import { Sources } from "./sources";
-import { area, AREAS, plural } from "@/lib/vocab";
+import { area, AREAS, fmt, plural } from "@/lib/vocab";
 import { BrazilMap } from "./brazil-map";
 import { Facts } from "./facts";
 import { Hero, Ticker } from "./hero";
@@ -20,8 +20,14 @@ import { YearChart } from "./year-chart";
 export function Home({ policies, sample, sources }: { policies: Policy[]; updatedAt: string; sample: boolean; sources: DataSource[] }) {
   const [f, setF] = useState<Filters>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Policy | null>(null);
+  // Render cards in pages: the full catalog can reach thousands of laws.
+  const PAGE = 24;
+  const [shown, setShown] = useState(PAGE);
   // Clicking the active value again clears it.
-  const toggle = <K extends keyof Filters>(k: K, v: Filters[K]) => setF((s) => ({ ...s, [k]: s[k] === v ? EMPTY_FILTERS[k] : v }));
+  const toggle = <K extends keyof Filters>(k: K, v: Filters[K]) => {
+    setF((s) => ({ ...s, [k]: s[k] === v ? EMPTY_FILTERS[k] : v }));
+    setShown(PAGE);
+  };
   const view = (skip?: keyof Filters) => applyFilters(policies, f, skip);
 
   const rows = useMemo(() => view(), [policies, f]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -45,8 +51,8 @@ export function Home({ policies, sample, sources }: { policies: Policy[]; update
         <ThemeToggle />
       </nav>
 
-      <Hero q={f.q} onQuery={(q) => setF((s) => ({ ...s, q }))} onSubmit={() => document.getElementById("h-laws")?.scrollIntoView({ behavior: "smooth" })} />
-      <Ticker items={policies.map((p) => ({ title: p.title, year: p.year, emoji: area(p.areas[0]).emoji }))} />
+      <Hero q={f.q} onQuery={(q) => { setF((s) => ({ ...s, q })); setShown(PAGE); }} onSubmit={() => document.getElementById("h-laws")?.scrollIntoView({ behavior: "smooth" })} />
+      <Ticker items={policies.slice(0, 20).map((p) => ({ title: p.title, year: p.year, emoji: area(p.areas[0]).emoji }))} />
 
       <Facts
         items={[
@@ -92,11 +98,16 @@ export function Home({ policies, sample, sources }: { policies: Policy[]; update
       <Section id="h-laws" title="As leis" lead={`${plural(rows.length)}, das mais novas para as mais antigas. Toque para ver tudo.`}>
         <div className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-3.5">
           {rows.length ? (
-            rows.map((p, i) => <PolicyCard key={p.id} p={p} index={i} onOpen={() => setOpen(p)} />)
+            rows.slice(0, shown).map((p, i) => <PolicyCard key={p.id} p={p} index={i % PAGE} onOpen={() => setOpen(p)} />)
           ) : (
             <p className="text-muted-foreground col-span-full py-8 text-center">Nenhuma lei com esses filtros. Tente outra palavra ou limpe os filtros.</p>
           )}
         </div>
+        {rows.length > shown && (
+          <button onClick={() => setShown((n) => n + PAGE)} className="bg-card mx-auto mt-5 block rounded-full border px-5 py-2.5 text-sm font-bold">
+            Mostrar mais {Math.min(PAGE, rows.length - shown)} de {fmt.format(rows.length - shown)} restantes
+          </button>
+        )}
       </Section>
 
       <Section id="fontes" title="De onde vêm os dados" lead="Cada lei aponta para o texto oficial. Estas são as fontes que coletamos, e quando foi a última coleta.">

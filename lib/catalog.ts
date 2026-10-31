@@ -2,12 +2,29 @@ import type { Level, Policy } from "./types";
 import { area, SEARCH_ALIASES } from "./vocab.ts";
 
 export const NO_PARTY = "Sem partido";
+export const UNKNOWN_PARTY = "Partido não identificado";
 export const EXECUTIVE_AUTHOR = "Poder Executivo";
 
-/** Buckets for the "author party" chart. A bill sent by the executive branch is not a party. */
+/** Authors that are institutions, not people with a party. */
+const INSTITUTION: Record<string, string> = {
+  executive: EXECUTIVE_AUTHOR,
+  committee: "Comissão",
+  judiciary: "Poder Judiciário",
+  prosecution: "Ministério Público",
+  other: "Outra autoria",
+};
+
+/**
+ * Buckets for the "author party" chart. Institutions get their own bucket, never a party.
+ * A lawmaker whose party at authorship could not be established is "não identificado", not "sem partido".
+ */
 export function authorKeys(p: Policy): string[] {
-  if (p.authors.some((a) => a.kind === "executive")) return [EXECUTIVE_AUTHOR];
-  return p.parties.length ? p.parties : [NO_PARTY];
+  const keys = new Set<string>();
+  for (const a of p.authors) {
+    if (INSTITUTION[a.kind]) keys.add(INSTITUTION[a.kind]);
+    else keys.add(a.party || UNKNOWN_PARTY);
+  }
+  return keys.size ? [...keys] : [UNKNOWN_PARTY];
 }
 
 /** Bucket for the "executive party" chart: party of whoever signed the law. */

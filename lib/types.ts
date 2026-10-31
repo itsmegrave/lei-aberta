@@ -31,4 +31,14 @@ export interface Policy {
   parties: string[];
   executive?: Executive | null;
   sources: { label: string; url: string }[];
+  /** Date the executive signed it (ISO date). */
+  signedAt?: string | null;
+  /** Originating bill, e.g. "PL 3561/1997". */
+  bill?: string | null;
+  /** MP re-issued by this one. */
+  reissues?: string | null;
+  /** For an MP: id of the law it became. */
+  convertedInto?: string | null;
+  /** Hand-checked record. */
+  curated?: boolean;
 }
