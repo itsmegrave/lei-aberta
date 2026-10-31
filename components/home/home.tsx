@@ -97,19 +97,19 @@ export function Home({
         </div>
       </Section>
 
-      <Section id="h-time" title="Quando virou lei" lead="Cada barra é um ano. Toque para ver só aquele ano.">
+      <Section id="h-time" collapsible note={f.year ?? undefined} title="Quando virou lei" lead="Cada barra é um ano. Toque para ver só aquele ano.">
         <div className={dim}>
           <YearChart rows={ov.years} active={f.year} onPick={(y) => toggle("year", y)} />
         </div>
       </Section>
 
-      <Section id="h-party" title="Quem propôs e quem sancionou" lead="Cada ponto é um partido, na posição dele entre esquerda e direita. Quanto maior o ponto, mais leis.">
+      <Section id="h-party" collapsible note={[f.author, f.executive].filter(Boolean).join(" · ") || undefined} title="Quem propôs e quem sancionou" lead="Cada ponto é um partido, na posição dele entre esquerda e direita. Quanto maior o ponto, mais leis.">
         <div className={dim}>
           <PartyPlot author={ov.author} executive={ov.executive} active={{ author: f.author, executive: f.executive }} onPick={(k, v) => toggle(k, v)} />
         </div>
       </Section>
 
-      <Section id="h-map" title="De onde vêm as propostas" lead="Estado de quem propôs cada lei. Toque num estado para filtrar.">
+      <Section id="h-map" collapsible note={f.uf || undefined} title="De onde vêm as propostas" lead="Estado de quem propôs cada lei. Toque num estado para filtrar.">
         <div className={dim}>
           <BrazilMap counts={new Map(ov.ufs)} active={f.uf} onPick={(uf) => toggle("uf", uf)} />
         </div>
@@ -138,7 +138,7 @@ export function Home({
         )}
       </Section>
 
-      <Section id="fontes" title="De onde vêm os dados" lead="Cada lei aponta para o texto oficial. Estas são as fontes que coletamos, e quando foi a última coleta.">
+      <Section id="fontes" collapsible title="De onde vêm os dados" lead="Cada lei aponta para o texto oficial. Estas são as fontes que coletamos, e quando foi a última coleta.">
         <Sources sources={sources} />
       </Section>
 

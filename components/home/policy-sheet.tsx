@@ -38,7 +38,8 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
   const Description = inSheet ? SheetDescription : "p";
   const a = area(p.areas[0]);
   const lvl = LEVELS.find((l) => l.key === p.level)!;
-  const author = p.authors[0];
+  // Some crawled records (e.g. Diários Oficiais) carry no author yet.
+  const author = p.authors[0] ?? { name: "Autoria não informada", kind: "other", party: null, uf: null };
   return (
     <>
       {inSheet && <div className="bg-border mx-auto mb-1 h-1.5 w-11 rounded-full" />}
