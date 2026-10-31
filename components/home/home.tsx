@@ -6,6 +6,8 @@ import { writeUrlState } from "@/lib/listing";
 import type { Policy } from "@/lib/types";
 import type { DataSource } from "@/lib/sources";
 import { cn } from "@/lib/utils";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
 import { Sources } from "./sources";
 import { area, plural } from "@/lib/vocab";
 import { BrazilMap } from "./brazil-map";
@@ -16,17 +18,9 @@ import { PartyPlot } from "./party-plot";
 import { PolicyCard } from "./policy-card";
 import { PolicySheet } from "./policy-sheet";
 import { Section } from "./section";
-import { ThemeToggle } from "./theme-toggle";
 import { LevelPills, TopicGrid } from "./topics";
 import { useListing } from "./use-listing";
 import { YearChart } from "./year-chart";
-
-// Linktree of the Lenindragons collective, credited in the footer.
-const LENINDRAGONS_URL = "https://linktr.ee/lenindragonsrpg";
-// Maker credit and source repository, also in the footer.
-const MAKER_URL = "https://github.com/itsmegrave";
-const REPO_URL = "https://github.com/itsmegrave/lei-aberta";
-const footerLink = "text-foreground font-semibold underline underline-offset-2";
 
 export function Home({
   firstPage,
@@ -57,18 +51,7 @@ export function Home({
 
   return (
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
-      <nav className="flex items-center gap-2.5 py-4">
-        <div className="font-display flex items-center gap-2 text-xl font-extrabold tracking-[-0.02em]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/emoji/scroll.webp" alt="" className="size-8 -rotate-6" />
-          Lei Aberta
-        </div>
-        <span className="flex-1" />
-        <a href="#fontes" className="text-muted-foreground hover:text-foreground mr-1 text-sm font-semibold">
-          Fontes
-        </a>
-        <ThemeToggle />
-      </nav>
+      <SiteNav />
 
       <Hero q={f.q} onQuery={(q) => list.setFilters((s) => ({ ...s, q }))} onSubmit={lawsTop} />
       <Ticker items={firstPage.slice(0, 20).map((p) => ({ title: p.title, year: p.year, emoji: area(p.areas[0]).emoji }))} />
@@ -146,35 +129,7 @@ export function Home({
         <Sources sources={sources} />
       </Section>
 
-      <footer className="text-muted-foreground mt-12 grid gap-1.5 border-t pt-4.5 text-[13px]">
-        <span>
-          <b>Lei Aberta</b> · projeto de código aberto. A gente descreve as leis, não dá nota para partidos nem para políticas.
-        </span>
-        {sample && <span>Dados de exemplo: leis federais conhecidas. Estados e municípios chegam com os próximos coletores.</span>}
-        <span>Ilustrações: Fluent Emoji (Microsoft, MIT).</span>
-        <span>
-          Mais um projeto vindo da comuna{" "}
-          <a href={LENINDRAGONS_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
-            Lenindragons
-          </a>
-          .
-        </span>
-        <span>
-          Feito com{" "}
-          <span role="img" aria-label="amor">
-            💜
-          </span>{" "}
-          por{" "}
-          <a href={MAKER_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
-            itsmegrave
-          </a>
-          . Código no{" "}
-          <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
-            GitHub
-          </a>
-          .
-        </span>
-      </footer>
+      <SiteFooter>{sample && <span>Dados de exemplo: leis federais conhecidas. Estados e municípios chegam com os próximos coletores.</span>}</SiteFooter>
 
       <PolicySheet policy={open} onClose={() => setOpen(null)} />
     </div>

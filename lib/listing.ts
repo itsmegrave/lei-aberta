@@ -1,4 +1,5 @@
 import { EMPTY_FILTERS, type Filters, type Row } from "./catalog.ts";
+import { currentName } from "./parties.ts";
 import { shortUrl } from "./share.ts";
 import type { Level, Policy } from "./types";
 
@@ -83,6 +84,9 @@ export function readUrlState(search: string): { filters: Filters; page: number }
       if (Number.isInteger(y)) filters.year = y;
     } else if (key === "level") {
       if (v === "federal" || v === "estadual" || v === "municipal") filters.level = v;
+    } else if (key === "author" || key === "executive") {
+      // Links made before charts used current names (?autor=PMDB) still land on the same party.
+      filters[key] = currentName(v);
     } else filters[key] = v;
   }
   const page = Number(sp.get("pagina"));

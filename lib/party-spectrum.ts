@@ -5,6 +5,8 @@
  *
  * We do not score parties ourselves. Parties missing from the survey get no position.
  */
+import { surveyKeyAtTime } from "./parties.ts";
+
 export const SPECTRUM_SOURCE = {
   label: "Bolognesi, Ribeiro e Codato (2023), Dados 66(2)",
   url: "https://doi.org/10.1590/dados.2023.66.2.303",
@@ -19,24 +21,18 @@ export const PARTY_SCORES: Record<string, number> = {
 };
 
 /**
- * Former names of the same registered party (a rename, not a merger), so older laws
- * can use the survey score. Only formal renames belong here.
+ * Score for a party name or code. A current name (chart label, e.g. "MDB", "União Brasil") gets the score of the party
+ * that exists today; an old code shown on a law ("PFL", "PMDB") gets that party's score at the time.
+ * Renames keep the score (lib/parties.ts). A party created by a merger after the survey has none.
  */
-export const RENAMED_TO: Record<string, string> = {
-  PMDB: "MDB", // renamed 2017
-  PFL: "DEM", // renamed 2007
-  PRN: "PTC", // renamed 2000
-  PP: "Progressistas", // renamed 2017
-  PPB: "Progressistas", // PPB -> PP (2003) -> Progressistas (2017)
-  "Cidadania": "PPS", // PPS renamed Cidadania in 2019
-  "Solidariedade": "SDD",
-  "Republicanos": "PRB", // renamed 2019
-  "PL": "PR", // PR renamed back to PL in 2019
-};
-
-export function partyScore(party: string | null | undefined): number | null {
+export function partyScore(party: string | null | undefined, year?: number): number | null {
   if (!party) return null;
-  const key = PARTY_SCORES[party] != null ? party : RENAMED_TO[party];
+  const key = surveyKeyAtTime(party, year);
+  if (key === undefined) {
+    // Unknown here: accept the survey's own spelling in any case ("PODE" is not "Podemos", but "rede" is "Rede").
+    const hit = Object.keys(PARTY_SCORES).find((k) => k.toUpperCase() === party.toUpperCase());
+    return hit ? PARTY_SCORES[hit] : null;
+  }
   return key != null && PARTY_SCORES[key] != null ? PARTY_SCORES[key] : null;
 }
 

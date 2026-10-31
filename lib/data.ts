@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { EMPTY_FILTERS, overview, toRow, type Overview, type Row } from "./catalog";
 import { encodeIndex, PAGE_SIZE, pageCount, toCard, type IndexFile as RowIndex } from "./listing";
+import { partyStats, type PartyStats } from "./party-stats";
 import type { Policy } from "./types";
 
 interface IndexFile {
@@ -66,4 +67,15 @@ async function buildListing(): Promise<Listing & Catalog> {
     page: (n) => c.policies.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE).map(toCard),
     index: () => (index ??= encodeIndex(rows)),
   };
+}
+
+let parties: Promise<{ stats: Map<string, PartyStats>; byId: Map<string, Policy>; updatedAt: string }> | undefined;
+
+/** Per-party numbers for the party pages, built once per build. */
+export function loadPartyStats() {
+  return (parties ??= loadCatalog().then((c) => ({
+    stats: partyStats(c.policies, lastYearOf(c.policies)),
+    byId: new Map(c.policies.map((p) => [p.id, p])),
+    updatedAt: c.updatedAt,
+  })));
 }

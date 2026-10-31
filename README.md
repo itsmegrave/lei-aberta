@@ -107,7 +107,18 @@ At the end of each run a crawler calls `updateSource(id, patch)` from `lib/sourc
 
 ## Party positions
 
-Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Formal renames reuse the same party's score (PMDB→MDB, PFL→DEM, PRN→PTC, and so on, see `lib/party-spectrum.ts`). Parties not in the survey get no position and are listed apart. The palette runs red (left) → gray (center) → blue (right), following the common convention of red for the left. All stops live in one place, `SPECTRUM_STOPS` in `lib/party-spectrum.ts`, with separate light and dark values; every chart, legend and share image reads from there.
+Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Parties not in the survey get no position and are listed apart. The palette runs red (left) → gray (center) → blue (right), following the common convention of red for the left. All stops live in one place, `SPECTRUM_STOPS` in `lib/party-spectrum.ts`, with separate light and dark values; every chart, legend and share image reads from there.
+
+## Parties: current names and directory
+
+Records keep the author's party **at the time of authorship** (and the executive's party at signing). Charts and filters group each party under its **current name**, so a party's whole history counts in one place: PMDB → MDB, PFL and DEM → União Brasil, PPS → Cidadania, PR → PL, PRN and PTC → Agir. The mapping and its sources are in `lib/parties.ts`:
+
+- `PARTIES`: the 30 parties registered at the TSE (checked 2026-10-31 against the [TSE list](https://www.tse.jus.br/partidos/partidos-registrados-no-tse)): name, number, registration date, official site, a one-line neutral description and the national history (founding, renames, mergers, incorporations).
+- `ALIASES`: every older code and the party it belongs to today. Codes reused by different parties are split by year (the PCB before 1992 is today's Cidadania; the PSD before 2011 went to the PTB, now PRD).
+- Scores: a rename keeps the survey score (MDB, Cidadania, PL, Agir...). A party created by a merger after the survey (União Brasil, PRD) gets no score: we don't average its predecessors. On a law, the party at the time keeps its own score (a DEM author is colored as DEM).
+- Old filter links (`?autor=PMDB`) open the current party.
+
+Party pages: `/partidos` (all parties, ordered by laws in the catalog, then name) and `/partidos/<slug>` (description, timeline, site and TSE links, position, laws per year, topics, names used in the records, newest laws). Both are in `/sitemaps/paginas.xml` with `PoliticalParty`, `CollectionPage` and `BreadcrumbList` JSON-LD.
 
 ## Neutrality
 

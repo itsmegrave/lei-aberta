@@ -1,4 +1,5 @@
 import type { Level, Policy } from "./types";
+import { currentName, isNoPartyCode } from "./parties.ts";
 import { area, SEARCH_ALIASES } from "./vocab.ts";
 
 export const NO_PARTY = "Sem partido";
@@ -15,6 +16,15 @@ const INSTITUTION: Record<string, string> = {
 };
 
 /**
+ * Chart bucket for a party code: the party's current name (PMDB -> MDB, PFL -> União Brasil), so a party's history
+ * counts under one name. The record keeps the party at authorship; only charts and filters use this.
+ */
+export function partyBucket(code: string | null | undefined, year: number, missing: string): string {
+  if (!code || isNoPartyCode(code)) return code ? NO_PARTY : missing;
+  return currentName(code, year);
+}
+
+/**
  * Buckets for the "author party" chart. Institutions get their own bucket, never a party.
  * A lawmaker whose party at authorship could not be established is "não identificado", not "sem partido".
  */
@@ -22,14 +32,14 @@ export function authorKeys(p: Policy): string[] {
   const keys = new Set<string>();
   for (const a of p.authors) {
     if (INSTITUTION[a.kind]) keys.add(INSTITUTION[a.kind]);
-    else keys.add(a.party || UNKNOWN_PARTY);
+    else keys.add(partyBucket(a.party, p.year, UNKNOWN_PARTY));
   }
   return keys.size ? [...keys] : [UNKNOWN_PARTY];
 }
 
-/** Bucket for the "executive party" chart: party of whoever signed the law. */
+/** Bucket for the "executive party" chart: party of whoever signed the law, by its current name. */
 export function executiveKey(p: Policy): string {
-  return p.executive?.party || NO_PARTY;
+  return partyBucket(p.executive?.party, p.year, NO_PARTY);
 }
 
 /**
