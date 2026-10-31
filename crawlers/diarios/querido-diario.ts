@@ -13,7 +13,17 @@ import { describeError, fetchJson, fetchText, mapLimit } from "./http.ts";
 import { portalSource } from "./portals.ts";
 import { bareNumber, capSummary, isoDate, shortTitle } from "./text.ts";
 
-export const API = "https://api.queridodiario.ok.org.br";
+/**
+ * API base candidates, tried in order. The documented host api.queridodiario.ok.org.br failed the
+ * TLS handshake from GitHub runners in Oct 2026, while the main site answered; the site serves
+ * the same API under /api. QD_API overrides both.
+ */
+export const API_CANDIDATES = [
+  process.env.QD_API,
+  "https://api.queridodiario.ok.org.br",
+  "https://queridodiario.ok.org.br/api",
+].filter((s): s is string => Boolean(s));
+export const API = API_CANDIDATES[0];
 
 /** IBGE codes of the 26 state capitals (Brasília is the Distrito Federal, not a município). */
 export const CAPITALS: Record<string, string> = {
@@ -115,10 +125,10 @@ export function toRecord(g: Gazette, law: MunicipalLaw, official: { label: strin
   };
 }
 
-export function gazettesUrl(territories: string[], since: string, until: string, offset: number, size = 100): string {
+export function gazettesUrl(territories: string[], since: string, until: string, offset: number, size = 100, base = API): string {
   const q = new URLSearchParams({ published_since: since, published_until: until, offset: String(offset), size: String(size), sort_by: "ascending_date" });
   for (const t of territories) q.append("territory_ids", t);
-  return `${API}/gazettes?${q}`;
+  return `${base}/gazettes?${q}`;
 }
 
 export interface QdOptions {
@@ -137,13 +147,17 @@ export async function crawlQueridoDiario(opts: QdOptions): Promise<{ records: Po
   const errors: string[] = [];
   const gazettes: Gazette[] = [];
 
+  const base = await resolveApi(errors);
+  if (!base) return { records: [], errors };
+  log(`Querido Diário API: ${base}`);
+
   // The API filters by a list of territories; batch to keep URLs short.
   const batches = territories.length ? chunk(territories, 10) : [[]];
   for (const batch of batches) {
     for (let offset = 0; gazettes.length < maxGazettes; offset += 100) {
       let page: GazettesPage;
       try {
-        page = await fetchJson<GazettesPage>(gazettesUrl(batch, since, until, offset));
+        page = await fetchJson<GazettesPage>(gazettesUrl(batch, since, until, offset, 100, base));
       } catch (err) {
         errors.push(`gazettes ${batch.join(",") || "all"} offset ${offset}: ${describeError(err)}`);
         break;
@@ -174,6 +188,20 @@ export async function crawlQueridoDiario(opts: QdOptions): Promise<{ records: Po
     }
   });
   return { records: perGazette.flat(), errors };
+}
+
+/** First API base that answers a one-gazette query with JSON. */
+async function resolveApi(errors: string[]): Promise<string | null> {
+  for (const base of API_CANDIDATES) {
+    try {
+      const page = await fetchJson<GazettesPage>(`${base}/gazettes?size=1`, { retries: 1 });
+      if (Array.isArray(page.gazettes)) return base;
+      errors.push(`${base}: unexpected response`);
+    } catch (err) {
+      errors.push(`${base}: ${describeError(err)}`);
+    }
+  }
+  return null;
 }
 
 async function isUp(url: string): Promise<boolean> {

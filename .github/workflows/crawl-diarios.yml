@@ -39,9 +39,12 @@ jobs:
           node-version: 26
       - name: Reachability of the sources from the runner
         run: |
-          for u in "https://www.in.gov.br/leiturajornal" "https://api.queridodiario.ok.org.br/cities?city_name=Recife" "https://queridodiario.ok.org.br/"; do
-            echo "== $u"; curl -sS -m 20 -o /dev/null -w "HTTP %{http_code}, %{time_total}s, ip %{remote_ip}\n" "$u" || true
-          done
+          probe() { echo "== $*"; curl -sS -m 20 -o /dev/null -w "HTTP %{http_code} %{http_version}, %{time_total}s, ip %{remote_ip}\n" "$@" || true; }
+          probe "https://www.in.gov.br/leiturajornal"
+          probe --http1.1 "https://www.in.gov.br/leiturajornal"
+          probe --http1.1 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36" "https://www.in.gov.br/leiturajornal"
+          probe "https://api.queridodiario.ok.org.br/gazettes?size=1"
+          probe "https://queridodiario.ok.org.br/api/gazettes?size=1"
       - name: Dry run against live sources
         run: |
           node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run \
