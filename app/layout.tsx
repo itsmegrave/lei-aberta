@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "next-themes";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/figtree";
@@ -26,6 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="lei-aberta-theme">
           {children}
         </ThemeProvider>
+        {/* Page views, including visits to short links (/l/*). Enable Web Analytics in the Vercel project. */}
+        <Analytics />
       </body>
     </html>
   );

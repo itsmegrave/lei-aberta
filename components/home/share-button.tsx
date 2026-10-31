@@ -3,11 +3,11 @@
 import { CheckIcon, MessageCircleIcon, Share2Icon } from "lucide-react";
 import { useState } from "react";
 import type { Policy } from "@/lib/types";
-import { lawUrl } from "@/lib/share";
+import { shortUrl } from "@/lib/share";
 
 /** Share a law: native share sheet on phones, copy the link elsewhere, plus a direct WhatsApp link. */
 export function ShareButtons({ p }: { p: Pick<Policy, "id" | "title" | "summary" | "shareUrl"> }) {
-  const url = p.shareUrl ?? lawUrl(p.id);
+  const url = p.shareUrl ?? shortUrl(p.id);
   const text = `${p.title}: ${p.summary}`;
   const [copied, setCopied] = useState(false);
 
