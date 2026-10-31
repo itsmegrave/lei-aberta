@@ -16,7 +16,8 @@ for (const r of rows)
       note = `${res.status}${res.ok ? (named ? " ok" : " (law number not found in page)") : ""}`;
       if (!res.ok || !named) broken++;
     } catch (e) {
-      note = `error: ${(e as Error).message}`;
+      const cause = (e as { cause?: { code?: string; message?: string } }).cause;
+      note = `error: ${(e as Error).message}${cause ? ` (${cause.code ?? ""} ${cause.message ?? ""})` : ""}`;
       broken++;
     }
     console.log(`${r.id}\t${note}\t${s.url}`);
