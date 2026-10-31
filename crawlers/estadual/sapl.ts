@@ -208,7 +208,7 @@ export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia
 export async function crawlSapl(
   house: StateHouse,
   years: number[],
-  { concurrency = 3, limit = Infinity, skip = (_id: string) => false } = {},
+  { concurrency = 3, limit = Infinity, skip = (_id: string): boolean => false } = {},
 ): Promise<AdapterResult> {
   const base = house.url.replace(/\/$/, "");
   const errors: string[] = [];
