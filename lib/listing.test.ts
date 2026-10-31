@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { EMPTY_FILTERS, toRow } from "./catalog.ts";
-import { decodeIndex, encodeIndex, pageCount, pageFile, pageOfPos, pageWindow, readUrlState, toCard, writeUrlState } from "./listing.ts";
+import { decodeIndex, encodeIndex, pageCount, pageFile, pageOfPos, pageWindow, readUrlState, searchHref, toCard, writeUrlState } from "./listing.ts";
 import type { Policy } from "./types.ts";
 
 const law: Policy = {
@@ -82,4 +82,11 @@ test("the pager window handles small and edge cases", () => {
   assert.deepEqual(pageWindow(10, 10), [1, null, 8, 9, 10]);
   // A gap of exactly one page shows the page instead of "…".
   assert.deepEqual(pageWindow(5, 10), [1, 2, 3, 4, 5, 6, 7, null, 10]);
+});
+
+test("search links carry only the filters given, in Portuguese", () => {
+  assert.equal(searchHref(), "/busca");
+  assert.equal(searchHref({ area: "educacao" }), "/busca?tema=educacao");
+  assert.equal(searchHref({ q: " escola ", year: 1990 }), "/busca?q=escola&ano=1990");
+  assert.deepEqual(readUrlState(searchHref({ level: "estadual", author: "PT" }).slice("/busca".length)).filters, { ...EMPTY_FILTERS, level: "estadual", author: "PT" });
 });

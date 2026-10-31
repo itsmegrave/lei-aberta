@@ -2,6 +2,9 @@
 
 import { SearchIcon } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
+import { useState } from "react";
+import { searchHref } from "@/lib/listing";
 import { emojiSrc } from "@/lib/vocab";
 import { Button } from "@/components/ui/button";
 
@@ -17,7 +20,9 @@ const ART: { e: string; style: React.CSSProperties; big?: boolean }[] = [
 
 const TRY = ["internet", "mulher", "escola", "dados"];
 
-export function Hero({ q, onQuery, onSubmit }: { q: string; onQuery: (q: string) => void; onSubmit: () => void }) {
+/** Home header. The search box sends the words to the search page; nothing is filtered on the home. */
+export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
+  const [q, setQ] = useState("");
   return (
     <header className="grid items-center gap-6 pt-6 pb-2 md:grid-cols-[1.25fr_1fr]">
       <div className="grid min-w-0 gap-5">
@@ -42,7 +47,7 @@ export function Hero({ q, onQuery, onSubmit }: { q: string; onQuery: (q: string)
           className="bg-card border-foreground flex max-w-[640px] items-center gap-2.5 rounded-[18px] border-2 py-1.5 pr-1.5 pl-4 shadow-[4px_4px_0_var(--foreground)]"
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit();
+            onSearch(q.trim());
           }}
         >
           <SearchIcon className="text-muted-foreground size-5.5 shrink-0" />
@@ -50,7 +55,7 @@ export function Hero({ q, onQuery, onSubmit }: { q: string; onQuery: (q: string)
             id="q"
             type="search"
             value={q}
-            onChange={(e) => onQuery(e.target.value)}
+            onChange={(e) => setQ(e.target.value)}
             placeholder="escola, internet, saúde, idosos…"
             aria-label="Buscar leis"
             className="h-11 min-w-0 flex-1 bg-transparent text-[17px] outline-none"
@@ -62,9 +67,9 @@ export function Hero({ q, onQuery, onSubmit }: { q: string; onQuery: (q: string)
         <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-[13px]">
           Experimente:
           {TRY.map((t) => (
-            <button key={t} onClick={() => onQuery(t)} className="bg-accent text-foreground rounded-full px-2.5 py-0.5 font-semibold">
+            <Link key={t} href={searchHref({ q: t })} className="bg-accent text-foreground rounded-full px-2.5 py-0.5 font-semibold">
               {t === "dados" ? "dados pessoais" : t}
-            </button>
+            </Link>
           ))}
         </div>
       </div>

@@ -10,8 +10,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { loadPartyStats } from "@/lib/data";
-import { writeUrlState } from "@/lib/listing";
-import { EMPTY_FILTERS } from "@/lib/catalog";
+import { searchHref } from "@/lib/listing";
 import { SPECTRUM_SOURCE } from "@/lib/party-spectrum";
 import { PARTIES, PARTIES_PATH, partyBySlug, partyPath, tseUrl, TSE_PARTIES_URL } from "@/lib/parties";
 import { lawPath } from "@/lib/share";
@@ -42,7 +41,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const dateBR = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-const homeWith = (f: Partial<typeof EMPTY_FILTERS>) => `/${writeUrlState({ ...EMPTY_FILTERS, ...f }, 1)}#h-laws`;
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export default async function PartyPage({ params }: Props) {
@@ -134,7 +132,7 @@ export default async function PartyPage({ params }: Props) {
               return (
                 <Link
                   key={t.key}
-                  href={homeWith({ author: p.short, area: t.key })}
+                  href={searchHref({ author: p.short, area: t.key })}
                   className="inline-flex items-center gap-2 rounded-full py-1.5 pr-3.5 pl-2 text-sm font-bold"
                   style={{ background: `var(--t-${a.tint}-bg)`, color: `var(--t-${a.tint})` }}
                 >
@@ -196,12 +194,12 @@ export default async function PartyPage({ params }: Props) {
             </ul>
             <div className="mt-3.5 flex flex-wrap gap-2">
               {s.proposed > 0 && (
-                <Link href={homeWith({ author: p.short })} className="bg-card inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-bold">
+                <Link href={searchHref({ author: p.short })} className="bg-card inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-bold">
                   {s.proposed === 1 ? "Ver a lei que propôs" : `Ver as ${plural(s.proposed)} que propôs`} <ArrowRightIcon className="size-3.5" />
                 </Link>
               )}
               {s.signed > 0 && (
-                <Link href={homeWith({ executive: p.short })} className="bg-card inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-bold">
+                <Link href={searchHref({ executive: p.short })} className="bg-card inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-bold">
                   {s.signed === 1 ? "Ver a lei que sancionou" : `Ver as ${plural(s.signed)} que sancionou`} <ArrowRightIcon className="size-3.5" />
                 </Link>
               )}

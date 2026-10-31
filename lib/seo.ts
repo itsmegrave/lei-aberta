@@ -103,7 +103,7 @@ export function siteJsonLd(base = SITE_URL): JsonLd {
         publisher: { "@id": ORG_ID(base) },
         potentialAction: {
           "@type": "SearchAction",
-          target: { "@type": "EntryPoint", urlTemplate: `${base}/?q={search_term_string}` },
+          target: { "@type": "EntryPoint", urlTemplate: `${base}/busca?q={search_term_string}` },
           "query-input": "required name=search_term_string",
         },
       },
