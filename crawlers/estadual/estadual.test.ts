@@ -9,7 +9,7 @@ import { alespToPolicy, detectRecordTag, parseNorma, parseTipos, splitAuthors } 
 import { PartyAtElection, csvLine, parseCandidates } from "./tse.ts";
 import { bareNumber, lawType, shortTitle, tameCaps } from "./common.ts";
 import { robotsAllows, robotsRules } from "./http.ts";
-import { type AuthorBook, type Autor, type Filiacao, type Materia, type Norma, type TipoNorma, authorKind, partyOn, saplToPolicy, siglaFromStr, targetTypes } from "./sapl.ts";
+import { type AuthorBook, type Autor, type Filiacao, type Materia, type Norma, type TipoNorma, authorKind, partyOn, saplId, saplToPolicy, siglaFromStr, targetTypes } from "./sapl.ts";
 import { STATES, byUf } from "./states.ts";
 import { child, decodeXmlStream, forEachElement, zipTextChunks } from "./zip.ts";
 
@@ -128,6 +128,7 @@ test("SAPL: law to record", async () => {
   const ro = byUf("RO")!;
   const p = saplToPolicy(ro, "lei", page.results[0], materia, materia.autores!, book);
   assert.equal(p.id, "estadual-ro-lei-5723-2024", "year comes from the law's date, not SAPL's 'ano'");
+  assert.equal(saplId(ro, "lei", page.results[0]), p.id, "nightly runs skip known laws by this id before fetching the bill");
   assert.equal(p.level, "estadual");
   assert.equal(p.jurisdiction, "Rondônia");
   assert.equal(p.number, "5.723");

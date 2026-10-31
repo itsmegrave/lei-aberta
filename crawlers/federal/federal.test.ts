@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { makeApis, deputyAt } from "./apis.ts";
-import { lawRecord, mpRecord, mpStatus, parseIdent, parseNormaGerada, pickProcess, resolveAuthorship } from "./build.ts";
+import { isResolved, lawRecord, mpRecord, openMpYears, mpStatus, parseIdent, parseNormaGerada, pickProcess, resolveAuthorship } from "./build.ts";
 import { legislatureAt, partyNameAt, presidentAt } from "./politics.ts";
 import { cleanEmenta, guessAreas, nickname } from "./text.ts";
 import { validate } from "../lib/store.ts";
@@ -130,4 +130,16 @@ test("parsers and helpers", () => {
 
 test("deputy party: unknown when there is no row for that legislature", () => {
   assert.deepEqual(deputyAt([{ idLegislatura: 52, siglaPartido: "PT", siglaUf: "RS" }], "1997-08-28"), { party: null, uf: null });
+});
+
+test("incremental: known laws are skipped, open MPs from the last year are re-read", () => {
+  const law = { id: "federal-lei-1-2026", authors: [{ name: "Poder Executivo", kind: "executive", party: null, uf: null }] };
+  const store = { get: (id: string) => (id === law.id ? (law as never) : id === "federal-lei-2-2026" ? ({ authors: [] } as never) : undefined) };
+  assert.equal(isResolved(store, "federal-lei-1-2026"), true);
+  assert.equal(isResolved(store, "federal-lei-2-2026"), false); // stored without authors: try again
+  assert.equal(isResolved(store, "federal-lei-3-2026"), false);
+
+  const mp = (year: number, status: string, signedAt = `${year}-03-01`) => ({ type: "medida-provisoria", year, status, signedAt }) as never;
+  const years = openMpYears([mp(2026, "convertida"), mp(2025, "em-tramitacao"), mp(2024, "em-tramitacao"), mp(2001, "em-tramitacao", "2001-08-24")], 2026);
+  assert.deepEqual(years, [2025]);
 });

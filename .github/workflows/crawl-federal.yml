@@ -6,11 +6,15 @@ on:
   workflow_dispatch:
     inputs:
       from:
-        description: "First year (1988 for a full backfill; empty = last year)"
+        description: "First year (empty = since the last good run)"
         required: false
       to:
         description: "Last year (empty = this year)"
         required: false
+      full:
+        description: "Re-resolve laws already in the data (after a crawler fix)"
+        type: boolean
+        default: false
   pull_request:
     paths:
       - "crawlers/**"
@@ -34,6 +38,11 @@ jobs:
       # A pre-EC 32 reissued MP, and a sample of a recent year of every type.
       - run: npm run crawl:federal -- --from 1999 --to 1999 --types MPV --only 1858 --dry-run
       - run: npm run crawl:federal -- --from 2025 --to 2025 --limit 5 --dry-run
+      # The nightly path: incremental, on a copy of the data, so it should skip everything already known.
+      - name: Incremental run on a copy of the data
+        run: |
+          cp -r data "$RUNNER_TEMP/data"
+          npm run crawl:federal -- --data "$RUNNER_TEMP/data"
       - name: Check the hand-written sample's links
         run: npm run check:links
         continue-on-error: true
@@ -57,10 +66,12 @@ jobs:
         env:
           FROM: ${{ inputs.from }}
           TO: ${{ inputs.to }}
+          FULL: ${{ inputs.full }}
         run: |
           args=()
           [ -n "$FROM" ] && args+=(--from "$FROM")
           [ -n "$TO" ] && args+=(--to "$TO")
+          [ "$FULL" = "true" ] && args+=(--full)
           npm run crawl:federal -- "${args[@]}"
       - name: Commit data
         if: always()

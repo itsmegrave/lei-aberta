@@ -1,27 +1,36 @@
 // Federal crawler: laws (ordinárias and complementares) and medidas provisórias since 1988.
 //
-//   npm run crawl:federal -- --from 2023 --to 2026          # specific years
-//   npm run crawl:federal -- --from 1988                     # full backfill
+//   npm run crawl:federal                                    # nightly: only what is new since the last good run
+//   npm run crawl:federal -- --from 2023 --to 2026          # specific years, new laws only
+//   npm run crawl:federal -- --from 1988 --full              # full backfill, re-resolving every law
 //   npm run crawl:federal -- --from 2020 --to 2020 --limit 5 --dry-run   # smoke test
 //
-// Default (no --from): the current and previous year, which is what the nightly job runs.
+// Incremental by default. The Senado listings are one request per type and year, so they are always read;
+// the expensive part, resolving a law's bill, authors and parties, only runs for laws not yet in the data
+// (or stored without authors). MPs are rebuilt from bulk listings, so the years of MPs still in
+// tramitação are read again to pick up conversions, rejections and expiries. --full re-resolves everything.
+// Without --from, the years run from the last successful run (data/sources/senado.json) to now.
 import path from "node:path";
 import { updateSource } from "../../lib/sources-store.ts";
 import type { Policy } from "../../lib/types.ts";
 import { makeFetchJson } from "../lib/http.ts";
+import { lastSuccess, sinceYear } from "../lib/cursor.ts";
 import { openStore } from "../lib/store.ts";
 import { makeApis, type Apis, type NormType, type SenadoNorm, type SenadoProcessSummary } from "./apis.ts";
 import { brDateToIso } from "./text.ts";
-import { EC32, lawRecord, mpRecord, parseIdent, parseNormaGerada, pickProcess, resolveAuthorship } from "./build.ts";
+import { EC32, isResolved, lawRecord, openMpYears, recordId, mpRecord, parseIdent, parseNormaGerada, pickProcess, resolveAuthorship } from "./build.ts";
 
 interface Options {
-  from: number;
+  /** null: from the last successful run. */
+  from: number | null;
   to: number;
   types: NormType[];
   limit: number;
   /** Only these norm numbers (smoke tests). */
   only: string[] | null;
   dryRun: boolean;
+  /** Re-resolve laws already in the data (after a fix to the crawler). */
+  full: boolean;
   dataDir: string;
 }
 
@@ -31,14 +40,14 @@ function parseArgs(argv: string[]): Options {
     return i >= 0 ? argv[i + 1] : undefined;
   };
   const now = new Date().getUTCFullYear();
-  const from = Number(get("from") ?? now - 1);
   return {
-    from,
+    from: get("from") ? Number(get("from")) : null,
     to: Number(get("to") ?? now),
     types: (get("types") ?? "LEI,LCP,MPV").split(",").map((t) => t.trim().toUpperCase()) as NormType[],
     limit: Number(get("limit") ?? Infinity),
     only: get("only")?.split(",").map((n) => n.replace(/\D/g, "")) ?? null,
     dryRun: argv.includes("--dry-run"),
+    full: argv.includes("--full"),
     dataDir: path.resolve(get("data") ?? "data"),
   };
 }
@@ -54,8 +63,18 @@ async function each<T, R>(items: T[], fn: (t: T) => Promise<R>): Promise<{ ok: R
   return { ok, failed };
 }
 
-async function crawlLaws(apis: Apis, type: "LEI" | "LCP", year: number, limit: number, only: string[] | null): Promise<{ records: Policy[]; failed: number }> {
-  const [norms, procs] = await Promise.all([apis.listNorms(type, year), apis.processesByNorm(type, year).catch(() => [] as SenadoProcessSummary[])]);
+async function crawlLaws(
+  apis: Apis,
+  type: "LEI" | "LCP",
+  year: number,
+  { limit, only, skip }: { limit: number; only: string[] | null; skip: (id: string) => boolean },
+): Promise<{ records: Policy[]; failed: number; skipped: number }> {
+  const listed = (await apis.listNorms(type, year)).filter((n) => !only || only.includes(n.numero));
+  const todo = listed.filter((n) => !skip(recordId(type, n.numero, Number(brDateToIso(n.dataassinatura)!.slice(0, 4)))));
+  const skipped = listed.length - todo.length;
+  if (!todo.length) return { records: [], failed: 0, skipped };
+  const norms = todo;
+  const procs = await apis.processesByNorm(type, year).catch(() => [] as SenadoProcessSummary[]);
   const byNorm = new Map<string, SenadoProcessSummary[]>();
   for (const p of procs) {
     const n = parseNormaGerada(p.normaGerada);
@@ -63,14 +82,14 @@ async function crawlLaws(apis: Apis, type: "LEI" | "LCP", year: number, limit: n
     const k = `${n.numero}|${n.date}`;
     byNorm.set(k, [...(byNorm.get(k) ?? []), p]);
   }
-  const picked = norms.filter((n) => !only || only.includes(n.numero)).slice(0, limit);
+  const picked = norms.slice(0, limit);
   const { ok, failed } = await each(picked, async (n) => {
     const proc = pickProcess(byNorm.get(`${n.numero}|${brDateToIso(n.dataassinatura)}`) ?? []);
     const auth = proc ? await resolveAuthorship(apis, proc) : null;
     return lawRecord(type, n, auth);
   });
   for (const f of failed) console.warn(`  ! ${type} ${(f.item as SenadoNorm).norma}: ${(f.error as Error).message}`);
-  return { records: ok, failed: failed.length };
+  return { records: ok, failed: failed.length, skipped };
 }
 
 async function crawlMps(apis: Apis, years: number[], limit: number, only: string[] | null): Promise<{ records: Policy[]; failed: number }> {
@@ -109,36 +128,43 @@ async function crawlMps(apis: Apis, years: number[], limit: number, only: string
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const startedAt = new Date().toISOString().replace(/\.\d+Z$/, "Z");
-  console.log(`Federal crawl ${opts.from}-${opts.to} [${opts.types.join(",")}]${opts.dryRun ? " (dry run)" : ""}`);
+  const sourcesDir = path.join(opts.dataDir, "sources");
+  const cursor = await lastSuccess("senado", sourcesDir);
+  // A week of overlap: the Senado lists some laws days after they are signed (and covers late December in January).
+  const from = opts.from ?? sinceYear(cursor, { overlapDays: 7, maxDays: 400 });
+  const mode = opts.full ? "full" : opts.from == null ? `incremental since ${cursor ?? "never"}` : "new laws only";
+  console.log(`Federal crawl ${from}-${opts.to} [${opts.types.join(",")}] (${mode})${opts.dryRun ? " (dry run)" : ""}`);
   const apis = makeApis(makeFetchJson());
   const store = await openStore(opts.dataDir);
-  const years = range(opts.from, opts.to);
+  const years = range(from, opts.to);
+  const skip = (id: string) => !opts.full && !opts.only && !opts.dryRun && isResolved(store, id);
   const crawled: Policy[] = [];
   let failed = 0;
 
   for (const type of opts.types.filter((t): t is "LEI" | "LCP" => t !== "MPV"))
     for (const year of years) {
-      const r = await crawlLaws(apis, type, year, opts.limit, opts.only);
-      console.log(`  ${type} ${year}: ${r.records.length} records${r.failed ? `, ${r.failed} failed` : ""}`);
+      const r = await crawlLaws(apis, type, year, { limit: opts.limit, only: opts.only, skip });
+      console.log(`  ${type} ${year}: ${r.records.length} crawled, ${r.skipped} already known${r.failed ? `, ${r.failed} failed` : ""}`);
       crawled.push(...r.records);
       failed += r.failed;
     }
   if (opts.types.includes("MPV")) {
-    const r = await crawlMps(apis, years, opts.limit, opts.only);
-    console.log(`  MPV ${opts.from}-${opts.to}: ${r.records.length} records`);
+    // MPs still open when last seen may since have been converted, rejected or expired.
+    const mpYears = [...new Set([...years, ...openMpYears(store.all(), opts.to)])].sort();
+    const r = await crawlMps(apis, mpYears, opts.limit, opts.only);
+    console.log(`  MPV ${mpYears.join(",")}: ${r.records.length} records`);
     crawled.push(...r.records);
   }
 
-  let written = 0;
   for (const rec of crawled) {
     const prev = store.get(rec.id);
     store.upsert(rec, { owner: true, preserve: prev?.curated ? ["title", "summary", "areas"] : [] });
-    written++;
   }
+  const written = store.changed();
 
   const withParty = crawled.filter((r) => r.authors.some((a) => a.kind !== "executive")).length;
   const unknownParty = crawled.filter((r) => r.authors.some((a) => (a.kind === "deputy" || a.kind === "senator") && !a.party)).length;
-  console.log(`Total ${written} records; ${failed} failed; ${withParty} with legislative authors, ${unknownParty} with an author of unknown party.`);
+  console.log(`Total ${crawled.length} crawled, ${written} new or changed; ${failed} failed; ${withParty} with legislative authors, ${unknownParty} with an author of unknown party.`);
 
   if (opts.dryRun) {
     for (const r of crawled.slice(0, 8)) console.log(JSON.stringify(r, null, 2));
@@ -147,13 +173,14 @@ async function main() {
   await store.save();
 
   // A run that loses more than a tenth of its records is reported as failing on the site.
-  const ok = crawled.length > 0 && failed <= crawled.length / 10;
+  // A quiet night with nothing new is a success.
+  const ok = failed <= crawled.length / 10;
   const all = store.all().filter((r) => r.level === "federal");
   const count = (re: RegExp) => all.filter((r) => r.sources.some((s) => re.test(s.url))).length;
-  const finishedAt = new Date().toISOString().replace(/\.\d+Z$/, "Z");
-  const status = ok ? { status: "active" as const, lastSuccess: finishedAt } : { status: "failing" as const };
-  await updateSource("senado", { ...status, lastRun: startedAt, records: count(/normas\.leg\.br|senado\.leg\.br/), crawler: "crawlers/federal/run.ts" });
-  await updateSource("camara", { ...status, lastRun: startedAt, records: count(/camara\.leg\.br/), crawler: "crawlers/federal/run.ts" });
+  // lastSuccess is the next run's cursor; it records when this run started, so nothing signed during it is missed.
+  const okStatus = ok ? { status: "active" as const, lastSuccess: startedAt } : { status: "failing" as const };
+  await updateSource("senado", { ...okStatus, lastRun: startedAt, records: count(/normas\.leg\.br|senado\.leg\.br/), crawler: "crawlers/federal/run.ts" }, sourcesDir);
+  await updateSource("camara", { ...okStatus, lastRun: startedAt, records: count(/camara\.leg\.br/), crawler: "crawlers/federal/run.ts" }, sourcesDir);
   if (!ok) process.exitCode = 1;
 }
 

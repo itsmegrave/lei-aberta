@@ -63,17 +63,30 @@ export function validate(p: Policy): string[] {
 export interface Store {
   get(id: string): Policy | undefined;
   all(): Policy[];
+  /** Merges a record. A merge that changes nothing leaves its file untouched, so quiet nights write nothing. */
   upsert(record: Policy, opts: UpsertOptions): Policy;
+  /** Number of records added or changed since the store was opened. */
+  changed(): number;
   remove(id: string): void;
   /** Writes touched files and index.json. Returns the number of files written. */
   save(): Promise<number>;
 }
+
+/** Key order can differ between a record read from disk and a freshly built one, so compare canonically. */
+const canonical = (v: unknown): unknown =>
+  Array.isArray(v)
+    ? v.map(canonical)
+    : v && typeof v === "object"
+      ? Object.fromEntries(Object.keys(v).sort().filter((k) => (v as Record<string, unknown>)[k] !== undefined).map((k) => [k, canonical((v as Record<string, unknown>)[k])]))
+      : v;
+export const sameRecord = (a: Policy, b: Policy) => JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
 
 const fileKey = (p: Pick<Policy, "level" | "year">) => `${p.level}/${p.year}.json`;
 
 export async function openStore(dataDir: string): Promise<Store> {
   const records = new Map<string, Policy>();
   const touched = new Set<string>();
+  const changedIds = new Set<string>();
   let index: IndexFile = { updatedAt: "", files: [] };
   try {
     index = JSON.parse(await readFile(path.join(dataDir, "index.json"), "utf8"));
@@ -98,11 +111,14 @@ export async function openStore(dataDir: string): Promise<Store> {
       const next = mergeRecord(prev, record, opts);
       const errors = validate(next);
       if (errors.length) throw new Error(`${record.id}: ${errors.join("; ")}`);
+      if (prev && sameRecord(prev, next)) return prev;
+      changedIds.add(next.id);
       if (prev) touched.add(fileKey(prev));
       touched.add(fileKey(next));
       records.set(next.id, next);
       return next;
     },
+    changed: () => changedIds.size,
     remove(id) {
       const prev = records.get(id);
       if (!prev) return;

@@ -10,6 +10,7 @@
  *   --data-dir PATH      default data
  *   --limit N            at most N laws per type and year in SAPL houses (smoke tests)
  *   --dry-run            crawl and print, write nothing
+ *   --full               re-fetch laws already in the data (by default SAPL houses only fetch new laws)
  *   --manifests-only     crawl nothing; only (re)write data/sources/assembleia-*.json
  *
  * Also rewrites data/sources/assembleia-<uf>.json for all 27 houses (status, counts, last run).
@@ -34,6 +35,7 @@ const { values: args } = parseArgs({
     "data-dir": { type: "string", default: "data" },
     limit: { type: "string" },
     "dry-run": { type: "boolean", default: false },
+    full: { type: "boolean", default: false },
     "manifests-only": { type: "boolean", default: false },
     // Smoke runs on PRs: a house whose server is down (5xx, timeout, network error) is reported, not failed,
     // so an outage at an assembly can't block an unrelated PR. Parse and format errors still fail.
@@ -61,7 +63,9 @@ const hasData = (uf: string) => store.all().some((r) => r.id.startsWith(`estadua
 async function crawl(h: StateHouse): Promise<AdapterResult> {
   if (h.adapter === "alesp") return crawlAlesp(h, { since: sinceArg ?? FIRST_YEAR, until });
   const limit = args.limit ? Number(args.limit) : Infinity;
-  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until), { limit });
+  // Laws already stored are skipped: a law's text and authors don't change once it is enacted.
+  const skip = (id: string) => !args.full && !args["dry-run"] && store.get(id) !== undefined;
+  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until), { limit, skip });
 }
 
 interface Outcome {
@@ -85,7 +89,6 @@ const dryRun = args["dry-run"];
 const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
 let failures = 0;
 let unavailable = 0;
-let mergedTotal = 0;
 
 /** True for errors that mean the house's server is down, not that our code is wrong. */
 const isOutage = (e: unknown) =>
@@ -111,7 +114,6 @@ for (const o of outcomes) {
       // Keep hand-edited titles/summaries and classifier areas; the house owns every other field.
       store.upsert(r, { owner: true, preserve: ["title", "summary", "areas"] });
       merged++;
-      mergedTotal++;
     } catch (err) {
       errors.push(String(err));
     }
@@ -127,8 +129,8 @@ for (const o of outcomes) {
 }
 
 if (!dryRun) {
-  // Saving with nothing merged would still rewrite index.json, so skip it.
-  if (mergedTotal) await store.save();
+  // Saving with nothing new would still rewrite index.json, so skip it.
+  if (store.changed()) await store.save();
   await writeManifests();
 }
 
