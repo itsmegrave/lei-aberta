@@ -69,8 +69,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26
+          cache: npm
+      # The store mirrors every save into Postgres, which needs drizzle-orm and postgres.
+      - run: npm ci
       - name: Crawl
         env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SOURCE: ${{ inputs.source || 'all' }}
           SINCE: ${{ inputs.since }}
           UNTIL: ${{ inputs.until }}

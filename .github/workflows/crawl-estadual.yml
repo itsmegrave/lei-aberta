@@ -59,6 +59,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26
+          cache: npm
+      # The store mirrors every save into Postgres, which needs drizzle-orm and postgres.
+      - run: npm ci
       # TSE candidate files for past elections never change; keep them between runs.
       - uses: actions/cache@v4
         with:
@@ -66,6 +69,7 @@ jobs:
           key: tse-consulta-cand-v1
       - name: Crawl
         env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           STATES: ${{ inputs.states }}
           SINCE: ${{ inputs.since }}
         run: |

@@ -75,6 +75,7 @@ The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Ma
 - Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`.
 - `npm run db:import-json` loads every record in `data/` into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
 - Neon is installed through the Vercel Marketplace and sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` on the project. On production deploys `scripts/db-deploy.sh` (the `vercel-build` script) applies migrations and syncs `data/` into the database; preview deploys share that database and skip it.
+- Crawlers: `crawlers/lib/store.ts` still writes `data/` (committed by the nightly jobs) and, when `CRAWL_DATABASE_URL` is set (the nightly jobs pass the `DATABASE_URL` repo secret), also upserts every changed record into Postgres and deletes removed ones in the same `save()`.
 - Local: any Postgres 16 works, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta`.
 
 ### How the site loads it
