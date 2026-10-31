@@ -107,7 +107,9 @@ export async function resolveAuthorship(apis: Apis, proc: SenadoProcessSummary):
         const kind = authorKind(a);
         if (kind === "senator" && a.codigoParlamentar && date) {
           const s = await apis.senatorAt(a.codigoParlamentar, date, a.siglaPartido).catch(() => ({ party: null, uf: null }));
-          return { name: titleCaseName(a.autor), kind, party: s.party, uf: s.uf };
+          // Old senators have no state in their profile; the process summary reads "Senador X (MDB/MG)".
+          const uf = s.uf ?? (raw.length === 1 ? (proc.autoria?.match(/\/([A-Z]{2})\)\s*$/)?.[1] ?? null) : null);
+          return { name: titleCaseName(a.autor), kind, party: s.party, uf };
         }
         // Deputies listed only by the Senado carry today's party label, not the one at authorship: leave it unknown.
         return { name: titleCaseName(a.autor), kind, party: null, uf: null };
@@ -122,7 +124,7 @@ export function lawRecord(type: "LEI" | "LCP", n: SenadoNorm, auth: Authorship |
   const date = brDateToIso(n.dataassinatura)!;
   const year = Number(date.slice(0, 4));
   const label = `${TYPE[type].label} nº ${formatNumber(n.numero)}/${year}`;
-  const nick = nickname(n.apelido, n.norma);
+  const nick = nickname(n.apelido, n.norma, year);
   const summary = cleanEmenta(n.ementa);
   const authors = auth?.authors ?? [];
   return {
@@ -171,7 +173,7 @@ export function mpRecord(editions: SenadoNorm[], proc: SenadoProcessSummary | un
   const lastDate = brDateToIso(last.dataassinatura)!;
   const year = Number(date.slice(0, 4));
   const label = `Medida Provisória nº ${formatNumber(first.numero)}/${year}`;
-  const nick = nickname(first.apelido, first.norma);
+  const nick = nickname(first.apelido, first.norma, year);
   const summary = cleanEmenta(last.ementa || first.ementa);
   const converted = parseNormaGerada(proc?.normaGerada);
   const lastNum = last.reedicao && last.reedicao !== "0" ? `${first.numero}-${last.reedicao}` : first.numero;

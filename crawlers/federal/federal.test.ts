@@ -30,7 +30,7 @@ const FIXTURES: Record<string, unknown> = {
   [`${S}/senador/2224/filiacoes.json`]: {
     FiliacaoParlamentar: { Parlamentar: { Codigo: "2224", Filiacoes: { Filiacao: [{ Partido: { SiglaPartido: "MDB" }, DataFiliacao: "1987-02-01" }] } } },
   },
-  [`${S}/senador/2224.json`]: { DetalheParlamentar: { Parlamentar: { IdentificacaoParlamentar: { UfParlamentar: "MG" } } } },
+  [`${S}/senador/2224.json`]: { DetalheParlamentar: { Parlamentar: { IdentificacaoParlamentar: {} } } }, // live API has no UF for him
   // Lei 14.116/2020 (LDO 2021): PLN 9/2020 by the Presidency.
   [`${S}/processo/7900029`]: { id: 7900029, identificacao: "PLN 9/2020", autoriaIniciativa: [{ autor: "Presidência da República", ente: "Presidência da República" }] },
 };
@@ -68,6 +68,8 @@ test("Senate bill: senator's party mapped back to the name in use at the time", 
   const rec = lawRecord("LEI", { id: "2", tipo: "LEI-n", numero: "8069", norma: "LEI-8069-1990-07-13", normaNome: "", ementa: "DISPÕE SOBRE O ESTATUTO DA CRIANÇA E DO ADOLESCENTE, E DA OUTRAS      \nPROVIDENCIAS.  ", dataassinatura: "13/07/1990", apelido: "LEI-8069-1990-07-13 , ESTATUTO DA CRIANÇA E DO ADOLESCENTE / ECA" }, auth);
   assert.equal(rec.title, "Estatuto da Criança e do Adolescente / ECA");
   assert.equal(rec.summary, "Dispõe sobre o estatuto da criança e do adolescente, e da outras providencias.");
+  assert.equal(cleanEmenta("Dispõe sobre o ESTATUTO DA CRIANÇA E DO ADOLESCENTE, e dá outras providências."), "Dispõe sobre o estatuto da criança e do adolescente, e dá outras providências.");
+  assert.equal(cleanEmenta("Altera a legislação da COFINS e do PIS/PASEP."), "Altera a legislação da COFINS e do PIS/PASEP.");
   assert.deepEqual(rec.executive, { name: "Fernando Collor", office: "Presidente", party: "PRN" });
   assert.ok(rec.areas.includes("direitos-humanos"));
 });
@@ -107,6 +109,9 @@ test("parsers and helpers", () => {
   assert.deepEqual(parseNormaGerada("Lei Complementar nº 101 de 04/05/2000"), { kind: "Lei Complementar", numero: "101", date: "2000-05-04" });
   assert.deepEqual(parseIdent("MPV 1731-34/1999"), { sigla: "MPV", numero: 1731, reissue: 34, ano: 1999 });
   assert.equal(nickname("LEI-14115-2020-12-29", "LEI-14115-2020-12-29"), null);
+  assert.equal(nickname("LEI-10741-2003-10-01 , Lei do Idoso (2003), Estatuto da Pessoa Idosa (2003), Estatuto do Idoso (2003)", "LEI-10741-2003-10-01", 2003), "Estatuto da Pessoa Idosa");
+  assert.equal(nickname("LEI-8069-1990-07-13 , Estatuto da Criança e do Adolescente (1990) (ECA)", "LEI-8069-1990-07-13", 1990), "Estatuto da Criança e do Adolescente (ECA)");
+  assert.equal(nickname("LEI-14116-2020-12-31 , Lei de Diretrizes Orçamentárias - LDO (2021)", "LEI-14116-2020-12-31", 2020), "Lei de Diretrizes Orçamentárias - LDO (2021)");
   assert.equal(cleanEmenta("  Altera   a Lei\n nº 1 "), "Altera a Lei nº 1");
   assert.deepEqual(guessAreas("Institui a Política Nacional de Resíduos Sólidos"), ["saneamento"]);
   assert.equal(legislatureAt("1997-08-28"), 50);

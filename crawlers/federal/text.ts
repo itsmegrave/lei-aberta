@@ -22,18 +22,25 @@ const isShouting = (s: string) => {
 export function cleanEmenta(s: string | null | undefined): string {
   let t = (s ?? "").replace(/\s+/g, " ").trim();
   if (isShouting(t)) t = t.toLowerCase();
+  // A shouted name inside a normal sentence ("dispõe sobre o ESTATUTO DA CRIANÇA E DO ADOLESCENTE"):
+  // lower-case runs of three or more capitalized words. Lone acronyms (COFINS, SUS) stay.
+  t = t.replace(/\b\p{Lu}{2,}(?:[ ,]+\p{Lu}+){2,}\b/gu, (m) => m.toLowerCase());
   return t.charAt(0).toUpperCase() + t.slice(1);
 }
 
 /** Senado "apelido" is "<NORMA-CODE> , Nickname" or just the code. Returns the nickname or null. */
-export function nickname(apelido: string | null | undefined, normaCode: string): string | null {
+export function nickname(apelido: string | null | undefined, normaCode: string, year?: number): string | null {
   if (!apelido) return null;
   const parts = apelido
     .split(/\s*,\s*/)
     .map((p) => p.trim())
-    .filter((p) => p && p !== normaCode && !/^(LEI|LCP|MPV)-[\d-]+$/.test(p));
+    .filter((p) => p && p !== normaCode && !/^(LEI|LCP|MPV)-[\d-]+$/.test(p))
+    // "(2003)" repeats the law's own year; a different year (e.g. LDO "(2021)") is meaningful.
+    .map((p) => (year ? p.replace(new RegExp(`\\s*\\(${year}\\)`, "g"), "") : p).trim());
   if (!parts.length) return null;
-  let t = parts.join(", ");
+  // Several nicknames ("Lei do Idoso, Estatuto da Pessoa Idosa, Estatuto do Idoso"): keep the longest,
+  // usually the formal name.
+  let t = parts.reduce((a, b) => (b.length > a.length ? b : a));
   if (isShouting(t)) {
     // Title case; short words that are not Portuguese function words are likely acronyms (ECA, SUS).
     t = t
