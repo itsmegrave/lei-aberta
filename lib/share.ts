@@ -1,5 +1,13 @@
-/** Public site address, used for canonical links, share images and short links. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://lei-aberta.vercel.app").replace(/\/+$/, "");
+/**
+ * Public site address, used for canonical links, sitemaps, share images and short links.
+ * NEXT_PUBLIC_SITE_URL wins; on Vercel it falls back to the project's production domain
+ * (a custom domain once one is set as primary), then to the vercel.app address.
+ */
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "") ||
+  "https://lei-aberta.vercel.app"
+).replace(/\/+$/, "");
 
 /** Path of a law's own page. Ids are already URL-safe (letters, digits, dashes). */
 export const lawPath = (id: string) => `/lei/${encodeURIComponent(id)}`;
