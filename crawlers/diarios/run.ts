@@ -65,7 +65,8 @@ if (args.source === "dou" || args.source === "all") {
       description: "Publicação oficial de cada lei federal e medida provisória, no dia em que sai no Diário Oficial.",
       crawler: "crawlers/diarios/run.ts",
     },
-    // INLABS (official bulk download, needs a free account) when credentials are set; the public site otherwise.
+    // INLABS (official bulk download, needs a free account) when credentials are set; the public site otherwise
+    // (falls back to a browser user agent if refused, see http.ts).
     ...(process.env.INLABS_EMAIL && process.env.INLABS_PASSWORD
       ? await crawlInlabs(dateRange(since, until), process.env.INLABS_EMAIL, process.env.INLABS_PASSWORD)
       : await crawlDou(dateRange(since, until))),

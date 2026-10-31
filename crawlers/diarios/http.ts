@@ -7,6 +7,36 @@
 import https from "node:https";
 
 export const USER_AGENT = "LeiAbertaBot/0.1 (+https://github.com/itsmegrave/lei-aberta)";
+/**
+ * Fallback user agent. in.gov.br drops requests whose user agent is not a browser's (seen from
+ * GitHub runners, Oct 2026). Every host is first asked with our own user agent; only when that
+ * request is refused (connection dropped, 403 or 429) do we retry with this one, and keep using it
+ * for that host for the rest of the run. Requests stay few and slow (low concurrency).
+ */
+export const BROWSER_USER_AGENT =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36";
+/** Hosts that refused our own user agent during this run. */
+const browserHosts = new Set<string>();
+
+export function userAgentFor(url: string): string {
+  return browserHosts.has(new URL(url).hostname) ? BROWSER_USER_AGENT : USER_AGENT;
+}
+
+/** True when a failure looks like bot blocking rather than a missing page or a down server. */
+export function looksBlocked(err: unknown): boolean {
+  if (err instanceof HttpError) return err.status === 403 || err.status === 429;
+  const code = (err as { code?: string })?.code ?? "";
+  return ["ECONNRESET", "EPIPE", "ERR_HTTP2_STREAM_ERROR", "ECONNABORTED"].includes(code) || /socket hang up|empty reply/i.test(String(err));
+}
+
+/** Switches `url`'s host to the browser user agent. Returns false if it already uses it. */
+function fallBackToBrowser(url: string, log: (msg: string) => void): boolean {
+  const host = new URL(url).hostname;
+  if (browserHosts.has(host)) return false;
+  browserHosts.add(host);
+  log(`${host} refused our user agent; retrying as a browser for the rest of this run.`);
+  return true;
+}
 
 export class HttpError extends Error {
   status: number;
@@ -18,7 +48,10 @@ export class HttpError extends Error {
   }
 }
 
-export async function fetchText(url: string, { retries = 3, timeoutMs = 30_000 } = {}): Promise<string> {
+export async function fetchText(
+  url: string,
+  { retries = 3, timeoutMs = 30_000, log = console.log as (msg: string) => void } = {},
+): Promise<string> {
   let lastError: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt > 0) await sleep(1000 * 2 ** attempt);
@@ -26,10 +59,15 @@ export async function fetchText(url: string, { retries = 3, timeoutMs = 30_000 }
       const res = await get(url, timeoutMs);
       if (res.status >= 200 && res.status < 300) return res.body;
       lastError = new HttpError(res.status, url);
-      if (res.status !== 429 && res.status < 500) break;
     } catch (err) {
       lastError = err;
     }
+    // Refused as a bot: retry right away as a browser (once per host).
+    if (looksBlocked(lastError) && fallBackToBrowser(url, log)) {
+      attempt--;
+      continue;
+    }
+    if (lastError instanceof HttpError && lastError.status !== 429 && lastError.status < 500) break;
   }
   throw lastError;
 }
@@ -39,7 +77,7 @@ function get(url: string, timeoutMs: number, redirects = 5): Promise<{ status: n
     const req = https.get(
       url,
       {
-        headers: { "user-agent": USER_AGENT, accept: "text/html,application/json,text/plain;q=0.9,*/*;q=0.8", "accept-language": "pt-BR,pt;q=0.9" },
+        headers: { "user-agent": userAgentFor(url), accept: "text/html,application/json,text/plain;q=0.9,*/*;q=0.8", "accept-language": "pt-BR,pt;q=0.9" },
         timeout: timeoutMs,
       },
       (res) => {
