@@ -143,4 +143,6 @@ export function toPolicy(d: DraftLaw): Policy {
 export interface AdapterResult {
   records: Policy[];
   errors: string[];
+  /** Diagnostics printed by run.ts (types matched, join counts). */
+  info?: string[];
 }

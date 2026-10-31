@@ -50,10 +50,10 @@ Checked on 2026-10-31. "SAPL" means the house runs Interlegis SAPL 3.x, whose AP
 | RO | Assembleia Legislativa de Rondônia | covered | SAPL `sapl.al.ro.leg.br` | API answered (12.4k norms) |
 | TO | Assembleia Legislativa do Tocantins | covered | SAPL `sapl.al.to.leg.br` | API answered (1.6k norms; older laws may be missing) |
 | SP | Assembleia Legislativa de São Paulo | partial | Alesp open data (XML dumps) | Laws and author names; no party history, so `party` is null |
-| RR | Assembleia Legislativa de Roraima | partial | SAPL `sapl.al.rr.leg.br` | Runs SAPL, but the API returned an error when checked; retried nightly |
 | AP | Assembleia Legislativa do Amapá | blocked | SAPL `sapl.al.ap.leg.br` | robots.txt disallows automated access |
 | MS | Assembleia Legislativa de Mato Grosso do Sul | blocked | SAPL `sapl.al.ms.leg.br` | robots.txt disallows automated access |
 | SE | Assembleia Legislativa de Sergipe | blocked | SAPL `sapl.al.se.leg.br` | robots.txt disallows automated access |
+| RR | Assembleia Legislativa de Roraima | blocked | SAPL `sapl.al.rr.leg.br` | API answers HTTP 403 to automated requests |
 | MG | Assembleia Legislativa de Minas Gerais | blocked | ALMG API `dadosabertos.almg.gov.br/ws/legislacao` | Good API, but robots.txt disallows automated access |
 | BA, CE, DF, ES, GO, MA, MT, PA, PE, PR, RJ, RN, RS, SC | — | planned | — | Own portals; not yet surveyed for an API or dump |
 

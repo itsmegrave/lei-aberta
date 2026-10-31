@@ -53,8 +53,8 @@ export const STATES: StateHouse[] = [
   { uf: "RS", state: "Rio Grande do Sul", house: "Assembleia Legislativa do Rio Grande do Sul", url: "https://www.al.rs.gov.br", adapter: null, note: planned },
   { uf: "RO", state: "Rondônia", house: "Assembleia Legislativa de Rondônia", url: "https://sapl.al.ro.leg.br", adapter: "sapl" },
   {
-    uf: "RR", state: "Roraima", house: "Assembleia Legislativa de Roraima", url: "https://sapl.al.rr.leg.br", adapter: "sapl",
-    note: "Usa SAPL, mas a API respondeu com erro no primeiro teste; a coleta tenta todas as noites.",
+    uf: "RR", state: "Roraima", house: "Assembleia Legislativa de Roraima", url: "https://sapl.al.rr.leg.br", adapter: null,
+    note: "Usa SAPL, mas a API recusa acesso automático (HTTP 403); aguardando autorização.",
   },
   { uf: "SC", state: "Santa Catarina", house: "Assembleia Legislativa de Santa Catarina (Alesc)", url: "https://www.alesc.sc.gov.br", adapter: null, note: planned },
   {

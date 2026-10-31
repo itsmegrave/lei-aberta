@@ -108,8 +108,9 @@ for (const o of outcomes) {
     o.fatal = errors[0];
   }
   console.log(`${house.uf}: ${records.length} law(s) found, ${merged} merged, ${errors.length} error(s)`);
+  for (const i of o.result!.info ?? []) console.log(`  · ${i}`);
   for (const e of errors.slice(0, 20)) console.log(`  ! ${e}`);
-  if (args["dry-run"]) for (const r of records.slice(0, 3)) console.log(`  ${r.id}: ${r.title} [${r.authors.map((a) => `${a.name}${a.party ? ` (${a.party})` : ""}`).join(", ")}]`);
+  if (args["dry-run"]) for (const r of records.slice(0, 6)) console.log(`  ${r.id}: ${r.title} [${r.authors.map((a) => `${a.name} <${a.kind}${a.party ? `, ${a.party}` : ""}>`).join(", ")}]`);
 }
 
 if (!dryRun) {

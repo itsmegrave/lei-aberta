@@ -193,6 +193,10 @@ export async function crawlSapl(house: StateHouse, years: number[], { concurrenc
   const types = targetTypes(await listAll<TipoNorma>(base, "/api/norma/tiponormajuridica/"));
   if (!types.size) return { records, errors: [`${house.uf}: no law types matched in tiponormajuridica`] };
   const book = await loadAuthorBook(base);
+  const info = [
+    `types: ${[...types].map(([k, v]) => `${k}=${v}`).join(", ")}`,
+    `authors: ${book.autores.size}, author types: ${[...book.tipos.values()].join("/")}, affiliations: ${[...book.filiacoes.values()].flat().length}, parties: ${book.partidos.size}`,
+  ];
 
   for (const [tipoId, type] of types) {
     for (const ano of years) {
@@ -224,5 +228,5 @@ export async function crawlSapl(house: StateHouse, years: number[], { concurrenc
       for (const r of rows) if (r) records.push(r);
     }
   }
-  return { records, errors };
+  return { records, errors, info };
 }

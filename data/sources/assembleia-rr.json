@@ -14,9 +14,9 @@
     "lei complementar",
     "emenda constitucional"
   ],
-  "description": "Usa SAPL, mas a API respondeu com erro no primeiro teste; a coleta tenta todas as noites.",
-  "crawler": "crawlers/estadual/run.ts",
+  "description": "Usa SAPL, mas a API recusa acesso automático (HTTP 403); aguardando autorização.",
+  "crawler": null,
   "records": null,
   "since": null,
-  "status": "building"
+  "status": "planned"
 }

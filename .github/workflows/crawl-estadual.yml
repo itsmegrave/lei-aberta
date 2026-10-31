@@ -35,9 +35,6 @@ jobs:
       - run: npm run crawl:estadual -- --dry-run --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
       # Alesp: downloads the full dumps, keeps 2025.
       - run: npm run crawl:estadual -- --dry-run --states SP --since 2025 --until 2025
-      # Roraima's API errored when first checked; report, do not block.
-      - run: npm run crawl:estadual -- --dry-run --states RR --since 2025 --until 2025 --limit 2
-        continue-on-error: true
 
   crawl:
     if: github.event_name != 'pull_request'

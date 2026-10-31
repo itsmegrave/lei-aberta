@@ -139,20 +139,30 @@ export async function crawlAlesp(house: StateHouse, years: { since: number; unti
   const tipos = parseTipos(tiposXml);
   if (!tipos.size) return { records: [], errors: ["SP: no law types matched in legislacao_tipo_normas.xml"] };
 
-  const normas: AlespNorma[] = [];
+  const info = [`types: ${[...tipos].map(([k, v]) => `${k}=${v}`).join(", ")}`];
+  // The dump can list a norm more than once; keep one row per idNorma.
+  const byId = new Map<string, AlespNorma>();
+  let rows = 0;
+  let firstRow = "";
   const zip = await fetchBuffer(`${BASE}/legislacao/legislacao_normas.zip`);
   await forEachRow(zipTextChunks(zip, ".xml"), "idNorma", (xml) => {
+    if (!rows++) firstRow = xml;
     const n = parseNorma(xml, tipos, years);
-    if (n) normas.push(n);
+    if (n && !byId.has(n.idNorma)) byId.set(n.idNorma, n);
   });
+  const normas = [...byId.values()];
+  info.push(`norm rows: ${rows}, kept: ${normas.length}; first row: ${firstRow.replace(/\s+/g, " ").slice(0, 400)}`);
 
   // Authors are optional: if the file is missing or changed, laws still go out without authors.
   const authors = new Map<string, string[]>();
   const wanted = new Set(normas.map((n) => n.idPropositura).filter(Boolean));
+  let authorRows = 0;
+  const sampleDocs: string[] = [];
   try {
     const az = await fetchBuffer(`${BASE}/processo_legislativo/documento_autor.zip`);
     await forEachRow(zipTextChunks(az, ".xml"), "IdDocumento", (xml) => {
       const doc = child(xml, "IdDocumento");
+      if (authorRows++ < 3) sampleDocs.push(xml.replace(/\s+/g, " ").slice(0, 200));
       if (!wanted.has(doc)) return;
       const name = child(xml, "NomeAutor");
       if (!name) return;
@@ -163,6 +173,11 @@ export async function crawlAlesp(house: StateHouse, years: { since: number; unti
     errors.push(`SP authors: ${err}`);
   }
 
+  info.push(
+    `author rows: ${authorRows}, bills wanted: ${wanted.size}, bills matched: ${authors.size}`,
+    `sample idPropositura/propositura: ${normas.slice(0, 3).map((n) => `${n.idPropositura}/${n.propositura}`).join("; ")}`,
+    `sample author rows: ${sampleDocs.join(" | ")}`,
+  );
   const records = normas.map((n) => alespToPolicy(house, n, authors.get(n.idPropositura) ?? []));
-  return { records, errors };
+  return { records, errors, info };
 }
