@@ -49,10 +49,11 @@ describe("Section", () => {
         <p>gráfico</p>
       </Section>,
     );
-    const toggle = screen.getByRole("button", { name: /Quem propôs/ });
-    expect(toggle).toHaveAttribute("aria-expanded", "true");
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    // No toggle that does nothing: a plain heading, and the content is reachable.
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.getByRole("heading", { level: 2, name: "Quem propôs" })).toBeInTheDocument();
+    expect(document.getElementById("s-body")).not.toHaveAttribute("inert");
+    expect(screen.getByRole("region", { name: "Quem propôs" })).toHaveTextContent("gráfico");
   });
 
   it("a link to the section opens it", () => {
@@ -73,6 +74,12 @@ describe("DataTable and useTableToggle", () => {
     expect(screen.getAllByRole("columnheader").map((h) => h.textContent)).toEqual(["Partido", "Leis"]);
     expect(screen.getByRole("cell", { name: "10" })).toHaveClass("text-right");
     expect(screen.getByRole("cell", { name: "MDB" })).not.toHaveClass("text-right");
+  });
+
+  it("names the table with a caption and accepts links in cells", () => {
+    render(<DataTable caption="Leis por ano" head={["Ano", "Leis"]} rows={[[<a key="a" href="/busca?ano=2001">2001</a>, 4]]} />);
+    expect(screen.getByRole("table", { name: "Leis por ano" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "2001" })).toHaveAttribute("href", "/busca?ano=2001");
   });
 
   it("toggles between chart and table", () => {

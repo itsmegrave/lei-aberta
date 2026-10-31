@@ -18,15 +18,16 @@ export function TopicGrid({ keys, counts, href }: { keys: string[]; counts: Map<
           <MotionLink
             key={k}
             href={href(k)}
+            aria-label={`${a.label}: ${n} ${n === 1 ? "lei" : "leis"}`}
             initial={{ y: 14, opacity: 0.001 }}
-            animate={{ y: 0, opacity: n ? 1 : 0.45 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ delay: i * 0.04, duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
             whileHover={{ y: -2, rotate: -0.6 }}
             className="group relative flex min-h-28 flex-col gap-4 rounded-[18px] p-3.5 text-left"
             style={{ background: `var(--t-${a.tint}-bg)`, color: `var(--t-${a.tint})` }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={emojiSrc(a.emoji)} alt="" className="size-11 transition-transform duration-300 ease-[cubic-bezier(.3,1.6,.5,1)] group-hover:scale-115 group-hover:-rotate-8" />
+            <img src={emojiSrc(a.emoji)} alt="" className={`size-11 transition-transform duration-300 ease-[cubic-bezier(.3,1.6,.5,1)] group-hover:scale-115 group-hover:-rotate-8 ${n ? "" : "opacity-45 grayscale"}`} />
             <span className="font-display absolute top-3 right-3.5 text-[22px] font-extrabold">{n}</span>
             <span className="text-foreground mt-auto text-[15px] leading-tight font-bold">{a.label}</span>
           </MotionLink>
@@ -39,7 +40,7 @@ export function TopicGrid({ keys, counts, href }: { keys: string[]; counts: Map<
 /** Compact topic chips on the search page: toggles, so the active one can be clicked off again. */
 export function TopicChips({ keys, counts, active, onPick }: { keys: string[]; counts: Map<string, number>; active: string; onPick: (k: string) => void }) {
   return (
-    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0" aria-label="Temas">
+    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0" role="group" aria-label="Temas">
       {keys.map((k) => {
         const a = area(k);
         return (
@@ -62,7 +63,7 @@ export function TopicChips({ keys, counts, active, onPick }: { keys: string[]; c
 
 export function LevelPills({ counts, active, onPick }: { counts: Map<string, number>; active: string; onPick: (k: Level) => void }) {
   return (
-    <div className="mt-3 flex flex-wrap gap-2" aria-label="Nível de governo">
+    <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Nível de governo">
       {LEVELS.map((l) => (
         <button
           key={l.key}
@@ -70,7 +71,7 @@ export function LevelPills({ counts, active, onPick }: { counts: Map<string, num
           aria-pressed={active === l.key}
           className="bg-card aria-pressed:bg-foreground aria-pressed:text-background aria-pressed:border-foreground inline-flex items-center gap-2 rounded-full border py-1.5 pr-3.5 pl-2.5 text-sm font-semibold"
         >
-          <i className="size-2.5 rounded-full" style={{ background: l.color }} />
+          <i aria-hidden className="size-2.5 rounded-full" style={{ background: l.color }} />
           {l.label}
           <small className="opacity-70">{counts.get(l.key) ?? 0}</small>
         </button>

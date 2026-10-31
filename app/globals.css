@@ -27,6 +27,8 @@
   --input: #e3e0f2;
   --ring: #4c35e0;
   --highlight: #ffd84d;
+  /* Marker band behind text: full yellow under dark text, a muted band under light text (dark theme). */
+  --highlight-band: var(--highlight);
   --chart-1: #2a78d6;
   --chart-2: #eb6834;
   --chart-3: #1baf7a;
@@ -38,11 +40,11 @@
   --t-saude-bg: #ffe3ea; --t-saude: #c2255c;
   --t-edu-bg: #e3edff; --t-edu: #2457c5;
   --t-amb-bg: #dcf6e8; --t-amb: #127a4a;
-  --t-ass-bg: #fff0d6; --t-ass: #a85d00;
+  --t-ass-bg: #fff0d6; --t-ass: #995400;
   --t-dir-bg: #efe4ff; --t-dir: #6b3fd1;
   --t-tec-bg: #dcf4fb; --t-tec: #0b7590;
   --t-gov-bg: #eceaf3; --t-gov: #4a4766;
-  --t-cid-bg: #ffe8dc; --t-cid: #b8481a;
+  --t-cid-bg: #ffe8dc; --t-cid: #a8410f;
   --t-san-bg: #dff1ff; --t-san: #1468a8;
   --t-seg-bg: #e8ecf2; --t-seg: #3c4a63;
   --t-eco-bg: #f2f6d8; --t-eco: #5d6b00;
@@ -67,6 +69,7 @@
   --border: #2c2847;
   --input: #2c2847;
   --ring: #8f7dff;
+  --highlight-band: #6b5c1f;
   --chart-1: #3987e5;
   --chart-2: #d95926;
   --chart-3: #199e70;
@@ -131,6 +134,21 @@
   h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
   :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 }
+
+/* Skip link: hidden until it gets keyboard focus. */
+.skip-link {
+  position: absolute; left: 12px; top: -100px; z-index: 100;
+  background: var(--foreground); color: var(--background);
+  padding: 10px 16px; border-radius: 12px; font-weight: 700;
+}
+.skip-link:focus { top: 12px; }
+
+/* Keyboard focus inside the SVG charts (the global outline does not draw on SVG shapes). */
+.map-state:focus-visible { stroke: var(--foreground); stroke-width: 3px; }
+.plot-row:focus-visible .plot-hit { stroke: var(--ring); stroke-width: 2px; fill: color-mix(in oklab, var(--ring) 8%, transparent); }
+
+/* Map labels: a halo in the surface color keeps them readable on any fill, in both themes. */
+.map-label { stroke: var(--card); stroke-width: 3px; stroke-linejoin: round; paint-order: stroke; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

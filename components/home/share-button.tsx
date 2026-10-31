@@ -43,7 +43,8 @@ export function ShareButtons({ p }: { p: Pick<Policy, "id" | "title" | "summary"
         rel="noopener noreferrer"
         className="bg-secondary flex items-center justify-center gap-2 rounded-2xl p-3 text-[15px] font-bold"
       >
-        <WhatsAppIcon className="size-4 text-[#25d366]" /> WhatsApp
+        <WhatsAppIcon className="size-4 text-[#25d366]" aria-hidden /> WhatsApp
+        {" "}<span className="sr-only">(abre em nova aba)</span>
       </a>
     </div>
   );

@@ -15,7 +15,7 @@ export function SiteFooter({ children }: { children?: React.ReactNode }) {
       <span>Ilustrações: Fluent Emoji (Microsoft, MIT).</span>
       <span>
         Mais um projeto vindo da comuna{" "}
-        <a href={LENINDRAGONS_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
+        <a href={LENINDRAGONS_URL} target="_blank" rel="noopener noreferrer" className={footerLink} aria-label="Lenindragons (abre em nova aba)">
           Lenindragons
         </a>
         .
@@ -26,11 +26,11 @@ export function SiteFooter({ children }: { children?: React.ReactNode }) {
           💜
         </span>{" "}
         por{" "}
-        <a href={MAKER_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
+        <a href={MAKER_URL} target="_blank" rel="noopener noreferrer" className={footerLink} aria-label="itsmegrave (abre em nova aba)">
           itsmegrave
         </a>
         . Código no{" "}
-        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className={footerLink}>
+        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className={footerLink} aria-label="GitHub (abre em nova aba)">
           GitHub
         </a>
         .

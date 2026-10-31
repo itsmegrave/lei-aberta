@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import { useState } from "react";
 import MAP from "@/lib/br-map.json";
+import { searchHref } from "@/lib/listing";
 import { plural } from "@/lib/vocab";
 import { DataTable, Panel, useTableToggle } from "./section";
 
@@ -25,9 +27,15 @@ export function BrazilMap({ counts, active, onPick }: { counts: Map<string, numb
     <Panel className="grid items-center gap-5 md:grid-cols-[1.2fr_1fr]">
       <div className="min-w-0">
         {table ? (
-          <DataTable head={["Estado", "Leis propostas"]} rows={Object.keys(names).sort().map((u) => [names[u], counts.get(u) ?? 0])} />
+          <DataTable
+            caption="Leis propostas por estado de quem propôs. Cada estado abre a lista das leis dele."
+            head={["Estado", "Leis propostas"]}
+            rows={Object.keys(names)
+              .sort((a, b) => names[a].localeCompare(names[b], "pt-BR"))
+              .map((u) => [counts.get(u) ? <Link key={u} href={searchHref({ uf: u })} className="text-primary font-bold underline underline-offset-2">{names[u]}</Link> : names[u], counts.get(u) ?? 0])}
+          />
         ) : (
-          <svg viewBox={`-4 -4 ${MAP.w + 8} ${MAP.h + 8}`} className="block h-auto w-full" role="img" aria-label="Mapa do Brasil por estado de quem propôs">
+          <svg viewBox={`-4 -4 ${MAP.w + 8} ${MAP.h + 8}`} className="block h-auto w-full" role="group" aria-label="Mapa do Brasil por estado de quem propôs. Use Tab para passar pelos estados e Enter para ver as leis.">
             {Object.entries(paths).map(([uf, d], i) => {
               const n = counts.get(uf) ?? 0;
               return (
@@ -44,7 +52,7 @@ export function BrazilMap({ counts, active, onPick }: { counts: Map<string, numb
                   role="button"
                   tabIndex={0}
                   aria-label={`${names[uf]}: ${plural(n)}`}
-                  className="cursor-pointer outline-none transition-[fill]"
+                  className="map-state cursor-pointer outline-none transition-[fill]"
                   onClick={() => onPick(uf)}
                   onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onPick(uf))}
                   onPointerEnter={() => setHover(uf)}
@@ -56,7 +64,7 @@ export function BrazilMap({ counts, active, onPick }: { counts: Map<string, numb
             })}
             {[...counts.keys()].map((uf) =>
               centers[uf] ? (
-                <text key={uf} x={centers[uf][0]} y={centers[uf][1] + 4} textAnchor="middle" className="fill-foreground pointer-events-none text-[11px] font-extrabold">
+                <text key={uf} x={centers[uf][0]} y={centers[uf][1] + 4} textAnchor="middle" aria-hidden className="map-label fill-foreground pointer-events-none text-[11px] font-extrabold">
                   {uf}
                 </text>
               ) : null,

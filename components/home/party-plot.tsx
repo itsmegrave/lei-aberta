@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { partyScore, spectrumColor, SPECTRUM_SOURCE, SPECTRUM_STOPS } from "@/lib/party-spectrum";
+import { searchHref } from "@/lib/listing";
 import { fmt, plural } from "@/lib/vocab";
 import { useDark } from "./use-dark";
 import { useWidth } from "./use-width";
@@ -57,19 +58,25 @@ export function PartyPlot({
     <Panel>
       {table ? (
         <DataTable
+          caption="Partidos, posição entre esquerda (0) e direita (10), e leis que propuseram e sancionaram. Cada número abre a lista dessas leis."
           head={["Partido", "Posição (0–10)", "Leis propostas", "Leis sancionadas"]}
           rows={[...new Set([...author, ...executive].map((p) => p.key))]
             .sort((a, b) => (partyScore(a) ?? 99) - (partyScore(b) ?? 99))
-            .map((k) => [k, partyScore(k) == null ? "—" : fmt.format(partyScore(k)!), author.find((p) => p.key === k)?.value ?? 0, executive.find((p) => p.key === k)?.value ?? 0])}
+            .map((k) => {
+              const a = author.find((p) => p.key === k)?.value ?? 0;
+              const e = executive.find((p) => p.key === k)?.value ?? 0;
+              const cell = (n: number, f: Key) => (n ? <Link key={f} href={searchHref({ [f]: k })} className="text-primary font-bold underline underline-offset-2" aria-label={`${plural(n)} ${f === "author" ? "propostas" : "sancionadas"} pelo ${k}`}>{n}</Link> : 0);
+              return [k, partyScore(k) == null ? "—" : fmt.format(partyScore(k)!), cell(a, "author"), cell(e, "executive")];
+            })}
         />
       ) : (
         <div className="relative" ref={ref}>
-          <svg viewBox={`0 0 ${w} ${H}`} className="block h-auto w-full overflow-visible" role="img" aria-label="Partidos na escala esquerda-direita">
+          <svg viewBox={`0 0 ${w} ${H}`} className="block h-auto w-full overflow-visible" role="group" aria-label="Partidos na escala de esquerda a direita. Use Tab para passar pelos partidos e Enter para ver as leis.">
             {Array.from({ length: 11 }, (_, v) => (
               <line key={v} x1={X(v)} x2={X(v)} y1={head - 8} y2={H - 18} stroke={v === 5 ? "var(--chart-axis)" : "var(--chart-grid)"} />
             ))}
             {[0, 5, 10].map((v) => (
-              <text key={v} x={X(v)} y={H - 4} textAnchor={v === 0 ? "start" : v === 10 ? "end" : "middle"} className="fill-muted-foreground text-[11px]">
+              <text key={v} aria-hidden x={X(v)} y={H - 4} textAnchor={v === 0 ? "start" : v === 10 ? "end" : "middle"} className="fill-muted-foreground text-[11px]">
                 {v}
               </text>
             ))}
@@ -104,7 +111,7 @@ export function PartyPlot({
                         role="button"
                         tabIndex={0}
                         aria-label={`${p.key}, ${g.title.toLowerCase()}: ${plural(p.value)}`}
-                        className="cursor-pointer outline-none"
+                        className="plot-row cursor-pointer outline-none"
                         opacity={dim ? 0.25 : 1}
                         onClick={() => onPick(g.key, p.key)}
                         onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onPick(g.key, p.key))}
@@ -113,7 +120,7 @@ export function PartyPlot({
                         onPointerLeave={() => setTip(null)}
                         onBlur={() => setTip(null)}
                       >
-                        <rect x={0} y={y - line / 2} width={w} height={line} fill="transparent" />
+                        <rect className="plot-hit" x={1} y={y - line / 2 + 1} width={w - 2} height={line - 2} rx={8} fill="transparent" />
                         <line x1={X(5)} x2={x} y1={y} y2={y} stroke={color} strokeWidth={2} strokeLinecap="round" opacity={0.35} />
                         <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: idx++ * 0.06, type: "spring", stiffness: 380, damping: 18 }} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
                           <circle cx={x} cy={y} r={r + 2} fill="var(--card)" />
@@ -149,7 +156,7 @@ export function PartyPlot({
               key={p.k + p.key}
               onClick={() => onPick(p.k, p.key)}
               aria-pressed={active[p.k] === p.key}
-              className="text-muted-foreground aria-pressed:border-foreground rounded-full border border-dashed px-2.5 py-0.5 text-[13px] aria-pressed:border-solid"
+              className="text-muted-foreground aria-pressed:border-foreground rounded-full border border-dashed px-2.5 py-1 text-[13px] aria-pressed:border-solid"
             >
               <b className="text-foreground">{p.key}</b> {p.verb} {p.value}
             </button>

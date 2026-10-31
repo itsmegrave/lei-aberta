@@ -28,6 +28,7 @@ export default async function PartiesPage() {
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
       <JsonLd data={partiesJsonLd(parties)} />
       <SiteNav />
+      <main id="conteudo" tabIndex={-1} className="outline-none">
       <header className="mt-6 max-w-[720px]">
         <h1 className="font-display text-[clamp(34px,6vw,56px)] leading-[1.02] font-extrabold tracking-[-0.03em]">Partidos</h1>
         <p className="text-muted-foreground mt-3 text-[17px]">
@@ -79,6 +80,7 @@ export default async function PartiesPage() {
         </a>
         ; partidos criados ou registrados depois da pesquisa ficam sem posição. Nas leis, o partido de quem propôs continua sendo o da época.
       </p>
+      </main>
       <SiteFooter />
     </div>
   );

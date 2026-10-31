@@ -47,6 +47,7 @@ export function Home({
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
       <SiteNav />
 
+      <main id="conteudo" tabIndex={-1} className="outline-none">
       <Hero onSearch={(q) => go({ q })} />
       <Ticker items={ticker} />
 
@@ -91,6 +92,7 @@ export function Home({
       <Section id="noticias" title="Notícias da política" lead="As manchetes mais recentes de veículos com linhas editoriais diferentes. Toque para ler no site de cada um.">
         <News />
       </Section>
+      </main>
 
       <SiteFooter>{sample && <span>Dados de exemplo: leis federais conhecidas. Estados e municípios chegam com os próximos coletores.</span>}</SiteFooter>
     </div>

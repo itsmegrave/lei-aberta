@@ -6,7 +6,8 @@ import { SiteNav } from "./site-nav";
 describe("SiteFooter", () => {
   it("credits Lenindragons, the maker and the repository in new tabs", () => {
     render(<SiteFooter />);
-    const href = (name: string) => screen.getByRole("link", { name }).getAttribute("href");
+    // Each name also tells screen readers the link opens a new tab.
+    const href = (name: string) => screen.getByRole("link", { name: `${name} (abre em nova aba)` }).getAttribute("href");
     expect(href("Lenindragons")).toBe("https://linktr.ee/lenindragonsrpg");
     expect(href("itsmegrave")).toBe("https://github.com/itsmegrave");
     expect(href("GitHub")).toBe("https://github.com/itsmegrave/lei-aberta");
@@ -29,5 +30,7 @@ describe("SiteNav", () => {
     expect(screen.getByRole("link", { name: "Lei Aberta" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "Partidos" })).toHaveAttribute("href", "/partidos");
     expect(screen.getByRole("link", { name: "Fontes" })).toHaveAttribute("href", "/#fontes");
+    expect(screen.getByRole("link", { name: "Buscar" })).toHaveAttribute("href", "/busca");
+    expect(screen.getByRole("navigation", { name: "Principal" })).toBeInTheDocument();
   });
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { isValidElement, useEffect, useState, useSyncExternalStore } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -57,13 +57,14 @@ export function Section({
 
   const heading = (
     <h2 id={id} className="scroll-mt-4 text-[clamp(24px,3.6vw,34px)] leading-[1.05] font-extrabold tracking-[-0.025em]">
-      {collapsible ? (
+      {/* On desktop the section is always open, so a plain heading: no button that does nothing. */}
+      {collapsible && !desktop ? (
         <button
           type="button"
-          onClick={() => !desktop && toggle()}
-          aria-expanded={desktop || open}
+          onClick={toggle}
+          aria-expanded={open}
           aria-controls={bodyId}
-          className="flex w-full items-center gap-2.5 text-left md:cursor-text"
+          className="flex w-full items-center gap-2.5 text-left"
         >
           {title}
           {note && !open && <span className="bg-foreground text-background rounded-full px-2.5 py-0.5 text-[13px] font-bold tracking-normal md:hidden">{note}</span>}
@@ -98,8 +99,6 @@ export function Section({
       </div>
       <div
         id={bodyId}
-        role="region"
-        aria-labelledby={id}
         inert={!desktop && !open}
         onTransitionEnd={(e) => e.target === e.currentTarget && setSettled(open)}
         className={cn(
@@ -124,25 +123,27 @@ export function Panel({ className, ...props }: React.ComponentProps<"div">) {
 export function useTableToggle() {
   const [table, setTable] = useState(false);
   const button = (
-    <button onClick={() => setTable((t) => !t)} className="text-primary mt-2 text-[13px] font-bold">
+    <button type="button" onClick={() => setTable((t) => !t)} className="text-primary -ml-1 mt-2 rounded-md px-1 py-1.5 text-[13px] font-bold hover:underline">
       {table ? "Ver como gráfico" : "Ver como tabela"}
     </button>
   );
   return { table, button };
 }
 
-export function DataTable({ head, rows }: { head: string[]; rows: (string | number)[][] }) {
+/** A chart's table view. `caption` names the table for screen readers; a cell can be a link (e.g. to the laws of that year). */
+export function DataTable({ head, rows, caption }: { head: string[]; rows: (React.ReactNode | number)[][]; caption?: string }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-collapse text-[13px]">
+        {caption && <caption className="sr-only">{caption}</caption>}
         <thead>
-          <tr>{head.map((h) => <th key={h} className="border-b p-1.5 text-left">{h}</th>)}</tr>
+          <tr>{head.map((h) => <th key={h} scope="col" className="border-b p-1.5 text-left">{h}</th>)}</tr>
         </thead>
         <tbody>
           {rows.map((r, i) => (
             <tr key={i}>
               {r.map((c, j) => (
-                <td key={j} className={cn("border-b p-1.5", typeof c === "number" && "text-right tabular-nums")}>
+                <td key={j} className={cn("border-b p-1.5", isNumeric(c) && "text-right tabular-nums")}>
                   {c}
                 </td>
               ))}
@@ -152,4 +153,9 @@ export function DataTable({ head, rows }: { head: string[]; rows: (string | numb
       </table>
     </div>
   );
+}
+
+/** Numbers, and links whose text is a number, line up on the right. */
+function isNumeric(c: React.ReactNode | number): boolean {
+  return typeof c === "number" || (isValidElement<{ children?: unknown }>(c) && typeof c.props.children === "number");
 }
