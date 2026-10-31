@@ -18,6 +18,7 @@ import { openStore } from "../lib/store.ts";
 import { updateSource } from "../../lib/sources-store.ts";
 import type { DataSource } from "../../lib/sources.ts";
 import { crawlDou } from "./dou.ts";
+import { crawlInlabs } from "./inlabs.ts";
 import { CAPITALS, crawlQueridoDiario } from "./querido-diario.ts";
 import { dateRange, daysAgo } from "./text.ts";
 
@@ -64,7 +65,10 @@ if (args.source === "dou" || args.source === "all") {
       description: "Publicação oficial de cada lei federal e medida provisória, no dia em que sai no Diário Oficial.",
       crawler: "crawlers/diarios/run.ts",
     },
-    ...(await crawlDou(dateRange(since, until))),
+    // INLABS (official bulk download, needs a free account) when credentials are set; the public site otherwise.
+    ...(process.env.INLABS_EMAIL && process.env.INLABS_PASSWORD
+      ? await crawlInlabs(dateRange(since, until), process.env.INLABS_EMAIL, process.env.INLABS_PASSWORD)
+      : await crawlDou(dateRange(since, until))),
   });
 }
 if (args.source === "qd" || args.source === "all") {

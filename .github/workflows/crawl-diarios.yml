@@ -48,6 +48,8 @@ jobs:
       - name: Dry run against live sources
         env:
           QD_DEBUG: "1"
+          INLABS_EMAIL: ${{ secrets.INLABS_EMAIL }}
+          INLABS_PASSWORD: ${{ secrets.INLABS_PASSWORD }}
         run: |
           node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run \
             --since "$(date -u -d '8 days ago' +%F)" --until "$(date -u -d '1 day ago' +%F)" --max-gazettes 60
@@ -73,6 +75,8 @@ jobs:
           SINCE: ${{ inputs.since }}
           UNTIL: ${{ inputs.until }}
           TERRITORIES: ${{ inputs.territories || 'capitals' }}
+          INLABS_EMAIL: ${{ secrets.INLABS_EMAIL }}
+          INLABS_PASSWORD: ${{ secrets.INLABS_PASSWORD }}
         run: |
           args=(--source "$SOURCE" --territories "$TERRITORIES")
           [ -n "$SINCE" ] && args+=(--since "$SINCE")

@@ -116,7 +116,14 @@ export function douSourceLabel(publishedOn: string, section: string, page?: stri
 }
 
 /** Builds a record from a DOU act. Fields the DOU cannot know (authors of a bill, executive) are left empty for the federal crawler. */
-export function toRecord(item: DouItem, header: ActHeader, ementa: string, publishedOn: string, section: string): Policy {
+export function toRecord(
+  item: DouItem,
+  header: ActHeader,
+  ementa: string,
+  publishedOn: string,
+  section: string,
+  url = actUrl(item.urlTitle),
+): Policy {
   const isMp = header.type === "mp";
   const summary = capSummary(ementa);
   return {
@@ -136,7 +143,7 @@ export function toRecord(item: DouItem, header: ActHeader, ementa: string, publi
     authors: isMp ? [{ name: "Poder Executivo", kind: "executive", party: null, uf: null }] : [],
     parties: [],
     executive: null,
-    sources: [{ label: douSourceLabel(publishedOn, section, item.numberPage), url: actUrl(item.urlTitle) }],
+    sources: [{ label: douSourceLabel(publishedOn, section, item.numberPage), url }],
   };
 }
 
@@ -146,7 +153,7 @@ export interface DouResult {
   errors: string[];
 }
 
-/** Crawls Seção 1 for each day in `days` (YYYY-MM-DD). */
+/** Crawls Seção 1 for each day in `days` (YYYY-MM-DD) from the public site. See inlabs.ts for the authenticated route. */
 export async function crawlDou(days: string[], { concurrency = 3, log = console.log } = {}): Promise<DouResult> {
   const errors: string[] = [];
   const found: { item: DouItem; header: ActHeader; day: string; section: string }[] = [];

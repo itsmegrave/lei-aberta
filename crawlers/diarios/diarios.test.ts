@@ -131,3 +131,15 @@ test("store: DOU only adds its source to a record the federal crawler owns", asy
   const index = JSON.parse(await readFile(path.join(dir, "index.json"), "utf8"));
   assert.deepEqual(index.files.map((f: { path: string }) => f.path), ["federal/2024.json", "municipal/2024.json"]);
 });
+
+test("INLABS: article XML to record", async () => {
+  const { parseArticle, articleToRecord } = await import("./inlabs.ts");
+  const a = parseArticle(fixture("inlabs-article.xml"))!;
+  assert.equal(a.identifica, "LEI Nº 14.973, DE 16 DE SETEMBRO DE 2024");
+  const r = articleToRecord(a, "do1", "2024-09-17")!;
+  assert.equal(r.id, "federal-lei-14973-2024");
+  assert.match(r.title, /^Dispõe sobre a transição da cobrança/);
+  assert.equal(r.sources[0].url, "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=17/09/2024&jornal=515&pagina=1");
+  assert.equal(r.sources[0].label, "Diário Oficial da União, 17/09/2024, Seção 1, p. 1");
+  assert.equal(articleToRecord({ ...a, identifica: "PORTARIA Nº 1, DE 1 DE JANEIRO DE 2024" }, "do1", "2024-01-02"), null);
+});
