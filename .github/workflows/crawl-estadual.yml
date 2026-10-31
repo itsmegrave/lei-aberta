@@ -1,0 +1,52 @@
+name: Crawl state laws
+on:
+  schedule:
+    # Nightly, 05:30 UTC (02:30 in Brasília), after the federal crawl.
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      states:
+        description: "UFs to crawl, comma-separated (empty = every house with a crawler)"
+        required: false
+        default: ""
+      since:
+        description: "First year to crawl, e.g. 1989 for a full backfill (empty = last year)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+# Every data crawler commits to the same branch; run them one at a time.
+concurrency:
+  group: data-commit
+  cancel-in-progress: false
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    # A full backfill of the SAPL houses makes one request per law, throttled per host.
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Crawl
+        env:
+          STATES: ${{ inputs.states }}
+          SINCE: ${{ inputs.since }}
+        run: |
+          args=()
+          [ -n "$STATES" ] && args+=(--states "$STATES")
+          [ -n "$SINCE" ] && args+=(--since "$SINCE")
+          npm run crawl:estadual -- "${args[@]}"
+      - name: Commit data
+        run: |
+          git config user.name "lei-aberta-bot"
+          git config user.email "lei-aberta-bot@users.noreply.github.com"
+          git add -A data/
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "data: state laws ($(date -u +%Y-%m-%d))"
+          git pull --rebase
+          git push

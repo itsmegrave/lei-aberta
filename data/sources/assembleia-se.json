@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-se",
+  "name": "Assembleia Legislativa de Sergipe",
+  "publisher": "Assembleia Legislativa de Sergipe",
+  "url": "https://sapl.al.se.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "SE"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "O robots.txt do site não permite coleta automática da API; aguardando autorização ou outra fonte.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

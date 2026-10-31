@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-sp",
+  "name": "Assembleia Legislativa de São Paulo (Alesp)",
+  "publisher": "Assembleia Legislativa de São Paulo (Alesp)",
+  "url": "https://www.al.sp.gov.br/dados-abertos/",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "SP"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores. A Alesp não publica o histórico de filiação, então o partido do autor fica em branco.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

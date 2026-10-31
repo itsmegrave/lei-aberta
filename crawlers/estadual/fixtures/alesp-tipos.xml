@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tipos_normas>
+<TipoNorma><IdTipo>1</IdTipo><DsTipo>Lei</DsTipo></TipoNorma>
+<TipoNorma><IdTipo>2</IdTipo><DsTipo>Lei Complementar</DsTipo></TipoNorma>
+<TipoNorma><IdTipo>3</IdTipo><DsTipo>Decreto</DsTipo></TipoNorma>
+<TipoNorma><IdTipo>4</IdTipo><DsTipo>Emenda Constitucional</DsTipo></TipoNorma>
+<TipoNorma><IdTipo>5</IdTipo><DsTipo>Resolução</DsTipo></TipoNorma>
+</tipos_normas>

@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-rr",
+  "name": "Assembleia Legislativa de Roraima",
+  "publisher": "Assembleia Legislativa de Roraima",
+  "url": "https://sapl.al.rr.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "RR"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Usa SAPL, mas a API respondeu com erro no primeiro teste; a coleta tenta todas as noites.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

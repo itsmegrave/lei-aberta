@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ms",
+  "name": "Assembleia Legislativa de Mato Grosso do Sul",
+  "publisher": "Assembleia Legislativa de Mato Grosso do Sul",
+  "url": "https://sapl.al.ms.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "MS"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "O robots.txt do site não permite coleta automática da API; aguardando autorização ou outra fonte.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

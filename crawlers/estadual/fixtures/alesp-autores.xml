@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentos_autores>
+<DocumentoAutor><IdDocumento>1000123</IdDocumento><IdAutor>501</IdAutor><NomeAutor>Fulana de Tal</NomeAutor></DocumentoAutor>
+<DocumentoAutor><IdDocumento>1000123</IdDocumento><IdAutor>502</IdAutor><NomeAutor>Beltrano Souza</NomeAutor></DocumentoAutor>
+<DocumentoAutor><IdDocumento>777</IdDocumento><IdAutor>503</IdAutor><NomeAutor>Outro</NomeAutor></DocumentoAutor>
+<DocumentoAutor><IdDocumento>1000999</IdDocumento><IdAutor>1</IdAutor><NomeAutor>Governador do Estado</NomeAutor></DocumentoAutor>
+</documentos_autores>

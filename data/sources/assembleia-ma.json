@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ma",
+  "name": "Assembleia Legislativa do Maranhão",
+  "publisher": "Assembleia Legislativa do Maranhão",
+  "url": "https://www.al.ma.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "MA"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}
