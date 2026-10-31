@@ -68,7 +68,10 @@ export interface Store {
   /** Number of records added or changed since the store was opened. */
   changed(): number;
   remove(id: string): void;
-  /** Writes touched files and index.json. Returns the number of files written. */
+  /**
+   * Writes touched files and index.json. Returns the number of files written.
+   * With a database URL (see StoreOptions) it also upserts the changed records into Postgres and deletes removed ones.
+   */
   save(): Promise<number>;
 }
 
@@ -83,10 +86,18 @@ export const sameRecord = (a: Policy, b: Policy) => JSON.stringify(canonical(a))
 
 const fileKey = (p: Pick<Policy, "level" | "year">) => `${p.level}/${p.year}.json`;
 
-export async function openStore(dataDir: string): Promise<Store> {
+export interface StoreOptions {
+  /** Postgres to mirror each save into. Defaults to CRAWL_DATABASE_URL, which only the nightly crawl jobs set. */
+  databaseUrl?: string;
+}
+
+export async function openStore(dataDir: string, opts: StoreOptions = {}): Promise<Store> {
+  const databaseUrl = opts.databaseUrl ?? process.env.CRAWL_DATABASE_URL;
   const records = new Map<string, Policy>();
   const touched = new Set<string>();
   const changedIds = new Set<string>();
+  /** Changed or removed since the last save, for the Postgres write. */
+  const pendingDb = new Set<string>();
   let index: IndexFile = { updatedAt: "", files: [] };
   try {
     index = JSON.parse(await readFile(path.join(dataDir, "index.json"), "utf8"));
@@ -113,6 +124,7 @@ export async function openStore(dataDir: string): Promise<Store> {
       if (errors.length) throw new Error(`${record.id}: ${errors.join("; ")}`);
       if (prev && sameRecord(prev, next)) return prev;
       changedIds.add(next.id);
+      pendingDb.add(next.id);
       if (prev) touched.add(fileKey(prev));
       touched.add(fileKey(next));
       records.set(next.id, next);
@@ -124,6 +136,7 @@ export async function openStore(dataDir: string): Promise<Store> {
       if (!prev) return;
       touched.add(fileKey(prev));
       records.delete(id);
+      pendingDb.add(id);
     },
     async save() {
       const byFile = new Map<string, Policy[]>();
@@ -148,7 +161,34 @@ export async function openStore(dataDir: string): Promise<Store> {
       await writeFile(path.join(dataDir, "index.json"), JSON.stringify(next, null, 2) + "\n");
       touched.clear();
       index = next;
+      if (databaseUrl && pendingDb.size) {
+        await writeDb(databaseUrl, [...pendingDb].map((id) => records.get(id) ?? id));
+        pendingDb.clear();
+      }
       return written;
     },
   };
+}
+
+/**
+ * Mirrors a save into Postgres: upserts records, deletes ids (strings). Loaded lazily so crawls without
+ * a database (PR smoke runs, local dry runs) need no npm install.
+ */
+async function writeDb(url: string, items: (Policy | string)[]): Promise<void> {
+  const [{ getDb, closeDb }, { upsertPolicies }, { policies }, { inArray }] = await Promise.all([
+    import("../../lib/db/client.ts"),
+    import("../../lib/db/upsert.ts"),
+    import("../../lib/db/schema.ts"),
+    import("drizzle-orm"),
+  ]);
+  const db = getDb(url);
+  try {
+    const upserts = items.filter((x): x is Policy => typeof x !== "string");
+    const deletes = items.filter((x): x is string => typeof x === "string");
+    await upsertPolicies(db, upserts);
+    if (deletes.length) await db.delete(policies).where(inArray(policies.id, deletes));
+    console.log(`db: upserted ${upserts.length}, deleted ${deletes.length}`);
+  } finally {
+    await closeDb();
+  }
 }

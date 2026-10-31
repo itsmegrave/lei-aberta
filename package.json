@@ -15,7 +15,7 @@
     "test": "npm run test:unit && npm run test:ui",
     "test:unit": "node --experimental-strip-types --no-warnings --conditions=react-server --test \"lib/**/*.test.ts\" \"crawlers/**/*.test.ts\"",
     "test:ui": "vitest run",
-    "test:db": "node --experimental-strip-types --no-warnings --conditions=react-server --test --test-concurrency=1 \"lib/**/*.db.test.ts\"",
+    "test:db": "node --experimental-strip-types --no-warnings --conditions=react-server --test --test-concurrency=1 \"lib/**/*.db.test.ts\" \"crawlers/lib/*.db.test.ts\"",
     "crawl:federal": "node --experimental-strip-types --no-warnings crawlers/federal/run.ts",
     "crawl:estadual": "node --experimental-strip-types --no-warnings crawlers/estadual/run.ts",
     "crawl:diarios": "node --experimental-strip-types --no-warnings crawlers/diarios/run.ts",
