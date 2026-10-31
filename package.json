@@ -13,11 +13,8 @@
     "lint": "tsc --noEmit",
     "test": "node --experimental-strip-types --no-warnings --test \"lib/**/*.test.ts\" \"crawlers/**/*.test.ts\"",
     "crawl:federal": "node --experimental-strip-types --no-warnings crawlers/federal/run.ts",
-<<<<<<< HEAD
     "crawl:estadual": "node --experimental-strip-types --no-warnings crawlers/estadual/run.ts",
-=======
     "crawl:diarios": "node --experimental-strip-types --no-warnings crawlers/diarios/run.ts",
->>>>>>> origin/main
     "check:links": "node --experimental-strip-types --no-warnings crawlers/federal/check-links.ts"
   },
   "dependencies": {
