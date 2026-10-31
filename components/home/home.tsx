@@ -1,48 +1,55 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { applyFilters, authorKeys, countBy, EMPTY_FILTERS, executiveKey, perAuthorState, perYear, type Filters } from "@/lib/catalog";
+import { useState } from "react";
+import { EMPTY_FILTERS, type Filters, type Overview } from "@/lib/catalog";
+import { writeUrlState } from "@/lib/listing";
 import type { Policy } from "@/lib/types";
 import type { DataSource } from "@/lib/sources";
+import { cn } from "@/lib/utils";
 import { Sources } from "./sources";
-import { area, AREAS, fmt, plural } from "@/lib/vocab";
+import { area, plural } from "@/lib/vocab";
 import { BrazilMap } from "./brazil-map";
 import { Facts } from "./facts";
 import { Hero, Ticker } from "./hero";
+import { Pager } from "./pager";
 import { PartyPlot } from "./party-plot";
 import { PolicyCard } from "./policy-card";
 import { PolicySheet } from "./policy-sheet";
 import { Section } from "./section";
 import { ThemeToggle } from "./theme-toggle";
 import { LevelPills, TopicGrid } from "./topics";
+import { useListing } from "./use-listing";
 import { YearChart } from "./year-chart";
 
 // Linktree of the Lenindragons collective, credited in the footer.
 const LENINDRAGONS_URL = "https://linktr.ee/lenindragonsrpg";
 
-export function Home({ policies, sample, sources }: { policies: Policy[]; updatedAt: string; sample: boolean; sources: DataSource[] }) {
-  const [f, setF] = useState<Filters>(EMPTY_FILTERS);
+export function Home({
+  firstPage,
+  overview: initial,
+  pages,
+  lastYear,
+  sample,
+  sources,
+}: {
+  firstPage: Policy[];
+  overview: Overview;
+  pages: number;
+  lastYear: number;
+  sample: boolean;
+  sources: DataSource[];
+}) {
+  const list = useListing({ firstPage, overview: initial, pages, lastYear });
+  const f = list.filters;
   const [open, setOpen] = useState<Policy | null>(null);
-  // Render cards in pages: the full catalog can reach thousands of laws.
-  const PAGE = 24;
-  const [shown, setShown] = useState(PAGE);
+  // While the filter index loads, keep the last numbers on screen, dimmed.
+  const ov = list.overview ?? initial;
+  const busy = list.filtered && !list.overview;
   // Clicking the active value again clears it.
-  const toggle = <K extends keyof Filters>(k: K, v: Filters[K]) => {
-    setF((s) => ({ ...s, [k]: s[k] === v ? EMPTY_FILTERS[k] : v }));
-    setShown(PAGE);
-  };
-  // "/?q=..." opens with that search, so search engines' site search box (SearchAction) lands on results.
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("q")?.trim();
-    if (q) setF((s) => ({ ...s, q }));
-  }, []);
-  const view = (skip?: keyof Filters) => applyFilters(policies, f, skip);
-
-  const rows = useMemo(() => view(), [policies, f]); // eslint-disable-line react-hooks/exhaustive-deps
-  const lastYear = Math.max(new Date().getFullYear(), ...policies.map((p) => p.year));
-  const years = rows.map((r) => r.year);
-  const topicKeys = Object.keys(AREAS).filter((k) => policies.some((p) => p.areas.includes(k)));
-  const active = f.q || f.level || f.area || f.author || f.executive || f.uf || f.year != null;
+  const toggle = <K extends keyof Filters>(k: K, v: Filters[K]) => list.setFilters((s) => ({ ...s, [k]: s[k] === v ? EMPTY_FILTERS[k] : v }));
+  const topicKeys = initial.topics.map((t) => t.key);
+  const lawsTop = () => document.getElementById("h-laws")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const dim = cn("transition-opacity", busy && "pointer-events-none opacity-50");
 
   return (
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
@@ -59,62 +66,75 @@ export function Home({ policies, sample, sources }: { policies: Policy[]; update
         <ThemeToggle />
       </nav>
 
-      <Hero q={f.q} onQuery={(q) => { setF((s) => ({ ...s, q })); setShown(PAGE); }} onSubmit={() => document.getElementById("h-laws")?.scrollIntoView({ behavior: "smooth" })} />
-      <Ticker items={policies.slice(0, 20).map((p) => ({ title: p.title, year: p.year, emoji: area(p.areas[0]).emoji }))} />
+      <Hero q={f.q} onQuery={(q) => list.setFilters((s) => ({ ...s, q }))} onSubmit={lawsTop} />
+      <Ticker items={firstPage.slice(0, 20).map((p) => ({ title: p.title, year: p.year, emoji: area(p.areas[0]).emoji }))} />
 
-      <Facts
-        items={[
-          { value: rows.length, label: `${rows.length === 1 ? "lei explicada" : "leis explicadas"}${years.length ? `, de ${Math.min(...years)} a ${Math.max(...years)}` : ""}` },
-          { value: new Set(rows.flatMap((r) => r.areas)).size, label: "temas" },
-          { value: rows.length ? Math.round((100 * rows.filter((r) => r.sources.length).length) / rows.length) : 0, suffix: "%", label: "com link oficial" },
-        ]}
-      />
+      <div className={dim} aria-busy={busy}>
+        <Facts
+          items={[
+            { value: ov.total, label: `${ov.total === 1 ? "lei explicada" : "leis explicadas"}${ov.minYear != null ? `, de ${ov.minYear} a ${ov.maxYear}` : ""}` },
+            { value: ov.themes, label: "temas" },
+            { value: ov.officialPct, suffix: "%", label: "com link oficial" },
+          ]}
+        />
+      </div>
 
       <Section
         id="h-topics"
         title="Escolha um tema"
         lead="Toque em um tema para ver só as leis dele."
         action={
-          active ? (
-            <button onClick={() => setF(EMPTY_FILTERS)} className="bg-foreground text-background ml-auto rounded-full px-3.5 py-1.5 text-[13px] font-bold">
+          list.filtered ? (
+            <button onClick={() => list.setFilters(EMPTY_FILTERS)} className="bg-foreground text-background ml-auto rounded-full px-3.5 py-1.5 text-[13px] font-bold">
               Limpar filtros
             </button>
           ) : null
         }
       >
-        <TopicGrid keys={topicKeys} counts={new Map(countBy(view("area"), (p) => p.areas).map((c) => [c.key, c.value]))} active={f.area} onPick={(k) => toggle("area", k)} />
-        <LevelPills counts={new Map(countBy(view("level"), (p) => p.level).map((c) => [c.key, c.value]))} active={f.level} onPick={(k) => toggle("level", k)} />
+        <div className={dim}>
+          <TopicGrid keys={topicKeys} counts={new Map(ov.topics.map((c) => [c.key, c.value]))} active={f.area} onPick={(k) => toggle("area", k)} />
+          <LevelPills counts={new Map(ov.levels.map((c) => [c.key, c.value]))} active={f.level} onPick={(k) => toggle("level", k)} />
+        </div>
       </Section>
 
       <Section id="h-time" title="Quando virou lei" lead="Cada barra é um ano. Toque para ver só aquele ano.">
-        <YearChart rows={perYear(view("year"), lastYear)} active={f.year} onPick={(y) => toggle("year", y)} />
+        <div className={dim}>
+          <YearChart rows={ov.years} active={f.year} onPick={(y) => toggle("year", y)} />
+        </div>
       </Section>
 
       <Section id="h-party" title="Quem propôs e quem sancionou" lead="Cada ponto é um partido, na posição dele entre esquerda e direita. Quanto maior o ponto, mais leis.">
-        <PartyPlot
-          author={countBy(view("author"), authorKeys)}
-          executive={countBy(view("executive"), executiveKey)}
-          active={{ author: f.author, executive: f.executive }}
-          onPick={(k, v) => toggle(k, v)}
-        />
+        <div className={dim}>
+          <PartyPlot author={ov.author} executive={ov.executive} active={{ author: f.author, executive: f.executive }} onPick={(k, v) => toggle(k, v)} />
+        </div>
       </Section>
 
       <Section id="h-map" title="De onde vêm as propostas" lead="Estado de quem propôs cada lei. Toque num estado para filtrar.">
-        <BrazilMap counts={perAuthorState(view("uf"))} active={f.uf} onPick={(uf) => toggle("uf", uf)} />
+        <div className={dim}>
+          <BrazilMap counts={new Map(ov.ufs)} active={f.uf} onPick={(uf) => toggle("uf", uf)} />
+        </div>
       </Section>
 
-      <Section id="h-laws" title="As leis" lead={`${plural(rows.length)}, das mais novas para as mais antigas. Toque para ver tudo.`}>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-3.5">
-          {rows.length ? (
-            rows.slice(0, shown).map((p, i) => <PolicyCard key={p.id} p={p} index={i % PAGE} onOpen={() => setOpen(p)} />)
+      <Section id="h-laws" title="As leis" lead={`${plural(ov.total)}, das mais novas para as mais antigas. Toque para ver tudo.`}>
+        <div className={cn("grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-3.5 transition-opacity", list.loading && "opacity-50")} aria-busy={list.loading}>
+          {list.failed ? (
+            <p className="text-muted-foreground col-span-full py-8 text-center">Não deu para carregar esta página. Confira a conexão e tente de novo.</p>
+          ) : ov.total || busy ? (
+            list.cards.map((p, i) => <PolicyCard key={p.id} p={p} index={i} onOpen={() => setOpen(p)} />)
           ) : (
             <p className="text-muted-foreground col-span-full py-8 text-center">Nenhuma lei com esses filtros. Tente outra palavra ou limpe os filtros.</p>
           )}
         </div>
-        {rows.length > shown && (
-          <button onClick={() => setShown((n) => n + PAGE)} className="bg-card mx-auto mt-5 block rounded-full border px-5 py-2.5 text-sm font-bold">
-            Mostrar mais {Math.min(PAGE, rows.length - shown)} de {fmt.format(rows.length - shown)} restantes
-          </button>
+        {!busy && (
+          <Pager
+            page={list.page}
+            pages={list.pages}
+            href={(n) => `/${writeUrlState(f, n)}`}
+            onGo={(n) => {
+              list.goTo(n);
+              lawsTop();
+            }}
+          />
         )}
       </Section>
 

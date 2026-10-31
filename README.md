@@ -61,6 +61,15 @@ The current files are a sample of well-known federal laws. Their Planalto links 
 
 State laws (`data/estadual/`) come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
 
+### How the site loads it
+
+The home page never ships the whole catalog. At build time `app/dados/[file]/route.ts` writes static files (see `lib/listing.ts`):
+
+- `/dados/pagina-<n>.json`: the cards of page *n*, 24 per page, newest first.
+- `/dados/indice.json`: one compact row per law (level, year, topics, author and executive party buckets, states, title text), fetched only when someone filters or searches.
+
+The HTML carries page 1 and the unfiltered chart numbers. Filters and the page live in the URL (`?tema=saude&pagina=2`), so any view can be shared.
+
 ## Data sources manifest
 
 The "De onde vêm os dados" section on the home page is built from `data/sources/<id>.json`, one file per source. Each crawler owns its own file, so crawlers never edit the same file. The type and validation are in `lib/sources.ts`.
