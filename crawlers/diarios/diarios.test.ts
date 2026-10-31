@@ -143,3 +143,13 @@ test("INLABS: article XML to record", async () => {
   assert.equal(r.sources[0].label, "Diário Oficial da União, 17/09/2024, Seção 1, p. 1");
   assert.equal(articleToRecord({ ...a, identifica: "PORTARIA Nº 1, DE 1 DE JANEIRO DE 2024" }, "do1", "2024-01-02"), null);
 });
+
+test("http: browser user agent is only a fallback", async () => {
+  const { HttpError, looksBlocked, userAgentFor, USER_AGENT } = await import("./http.ts");
+  assert.equal(userAgentFor("https://www.in.gov.br/leiturajornal"), USER_AGENT, "our own user agent goes first");
+  assert.ok(looksBlocked(Object.assign(new Error("socket hang up"), { code: "ECONNRESET" })));
+  assert.ok(looksBlocked(new HttpError(403, "x")));
+  assert.ok(!looksBlocked(new HttpError(404, "x")), "a missing page is not a block");
+  assert.ok(!looksBlocked(new HttpError(503, "x")));
+  assert.ok(!looksBlocked(Object.assign(new Error("getaddrinfo ENOTFOUND"), { code: "ENOTFOUND" })));
+});

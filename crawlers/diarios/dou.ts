@@ -161,7 +161,18 @@ export async function crawlDou(days: string[], { concurrency = 3, log = console.
   for (const day of days) {
     for (const section of SECTIONS) {
       try {
-        const items = parseLeitura(await fetchText(leituraUrl(day, section)));
+        const html = await fetchText(leituraUrl(day, section));
+        const items = parseLeitura(html);
+        // A page without the embedded table of contents means the site changed shape (or served a block page).
+        // An empty table is normal: weekends, holidays, and most days of the extra edition.
+        if (!/id=["']params["']/i.test(html)) {
+          const title = html.match(/<title[^>]*>([^<]*)/i)?.[1]?.trim() ?? "";
+          errors.push(`${day} ${section}: no table of contents in page (${html.length} bytes, title "${title}")`);
+        }
+        if (process.env.DOU_DEBUG && items.length) {
+          const norms = items.filter((i) => /^(lei|medida|emenda)/i.test(i.artType ?? "")).map((i) => `${i.artType}: ${i.title || i.titulo}`);
+          log(`  [DOU ${day} ${section}] ${items.length} item(s), ${norms.length} law-type: ${norms.slice(0, 6).join(" | ")}`);
+        }
         for (const item of items) {
           const header = isCatalogued(item);
           if (header) found.push({ item, header, day: pubIso(item.pubDate, day), section });

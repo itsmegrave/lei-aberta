@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       source:
-        description: "qd, dou or all (dou needs access to in.gov.br, currently blocked from CI)"
-        default: qd
+        description: "qd, dou or all"
+        default: all
       since:
         description: "First publication day, YYYY-MM-DD (empty = last few days)"
         required: false
@@ -40,7 +40,6 @@ jobs:
       - name: Reachability of the sources from the runner
         run: |
           probe() { echo "== $*"; curl -sS -m 20 -o /dev/null -w "HTTP %{http_code} %{http_version}, %{time_total}s, ip %{remote_ip}\n" "$@" || true; }
-          probe "https://www.in.gov.br/leiturajornal"
           probe --http1.1 "https://www.in.gov.br/leiturajornal"
           probe --http1.1 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36" "https://www.in.gov.br/leiturajornal"
           probe "https://api.queridodiario.ok.org.br/gazettes?size=1"
@@ -48,10 +47,11 @@ jobs:
       - name: Dry run against live sources
         env:
           QD_DEBUG: "1"
+          DOU_DEBUG: "1"
           INLABS_EMAIL: ${{ secrets.INLABS_EMAIL }}
           INLABS_PASSWORD: ${{ secrets.INLABS_PASSWORD }}
         run: |
-          node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run --source qd \
+          node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run --source all \
             --since "$(date -u -d '8 days ago' +%F)" --until "$(date -u -d '1 day ago' +%F)" --max-gazettes 60
 
   crawl:
@@ -71,7 +71,7 @@ jobs:
           node-version: 26
       - name: Crawl
         env:
-          SOURCE: ${{ inputs.source || 'qd' }}
+          SOURCE: ${{ inputs.source || 'all' }}
           SINCE: ${{ inputs.since }}
           UNTIL: ${{ inputs.until }}
           TERRITORIES: ${{ inputs.territories || 'capitals' }}
