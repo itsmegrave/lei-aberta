@@ -48,7 +48,7 @@ Checked on 2026-10-31. "SAPL" means the house runs Interlegis SAPL 3.x, whose AP
 | PB | Assembleia Legislativa da Paraíba | covered | SAPL `sapl.al.pb.leg.br` | API answered (17.7k norms) |
 | PI | Assembleia Legislativa do Piauí | covered | SAPL `sapl.al.pi.leg.br` | API answered |
 | RO | Assembleia Legislativa de Rondônia | covered | SAPL `sapl.al.ro.leg.br` | API answered (12.4k norms) |
-| TO | Assembleia Legislativa do Tocantins | covered | SAPL `sapl.al.to.leg.br` | API answered (1.6k norms; older laws may be missing) |
+| TO | Assembleia Legislativa do Tocantins | partial | SAPL `sapl.al.to.leg.br` | Laws and authors, but the house publishes no party affiliations, so `party` is null |
 | SP | Assembleia Legislativa de São Paulo | partial | Alesp open data (XML dumps) | Laws and author names; no party history, so `party` is null |
 | AP | Assembleia Legislativa do Amapá | blocked | SAPL `sapl.al.ap.leg.br` | robots.txt disallows automated access |
 | MS | Assembleia Legislativa de Mato Grosso do Sul | blocked | SAPL `sapl.al.ms.leg.br` | robots.txt disallows automated access |

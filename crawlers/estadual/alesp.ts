@@ -143,15 +143,16 @@ export async function crawlAlesp(house: StateHouse, years: { since: number; unti
   // The dump can list a norm more than once; keep one row per idNorma.
   const byId = new Map<string, AlespNorma>();
   let rows = 0;
-  let firstRow = "";
+  let keptRow = "";
   const zip = await fetchBuffer(`${BASE}/legislacao/legislacao_normas.zip`);
   await forEachRow(zipTextChunks(zip, ".xml"), "idNorma", (xml) => {
-    if (!rows++) firstRow = xml;
+    rows++;
     const n = parseNorma(xml, tipos, years);
+    if (n && !keptRow) keptRow = xml;
     if (n && !byId.has(n.idNorma)) byId.set(n.idNorma, n);
   });
   const normas = [...byId.values()];
-  info.push(`norm rows: ${rows}, kept: ${normas.length}; first row: ${firstRow.replace(/\s+/g, " ").slice(0, 400)}`);
+  info.push(`norm rows: ${rows}, kept: ${normas.length}; first kept row: ${keptRow.replace(/\s+/g, " ").slice(0, 1500)}`);
 
   // Authors are optional: if the file is missing or changed, laws still go out without authors.
   const authors = new Map<string, string[]>();

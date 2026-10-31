@@ -33,6 +33,8 @@ jobs:
       - run: npm run crawl:estadual -- --dry-run --states RO --since 2025 --until 2025 --limit 3
       - run: npm run crawl:estadual -- --dry-run --states AM --since 2025 --until 2025 --limit 3
       - run: npm run crawl:estadual -- --dry-run --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
+      # Acre returned nothing for 2025; look further back.
+      - run: npm run crawl:estadual -- --dry-run --states AC --since 2018 --until 2024 --limit 1
       # Alesp: downloads the full dumps, keeps 2025.
       - run: npm run crawl:estadual -- --dry-run --states SP --since 2025 --until 2025
 

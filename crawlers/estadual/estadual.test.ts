@@ -110,6 +110,14 @@ test("SAPL: party is the affiliation on the presentation date, never today's", a
   assert.equal(authorKind("Parlamentar"), "state-deputy");
   assert.equal(authorKind(undefined, "Deputado"), "state-deputy");
   assert.equal(authorKind("Comissão"), "committee");
+  // Seen live in AM, PI, TO: governor filed under a generic type, collective authorships, courts.
+  assert.equal(authorKind("Órgão", null, "Poder Executivo"), "executive");
+  assert.equal(authorKind("Poder Executivo Estadual", null, "WANDERLEI BARBOSA CASTRO"), "executive");
+  assert.equal(authorKind("Governo do Estado do Piauí", null, "Rafael Tajra Fonteles"), "executive");
+  assert.equal(authorKind("Parlamentares em Conjunto", "Deputado", "Coletiva"), "group");
+  assert.equal(authorKind("Órgão", null, "Tribunal de Justiça"), "other-power");
+  assert.equal(authorKind("Poder Executivo Municipal", null, "Prefeitura X"), "other");
+  assert.equal(authorKind("Mesa Diretora", null, "Mesa Diretora"), "board");
 });
 
 test("SAPL: law to record", async () => {

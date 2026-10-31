@@ -116,13 +116,23 @@ export function targetTypes(tipos: TipoNorma[]): Map<number, LawType> {
 }
 
 /** deputy | executive | committee | board | other, from the SAPL author type name and the author's cargo. */
+/**
+ * deputy | executive | group | committee | board | other-power | other.
+ * Houses name their author types differently ("Parlamentar", "Poder Executivo Estadual", "Órgão", "Externo",
+ * "Parlamentares em Conjunto"...), and some file the governor under "Órgão", so the author's name is checked too.
+ * Only the plain "Parlamentar" type (or a deputy cargo with no type) counts as an individual deputy.
+ */
 export function authorKind(tipoDescricao: string | undefined, cargo?: string | null, nome?: string): Author["kind"] {
-  const t = fold(`${tipoDescricao ?? ""} ${cargo ?? ""}`);
-  if (/parlamentar|deputad/.test(t)) return "state-deputy";
-  if (/executivo|governad|governo/.test(t) || /^(governo|governador|poder executivo)/.test(fold(nome ?? ""))) return "executive";
-  if (/comiss/.test(t)) return "committee";
-  if (/mesa/.test(t)) return "board";
-  if (/judici|tribunal|ministerio publico|defensoria|tribunal de contas/.test(t)) return "other-power";
+  const t = fold(tipoDescricao ?? "");
+  const n = fold(nome ?? "");
+  if (/executivo estadual|^executivo$|^poder executivo$|governador|^governo do estado/.test(t) || /^(poder executivo|governo do estado|governador|governadora)\b/.test(n))
+    return "executive";
+  if (/bancada|bloco|frente|em conjunto|coletiv/.test(t) || /^coletiv/.test(n)) return "group";
+  if (/comiss/.test(t) || /^comiss/.test(n)) return "committee";
+  if (/mesa/.test(t) || /^mesa\b/.test(n)) return "board";
+  if (t === "parlamentar" || (!t && /deputad/.test(fold(cargo ?? "")))) return "state-deputy";
+  if (/judici|tribunal|ministerio|defensoria|procurad/.test(`${t} ${n}`)) return "other-power";
+  if (/executivo municipal|prefeit/.test(t)) return "other";
   return "other";
 }
 
