@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-sc",
+  "name": "Assembleia Legislativa de Santa Catarina (Alesc)",
+  "publisher": "Assembleia Legislativa de Santa Catarina (Alesc)",
+  "url": "https://www.alesc.sc.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "SC"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

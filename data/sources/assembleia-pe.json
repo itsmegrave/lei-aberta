@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-pe",
+  "name": "Assembleia Legislativa de Pernambuco",
+  "publisher": "Assembleia Legislativa de Pernambuco",
+  "url": "https://www.alepe.pe.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "PE"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

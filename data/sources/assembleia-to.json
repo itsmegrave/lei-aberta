@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-to",
+  "name": "Assembleia Legislativa do Tocantins",
+  "publisher": "Assembleia Legislativa do Tocantins",
+  "url": "https://sapl.al.to.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "TO"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores e o partido de cada um na época.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

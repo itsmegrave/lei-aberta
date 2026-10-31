@@ -1,0 +1,7 @@
+[{"id":15,"__str__":"Ação Direta de Inconstitucionalidade","sigla":"ADI","descricao":"Ação Direta de Inconstitucionalidade","equivalente_lexml":""},
+ {"id":4,"sigla":"DL","descricao":"Decreto Legislativo","equivalente_lexml":"decreto.legislativo"},
+ {"id":3,"sigla":"EC","descricao":"Emenda Constitucional","equivalente_lexml":"ementa.constitucional"},
+ {"id":2,"sigla":"LC","descricao":"Lei Complementar","equivalente_lexml":"lei.complementar"},
+ {"id":1,"sigla":"LO","descricao":"Lei ordinária","equivalente_lexml":"lei"},
+ {"id":5,"sigla":"RE","descricao":"Resolução","equivalente_lexml":"resolucao"},
+ {"id":9,"sigla":"LO","descricao":"Lei Ordinária","equivalente_lexml":""}]

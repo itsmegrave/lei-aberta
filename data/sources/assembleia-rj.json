@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-rj",
+  "name": "Assembleia Legislativa do Rio de Janeiro (Alerj)",
+  "publisher": "Assembleia Legislativa do Rio de Janeiro (Alerj)",
+  "url": "https://www.alerj.rj.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "RJ"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

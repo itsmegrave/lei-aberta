@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-pa",
+  "name": "Assembleia Legislativa do Pará",
+  "publisher": "Assembleia Legislativa do Pará",
+  "url": "https://www.alepa.pa.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "PA"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

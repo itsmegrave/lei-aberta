@@ -6,6 +6,11 @@ export interface Author {
   /** Author's party at the time of authorship. */
   party: string | null;
   uf: string | null;
+  /**
+   * How `party` was found when it is not the affiliation on the bill's date: "election" means the party the
+   * author was elected under (TSE), used where the house publishes no affiliation history.
+   */
+  partyBasis?: "authorship" | "election";
 }
 
 /** Head of the executive (president, governor, mayor) who signed the law. Never merged with author party. */
@@ -35,7 +40,7 @@ export interface Policy {
   signedAt?: string | null;
   /** Originating bill, e.g. "PL 3561/1997". */
   bill?: string | null;
-  /** Pre-2001 MPs: how many times it was re-issued (one record covers all editions). */
+  /** For an MP issued before EC 32/2001: how many times it was reissued (one record covers all editions). */
   reissues?: number | null;
   /** For an MP: id of the law it became. */
   convertedInto?: string | null;

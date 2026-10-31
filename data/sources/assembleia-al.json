@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-al",
+  "name": "Assembleia Legislativa de Alagoas",
+  "publisher": "Assembleia Legislativa de Alagoas",
+  "url": "https://sapl.al.al.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "AL"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores e o partido de cada um na época.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

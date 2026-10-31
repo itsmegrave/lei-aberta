@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ac",
+  "name": "Assembleia Legislativa do Acre",
+  "publisher": "Assembleia Legislativa do Acre",
+  "url": "https://sapl.al.ac.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "AC"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis antigas da Assembleia do Acre. O sistema não traz leis recentes (de 2018 em diante); fonte das leis novas em estudo.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

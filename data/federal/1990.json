@@ -32,7 +32,8 @@
         "label": "Lei nº 8.080/1990 (Planalto)",
         "url": "https://www.planalto.gov.br/ccivil_03/leis/l8080.htm"
       }
-    ]
+    ],
+    "curated": true
   },
   {
     "id": "federal-lei-8069-1990",
@@ -70,6 +71,7 @@
         "label": "Lei nº 8.069/1990 (Planalto)",
         "url": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
       }
-    ]
+    ],
+    "curated": true
   }
 ]

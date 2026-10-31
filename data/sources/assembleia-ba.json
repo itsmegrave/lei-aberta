@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ba",
+  "name": "Assembleia Legislativa da Bahia",
+  "publisher": "Assembleia Legislativa da Bahia",
+  "url": "https://www.al.ba.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "BA"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}
