@@ -72,7 +72,7 @@ test("Querido Diário: law headings and ementas", () => {
   const laws = extractLaws(fixture("gazette.txt"), 2023);
   assert.deepEqual(
     laws.map((l) => [l.type, l.number, l.date]),
-    [["lei", "18.123", "2024-10-10"], ["lei-complementar", "45", "2024-10-11"]],
+    [["lei", "18.123", "2024-10-10"], ["lei-complementar", "45", "2024-10-11"], ["lei", "7.693", "2024-10-22"]],
   );
   assert.equal(laws[0].ementa, "Institui o Programa Municipal de Hortas Comunitárias e dá outras providências.");
   assert.equal(laws[1].ementa, "Altera o Código Tributário Municipal para conceder isenção de IPTU a imóveis tombados.");

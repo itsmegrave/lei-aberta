@@ -64,10 +64,11 @@ export interface MunicipalLaw {
 /**
  * Law heading at the start of a line, in capitals: "LEI Nº 1.234, DE 5 DE MARÇO DE 2024",
  * "LEI COMPLEMENTAR Nº 12/2024, DE 5 DE MARÇO DE 2024", "LEI MUNICIPAL Nº 1.234 DE 05 DE MARÇO DE 2024".
+ * "LEI n. 7.693, DE 22 DE OUTUBRO DE 2026." (Campo Grande) also counts.
  * Case-sensitive on purpose: citations inside a text are written "Lei nº ..., de 5 de março de ...".
  */
 const HEADING =
-  /(^|\n)[ \t]*(PROJETO DE |AUTÓGRAFO DE |AUTOGRAFO DE |MENSAGEM .{0,40})?LEI (COMPLEMENTAR )?(?:MUNICIPAL )?N[º°ºO.]*\s*([\d.]+)(?:\s*\/\s*\d{2,4})?\s*,?\s*(?:DE\s+)?(\d{1,2})[º°O]?\s+DE\s+([A-ZÇ]+)\s+DE\s+(\d{4})/g;
+  /(^|\n)[ \t]*(PROJETO DE |AUTÓGRAFO DE |AUTOGRAFO DE |MENSAGEM .{0,40})?LEI (COMPLEMENTAR )?(?:MUNICIPAL )?[Nn][º°ºoO.]*\s*([\d.]+)(?:\s*\/\s*\d{2,4})?\s*,?\s*(?:DE\s+)?(\d{1,2})[º°O]?\s+DE\s+([A-ZÇ]+)\s+DE\s+(\d{4})/g;
 
 /** Where an ementa ends: the enacting clause or the first article. */
 const EMENTA_END =
