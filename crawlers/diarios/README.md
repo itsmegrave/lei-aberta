@@ -17,6 +17,10 @@ npm run crawl:diarios -- --source qd --territories 3550308,3304557
 
 Nightly runs read the last 3 days of the DOU and the last 7 days of Querido Diário (it indexes gazettes a few days late). Re-reading a day is harmless: records are upserted by id.
 
+## Source manifest
+
+At the end of each run the crawler updates `data/sources/dou.json` and `data/sources/querido-diario.json` (via `updateSource` in `lib/sources-store.ts`): `active` with the record count after a run that read data, `failing` when the source could not be read. The workflow commits these files even when the crawl step fails, so the home page shows the failure.
+
 ## Rules this crawler keeps
 
 - **Official link on every record.** DOU links are on in.gov.br. Querido Diário serves its own copy of each gazette, so municipal records also carry the city hall's portal (`portals.ts`). Each run checks the portal answers; a city whose portal is down or unknown is skipped and logged, never published without an official link.

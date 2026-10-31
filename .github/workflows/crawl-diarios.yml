@@ -68,7 +68,9 @@ jobs:
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           [ -n "$UNTIL" ] && args+=(--until "$UNTIL")
           node --experimental-strip-types --no-warnings crawlers/diarios/run.ts "${args[@]}"
+      # Also runs after a failed crawl, so the "failing" status in data/sources/ reaches the site.
       - name: Commit data
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "lei-aberta-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

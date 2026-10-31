@@ -15,6 +15,8 @@ import { parseArgs } from "node:util";
 import path from "node:path";
 import type { Policy } from "../../lib/types.ts";
 import { openStore } from "../lib/store.ts";
+import { updateSource } from "../../lib/sources-store.ts";
+import type { DataSource } from "../../lib/sources.ts";
 import { crawlDou } from "./dou.ts";
 import { CAPITALS, crawlQueridoDiario } from "./querido-diario.ts";
 import { dateRange, daysAgo } from "./text.ts";
@@ -41,6 +43,11 @@ const territories =
 
 interface SourceRun {
   name: string;
+  /** File in data/sources/ this run owns. */
+  sourceId: string;
+  /** Host that marks a record as coming from this source. */
+  host: string;
+  manifest: Partial<DataSource>;
   records: Policy[];
   errors: string[];
   /** DOU only adds to records the federal crawler owns; municipal records are ours. */
@@ -50,13 +57,30 @@ interface SourceRun {
 const runs: SourceRun[] = [];
 if (args.source === "dou" || args.source === "all") {
   const since = args.since ?? daysAgo(3);
-  runs.push({ name: "DOU", owner: false, ...(await crawlDou(dateRange(since, until))) });
+  runs.push({
+    name: "DOU", sourceId: "dou", host: "in.gov.br", owner: false,
+    manifest: {
+      covers: ["lei", "lei complementar", "medida provisória", "emenda constitucional"],
+      description: "Publicação oficial de cada lei federal e medida provisória, no dia em que sai no Diário Oficial.",
+      crawler: "crawlers/diarios/run.ts",
+    },
+    ...(await crawlDou(dateRange(since, until))),
+  });
 }
 if (args.source === "qd" || args.source === "all") {
   // Querido Diário indexes gazettes a few days after publication, so it looks further back.
   const since = args.since ?? daysAgo(7);
   const res = await crawlQueridoDiario({ territories, since, until, maxGazettes: Number(args["max-gazettes"]) });
-  runs.push({ name: "Querido Diário", owner: true, ...res });
+  runs.push({
+    name: "Querido Diário", sourceId: "querido-diario", host: "queridodiario.ok.org.br", owner: true,
+    manifest: {
+      coverage: args.territories === "capitals" ? ["Capitais dos estados"] : ["Municípios do Querido Diário"],
+      covers: ["lei municipal", "lei complementar municipal"],
+      description: "Diários oficiais das prefeituras, para as leis das cidades.",
+      crawler: "crawlers/diarios/run.ts",
+    },
+    ...res,
+  });
 }
 
 const store = args["dry-run"] ? null : await openStore(path.resolve(args["data-dir"]!));
@@ -80,5 +104,19 @@ for (const run of runs) {
   if (run.errors.length && !run.records.length) failed = true;
 }
 
-if (store) console.log(`Wrote ${await store.save()} data file(s).`);
+if (store) {
+  console.log(`Wrote ${await store.save()} data file(s).`);
+  // Each source owns its data/sources/<id>.json, shown on the home page.
+  const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+  const all = store.all();
+  for (const run of runs) {
+    const ok = !(run.errors.length && !run.records.length);
+    const records = all.filter((r) => r.sources.some((s) => s.url.includes(run.host))).length;
+    await updateSource(
+      run.sourceId,
+      ok ? { ...run.manifest, status: "active", records, lastRun: now, lastSuccess: now } : { status: "failing", lastRun: now },
+      path.resolve(args["data-dir"]!, "sources"),
+    );
+  }
+}
 if (failed) process.exitCode = 1;
