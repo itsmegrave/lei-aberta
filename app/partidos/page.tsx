@@ -47,7 +47,7 @@ export default async function PartiesPage() {
                   <Panel className="flex h-full flex-col gap-2.5 transition-transform group-hover:-translate-y-0.5">
                     <div className="flex items-center gap-2">
                       <PartyDot party={p.short} className="size-3.5" />
-                      <span className="font-display min-w-0 truncate text-[24px] leading-none font-extrabold tracking-[-0.02em]">{p.short}</span>
+                      <span className="font-display min-w-0 text-[clamp(19px,2.2vw,24px)] leading-none break-words font-extrabold tracking-[-0.02em]">{p.short}</span>
                       <span className="bg-secondary text-muted-foreground ml-auto shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold whitespace-nowrap">nº {p.number}</span>
                     </div>
                     <div className="text-sm font-semibold">{p.name}</div>
