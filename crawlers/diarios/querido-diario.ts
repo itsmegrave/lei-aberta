@@ -20,8 +20,8 @@ import { bareNumber, capSummary, isoDate, shortTitle } from "./text.ts";
  */
 export const API_CANDIDATES = [
   process.env.QD_API,
-  "https://api.queridodiario.ok.org.br",
   "https://queridodiario.ok.org.br/api",
+  "https://api.queridodiario.ok.org.br",
 ].filter((s): s is string => Boolean(s));
 export const API = API_CANDIDATES[0];
 
@@ -84,6 +84,8 @@ export function extractLaws(text: string, minYear: number): MunicipalLaw[] {
     const end = after.search(EMENTA_END);
     const ementa = (end >= 0 ? after.slice(0, end) : after.slice(0, 500)).replace(/^[\s.,;:–-]+/, "").trim();
     if (ementa.length < 15 || ementa.length > 800) continue;
+    // Corrections ("Na ementa da Lei nº ..., onde se lê ...") quote a heading but are not a new law.
+    if (/^(n[ao]s?\s+(ementa|art)|onde se l[êe]|retifica)/i.test(ementa)) continue;
     const law: MunicipalLaw = { type: m[3] ? "lei-complementar" : "lei", number: m[4].replace(/\.$/, ""), date, ementa };
     const key = `${law.type}-${bareNumber(law.number)}-${date.slice(0, 4)}`;
     if (!out.has(key)) out.set(key, law);
@@ -181,7 +183,14 @@ export async function crawlQueridoDiario(opts: QdOptions): Promise<{ records: Po
   const minYear = Number(since.slice(0, 4)) - 1;
   const perGazette = await mapLimit(picked.filter((g) => official.has(g.territory_id)), concurrency, async (g) => {
     try {
-      return extractLaws(await fetchText(g.txt_url!, { timeoutMs: 60_000 }), minYear).map((law) => toRecord(g, law, official.get(g.territory_id)!));
+      const text = await fetchText(g.txt_url!, { timeoutMs: 60_000 });
+      const laws = extractLaws(text, minYear);
+      // QD_DEBUG=1 prints lines that mention a law number, to tune the heading pattern on real gazettes.
+      if (process.env.QD_DEBUG) {
+        const sample = text.split("\n").filter((l) => /\bLEI\b.{0,25}N\s*[º°o.]/i.test(l)).slice(0, 4);
+        log(`  [${g.territory_name} ${g.date}] ${laws.length} law(s); ${sample.map((l) => JSON.stringify(l.trim().slice(0, 120))).join(" | ")}`);
+      }
+      return laws.map((law) => toRecord(g, law, official.get(g.territory_id)!));
     } catch (err) {
       errors.push(`${g.txt_url}: ${describeError(err)}`);
       return [];

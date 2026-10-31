@@ -95,7 +95,7 @@ test("Querido Diário: record", () => {
   assert.equal(municipalId("1", { type: "lei-complementar", number: "45", date: "2024-01-01" }), "municipal-1-lc-45-2024");
   assert.equal(
     gazettesUrl(["1", "2"], "2024-01-01", "2024-01-02", 0),
-    "https://api.queridodiario.ok.org.br/gazettes?published_since=2024-01-01&published_until=2024-01-02&offset=0&size=100&sort_by=ascending_date&territory_ids=1&territory_ids=2",
+    "https://queridodiario.ok.org.br/api/gazettes?published_since=2024-01-01&published_until=2024-01-02&offset=0&size=100&sort_by=ascending_date&territory_ids=1&territory_ids=2",
   );
 });
 

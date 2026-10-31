@@ -46,6 +46,8 @@ jobs:
           probe "https://api.queridodiario.ok.org.br/gazettes?size=1"
           probe "https://queridodiario.ok.org.br/api/gazettes?size=1"
       - name: Dry run against live sources
+        env:
+          QD_DEBUG: "1"
         run: |
           node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run \
             --since "$(date -u -d '8 days ago' +%F)" --until "$(date -u -d '1 day ago' +%F)" --max-gazettes 60
