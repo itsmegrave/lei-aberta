@@ -19,6 +19,13 @@ test("author party and executive party stay separate", () => {
   assert.equal(executiveKey(execBill), "Sem partido");
 });
 
+test("institutions and unknown parties get their own buckets", () => {
+  const committee = { ...base, parties: [], authors: [{ name: "CCJ", kind: "committee", party: null, uf: null }] };
+  const unknown = { ...base, parties: [], authors: [{ name: "Fulana", kind: "deputy", party: null, uf: "SP" }] };
+  assert.deepEqual(authorKeys(committee), ["Comissão"]);
+  assert.deepEqual(authorKeys(unknown), ["Partido não identificado"]);
+});
+
 test("filters by executive party without touching author party", () => {
   const rows = applyFilters([base, execBill], { ...EMPTY_FILTERS, executive: "PSDB" });
   assert.deepEqual(rows.map((r) => r.id), ["x"]);
@@ -68,4 +75,11 @@ test("spectrum color hits the stops", () => {
   assert.equal(spectrumColor(5), "#8f8e88");
   assert.equal(spectrumColor(10), "#a8740a");
   assert.equal(spectrumColor(null), "#d4d3cd");
+});
+
+test("type labels cover MPs and both complementar spellings", async () => {
+  const { typeLabel } = await import("./vocab.ts");
+  assert.equal(typeLabel("medida-provisoria"), "MP");
+  assert.equal(typeLabel("lei-complementar", true), "Lei Complementar");
+  assert.equal(typeLabel("lei complementar"), "Lei Compl.");
 });

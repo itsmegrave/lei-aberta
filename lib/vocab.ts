@@ -38,7 +38,31 @@ export const AUTHOR_KIND: Record<string, string> = {
   deputy: "Câmara dos Deputados",
   "state-deputy": "Assembleia Legislativa",
   councilor: "Câmara Municipal",
+  committee: "Comissão do Congresso",
+  judiciary: "Poder Judiciário",
+  prosecution: "Ministério Público",
+  other: "Outra autoria",
 };
+
+/** Record types: [short, long] labels. "lei complementar" (with a space) is the legacy spelling. */
+const TYPE_LABEL: Record<string, [string, string]> = {
+  lei: ["Lei", "Lei"],
+  "lei-complementar": ["Lei Compl.", "Lei Complementar"],
+  "lei complementar": ["Lei Compl.", "Lei Complementar"],
+  "medida-provisoria": ["MP", "Medida Provisória"],
+};
+export const typeLabel = (type: string, long = false) => (TYPE_LABEL[type] ?? [type, type])[long ? 1 : 0];
+
+export const STATUS_LABEL: Record<string, string> = {
+  sancionada: "Sancionada",
+  "em-tramitacao": "Em tramitação",
+  convertida: "Convertida em lei",
+  rejeitada: "Rejeitada",
+  "perdeu-eficacia": "Perdeu a validade",
+  revogada: "Revogada",
+  "sem-informacao": "Sem informação",
+};
+export const statusLabel = (s: string) => STATUS_LABEL[s] ?? s;
 
 /** Everyday words that should find the right laws. */
 export const SEARCH_ALIASES: Record<string, string> = {

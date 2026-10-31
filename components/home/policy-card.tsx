@@ -3,9 +3,9 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
 import type { Policy } from "@/lib/types";
-import { area, emojiSrc, LEVELS } from "@/lib/vocab";
+import { area, emojiSrc, LEVELS, typeLabel } from "@/lib/vocab";
 
-export const lawLabel = (p: Policy, long = false) => `${p.type === "lei" ? "Lei" : long ? "Lei Complementar" : "Lei Compl."} ${p.number ?? ""}`.trim();
+export const lawLabel = (p: Pick<Policy, "type" | "number">, long = false) => `${typeLabel(p.type, long)} ${p.number ?? ""}`.trim();
 
 export function PolicyCard({ p, index, onOpen }: { p: Policy; index: number; onOpen: () => void }) {
   const a = area(p.areas[0]);
