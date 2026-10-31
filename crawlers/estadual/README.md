@@ -46,7 +46,7 @@ Checked on 2026-10-31. "SAPL" means the house runs Interlegis SAPL 3.x, whose AP
 
 | UF | House | Status | Source | Notes |
 | --- | --- | --- | --- | --- |
-| AC | Assembleia Legislativa do Acre | covered | SAPL `sapl.al.ac.leg.br` | API answered (3.7k norms) |
+| AC | Assembleia Legislativa do Acre | partial | SAPL `sapl.al.ac.leg.br` | API works (3.7k norms), but it holds no laws for 2018–2025; recent laws seem to live elsewhere |
 | AL | Assembleia Legislativa de Alagoas | covered | SAPL `sapl.al.al.leg.br` | API answered (4k norms) |
 | AM | Assembleia Legislativa do Amazonas | covered | SAPL `sapl.al.am.leg.br` | API answered (15k norms) |
 | PB | Assembleia Legislativa da Paraíba | covered | SAPL `sapl.al.pb.leg.br` | API answered (17.7k norms) |

@@ -27,7 +27,10 @@ const planned = "Ainda sem coleta automática; fonte de dados em estudo.";
 const robots = "O robots.txt do site não permite coleta automática da API; aguardando autorização ou outra fonte.";
 
 export const STATES: StateHouse[] = [
-  { uf: "AC", state: "Acre", house: "Assembleia Legislativa do Acre", url: "https://sapl.al.ac.leg.br", adapter: "sapl" },
+  {
+    uf: "AC", state: "Acre", house: "Assembleia Legislativa do Acre", url: "https://sapl.al.ac.leg.br", adapter: "sapl",
+    note: "Leis antigas da Assembleia do Acre. O sistema não traz leis recentes (de 2018 em diante); fonte das leis novas em estudo.",
+  },
   { uf: "AL", state: "Alagoas", house: "Assembleia Legislativa de Alagoas", url: "https://sapl.al.al.leg.br", adapter: "sapl" },
   { uf: "AP", state: "Amapá", house: "Assembleia Legislativa do Amapá", url: "https://sapl.al.ap.leg.br", adapter: null, note: robots },
   { uf: "AM", state: "Amazonas", house: "Assembleia Legislativa do Amazonas", url: "https://sapl.al.am.leg.br", adapter: "sapl" },

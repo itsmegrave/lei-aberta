@@ -14,7 +14,7 @@
     "lei complementar",
     "emenda constitucional"
   ],
-  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores e o partido de cada um na época.",
+  "description": "Leis antigas da Assembleia do Acre. O sistema não traz leis recentes (de 2018 em diante); fonte das leis novas em estudo.",
   "crawler": "crawlers/estadual/run.ts",
   "records": null,
   "since": null,
