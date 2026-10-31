@@ -1,5 +1,4 @@
-import { loadCatalog } from "@/lib/data";
-import { shortUrl } from "@/lib/share";
+import { loadListing } from "@/lib/data";
 import { readSources } from "@/lib/sources-store";
 import { sortSources } from "@/lib/sources";
 import { Home } from "@/components/home/home";
@@ -7,13 +6,19 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { siteJsonLd } from "@/lib/seo";
 
 export default async function Page() {
-  const [{ policies, updatedAt, sample }, sources] = await Promise.all([loadCatalog(), readSources()]);
-  // Slim client payload: drop fields the page never shows.
-  const slim = policies.map(({ presentedAt: _p, reissues: _r, curated: _c, ...rest }) => ({ ...rest, presentedAt: null, shareUrl: shortUrl(rest.id) }));
+  const [listing, sources] = await Promise.all([loadListing(), readSources()]);
+  // Ship only page 1 and the unfiltered numbers; other pages and the filter index load on demand.
   return (
     <>
       <JsonLd data={siteJsonLd()} />
-      <Home policies={slim} updatedAt={updatedAt} sample={sample} sources={sortSources(sources)} />
+      <Home
+        firstPage={listing.page(1)}
+        overview={listing.overview}
+        pages={listing.pages}
+        lastYear={listing.lastYear}
+        sample={listing.sample}
+        sources={sortSources(sources)}
+      />
     </>
   );
 }

@@ -1,6 +1,8 @@
 import "server-only";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { EMPTY_FILTERS, overview, toRow, type Overview, type Row } from "./catalog";
+import { encodeIndex, PAGE_SIZE, pageCount, toCard, type IndexFile as RowIndex } from "./listing";
 import type { Policy } from "./types";
 
 interface IndexFile {
@@ -12,7 +14,15 @@ interface IndexFile {
 const DATA_DIR = path.join(process.cwd(), "data");
 
 /** Reads data/index.json and every per-level, per-year file it lists. Runs at build time. */
-export async function loadCatalog(): Promise<{ policies: Policy[]; updatedAt: string; sample: boolean }> {
+export function loadCatalog(): Promise<Catalog> {
+  // Read once per build: the home page and every /dados/ file share it.
+  return (catalog ??= readCatalog());
+}
+
+type Catalog = { policies: Policy[]; updatedAt: string; sample: boolean };
+let catalog: Promise<Catalog> | undefined;
+
+async function readCatalog(): Promise<Catalog> {
   const index = JSON.parse(await readFile(path.join(DATA_DIR, "index.json"), "utf8")) as IndexFile;
   const chunks = await Promise.all(
     index.files.map(async (f) => JSON.parse(await readFile(path.join(DATA_DIR, f.path), "utf8")) as Policy[]),
@@ -21,3 +31,39 @@ export async function loadCatalog(): Promise<{ policies: Policy[]; updatedAt: st
   return { policies, updatedAt: index.updatedAt, sample: Boolean(index.sample) };
 }
 
+/** Last year the charts cover: this year, or a later one if the data has it. */
+export const lastYearOf = (policies: Policy[]) => policies.reduce((y, p) => Math.max(y, p.year), new Date().getFullYear());
+
+export interface Listing {
+  rows: Row[];
+  pages: number;
+  /** Numbers and charts with no filter, so the page renders before any fetch. */
+  overview: Overview;
+  lastYear: number;
+  /** Cards of one page (1-based). */
+  page: (n: number) => Policy[];
+  index: () => RowIndex;
+}
+
+let listing: Promise<Listing & Catalog> | undefined;
+
+/** Built once per build process and shared by the home page and every /dados/ file. */
+export function loadListing(): Promise<Listing & Catalog> {
+  return (listing ??= buildListing());
+}
+
+async function buildListing(): Promise<Listing & Catalog> {
+  const c = await loadCatalog();
+  const rows = c.policies.map((p, i) => toRow(p, i));
+  const lastYear = lastYearOf(c.policies);
+  let index: RowIndex | undefined;
+  return {
+    ...c,
+    rows,
+    lastYear,
+    pages: pageCount(rows.length),
+    overview: overview(rows, EMPTY_FILTERS, lastYear).overview,
+    page: (n) => c.policies.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE).map(toCard),
+    index: () => (index ??= encodeIndex(rows)),
+  };
+}
