@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { authorKeys, NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
 import { loadCatalog } from "@/lib/data";
-import { partyScore, spectrumColor } from "@/lib/party-spectrum";
+import { partyScore, SPECTRUM_STOPS, spectrumColor } from "@/lib/party-spectrum";
 import { area, lawLabel, LEVELS } from "@/lib/vocab";
 
 // Share image for WhatsApp, X, Instagram and friends. Rendered on first request, then cached.
@@ -28,8 +28,13 @@ const TINT: Record<string, [string, string]> = {
 // Author kinds that are institutions (no party), as in lib/catalog.ts.
 const INSTITUTION_KINDS = new Set(["executive", "committee", "judiciary", "prosecution", "other"]);
 const LEVEL_COLOR: Record<string, string> = { federal: "#2a78d6", estadual: "#eb6834", municipal: "#1baf7a" };
+// Green and yellow base (Brazilian flag tones), kept dark enough for white text.
+const GREEN = "#00733a";
+const GREEN_INK = "#005a2d";
+const YELLOW = "#ffd400";
+const SPECTRUM = SPECTRUM_STOPS.light;
 const INK = "#17142e";
-const MUTED = "#5d5980";
+const MUTED = "#4d4a2e";
 
 const root = process.cwd();
 const font = (pkg: string, file: string) => readFile(path.join(root, "node_modules/@fontsource", pkg, "files", file));
@@ -67,34 +72,52 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   const title = p.title.length > 90 ? `${p.title.slice(0, 88).trimEnd()}…` : p.title;
   const summary = p.summary.length > 150 ? `${p.summary.slice(0, 148).trimEnd()}…` : p.summary;
 
+  // Bottom bar: the left-right scale from the home page chart, with a marker at the proposing party's position.
+  const score = lawmaker ? partyScore(first.party) : null;
+
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: bg, color: INK, fontFamily: "Figtree", padding: 56 }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: GREEN, color: "#ffffff", fontFamily: "Figtree", padding: "44px 56px 30px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 26, fontWeight: 700 }}>
-          <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: 32 }}>Lei Aberta</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#ffffffb3", borderRadius: 999, padding: "6px 16px", color: MUTED }}>
+          <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: 34, color: YELLOW }}>Lei Aberta</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#ffffff", borderRadius: 999, padding: "6px 16px", color: INK }}>
             <div style={{ width: 12, height: 12, borderRadius: 6, background: LEVEL_COLOR[p.level] }} />
             {`${level.label} · ${p.jurisdiction}`}
           </div>
-          <div style={{ display: "flex", background: "#ffffffb3", borderRadius: 999, padding: "6px 16px", color: fg }}>{a.label}</div>
+          {p.areas[0] && <div style={{ display: "flex", background: bg, borderRadius: 999, padding: "6px 16px", color: fg }}>{a.label}</div>}
         </div>
 
         <div style={{ display: "flex", flex: 1, alignItems: "center", gap: 40 }}>
-          <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: 18 }}>
-            <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: title.length > 50 ? 60 : 72, lineHeight: 1.05, letterSpacing: -1.5 }}>{title}</div>
-            <div style={{ display: "flex", fontSize: 30, lineHeight: 1.3, color: MUTED }}>{summary}</div>
+          <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: 16 }}>
+            <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: title.length > 50 ? 58 : 70, lineHeight: 1.05, letterSpacing: -1.5 }}>{title}</div>
+            <div style={{ display: "flex", fontSize: 29, lineHeight: 1.3, color: "#e3f5e9" }}>{summary}</div>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-          <img src={`data:image/png;base64,${emoji.toString("base64")}`} width={200} height={200} style={{ transform: "rotate(-6deg)" }} />
+          <img src={`data:image/png;base64,${emoji.toString("base64")}`} width={190} height={190} style={{ transform: "rotate(-6deg)" }} />
         </div>
 
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 44, background: "#ffffffcc", borderRadius: 28, padding: "22px 32px" }}>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 44, background: YELLOW, color: INK, borderRadius: 28, padding: "20px 32px" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <div style={{ display: "flex", fontSize: 20, fontWeight: 700, color: MUTED }}>{lawLabel(p, true)}</div>
-            <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: 54, lineHeight: 1, color: fg }}>{p.year}</div>
+            <div style={{ display: "flex", fontFamily: "Bricolage", fontWeight: 800, fontSize: 54, lineHeight: 1, color: GREEN_INK }}>{p.year}</div>
           </div>
           <Who label={p.authors.length > 1 ? `Quem propôs (e mais ${p.authors.length - 1})` : "Quem propôs"} name={authorName} party={lawmaker ? (first.party ?? UNKNOWN_PARTY) : undefined} />
           {p.executive ? <Who label="Quem sancionou" name={p.executive.name} party={p.executive.party} /> : <Who label="Quem sancionou" name="Não informado" />}
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 18, fontSize: 18, fontWeight: 700, color: "#e3f5e9" }}>
+          <div style={{ display: "flex" }}>esquerda</div>
+          <div style={{ display: "flex", flex: 1, position: "relative", height: 16, borderRadius: 8, background: score == null ? SPECTRUM.none : `linear-gradient(90deg, ${SPECTRUM.left}, ${SPECTRUM.mid}, ${SPECTRUM.right})` }}>
+            {score == null && (
+              <div style={{ position: "absolute", left: 0, right: 0, top: -2, display: "flex", justifyContent: "center", fontSize: 15, color: INK }}>
+                {lawmaker ? "partido sem posição na escala" : "quem propôs não tem partido"}
+              </div>
+            )}
+            {score != null && (
+              <div style={{ position: "absolute", left: `${score * 10}%`, top: -7, width: 30, height: 30, marginLeft: -15, borderRadius: 15, background: spectrumColor(score, "light"), border: "5px solid #ffffff" }} />
+            )}
+          </div>
+          <div style={{ display: "flex" }}>direita</div>
         </div>
       </div>
     ),
