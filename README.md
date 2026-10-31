@@ -112,3 +112,7 @@ Describe, never rate. No adjectives about parties or policies, no party brand co
 ## Design notes
 
 See `docs/design.md`.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Laws and official texts linked from the site are public under Brazilian law (Lei 9.610/1998, art. 8º, IV) and keep their original sources.
