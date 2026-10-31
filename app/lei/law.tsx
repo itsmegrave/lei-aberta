@@ -3,14 +3,15 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { PolicyDetails } from "@/components/home/policy-sheet";
 import { JsonLd } from "@/components/seo/json-ld";
-import { findPolicy } from "@/lib/data";
+import { loadCatalog } from "@/lib/data";
 import { lawPath, shortUrl } from "@/lib/share";
 import { lawDescription, lawJsonLd, lawTitle, SITE_NAME } from "@/lib/seo";
 import type { Policy } from "@/lib/types";
 
 /** Shared by the law page (/lei/<id>) and its short link (/l/<code>). */
 export async function findLaw(id: string) {
-  return findPolicy(id);
+  const { policies } = await loadCatalog();
+  return policies.find((p) => p.id === id);
 }
 
 /** Metadata for link previews. `image` is set on the short link page, which has no image of its own. */

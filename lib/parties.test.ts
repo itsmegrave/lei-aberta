@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { authorKeys, executiveKey } from "./catalog.ts";
 import { readUrlState } from "./listing.ts";
 import { partyScore } from "./party-spectrum.ts";
-import { currentName, formerCodes, partyBySlug, partyOf, PARTIES } from "./parties.ts";
+import { currentName, formerCodes, isNoPartyCode, partyBySlug, partyOf, partyPath, PARTIES, renamedTo, tseUrl } from "./parties.ts";
+import { directoryOrder, partyStats } from "./party-stats.ts";
 import type { Policy } from "./types.ts";
 
 test("charts use the party's current name", () => {
@@ -84,7 +85,6 @@ test("directory entries are complete and consistent", () => {
 });
 
 test("party stats count proposed and signed separately, under the current name", async () => {
-  const { partyStats } = await import("./party-stats.ts");
   const law = (id: string, year: number, author: string | null, exec: string | null): Policy => ({
     id, level: "federal", jurisdiction: "Brasil", type: "lei", title: id, summary: "", year, presentedAt: null, status: "sancionada",
     areas: ["saude"], parties: [], authors: [{ name: "A", kind: "deputy", party: author, uf: "SP" }],
@@ -100,4 +100,39 @@ test("party stats count proposed and signed separately, under the current name",
   assert.deepEqual(mdb.topics, [{ key: "saude", value: 2 }]);
   assert.equal(s.get("psdb")!.signed, 1);
   assert.equal(s.get("psdb")!.proposed, 0);
+});
+
+test("party lookups: slugs, links, no-party codes and renames", () => {
+  const mdb = partyBySlug("mdb")!;
+  assert.equal(partyPath(mdb.slug), "/partidos/mdb");
+  assert.equal(tseUrl(mdb), "https://www.tse.jus.br/partidos/partidos-registrados-no-tse/movimento-democratico-brasileiro");
+  assert.equal(partyBySlug("nao-existe"), undefined);
+  assert.equal(partyOf(null), null);
+  assert.equal(partyOf("XYZ"), null);
+  assert.equal(partyOf("pmdb")?.slug, "mdb");
+  assert.ok(isNoPartyCode("S/Partido"));
+  assert.equal(partyOf("S/Partido"), null);
+  // An old name points at today's party; today's own name does not.
+  assert.equal(renamedTo("PMDB", 2000)?.short, "MDB");
+  assert.equal(renamedTo("MDB", 2020), null);
+  assert.equal(renamedTo("XYZ"), null);
+  assert.ok(formerCodes("mdb").includes("PMDB"));
+});
+
+test("slugs, short names and electoral numbers are unique", () => {
+  for (const k of ["slug", "short", "number"] as const) assert.equal(new Set(PARTIES.map((p) => p[k])).size, PARTIES.length, k);
+  for (const p of PARTIES) assert.match(p.slug, /^[a-z0-9]+(-[a-z0-9]+)*$/, p.slug);
+});
+
+test("directory order is by laws in the catalog, then by name", () => {
+  const law: Policy = {
+    id: "a", level: "federal", jurisdiction: "Brasil", type: "lei", title: "T", summary: "S", year: 2000, presentedAt: null,
+    status: "sancionada", areas: ["saude"], parties: ["PT"], authors: [{ name: "A", kind: "deputy", party: "PT", uf: "SP" }],
+    executive: { name: "B", office: "Presidente", party: "PSDB" }, sources: [],
+  };
+  const stats = partyStats([law, { ...law, id: "b" }, { ...law, id: "c", executive: null }], 2000);
+  const order = directoryOrder(stats).map((p) => p.short);
+  assert.deepEqual(order.slice(0, 2), ["PT", "PSDB"]);
+  const rest = order.slice(2);
+  assert.deepEqual(rest, [...rest].sort((a, b) => a.localeCompare(b, "pt")));
 });

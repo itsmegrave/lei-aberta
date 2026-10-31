@@ -28,8 +28,8 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
         run: npm run db:migrate && npm run db:import-json
-      # The site reads Postgres whenever DATABASE_URL is set, as on Vercel.
-      - name: Build (reading Postgres)
+      - name: Database tests
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
-        run: npm run build
+          TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
+        run: npm run test:db
+      - run: npm run build
