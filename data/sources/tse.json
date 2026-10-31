@@ -1,0 +1,24 @@
+{
+  "id": "tse",
+  "name": "Tribunal Superior Eleitoral",
+  "publisher": "TSE",
+  "url": "https://dadosabertos.tse.jus.br/",
+  "levels": [
+    "federal",
+    "estadual",
+    "municipal"
+  ],
+  "coverage": [
+    "Brasil"
+  ],
+  "covers": [
+    "partido de quem sancionou"
+  ],
+  "description": "Partido de presidentes, governadores e prefeitos na época de cada lei.",
+  "status": "planned",
+  "since": null,
+  "records": null,
+  "lastRun": null,
+  "lastSuccess": null,
+  "crawler": null
+}
