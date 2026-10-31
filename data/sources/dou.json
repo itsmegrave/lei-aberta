@@ -11,14 +11,15 @@
   ],
   "covers": [
     "lei",
+    "lei complementar",
     "medida provisória",
-    "decreto"
+    "emenda constitucional"
   ],
-  "description": "Publicação oficial de cada lei federal no dia em que foi sancionada.",
-  "status": "planned",
+  "description": "Publicação oficial de cada lei federal e medida provisória, no dia em que sai no Diário Oficial.",
+  "status": "active",
   "since": null,
-  "records": null,
-  "lastRun": null,
-  "lastSuccess": null,
-  "crawler": null
+  "records": 5,
+  "lastRun": "2026-10-31T18:53:56Z",
+  "lastSuccess": "2026-10-31T18:53:56Z",
+  "crawler": "crawlers/diarios/run.ts"
 }
