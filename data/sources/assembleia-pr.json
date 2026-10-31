@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-pr",
+  "name": "Assembleia Legislativa do Paraná",
+  "publisher": "Assembleia Legislativa do Paraná",
+  "url": "https://www.assembleia.pr.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "PR"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ro",
+  "name": "Assembleia Legislativa de Rondônia",
+  "publisher": "Assembleia Legislativa de Rondônia",
+  "url": "https://sapl.al.ro.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "RO"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores e o partido de cada um na época.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

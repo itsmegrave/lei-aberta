@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-pb",
+  "name": "Assembleia Legislativa da Paraíba",
+  "publisher": "Assembleia Legislativa da Paraíba",
+  "url": "https://sapl.al.pb.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "PB"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores e o partido de cada um na época.",
+  "crawler": "crawlers/estadual/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

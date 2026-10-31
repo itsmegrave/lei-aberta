@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-mg",
+  "name": "Assembleia Legislativa de Minas Gerais (ALMG)",
+  "publisher": "Assembleia Legislativa de Minas Gerais (ALMG)",
+  "url": "https://dadosabertos.almg.gov.br/ws/legislacao/ajuda",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "MG"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Tem API de legislação, mas o robots.txt não permite coleta automática; aguardando autorização.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}
