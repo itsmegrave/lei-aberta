@@ -52,6 +52,8 @@ const TYPE_LABEL: Record<string, [string, string]> = {
   "medida-provisoria": ["MP", "Medida Provisória"],
 };
 export const typeLabel = (type: string, long = false) => (TYPE_LABEL[type] ?? [type, type])[long ? 1 : 0];
+/** "Lei 14.026", "MP 2.200-2". */
+export const lawLabel = (p: { type: string; number?: string }, long = false) => `${typeLabel(p.type, long)} ${p.number ?? ""}`.trim();
 
 export const STATUS_LABEL: Record<string, string> = {
   sancionada: "Sancionada",

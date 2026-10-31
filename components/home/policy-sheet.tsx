@@ -7,6 +7,7 @@ import { partyScore, spectrumColor } from "@/lib/party-spectrum";
 import type { Policy } from "@/lib/types";
 import { area, AUTHOR_KIND, emojiSrc, LEVELS, statusLabel } from "@/lib/vocab";
 import { lawLabel } from "./policy-card";
+import { ShareButtons } from "./share-button";
 import { useDark } from "./use-dark";
 
 function PartyBadge({ party, missing = NO_PARTY }: { party: string | null; missing?: string }) {
@@ -24,19 +25,23 @@ export function PolicySheet({ policy, onClose }: { policy: Policy | null; onClos
   return (
     <Sheet open={!!policy} onOpenChange={(o) => !o && onClose()}>
       <SheetContent side="bottom" className="mx-auto max-h-[88dvh] w-full max-w-[620px] gap-3.5 overflow-y-auto rounded-t-[26px] px-5 pt-2.5 pb-[calc(24px+env(safe-area-inset-bottom))]">
-        {policy && <Body p={policy} />}
+        {policy && <PolicyDetails p={policy} inSheet />}
       </SheetContent>
     </Sheet>
   );
 }
 
-function Body({ p }: { p: Policy }) {
+/** Law details, shared by the home sheet and the law's own page (/lei/[id]). */
+export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boolean }) {
+  // Sheet title/description need the dialog context; the standalone page uses plain elements.
+  const Title = inSheet ? SheetTitle : "h1";
+  const Description = inSheet ? SheetDescription : "p";
   const a = area(p.areas[0]);
   const lvl = LEVELS.find((l) => l.key === p.level)!;
   const author = p.authors[0];
   return (
     <>
-      <div className="bg-border mx-auto mb-1 h-1.5 w-11 rounded-full" />
+      {inSheet && <div className="bg-border mx-auto mb-1 h-1.5 w-11 rounded-full" />}
       <div className="flex items-center gap-3 rounded-[18px] p-4" style={{ background: `var(--t-${a.tint}-bg)` }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={emojiSrc(a.emoji)} alt="" className="size-13" />
@@ -51,8 +56,8 @@ function Body({ p }: { p: Policy }) {
           </div>
         </div>
       </div>
-      <SheetTitle className="font-display text-[26px] leading-[1.1] font-extrabold tracking-[-0.02em]">{p.title}</SheetTitle>
-      <SheetDescription className="text-foreground m-0 text-[17px]">{p.summary}</SheetDescription>
+      <Title className="font-display text-[26px] leading-[1.1] font-extrabold tracking-[-0.02em]">{p.title}</Title>
+      <Description className="text-foreground m-0 text-[17px]">{p.summary}</Description>
       <div className="grid gap-2.5 sm:grid-cols-2">
         <div className="bg-secondary rounded-2xl px-3.5 py-3">
           <div className="text-muted-foreground text-xs font-bold tracking-[0.06em] uppercase">Quem propôs</div>
@@ -87,6 +92,7 @@ function Body({ p }: { p: Policy }) {
           <p className="text-muted-foreground m-0 text-center text-xs">{s.label}</p>
         </div>
       ))}
+      <ShareButtons p={p} />
       <p className="text-muted-foreground m-0 text-xs">Partido de quem propôs é o da época da proposta. Partido de quem sancionou é um dado separado.</p>
     </>
   );

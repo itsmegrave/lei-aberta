@@ -20,3 +20,4 @@ export async function loadCatalog(): Promise<{ policies: Policy[]; updatedAt: st
   const policies = chunks.flat().sort((a, b) => b.year - a.year || a.title.localeCompare(b.title, "pt"));
   return { policies, updatedAt: index.updatedAt, sample: Boolean(index.sample) };
 }
+

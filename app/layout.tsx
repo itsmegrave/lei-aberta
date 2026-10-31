@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "next-themes";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/figtree";
 import "./globals.css";
+import { SITE_URL } from "@/lib/share";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Lei Aberta",
   description: "Leis do Brasil desde 1988, em uma frase, com quem propôs, quem sancionou e o link para o texto oficial.",
 };
@@ -24,6 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="lei-aberta-theme">
           {children}
         </ThemeProvider>
+        {/* Page views, including visits to short links (/l/*). Enable Web Analytics in the Vercel project. */}
+        <Analytics />
       </body>
     </html>
   );

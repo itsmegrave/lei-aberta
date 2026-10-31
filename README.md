@@ -21,11 +21,17 @@ npm run build   # static export to out/
 
 ## Hosting (Vercel)
 
-The repo is linked to a Vercel project. Vercel detects Next.js and serves the static export, so there is no `vercel.json`.
+The repo is linked to a Vercel project. Vercel detects Next.js and serves the static export. `vercel.json` only sets the content type of the share images, which are files without an extension.
 
 - Every push to `main` deploys to production.
 - Every pull request gets a preview URL.
 - The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It only crawls and commits JSON to `data/`; that commit triggers the Vercel deploy. There is no GitHub Pages deploy.
+
+## Sharing
+
+Each law has its own page, `/lei/<id>`, built at deploy time. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
+
+Each law also has a short link, `/l/<code>`, which the share buttons use. The code is 7 characters derived from the law's id (`lib/share.ts`), so it never changes and needs no database or service; the build fails if two laws ever get the same code. The short link page shows the law itself instead of redirecting, so link previews work everywhere, and its canonical URL is the full page. Visits are counted by [Vercel Web Analytics](https://vercel.com/docs/analytics) as `/l/*` page views (turn it on under the project's Analytics tab).
 
 ## Data
 
