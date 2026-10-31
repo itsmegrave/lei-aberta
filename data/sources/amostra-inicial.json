@@ -1,0 +1,23 @@
+{
+  "id": "amostra-inicial",
+  "name": "Amostra inicial",
+  "publisher": "Lei Aberta, conferida à mão",
+  "url": "https://www.planalto.gov.br/ccivil_03/leis/",
+  "levels": [
+    "federal"
+  ],
+  "coverage": [
+    "Brasil"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar"
+  ],
+  "description": "17 leis federais conhecidas, com link para o Planalto, enquanto os coletores automáticos não entram.",
+  "status": "building",
+  "since": 1990,
+  "records": 17,
+  "lastRun": "2026-10-31T15:40:00Z",
+  "lastSuccess": "2026-10-31T15:40:00Z",
+  "crawler": null
+}
