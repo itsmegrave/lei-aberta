@@ -68,6 +68,7 @@ The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Ma
 - Schema: `lib/db/schema.ts` (Drizzle). One `policies` table; filter fields are columns (`level`, `year`, `jurisdiction`, `executive_party`), `areas` and `parties` are indexed arrays, `authors`/`sources`/`executive` are JSON, and `search` is a Portuguese full-text vector over title and summary. `executive_party` is a copy of `executive.party` and is never mixed with `parties`.
 - Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`.
 - `npm run db:import-json` loads every record in `data/` into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
+- Neon is installed through the Vercel Marketplace and sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` on the project. On production deploys `scripts/db-deploy.sh` (the `vercel-build` script) applies migrations and syncs `data/` into the database; preview deploys share that database and skip it.
 - Local: any Postgres 16 works, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta`.
 
 ### How the site loads it

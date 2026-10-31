@@ -19,7 +19,8 @@
     "check:links": "node --experimental-strip-types --no-warnings crawlers/federal/check-links.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --experimental-strip-types --no-warnings scripts/db-migrate.ts",
-    "db:import-json": "node --experimental-strip-types --no-warnings scripts/db-import-json.ts"
+    "db:import-json": "node --experimental-strip-types --no-warnings scripts/db-import-json.ts",
+    "vercel-build": "sh scripts/db-deploy.sh && next build"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
