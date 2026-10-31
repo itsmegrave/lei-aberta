@@ -1,6 +1,6 @@
 // Postgres schema for the catalog. One row per law; filterable fields get their own columns,
 // nested lists (authors, sources) stay as JSON because they are only read whole.
-import { sql } from "drizzle-orm";
+import { getTableColumns, sql } from "drizzle-orm";
 import { boolean, check, customType, date, index, integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import type { Author, Executive, Policy } from "../types.ts";
 
@@ -52,3 +52,8 @@ export const policies = pgTable(
 
 export type PolicyRow = typeof policies.$inferSelect;
 export type NewPolicyRow = typeof policies.$inferInsert;
+
+/** Every column except the search vector, which only WHERE clauses need. Use with db.select(policyColumns). */
+const { search: _search, ...readable } = getTableColumns(policies);
+export const policyColumns = readable;
+export type PolicyRead = Omit<PolicyRow, "search">;
