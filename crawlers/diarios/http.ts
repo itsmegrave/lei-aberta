@@ -35,6 +35,13 @@ export async function fetchJson<T>(url: string, opts?: { retries?: number; timeo
   return JSON.parse(await fetchText(url, opts)) as T;
 }
 
+/** "fetch failed" hides the real reason (DNS, refused, timeout, TLS) in `cause`; surface it in logs. */
+export function describeError(err: unknown): string {
+  if (!(err instanceof Error)) return String(err);
+  const cause = (err as { cause?: { code?: string; message?: string } }).cause;
+  return cause ? `${err.message} (${cause.code ?? ""} ${cause.message ?? ""})`.replace(/\s+\)/, ")") : err.message;
+}
+
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /** Runs `fn` over `items` with at most `limit` in flight. */

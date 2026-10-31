@@ -9,7 +9,7 @@
  * Authors (vereador or prefeito) are rarely stated in the published law, so `authors` stays empty.
  */
 import type { Policy } from "../../lib/types.ts";
-import { fetchJson, fetchText, mapLimit } from "./http.ts";
+import { describeError, fetchJson, fetchText, mapLimit } from "./http.ts";
 import { portalSource } from "./portals.ts";
 import { bareNumber, capSummary, isoDate, shortTitle } from "./text.ts";
 
@@ -145,7 +145,7 @@ export async function crawlQueridoDiario(opts: QdOptions): Promise<{ records: Po
       try {
         page = await fetchJson<GazettesPage>(gazettesUrl(batch, since, until, offset));
       } catch (err) {
-        errors.push(`gazettes ${batch.join(",") || "all"} offset ${offset}: ${String(err)}`);
+        errors.push(`gazettes ${batch.join(",") || "all"} offset ${offset}: ${describeError(err)}`);
         break;
       }
       gazettes.push(...page.gazettes.filter((g) => g.txt_url));
@@ -169,7 +169,7 @@ export async function crawlQueridoDiario(opts: QdOptions): Promise<{ records: Po
     try {
       return extractLaws(await fetchText(g.txt_url!, { timeoutMs: 60_000 }), minYear).map((law) => toRecord(g, law, official.get(g.territory_id)!));
     } catch (err) {
-      errors.push(`${g.txt_url}: ${String(err)}`);
+      errors.push(`${g.txt_url}: ${describeError(err)}`);
       return [];
     }
   });

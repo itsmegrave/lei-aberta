@@ -10,7 +10,7 @@
  * parties, executive and status, and the DOU only fills gaps and adds its source.
  */
 import type { Policy } from "../../lib/types.ts";
-import { fetchText, HttpError, mapLimit } from "./http.ts";
+import { describeError, fetchText, HttpError, mapLimit } from "./http.ts";
 import { bareNumber, capSummary, clean, isoDate, shortTitle } from "./text.ts";
 
 const BASE = "https://www.in.gov.br";
@@ -161,7 +161,7 @@ export async function crawlDou(days: string[], { concurrency = 3, log = console.
         }
       } catch (err) {
         // Extra editions and supplements do not exist on most days; only the regular section is an error.
-        if (section === "do1" || !(err instanceof HttpError && err.status === 404)) errors.push(`${day} ${section}: ${String(err)}`);
+        if (section === "do1" || !(err instanceof HttpError && err.status === 404)) errors.push(`${day} ${section}: ${describeError(err)}`);
       }
     }
   }
@@ -172,7 +172,7 @@ export async function crawlDou(days: string[], { concurrency = 3, log = console.
     try {
       ementa = parseEmenta(await fetchText(actUrl(item.urlTitle)));
     } catch (err) {
-      errors.push(`${item.urlTitle}: ${String(err)}`);
+      errors.push(`${item.urlTitle}: ${describeError(err)}`);
     }
     ementa ??= item.content ? clean(item.content) : "";
     return toRecord(item, header, ementa, day, section);
