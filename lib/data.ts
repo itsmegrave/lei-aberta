@@ -20,3 +20,12 @@ export async function loadCatalog(): Promise<{ policies: Policy[]; updatedAt: st
   const policies = chunks.flat().sort((a, b) => b.year - a.year || a.title.localeCompare(b.title, "pt"));
   return { policies, updatedAt: index.updatedAt, sample: Boolean(index.sample) };
 }
+
+/** Dub short links by law id (data/short-links.json). Missing file means no short links yet. */
+export async function loadShortLinks(): Promise<Record<string, string>> {
+  try {
+    return JSON.parse(await readFile(path.join(DATA_DIR, "short-links.json"), "utf8")) as Record<string, string>;
+  } catch {
+    return {};
+  }
+}

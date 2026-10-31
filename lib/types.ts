@@ -41,4 +41,6 @@ export interface Policy {
   convertedInto?: string | null;
   /** Hand-checked record. */
   curated?: boolean;
+  /** Site only, never stored: link to share (Dub short link, or the law's page). */
+  shareUrl?: string;
 }

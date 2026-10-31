@@ -3,8 +3,10 @@ import { ThemeProvider } from "next-themes";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/figtree";
 import "./globals.css";
+import { SITE_URL } from "@/lib/share";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Lei Aberta",
   description: "Leis do Brasil desde 1988, em uma frase, com quem propôs, quem sancionou e o link para o texto oficial.",
 };

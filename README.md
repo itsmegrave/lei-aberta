@@ -21,11 +21,23 @@ npm run build   # static export to out/
 
 ## Hosting (Vercel)
 
-The repo is linked to a Vercel project. Vercel detects Next.js and serves the static export, so there is no `vercel.json`.
+The repo is linked to a Vercel project. Vercel detects Next.js and serves the static export. `vercel.json` only sets the content type of the share images, which are files without an extension.
 
 - Every push to `main` deploys to production.
 - Every pull request gets a preview URL.
 - The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It only crawls and commits JSON to `data/`; that commit triggers the Vercel deploy. There is no GitHub Pages deploy.
+
+## Sharing
+
+Each law has its own page, `/lei/<id>`, built at deploy time. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
+
+Short links come from [Dub](https://dub.co). The **Dub short links** workflow (`.github/workflows/short-links.yml`) creates links for laws that have none, newest first, and commits `data/short-links.json`; the share button uses the short link when there is one and the full page URL otherwise. Setup:
+
+1. Create a Dub workspace and an API key with link write access.
+2. Add it as the repository secret `DUB_API_KEY`.
+3. Optional repository variables: `DUB_DOMAIN` (a custom short domain added in Dub), `DUB_MAX_NEW_LINKS` (default 20 per run; Dub's free plan allows 25 new links a month, so raise it only on a paid plan), `SITE_URL`.
+
+Without the secret the workflow does nothing and the site shares full URLs.
 
 ## Data
 
