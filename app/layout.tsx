@@ -7,6 +7,9 @@ import "./globals.css";
 import { SITE_URL } from "@/lib/share";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/lib/seo";
 
+// Google Search Console ownership token for lei-aberta.vercel.app (HTML tag method).
+const GOOGLE_SITE_VERIFICATION = "0Me5lcOL6SwzPs0R4LCSk_bSUgPBLyfU2GEPMs2_Ols";
+
 // Site-wide search and share metadata (pt-BR). Pages override title, description and canonical.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -18,9 +21,9 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   formatDetection: { telephone: false, email: false, address: false },
-  // Search Console / Bing ownership tokens, set in Vercel when the site is registered there.
+  // Search Console / Bing ownership tokens. These are public by design (they ship in every page's HTML).
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || GOOGLE_SITE_VERIFICATION,
     other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
   },
 };

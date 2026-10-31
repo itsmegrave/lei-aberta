@@ -43,7 +43,7 @@ All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and b
 - **robots.txt.** Allows everything and points to the sitemap. Preview deployments (`VERCEL_ENV` other than `production`) disallow everything.
 - **Structured data (JSON-LD).** Home: `WebSite` with a `SearchAction` (`/?q=termo` opens the home with that search) and `Organization`. Law pages: `Legislation` (identifier, type, date, jurisdiction, authors with their party at authorship, official text as `sameAs`) and `BreadcrumbList`. Only facts from the record are stated.
 - **Links.** Law cards on the home are real links to `/lei/<id>`, so crawlers can follow them; a plain click still opens the sheet.
-- **Search Console.** Optional `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and `NEXT_PUBLIC_BING_SITE_VERIFICATION` add the ownership meta tags. After the first production deploy, submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+- **Search Console.** The Google ownership token is in `app/layout.tsx` (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` overrides it); optional `NEXT_PUBLIC_BING_SITE_VERIFICATION` adds the Bing tag. After the first production deploy, submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
 ## Data
 
