@@ -56,6 +56,7 @@ export default async function PartyPage({ params }: Props) {
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
       <JsonLd data={partyJsonLd(p)} />
       <SiteNav />
+      <main id="conteudo" tabIndex={-1} className="outline-none">
       <Link href={PARTIES_PATH} className="text-muted-foreground hover:text-foreground flex w-fit items-center gap-1.5 text-sm font-semibold">
         <ArrowLeftIcon className="size-4" /> Todos os partidos
       </Link>
@@ -71,11 +72,13 @@ export default async function PartyPage({ params }: Props) {
           <div className="mt-4 flex flex-wrap gap-2">
             {p.website && (
               <a href={p.website} {...external} className="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold">
-                Site oficial <ExternalLinkIcon className="size-4" />
+                Site oficial <ExternalLinkIcon className="size-4" aria-hidden />
+                {" "}<span className="sr-only">(abre em nova aba)</span>
               </a>
             )}
             <a href={tseUrl(p)} {...external} className="bg-card inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold">
-              Registro no TSE <ExternalLinkIcon className="size-4" />
+              Registro no TSE <ExternalLinkIcon className="size-4" aria-hidden />
+              {" "}<span className="sr-only">(abre em nova aba)</span>
             </a>
           </div>
         </div>
@@ -125,7 +128,7 @@ export default async function PartyPage({ params }: Props) {
       )}
 
       {s.topics.length > 0 && (
-        <Section id="p-topics" title="Temas das leis que propôs" lead="Toque para ver essas leis na página inicial.">
+        <Section id="p-topics" title="Temas das leis que propôs" lead="Toque para ver essas leis na busca.">
           <div className="flex flex-wrap gap-2">
             {s.topics.map((t) => {
               const a = area(t.key);
@@ -238,6 +241,7 @@ export default async function PartyPage({ params }: Props) {
           <li>Leis: catálogo do Lei Aberta, com o texto oficial em cada lei.</li>
         </ul>
       </section>
+      </main>
       <SiteFooter />
     </div>
   );

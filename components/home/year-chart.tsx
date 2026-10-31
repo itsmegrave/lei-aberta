@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
+import { searchHref } from "@/lib/listing";
 import { LEVELS, plural } from "@/lib/vocab";
 import { DataTable, Panel, useTableToggle } from "./section";
 
@@ -27,7 +29,11 @@ export function YearChart({ rows, active, onPick }: { rows: Row[]; active: numbe
   return (
     <Panel>
       {table ? (
-        <DataTable head={["Ano", "Leis"]} rows={rows.filter((r) => total(r)).map((r) => [String(r.year), total(r)])} />
+        <DataTable
+          caption="Leis por ano. Cada ano abre a lista das leis dele."
+          head={["Ano", "Leis"]}
+          rows={rows.filter((r) => total(r)).map((r) => [<Link key={r.year} href={searchHref({ year: r.year })} className="text-primary font-bold underline underline-offset-2">{r.year}</Link>, total(r)])}
+        />
       ) : (
         <>
           <ChartContainer config={config} className="aspect-auto h-52 w-full">

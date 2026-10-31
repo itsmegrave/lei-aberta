@@ -41,8 +41,8 @@ export function Sources({ sources }: { sources: DataSource[] }) {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={emojiSrc(EMOJI[s.id] ?? "classical-building")} alt="" className="size-9" />
                   <span className="bg-secondary inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-bold">
-                    <Icon className="size-3.5" />
-                    <span className="size-1.5 rounded-full" style={{ background: st.dot }} />
+                    <Icon className="size-3.5" aria-hidden />
+                    <span aria-hidden className="size-1.5 rounded-full" style={{ background: st.dot }} />
                     {STATUS_LABEL[s.status]}
                   </span>
                 </div>
@@ -76,8 +76,8 @@ export function Sources({ sources }: { sources: DataSource[] }) {
                     {s.lastSuccess ? <>Atualizada {now ? timeAgo(s.lastSuccess, now) : new Date(s.lastSuccess).toLocaleDateString("pt-BR")}</> : "Ainda sem coleta"}
                     {s.since ? <div>Desde {s.since} · {s.coverage.join(", ")}</div> : <div>{s.coverage.join(", ")}</div>}
                   </div>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-primary ml-auto inline-flex items-center gap-1 font-bold">
-                    Site <ExternalLinkIcon className="size-3.5" />
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-primary ml-auto inline-flex items-center gap-1 py-1 font-bold hover:underline">
+                    Site{" "}<span className="sr-only">de {s.name} (abre em nova aba)</span> <ExternalLinkIcon className="size-3.5" aria-hidden />
                   </a>
                 </div>
               </Panel>

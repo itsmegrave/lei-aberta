@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "next-themes";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/figtree";
 import "./globals.css";
+import { Providers } from "@/components/providers";
 import { SITE_URL } from "@/lib/share";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/lib/seo";
 
@@ -40,9 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="lei-aberta-theme">
-          {children}
-        </ThemeProvider>
+        <a href="#conteudo" className="skip-link">
+          Pular para o conteúdo
+        </a>
+        <Providers>{children}</Providers>
         {/* Page views, including visits to short links (/l/*). Enable Web Analytics in the Vercel project. */}
         <Analytics />
       </body>

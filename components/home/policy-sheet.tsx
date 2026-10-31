@@ -7,6 +7,7 @@ import { NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
 import { partyScore, spectrumColor } from "@/lib/party-spectrum";
 import { isNoPartyCode, partyOf, partyPath, renamedTo } from "@/lib/parties";
 import type { Policy } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import { area, AUTHOR_KIND, emojiSrc, LEVELS, statusLabel } from "@/lib/vocab";
 import { lawLabel } from "./policy-card";
 import { ShareButtons } from "./share-button";
@@ -107,10 +108,17 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
           </div>
         </div>
       </div>
-      {p.sources.map((s) => (
+      {/* The first source is the main action; the others look secondary. Each link's name says which source it is. */}
+      {p.sources.map((s, i) => (
         <div key={s.url} className="grid gap-1">
-          <a href={s.url} target="_blank" rel="noopener noreferrer" className="bg-foreground text-background flex items-center justify-center gap-2 rounded-2xl p-3.5 text-base font-extrabold">
-            Ler o texto oficial <ExternalLinkIcon className="size-4" />
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn("flex items-center justify-center gap-2 rounded-2xl text-base font-extrabold", i === 0 ? "bg-foreground text-background p-3.5" : "bg-secondary p-3")}
+          >
+            Ler o texto oficial <ExternalLinkIcon className="size-4" aria-hidden />
+            {" "}<span className="sr-only">({s.label}, abre em nova aba)</span>
           </a>
           <p className="text-muted-foreground m-0 text-center text-xs">{s.label}</p>
         </div>

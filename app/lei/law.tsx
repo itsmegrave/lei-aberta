@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 import { PolicyDetails } from "@/components/home/policy-sheet";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
+import { SEARCH_PATH } from "@/lib/listing";
 import { findPolicy } from "@/lib/data";
 import { lawPath, shortUrl } from "@/lib/share";
 import { lawDescription, lawJsonLd, lawTitle, SITE_NAME } from "@/lib/seo";
@@ -31,12 +34,16 @@ export function lawMetadata(p: Policy, image?: string): Metadata {
 
 export function LawView({ p }: { p: Policy }) {
   return (
-    <main className="mx-auto flex max-w-[620px] flex-col gap-3.5 px-[max(16px,env(safe-area-inset-left))] py-5">
-      <Link href="/" className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 text-sm font-semibold">
-        <ArrowLeftIcon className="size-4" /> Ver todas as leis
-      </Link>
-      <JsonLd data={lawJsonLd(p)} />
-      <PolicyDetails p={{ ...p, shareUrl: shortUrl(p.id) }} />
-    </main>
+    <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
+      <SiteNav />
+      <main id="conteudo" tabIndex={-1} className="mx-auto flex max-w-[620px] flex-col gap-3.5 pb-5 outline-none">
+        <Link href={SEARCH_PATH} className="text-muted-foreground hover:text-foreground flex w-fit items-center gap-1.5 py-1 text-sm font-semibold">
+          <ArrowLeftIcon className="size-4" aria-hidden /> Ver todas as leis
+        </Link>
+        <JsonLd data={lawJsonLd(p)} />
+        <PolicyDetails p={{ ...p, shareUrl: shortUrl(p.id) }} />
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

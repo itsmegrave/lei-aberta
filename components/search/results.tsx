@@ -61,18 +61,19 @@ export function Results({
     <div className="mx-auto max-w-[1120px] px-[max(16px,env(safe-area-inset-left))] pb-7">
       <SiteNav />
 
+      <main id="conteudo" tabIndex={-1} className="outline-none">
       <header className="grid gap-4 pt-4 pb-2">
         <h1 className="text-[clamp(28px,5vw,44px)] leading-tight font-extrabold tracking-[-0.03em]">{resultsTitle(f)}</h1>
         <form
           role="search"
-          className="bg-card border-foreground flex max-w-[640px] items-center gap-2.5 rounded-[18px] border-2 py-1.5 pr-1.5 pl-4 shadow-[4px_4px_0_var(--foreground)]"
+          className="bg-card border-foreground focus-within:ring-ring/40 flex max-w-[640px] items-center gap-2.5 rounded-[18px] border-2 py-1.5 pr-1.5 pl-4 shadow-[4px_4px_0_var(--foreground)] focus-within:ring-4"
           onSubmit={(e) => {
             e.preventDefault();
             (document.activeElement as HTMLElement | null)?.blur();
             top();
           }}
         >
-          <SearchIcon className="text-muted-foreground size-5.5 shrink-0" />
+          <SearchIcon className="text-muted-foreground size-5.5 shrink-0" aria-hidden />
           <input
             type="search"
             value={f.q}
@@ -97,7 +98,7 @@ export function Results({
                 className="bg-accent inline-flex items-center gap-1.5 rounded-full py-1 pr-2 pl-3 text-sm font-semibold"
               >
                 {c.label(String(f[c.key]))}
-                <XIcon className="size-3.5" />
+                <XIcon className="size-3.5" aria-hidden />
               </button>
             ))}
             {list.filtered && (
@@ -110,10 +111,11 @@ export function Results({
       </div>
 
       <section id="resultados" aria-labelledby="resultados-n" className="scroll-mt-4 pt-6">
-        <p id="resultados-n" className="text-muted-foreground mb-3 text-sm font-semibold" aria-live="polite">
+        {/* The count is the list's heading (h2), so each law card's h3 sits under it. */}
+        <h2 id="resultados-n" className="text-muted-foreground mb-3 font-sans text-sm font-semibold" aria-live="polite">
           {busy ? "Buscando…" : `${plural(ov.total)}, das mais novas para as mais antigas`}
           {f.level && !busy ? ` · ${LEVELS.find((l) => l.key === f.level)?.label}` : ""}
-        </p>
+        </h2>
         <div className={cn("grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-3.5 transition-opacity", list.loading && "opacity-50")} aria-busy={list.loading}>
           {list.failed ? (
             <p className="text-muted-foreground col-span-full py-8 text-center">Não deu para carregar esta página. Confira a conexão e tente de novo.</p>
@@ -135,6 +137,7 @@ export function Results({
           />
         )}
       </section>
+      </main>
 
       <SiteFooter />
 

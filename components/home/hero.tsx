@@ -1,12 +1,13 @@
 "use client";
 
-import { SearchIcon } from "lucide-react";
+import { PauseIcon, PlayIcon, SearchIcon } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { searchHref } from "@/lib/listing";
 import { emojiSrc } from "@/lib/vocab";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const ART: { e: string; style: React.CSSProperties; big?: boolean }[] = [
   { e: "scroll", big: true, style: { left: "27%", top: "25%", width: "46%", ["--rot" as string]: "-4deg", animationDuration: "7s" } },
@@ -37,20 +38,20 @@ export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
           className="max-w-[16ch] text-[clamp(36px,7vw,68px)] leading-none font-extrabold tracking-[-0.035em]"
         >
           Que lei mudou{" "}
-          <span className="bg-[linear-gradient(transparent_58%,var(--highlight)_58%,var(--highlight)_92%,transparent_92%)] px-[0.08em]">a sua vida?</span>
+          <span className="bg-[linear-gradient(transparent_58%,var(--highlight-band)_58%,var(--highlight-band)_92%,transparent_92%)] px-[0.08em]">a sua vida?</span>
         </motion.h1>
         <p className="text-muted-foreground m-0 max-w-[52ch] text-[clamp(16px,2.2vw,19px)]">
           Cada lei em uma frase, com quem propôs, quem sancionou e o link para o texto oficial.
         </p>
         <form
           role="search"
-          className="bg-card border-foreground flex max-w-[640px] items-center gap-2.5 rounded-[18px] border-2 py-1.5 pr-1.5 pl-4 shadow-[4px_4px_0_var(--foreground)]"
+          className="bg-card border-foreground focus-within:ring-ring/40 flex max-w-[640px] items-center gap-2.5 rounded-[18px] border-2 py-1.5 pr-1.5 pl-4 shadow-[4px_4px_0_var(--foreground)] focus-within:ring-4"
           onSubmit={(e) => {
             e.preventDefault();
             onSearch(q.trim());
           }}
         >
-          <SearchIcon className="text-muted-foreground size-5.5 shrink-0" />
+          <SearchIcon className="text-muted-foreground size-5.5 shrink-0" aria-hidden />
           <input
             id="q"
             type="search"
@@ -67,7 +68,7 @@ export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
         <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-[13px]">
           Experimente:
           {TRY.map((t) => (
-            <Link key={t} href={searchHref({ q: t })} className="bg-accent text-foreground rounded-full px-2.5 py-0.5 font-semibold">
+            <Link key={t} href={searchHref({ q: t })} className="bg-accent text-foreground hover:bg-primary hover:text-primary-foreground rounded-full px-3 py-1 font-semibold">
               {t === "dados" ? "dados pessoais" : t}
             </Link>
           ))}
@@ -93,7 +94,13 @@ export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
   );
 }
 
+/**
+ * A strip of law titles sliding sideways. Decorative (the same laws are one search away), so hidden from
+ * screen readers; it has a pause button because it moves for more than five seconds (WCAG 2.2.2), and
+ * it stops on hover, on focus inside it and when the system asks for reduced motion.
+ */
 export function Ticker({ items }: { items: { title: string; year: number; emoji: string }[] }) {
+  const [paused, setPaused] = useState(false);
   const row = items.map((i) => (
     <span key={i.title} className="bg-card inline-flex flex-none items-center gap-2 rounded-full border py-1.5 pr-3.5 pl-2 text-sm font-semibold whitespace-nowrap">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -101,10 +108,21 @@ export function Ticker({ items }: { items: { title: string; year: number; emoji:
       {i.title} · {i.year}
     </span>
   ));
+  const track = cn("animate-marquee flex flex-none gap-2.5 group-hover:[animation-play-state:paused]", paused && "[animation-play-state:paused]");
   return (
-    <div aria-hidden className="group mt-7 flex gap-2.5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-      <div className="animate-marquee flex flex-none gap-2.5 group-hover:[animation-play-state:paused]">{row}</div>
-      <div className="animate-marquee flex flex-none gap-2.5 group-hover:[animation-play-state:paused]">{row}</div>
+    <div className="mt-7 flex items-center gap-2">
+      <div aria-hidden className="group flex min-w-0 flex-1 gap-2.5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+        <div className={track}>{row}</div>
+        <div className={track}>{row}</div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-label={paused ? "Continuar a faixa de leis" : "Pausar a faixa de leis"}
+        className="bg-card text-muted-foreground hover:text-foreground grid size-9 shrink-0 place-items-center rounded-full border motion-reduce:hidden"
+      >
+        {paused ? <PlayIcon className="size-4" aria-hidden /> : <PauseIcon className="size-4" aria-hidden />}
+      </button>
     </div>
   );
 }

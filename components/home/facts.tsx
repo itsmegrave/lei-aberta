@@ -15,7 +15,15 @@ function CountUp({ value }: { value: number }) {
     const controls = animate(0, value, { duration: 0.7, ease: [0.2, 0.8, 0.2, 1], onUpdate: (v) => (node.textContent = fmt.format(Math.round(v))) });
     return () => controls.stop();
   }, [value, reduce]);
-  return <span ref={ref}>{fmt.format(value)}</span>;
+  // Screen readers get the final number once, not every step of the count.
+  return (
+    <>
+      <span ref={ref} aria-hidden>
+        {fmt.format(value)}
+      </span>
+      <span className="sr-only">{fmt.format(value)}</span>
+    </>
+  );
 }
 
 export function Facts({ items }: { items: { value: number; suffix?: string; label: string }[] }) {
