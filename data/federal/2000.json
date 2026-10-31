@@ -1,0 +1,38 @@
+[
+  {
+    "id": "federal-lcp-101-2000",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei complementar",
+    "number": "101",
+    "title": "Lei de Responsabilidade Fiscal",
+    "summary": "Fixa limites de gasto e dívida para União, estados e municípios.",
+    "year": 2000,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "economia",
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Henrique Cardoso",
+      "office": "Presidente",
+      "party": "PSDB"
+    },
+    "sources": [
+      {
+        "label": "Lei Complementar nº 101/2000 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"
+      }
+    ]
+  }
+]

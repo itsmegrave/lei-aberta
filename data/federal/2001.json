@@ -1,0 +1,39 @@
+[
+  {
+    "id": "federal-lei-10257-2001",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.257",
+    "title": "Estatuto da Cidade",
+    "summary": "Define regras para o uso do solo urbano e o plano diretor dos municípios.",
+    "year": 2001,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "urbanismo"
+    ],
+    "authors": [
+      {
+        "name": "Pompeu de Sousa",
+        "kind": "senator",
+        "party": "PSDB",
+        "uf": "DF"
+      }
+    ],
+    "parties": [
+      "PSDB"
+    ],
+    "executive": {
+      "name": "Fernando Henrique Cardoso",
+      "office": "Presidente",
+      "party": "PSDB"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 10.257/2001 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/leis_2001/l10257.htm"
+      }
+    ]
+  }
+]

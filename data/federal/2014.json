@@ -1,0 +1,37 @@
+[
+  {
+    "id": "federal-lei-12965-2014",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "12.965",
+    "title": "Marco Civil da Internet",
+    "summary": "Define princípios, direitos e deveres para o uso da internet no Brasil.",
+    "year": 2014,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "tecnologia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Dilma Rousseff",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 12.965/2014 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm"
+      }
+    ]
+  }
+]

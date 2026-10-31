@@ -1,0 +1,37 @@
+[
+  {
+    "id": "federal-lei-8742-1993",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.742",
+    "title": "Lei Orgânica da Assistência Social (LOAS)",
+    "summary": "Organiza a assistência social e cria o benefício mensal para idosos e pessoas com deficiência de baixa renda.",
+    "year": 1993,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Itamar Franco",
+      "office": "Presidente",
+      "party": null
+    },
+    "sources": [
+      {
+        "label": "Lei nº 8.742/1993 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8742.htm"
+      }
+    ]
+  }
+]

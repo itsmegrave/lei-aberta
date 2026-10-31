@@ -1,0 +1,37 @@
+[
+  {
+    "id": "federal-lei-12527-2011",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "12.527",
+    "title": "Lei de Acesso à Informação",
+    "summary": "Garante a qualquer pessoa o direito de pedir informações a órgãos públicos.",
+    "year": 2011,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Dilma Rousseff",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 12.527/2011 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"
+      }
+    ]
+  }
+]
