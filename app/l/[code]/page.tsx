@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { policyIds } from "@/lib/data";
+import { loadCatalog } from "@/lib/data";
 import { assertUniqueCodes, lawPath } from "@/lib/share";
 import { findLaw, lawMetadata, LawView } from "../../lei/law";
 
@@ -16,7 +16,8 @@ export const dynamicParams = true;
 export const revalidate = false;
 
 async function codes() {
-  return assertUniqueCodes(await policyIds());
+  const { policies } = await loadCatalog();
+  return assertUniqueCodes(policies.map((p) => p.id));
 }
 
 export async function generateStaticParams() {

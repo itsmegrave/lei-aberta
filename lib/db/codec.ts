@@ -1,6 +1,6 @@
 // Converts between the Policy shape used by the site and crawlers and a database row.
 import type { Policy } from "../types.ts";
-import type { NewPolicyRow, PolicyRead } from "./schema.ts";
+import type { NewPolicyRow, PolicyRow } from "./schema.ts";
 
 export function toDbRow(p: Policy): NewPolicyRow {
   return {
@@ -29,7 +29,7 @@ export function toDbRow(p: Policy): NewPolicyRow {
 }
 
 /** Optional fields are left out when empty, matching the JSON files the site was built on. */
-export function fromDbRow(r: PolicyRead): Policy {
+export function fromDbRow(r: PolicyRow): Policy {
   const p: Policy = {
     id: r.id,
     level: r.level,

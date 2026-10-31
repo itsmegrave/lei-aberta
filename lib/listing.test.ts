@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { EMPTY_FILTERS, toRow } from "./catalog.ts";
-import { decodeIndex, encodeIndex, pageCount, pageOfPos, pageWindow, readUrlState, toCard, writeUrlState } from "./listing.ts";
+import { decodeIndex, encodeIndex, pageCount, pageFile, pageOfPos, pageWindow, readUrlState, toCard, writeUrlState } from "./listing.ts";
 import type { Policy } from "./types.ts";
 
 const law: Policy = {
@@ -54,4 +54,32 @@ test("the pager shows ends, neighbours and gaps", () => {
   assert.deepEqual(pageWindow(1, 10), [1, 2, 3, null, 10]);
   assert.deepEqual(pageWindow(6, 12), [1, null, 4, 5, 6, 7, 8, null, 12]);
   assert.deepEqual(pageWindow(4, 10), [1, 2, 3, 4, 5, 6, null, 10]);
+});
+
+test("an empty catalog still has one page; page files are 1-based", () => {
+  assert.equal(pageCount(0), 1);
+  assert.equal(pageCount(24), 1);
+  assert.equal(pageCount(25), 2);
+  assert.equal(pageFile(1), "pagina-1.json");
+  assert.equal(pageOfPos(0), 1);
+  assert.equal(pageOfPos(23), 1);
+  assert.equal(pageOfPos(24), 2);
+});
+
+test("URL state trims values, skips page 1 and drops blanks", () => {
+  assert.equal(writeUrlState({ ...EMPTY_FILTERS, q: "  ", area: " saude " }, 1), "?tema=saude");
+  assert.equal(writeUrlState(EMPTY_FILTERS, 1), "");
+  assert.equal(writeUrlState({ ...EMPTY_FILTERS, year: 0 }, 2), "?ano=0&pagina=2");
+  assert.deepEqual(readUrlState("?q=%C3%A1gua+pot%C3%A1vel").filters.q, "água potável");
+  assert.equal(readUrlState("?pagina=2.5").page, 1);
+  assert.equal(readUrlState("?pagina=-3").page, 1);
+});
+
+test("the pager window handles small and edge cases", () => {
+  assert.deepEqual(pageWindow(1, 1), [1]);
+  assert.deepEqual(pageWindow(1, 5), [1, 2, 3, 4, 5]);
+  assert.deepEqual(pageWindow(1, 10), [1, 2, 3, null, 10]);
+  assert.deepEqual(pageWindow(10, 10), [1, null, 8, 9, 10]);
+  // A gap of exactly one page shows the page instead of "…".
+  assert.deepEqual(pageWindow(5, 10), [1, 2, 3, 4, 5, 6, 7, null, 10]);
 });

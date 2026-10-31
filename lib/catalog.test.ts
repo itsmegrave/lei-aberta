@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { applyFilters as filterRows, authorKeys, countBy, EMPTY_FILTERS, executiveKey, overview, perAuthorState as stateRows, perYear, toRow, type Filters } from "./catalog.ts";
+import { applyFilters as filterRows, authorKeys, countBy, EMPTY_FILTERS, executiveKey, isFiltered, NO_PARTY, overview, UNKNOWN_PARTY, perAuthorState as stateRows, perYear, toRow, type Filters } from "./catalog.ts";
 import { partyScore, spectrumColor } from "./party-spectrum.ts";
 import type { Policy } from "./types.ts";
 
@@ -99,4 +99,54 @@ test("overview counts each chart without its own filter", () => {
   assert.deepEqual(o.author, [{ key: "PT", value: 1 }]);
   assert.equal(o.officialPct, 100);
   assert.deepEqual([o.minYear, o.maxYear], [2000, 2000]);
+});
+
+test("isFiltered ignores blank search and treats year 0 as set", () => {
+  assert.equal(isFiltered(EMPTY_FILTERS), false);
+  assert.equal(isFiltered({ ...EMPTY_FILTERS, q: "   " }), false);
+  assert.equal(isFiltered({ ...EMPTY_FILTERS, uf: "SP" }), true);
+  assert.equal(isFiltered({ ...EMPTY_FILTERS, year: 0 }), true);
+});
+
+test("a law with no authors counts as unknown party; no executive is 'sem partido'", () => {
+  const r = toRow({ ...base, authors: [], executive: null });
+  assert.deepEqual(r.authors, [UNKNOWN_PARTY]);
+  assert.equal(r.executive, NO_PARTY);
+  assert.deepEqual(r.ufs, []);
+});
+
+test("rows dedupe states and normalize search text", () => {
+  const r = toRow({
+    ...base,
+    title: "Proteção à Criança",
+    authors: [{ name: "José", kind: "deputy", party: "PT", uf: "SP" }, { name: "Ângela", kind: "deputy", party: "PT", uf: "SP" }],
+  });
+  assert.deepEqual(r.ufs, ["SP"]);
+  assert.deepEqual(r.authors, ["PT"]);
+  assert.match(r.text, /protecao a crianca/);
+  assert.match(r.text, /angela/);
+});
+
+test("overview of nothing is zeros, not NaN", () => {
+  const { overview: o, matches } = overview([], EMPTY_FILTERS, 1990);
+  assert.equal(matches.length, 0);
+  assert.equal(o.total, 0);
+  assert.equal(o.officialPct, 0);
+  assert.equal(o.minYear, null);
+  assert.equal(o.years.length, 3);
+});
+
+test("overview gives the year range and share with an official link", () => {
+  const rows = rowsOf([{ ...base, year: 1995 }, { ...base, id: "b", year: 2010, sources: [] }, { ...base, id: "c", year: 2001 }]);
+  const { overview: o } = overview(rows, EMPTY_FILTERS, 2010);
+  assert.equal(o.minYear, 1995);
+  assert.equal(o.maxYear, 2010);
+  assert.equal(o.officialPct, 67);
+  assert.equal(o.themes, 1);
+});
+
+test("perYear ignores years outside 1988..lastYear", () => {
+  const ys = perYear([{ year: 1987, level: "federal" }, { year: 2031, level: "federal" }, { year: 1988, level: "municipal" }], 1990);
+  assert.deepEqual(ys[0], { year: 1988, federal: 0, estadual: 0, municipal: 1 });
+  assert.equal(ys.reduce((n, y) => n + y.federal, 0), 0);
 });

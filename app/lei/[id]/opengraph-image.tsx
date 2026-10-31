@@ -3,7 +3,7 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { authorKeys, NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
-import { findPolicy } from "@/lib/data";
+import { loadCatalog } from "@/lib/data";
 import { partyScore, SPECTRUM_STOPS, spectrumColor } from "@/lib/party-spectrum";
 import { area, lawLabel, LEVELS } from "@/lib/vocab";
 
@@ -57,7 +57,8 @@ function Who({ label, name, party }: { label: string; name: string; party?: stri
 
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const id = decodeURIComponent((await params).id);
-  const p = await findPolicy(id);
+  const { policies } = await loadCatalog();
+  const p = policies.find((x) => x.id === id);
   if (!p) notFound();
   const a = area(p.areas[0]);
   const [bg, fg] = TINT[a.tint] ?? TINT.gov;
