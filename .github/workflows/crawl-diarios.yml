@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       source:
-        description: "dou, qd or all"
-        default: all
+        description: "qd, dou or all (dou needs access to in.gov.br, currently blocked from CI)"
+        default: qd
       since:
         description: "First publication day, YYYY-MM-DD (empty = last few days)"
         required: false
@@ -51,7 +51,7 @@ jobs:
           INLABS_EMAIL: ${{ secrets.INLABS_EMAIL }}
           INLABS_PASSWORD: ${{ secrets.INLABS_PASSWORD }}
         run: |
-          node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run \
+          node --experimental-strip-types --no-warnings crawlers/diarios/run.ts --dry-run --source qd \
             --since "$(date -u -d '8 days ago' +%F)" --until "$(date -u -d '1 day ago' +%F)" --max-gazettes 60
 
   crawl:
@@ -71,7 +71,7 @@ jobs:
           node-version: 26
       - name: Crawl
         env:
-          SOURCE: ${{ inputs.source || 'all' }}
+          SOURCE: ${{ inputs.source || 'qd' }}
           SINCE: ${{ inputs.since }}
           UNTIL: ${{ inputs.until }}
           TERRITORIES: ${{ inputs.territories || 'capitals' }}
