@@ -1,0 +1,75 @@
+[
+  {
+    "id": "federal-lei-8080-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.080",
+    "title": "Lei Orgânica da Saúde (SUS)",
+    "summary": "Organiza o Sistema Único de Saúde: atendimento público, universal e gratuito.",
+    "year": 1990,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 8.080/1990 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8080.htm"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8069-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.069",
+    "title": "Estatuto da Criança e do Adolescente (ECA)",
+    "summary": "Define direitos de crianças e adolescentes e a proteção integral pelo Estado, família e sociedade.",
+    "year": 1990,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos",
+      "assistencia-social"
+    ],
+    "authors": [
+      {
+        "name": "Ronan Tito",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 8.069/1990 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+      }
+    ]
+  }
+]

@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Lei Aberta theme on shadcn/ui tokens. Playful civic look: lilac-tinted neutrals, indigo accent,
+   yellow highlighter, one soft tint per topic. Chart colors follow the dataviz reference palette:
+   chart-1..3 = levels (federal, estadual, municipal), validated as a set in light and dark. */
+:root {
+  --radius: 1rem;
+  --background: #f7f6fd;
+  --foreground: #17142e;
+  --card: #ffffff;
+  --card-foreground: #17142e;
+  --popover: #ffffff;
+  --popover-foreground: #17142e;
+  --primary: #4c35e0;
+  --primary-foreground: #ffffff;
+  --secondary: #efedfb;
+  --secondary-foreground: #17142e;
+  --muted: #efedfb;
+  --muted-foreground: #5d5979;
+  --accent: #e6e2ff;
+  --accent-foreground: #17142e;
+  --destructive: #c2255c;
+  --border: #e3e0f2;
+  --input: #e3e0f2;
+  --ring: #4c35e0;
+  --highlight: #ffd84d;
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-grid: #e7e4f3;
+  --chart-axis: #c9c5dc;
+  --ramp-lo: #cde2fb;
+  --ramp-hi: #1c5cab;
+
+  --t-saude-bg: #ffe3ea; --t-saude: #c2255c;
+  --t-edu-bg: #e3edff; --t-edu: #2457c5;
+  --t-amb-bg: #dcf6e8; --t-amb: #127a4a;
+  --t-ass-bg: #fff0d6; --t-ass: #a85d00;
+  --t-dir-bg: #efe4ff; --t-dir: #6b3fd1;
+  --t-tec-bg: #dcf4fb; --t-tec: #0b7590;
+  --t-gov-bg: #eceaf3; --t-gov: #4a4766;
+  --t-cid-bg: #ffe8dc; --t-cid: #b8481a;
+  --t-san-bg: #dff1ff; --t-san: #1468a8;
+  --t-seg-bg: #e8ecf2; --t-seg: #3c4a63;
+  --t-eco-bg: #f2f6d8; --t-eco: #5d6b00;
+}
+
+.dark {
+  --background: #0f0d1c;
+  --foreground: #f4f2ff;
+  --card: #1a1730;
+  --card-foreground: #f4f2ff;
+  --popover: #1a1730;
+  --popover-foreground: #f4f2ff;
+  --primary: #8f7dff;
+  --primary-foreground: #120f26;
+  --secondary: #221e3d;
+  --secondary-foreground: #f4f2ff;
+  --muted: #221e3d;
+  --muted-foreground: #a6a2c4;
+  --accent: #2a2457;
+  --accent-foreground: #f4f2ff;
+  --destructive: #ff8fb1;
+  --border: #2c2847;
+  --input: #2c2847;
+  --ring: #8f7dff;
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-grid: #2a2645;
+  --chart-axis: #3d3960;
+  --ramp-lo: #1d3a63;
+  --ramp-hi: #86b6ef;
+
+  --t-saude-bg: #3a1726; --t-saude: #ff8fb1;
+  --t-edu-bg: #172645; --t-edu: #8fb4ff;
+  --t-amb-bg: #10301f; --t-amb: #6fdca4;
+  --t-ass-bg: #35250c; --t-ass: #ffc266;
+  --t-dir-bg: #271a47; --t-dir: #c4a8ff;
+  --t-tec-bg: #0e2e38; --t-tec: #6fd6f0;
+  --t-gov-bg: #24223a; --t-gov: #c9c5e6;
+  --t-cid-bg: #3a1f12; --t-cid: #ffa077;
+  --t-san-bg: #0f2740; --t-san: #7cc4ff;
+  --t-seg-bg: #1f2533; --t-seg: #b4c0d8;
+  --t-eco-bg: #2a2e0e; --t-eco: #d4e25a;
+}
+
+@theme inline {
+  --font-sans: "Figtree Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-highlight: var(--highlight);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-morph: morph 14s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); } 50% { transform: translateY(-10px) rotate(calc(var(--rot, 0deg) * -1)); } }
+  @keyframes morph { 0%, 100% { border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; } 50% { border-radius: 58% 42% 45% 55% / 42% 58% 42% 58%; } }
+  @keyframes marquee { to { transform: translateX(calc(-100% - 0.625rem)); } }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground antialiased; font-size: 15px; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+  :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

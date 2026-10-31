@@ -1,0 +1,40 @@
+[
+  {
+    "id": "federal-lei-10741-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.741",
+    "title": "Estatuto da Pessoa Idosa",
+    "summary": "Garante direitos às pessoas com 60 anos ou mais, como prioridade no atendimento.",
+    "year": 2003,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos",
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Paulo Paim",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PT"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 10.741/2003 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm"
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "federal-lei-9394-1996",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "9.394",
+    "title": "Lei de Diretrizes e Bases da Educação (LDB)",
+    "summary": "Estabelece as regras gerais da educação brasileira, da creche ao ensino superior.",
+    "year": 1996,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Darcy Ribeiro",
+        "kind": "senator",
+        "party": "PDT",
+        "uf": "RJ"
+      }
+    ],
+    "parties": [
+      "PDT"
+    ],
+    "executive": {
+      "name": "Fernando Henrique Cardoso",
+      "office": "Presidente",
+      "party": "PSDB"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 9.394/1996 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l9394.htm"
+      }
+    ]
+  }
+]

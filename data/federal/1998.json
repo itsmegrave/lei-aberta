@@ -1,0 +1,38 @@
+[
+  {
+    "id": "federal-lei-9605-1998",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "9.605",
+    "title": "Lei de Crimes Ambientais",
+    "summary": "Define punições penais e administrativas para condutas que causam dano ao meio ambiente.",
+    "year": 1998,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "meio-ambiente",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Henrique Cardoso",
+      "office": "Presidente",
+      "party": "PSDB"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 9.605/1998 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l9605.htm"
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "federal-lei-13146-2015",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.146",
+    "title": "Estatuto da Pessoa com Deficiência",
+    "summary": "Garante acessibilidade e direitos para a inclusão de pessoas com deficiência.",
+    "year": 2015,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Paulo Paim",
+        "kind": "senator",
+        "party": "PT",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PT"
+    ],
+    "executive": {
+      "name": "Dilma Rousseff",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 13.146/2015 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm"
+      }
+    ]
+  }
+]

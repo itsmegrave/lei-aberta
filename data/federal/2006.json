@@ -1,0 +1,38 @@
+[
+  {
+    "id": "federal-lei-11340-2006",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "11.340",
+    "title": "Lei Maria da Penha",
+    "summary": "Cria mecanismos para prevenir e punir a violência doméstica contra a mulher.",
+    "year": 2006,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 11.340/2006 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+      }
+    ]
+  }
+]

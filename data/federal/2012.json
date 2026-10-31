@@ -1,0 +1,39 @@
+[
+  {
+    "id": "federal-lei-12711-2012",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "12.711",
+    "title": "Lei de Cotas",
+    "summary": "Reserva vagas em universidades e institutos federais para alunos de escola pública.",
+    "year": 2012,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Nice Lobão",
+        "kind": "deputy",
+        "party": "PFL",
+        "uf": "MA"
+      }
+    ],
+    "parties": [
+      "PFL"
+    ],
+    "executive": {
+      "name": "Dilma Rousseff",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 12.711/2012 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12711.htm"
+      }
+    ]
+  }
+]

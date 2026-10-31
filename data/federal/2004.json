@@ -1,0 +1,37 @@
+[
+  {
+    "id": "federal-lei-10836-2004",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.836",
+    "title": "Programa Bolsa Família",
+    "summary": "Cria programa de transferência de renda para famílias em situação de pobreza.",
+    "year": 2004,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 10.836/2004 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"
+      }
+    ]
+  }
+]

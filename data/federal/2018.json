@@ -1,0 +1,40 @@
+[
+  {
+    "id": "federal-lei-13709-2018",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.709",
+    "title": "Lei Geral de Proteção de Dados (LGPD)",
+    "summary": "Regula como empresas e governos coletam e usam dados pessoais.",
+    "year": 2018,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "tecnologia",
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Milton Monti",
+        "kind": "deputy",
+        "party": "PR",
+        "uf": "SP"
+      }
+    ],
+    "parties": [
+      "PR"
+    ],
+    "executive": {
+      "name": "Michel Temer",
+      "office": "Presidente",
+      "party": "MDB"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+      }
+    ]
+  }
+]

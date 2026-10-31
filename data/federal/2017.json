@@ -1,0 +1,37 @@
+[
+  {
+    "id": "federal-lei-13415-2017",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.415",
+    "title": "Reforma do Ensino Médio",
+    "summary": "Muda a estrutura do ensino médio e amplia a carga horária.",
+    "year": 2017,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Michel Temer",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 13.415/2017 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13415.htm"
+      }
+    ]
+  }
+]

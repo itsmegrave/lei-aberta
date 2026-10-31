@@ -1,0 +1,102 @@
+{
+  "sample": true,
+  "updatedAt": "2026-10-31",
+  "files": [
+    {
+      "level": "federal",
+      "year": 1990,
+      "path": "federal/1990.json",
+      "count": 2
+    },
+    {
+      "level": "federal",
+      "year": 1993,
+      "path": "federal/1993.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 1996,
+      "path": "federal/1996.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 1998,
+      "path": "federal/1998.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2000,
+      "path": "federal/2000.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2001,
+      "path": "federal/2001.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2003,
+      "path": "federal/2003.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2004,
+      "path": "federal/2004.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2006,
+      "path": "federal/2006.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2011,
+      "path": "federal/2011.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2012,
+      "path": "federal/2012.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2014,
+      "path": "federal/2014.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2015,
+      "path": "federal/2015.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2017,
+      "path": "federal/2017.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2018,
+      "path": "federal/2018.json",
+      "count": 1
+    },
+    {
+      "level": "federal",
+      "year": 2020,
+      "path": "federal/2020.json",
+      "count": 1
+    }
+  ]
+}

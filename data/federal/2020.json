@@ -1,0 +1,38 @@
+[
+  {
+    "id": "federal-lei-14026-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "14.026",
+    "title": "Marco Legal do Saneamento",
+    "summary": "Atualiza as regras do saneamento básico e fixa metas de água e esgoto.",
+    "year": 2020,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [
+      "saneamento",
+      "meio-ambiente"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "sources": [
+      {
+        "label": "Lei nº 14.026/2020 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm"
+      }
+    ]
+  }
+]
