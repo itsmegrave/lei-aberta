@@ -18,7 +18,7 @@ import { LevelPills, TopicGrid } from "./topics";
 import { YearChart } from "./year-chart";
 
 // Linktree of the Lenindragons collective, credited in the footer.
-const LENINDRAGONS_URL = "https://linktr.ee/lenindragons";
+const LENINDRAGONS_URL = "https://linktr.ee/lenindragonsrpg";
 
 export function Home({ policies, sample, sources }: { policies: Policy[]; updatedAt: string; sample: boolean; sources: DataSource[] }) {
   const [f, setF] = useState<Filters>(EMPTY_FILTERS);
