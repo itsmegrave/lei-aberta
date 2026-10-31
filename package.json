@@ -2,6 +2,7 @@
   "name": "lei-aberta",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": "26.x"
@@ -9,7 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve out",
+    "start": "next start",
     "lint": "tsc --noEmit",
     "test": "node --experimental-strip-types --no-warnings --test \"lib/**/*.test.ts\" \"crawlers/**/*.test.ts\"",
     "crawl:federal": "node --experimental-strip-types --no-warnings crawlers/federal/run.ts",

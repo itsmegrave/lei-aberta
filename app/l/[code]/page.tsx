@@ -11,7 +11,9 @@ import { findLaw, lawMetadata, LawView } from "../../lei/law";
  */
 type Props = { params: Promise<{ code: string }> };
 
-export const dynamicParams = false;
+// Rendered on first request and then cached, like the law pages (see next.config.ts).
+export const dynamicParams = true;
+export const revalidate = false;
 
 async function codes() {
   const { policies } = await loadCatalog();
@@ -19,7 +21,7 @@ async function codes() {
 }
 
 export async function generateStaticParams() {
-  return [...(await codes()).keys()].map((code) => ({ code }));
+  return [];
 }
 
 async function lawFor(code: string) {

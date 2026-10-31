@@ -40,7 +40,10 @@ export function partyScore(party: string | null | undefined): number | null {
   return key != null && PARTY_SCORES[key] != null ? PARTY_SCORES[key] : null;
 }
 
-// ---- Diverging color: violet (left) -> gray (center) -> ochre (right). No red/green. ----
+// ---- Diverging color: red (left) -> gray (center) -> blue (right). ----
+// The single shared palette for party positions: charts, legends, OG images and party pages
+// all read these stops. Poles validated for CVD separation and >=3:1 contrast on the card
+// surface in each theme (light #ffffff, dark #1a1730).
 type Rgb = [number, number, number];
 const hex = (h: string): Rgb => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as Rgb;
 const lin = (c: number) => ((c /= 255) <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -62,8 +65,8 @@ function fromOklab([L, a, b]: Rgb): string {
 }
 
 export const SPECTRUM_STOPS = {
-  light: { left: "#6a3fc9", mid: "#8f8e88", right: "#a8740a", none: "#d4d3cd" },
-  dark: { left: "#8e72e8", mid: "#7a7973", right: "#bf8a22", none: "#3a3a37" },
+  light: { left: "#c8352b", mid: "#8f8e88", right: "#2a6fd6", none: "#d4d3cd" },
+  dark: { left: "#d9433a", mid: "#7a7973", right: "#5594f0", none: "#3a3a37" },
 } as const;
 
 /** Color for a 0-10 score; null score gets the "no position" gray. */

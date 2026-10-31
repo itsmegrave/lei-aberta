@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { loadCatalog } from "@/lib/data";
 import { findLaw, lawMetadata, LawView } from "../law";
 
 type Props = { params: Promise<{ id: string }> };
 
-// Static export: one page per law, built ahead of time. Unknown ids are 404s.
-export const dynamicParams = false;
+// One page per law, rendered on first request and then cached (see next.config.ts).
+// Prerendering all of them made the build run past Vercel's time limit.
+export const dynamicParams = true;
+export const revalidate = false;
 
 export async function generateStaticParams() {
-  const { policies } = await loadCatalog();
-  return policies.map((p) => ({ id: p.id }));
+  return [];
 }
 
 // The share image comes from ./opengraph-image.tsx, which Next adds to og:image and twitter:image.

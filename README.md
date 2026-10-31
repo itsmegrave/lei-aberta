@@ -6,7 +6,7 @@ Open source. UI in Portuguese; code and comments in English.
 
 ## Stack
 
-- Next.js (App Router, `output: "export"`, so the build is plain static files in `out/`)
+- Next.js (App Router) on Vercel. The home page, data files and sitemaps are prerendered at build time; each law page, short link and share image renders on its first visit and is then cached (`next.config.ts`), so the build stays fast with tens of thousands of laws
 - TypeScript, Tailwind CSS 4, shadcn/ui (components live in `components/ui`), Recharts via the shadcn chart wrapper
 - Motion for animation (all motion is off when the visitor prefers reduced motion)
 - Fonts: Bricolage Grotesque and Figtree from Fontsource (bundled, no Google Fonts request)
@@ -16,12 +16,12 @@ npm install
 npm run dev     # http://localhost:3000
 npm test        # unit tests (node:test, no extra runner)
 npm run lint    # type check
-npm run build   # static export to out/
+npm run build   # production build (npm start serves it)
 ```
 
 ## Hosting (Vercel)
 
-The repo is linked to a Vercel project. Vercel detects Next.js and serves the static export. `vercel.json` only sets the content type of the share images, which are files without an extension.
+The repo is linked to a Vercel project. Vercel detects Next.js. `vercel.json` only sets the content type and cache headers of the share images.
 
 - Every push to `main` deploys to production.
 - Every pull request gets a preview URL.
@@ -29,13 +29,13 @@ The repo is linked to a Vercel project. Vercel detects Next.js and serves the st
 
 ## Sharing
 
-Each law has its own page, `/lei/<id>`, built at deploy time. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
+Each law has its own page, `/lei/<id>`, rendered on its first visit and cached until the next deploy. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
 
 Each law also has a short link, `/l/<code>`, which the share buttons use. The code is 7 characters derived from the law's id (`lib/share.ts`), so it never changes and needs no database or service; the build fails if two laws ever get the same code. The short link page shows the law itself instead of redirecting, so link previews work everywhere, and its canonical URL is the full page. Visits are counted by [Vercel Web Analytics](https://vercel.com/docs/analytics) as `/l/*` page views (turn it on under the project's Analytics tab).
 
 ## Search (SEO)
 
-All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and built at deploy time, so crawlers get plain HTML.
+All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and rendered on the server, so crawlers get plain HTML.
 
 - **Site address.** `NEXT_PUBLIC_SITE_URL` sets the address used in canonical links, sitemaps, share links and structured data. Without it, Vercel builds use the project's production domain (`VERCEL_PROJECT_PRODUCTION_URL`, which becomes the custom domain once one is set as primary), and other builds use `https://lei-aberta.vercel.app`.
 - **Titles and descriptions.** Home: "Lei Aberta: as leis do Brasil explicadas em uma frase". Law pages: "<título>: Lei 13.709/2018 · Lei Aberta", with the one-line summary as the description (`lib/seo.ts`).
@@ -97,7 +97,7 @@ At the end of each run a crawler calls `updateSource(id, patch)` from `lib/sourc
 
 ## Party positions
 
-Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Formal renames reuse the same party's score (PMDB→MDB, PFL→DEM, PRN→PTC, and so on, see `lib/party-spectrum.ts`). Parties not in the survey get no position and are listed apart. The palette is violet → gray → ochre, with no red/green so no side reads as "good" or "bad".
+Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Formal renames reuse the same party's score (PMDB→MDB, PFL→DEM, PRN→PTC, and so on, see `lib/party-spectrum.ts`). Parties not in the survey get no position and are listed apart. The palette runs red (left) → gray (center) → blue (right), following the common convention of red for the left. All stops live in one place, `SPECTRUM_STOPS` in `lib/party-spectrum.ts`, with separate light and dark values; every chart, legend and share image reads from there.
 
 ## Neutrality
 
@@ -112,3 +112,7 @@ Describe, never rate. No adjectives about parties or policies, no party brand co
 ## Design notes
 
 See `docs/design.md`.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Laws and official texts linked from the site are public under Brazilian law (Lei 9.610/1998, art. 8º, IV) and keep their original sources.
