@@ -23,7 +23,7 @@ npm run build   # production build (npm start serves it)
 
 - `npm run test:unit`: logic in `lib/` and `crawlers/` (`*.test.ts`), on Node's built-in `node:test`.
 - `npm run test:ui`: React components (`components/**/*.test.tsx`) with Vitest, jsdom and React Testing Library. Shared setup is in `test/setup.ts`, and a sample law record is in `test/fixtures.ts`.
-- `npm run test:db`: the Postgres layer (`lib/db/*.db.test.ts`) against a real, migrated database. It runs only when `TEST_DATABASE_URL` is set, never against `DATABASE_URL`, and it only touches ids that start with `test-db-`. CI runs it against a throwaway Postgres after the migrations.
+- `npm run test:db`: the Postgres layer (`lib/**/*.db.test.ts`: the upsert and the queries in `lib/data.ts`) against a real, migrated database, one file at a time. It runs only when `TEST_DATABASE_URL` is set, never against `DATABASE_URL`, and it only touches ids that start with `test-db-`. CI runs it against a throwaway Postgres after the migrations.
 
 ## Hosting (Vercel)
 
