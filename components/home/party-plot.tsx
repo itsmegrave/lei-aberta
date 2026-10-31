@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { partyScore, spectrumColor, SPECTRUM_SOURCE, SPECTRUM_STOPS } from "@/lib/party-spectrum";
@@ -160,7 +161,12 @@ export function PartyPlot({
         <a className="text-primary underline" href={SPECTRUM_SOURCE.url} target="_blank" rel="noopener noreferrer">
           {SPECTRUM_SOURCE.label}
         </a>
-        . Nomes antigos usam a nota do mesmo partido renomeado (PMDB→MDB, PFL→DEM, PRN→PTC). Não fazemos avaliação própria.
+        . Não fazemos avaliação própria. Cada partido aparece com o nome de hoje e soma os nomes antigos (PMDB → MDB; PFL e DEM → União Brasil; PPS
+        → Cidadania). Quem só mudou de nome mantém a nota; partidos criados por fusão depois da pesquisa (União Brasil, PRD) ficam sem posição.{" "}
+        <Link className="text-primary font-bold underline" href="/partidos">
+          Conheça cada partido
+        </Link>
+        .
       </p>
       {button}
     </Panel>

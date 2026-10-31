@@ -77,3 +77,16 @@ test("site JSON-LD declares the search box", () => {
 test("JSON-LD can't close its script tag", () => {
   assert.ok(!jsonLdString({ name: "</script><b>" }).includes("</script>"));
 });
+
+test("party pages: title, description and JSON-LD use registry facts only", async () => {
+  const { partyBySlug } = await import("./parties.ts");
+  const { partyDescription, partyJsonLd, partyTitle } = await import("./seo.ts");
+  const mdb = partyBySlug("mdb")!;
+  assert.equal(partyTitle(mdb), "MDB: Movimento Democrático Brasileiro");
+  const d = partyDescription(mdb, { proposed: 3, signed: 1 });
+  assert.ok(d.length <= 158, d);
+  assert.ok(d.startsWith("Movimento Democrático Brasileiro (MDB), número 15."));
+  const ld = partyJsonLd(mdb, "https://x.test") as { "@graph": Record<string, unknown>[] };
+  assert.equal(ld["@graph"][0]["@type"], "PoliticalParty");
+  assert.deepEqual(ld["@graph"][0].sameAs, ["https://www.mdb.org.br", "https://www.tse.jus.br/partidos/partidos-registrados-no-tse/movimento-democratico-brasileiro"]);
+});

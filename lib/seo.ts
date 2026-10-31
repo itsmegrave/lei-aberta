@@ -1,4 +1,5 @@
 import type { Policy } from "./types";
+import { partyPath, PARTIES_PATH, tseUrl, type Party } from "./parties.ts";
 import { lawPath, SITE_URL } from "./share.ts";
 import { area, lawLabel, LEVELS, typeLabel } from "./vocab.ts";
 
@@ -150,6 +151,83 @@ export function lawJsonLd(p: Policy, base = SITE_URL): JsonLd {
     ],
   };
   return { "@context": "https://schema.org", "@graph": [prune(legislation), breadcrumb] };
+}
+
+export const PARTIES_TITLE = "Partidos políticos do Brasil: história e leis de cada um";
+export const PARTIES_DESCRIPTION =
+  "Os partidos registrados no TSE, com a história de cada um (fundação, fusões e mudanças de nome), o site oficial e as leis que propuseram ou sancionaram.";
+
+/** "MDB: Movimento Democrático Brasileiro", or just the name when it is the short name too. */
+export function partyTitle(p: Pick<Party, "short" | "name">): string {
+  return p.short === p.name ? `${p.name}: história e leis do partido` : `${p.short}: ${p.name}`;
+}
+
+export function partyDescription(p: Pick<Party, "short" | "name" | "number" | "about">, counts: { proposed: number; signed: number }): string {
+  const nums = `No catálogo: ${counts.proposed} ${counts.proposed === 1 ? "lei proposta" : "leis propostas"} e ${counts.signed} ${counts.signed === 1 ? "sancionada" : "sancionadas"}.`;
+  const lead = `${p.name} (${p.short}), número ${p.number}. ${p.about}`;
+  const full = `${lead} ${nums}`;
+  if (full.length <= MAX_DESCRIPTION) return full;
+  if (lead.length <= MAX_DESCRIPTION) return lead;
+  return `${lead.slice(0, MAX_DESCRIPTION - 1).replace(/\s+\S*$/, "")}…`;
+}
+
+/** A party page: schema.org PoliticalParty with only registry facts, and its breadcrumb. */
+export function partyJsonLd(p: Party, base = SITE_URL): JsonLd {
+  const url = abs(partyPath(p.slug), base);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      prune({
+        "@type": "PoliticalParty",
+        "@id": `${url}#partido`,
+        name: p.name,
+        alternateName: p.short !== p.name ? p.short : undefined,
+        url: p.website ?? undefined,
+        description: p.about,
+        sameAs: [p.website, tseUrl(p)].filter(Boolean),
+        subjectOf: { "@id": `${url}#pagina` },
+      }),
+      { "@type": "WebPage", "@id": `${url}#pagina`, url, name: partyTitle(p), inLanguage: "pt-BR", isPartOf: { "@id": SITE_ID(base) } },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${base}/` },
+          { "@type": "ListItem", position: 2, name: "Partidos", item: abs(PARTIES_PATH, base) },
+          { "@type": "ListItem", position: 3, name: p.short, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+/** The directory page: a list of the party pages. */
+export function partiesJsonLd(parties: Pick<Party, "slug" | "name">[], base = SITE_URL): JsonLd {
+  const url = abs(PARTIES_PATH, base);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#pagina`,
+        url,
+        name: PARTIES_TITLE,
+        description: PARTIES_DESCRIPTION,
+        inLanguage: "pt-BR",
+        isPartOf: { "@id": SITE_ID(base) },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: parties.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.name, url: abs(partyPath(p.slug), base) })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${base}/` },
+          { "@type": "ListItem", position: 2, name: "Partidos", item: url },
+        ],
+      },
+    ],
+  };
 }
 
 /** Drops undefined and empty-array fields so the JSON-LD stays clean. */

@@ -1,22 +1,35 @@
 "use client";
 
+import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
 import { NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
 import { partyScore, spectrumColor } from "@/lib/party-spectrum";
+import { isNoPartyCode, partyOf, partyPath, renamedTo } from "@/lib/parties";
 import type { Policy } from "@/lib/types";
 import { area, AUTHOR_KIND, emojiSrc, LEVELS, statusLabel } from "@/lib/vocab";
 import { lawLabel } from "./policy-card";
 import { ShareButtons } from "./share-button";
 import { useDark } from "./use-dark";
 
-function PartyBadge({ party, missing = NO_PARTY }: { party: string | null; missing?: string }) {
+function PartyBadge({ party, year, missing = NO_PARTY }: { party: string | null; year: number; missing?: string }) {
   const dark = useDark();
-  if (!party) return <>{missing}</>;
+  if (!party || isNoPartyCode(party)) return <>{missing}</>;
+  const now = partyOf(party, year);
+  const renamed = renamedTo(party, year);
+  const dot = <i className="size-2.5 rounded-full" style={{ background: spectrumColor(partyScore(party, year), dark ? "dark" : "light") }} />;
+  // The record's party (at the time) stays the label; today's party is a link to its page.
   return (
-    <span className="inline-flex items-center gap-1.5">
-      <i className="size-2.5 rounded-full" style={{ background: spectrumColor(partyScore(party), dark ? "dark" : "light") }} />
-      {party}
+    <span className="inline-flex flex-wrap items-center gap-x-1.5">
+      {dot}
+      {now ? (
+        <Link href={partyPath(now.slug)} className="underline decoration-dotted underline-offset-2">
+          {party}
+        </Link>
+      ) : (
+        party
+      )}
+      {renamed && <span>(hoje {renamed.short})</span>}
     </span>
   );
 }
@@ -73,7 +86,7 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
                   AUTHOR_KIND[author.kind] ?? AUTHOR_KIND.other
                 ) : (
                   <>
-                    <PartyBadge party={author.party} missing={UNKNOWN_PARTY} /> · {AUTHOR_KIND[author.kind]}
+                    <PartyBadge party={author.party} year={p.year} missing={UNKNOWN_PARTY} /> · {AUTHOR_KIND[author.kind]}
                     {author.uf ? ` · ${author.uf}` : ""}
                   </>
                 )}
@@ -90,7 +103,7 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
           <div className="text-muted-foreground text-xs font-bold tracking-[0.06em] uppercase">Quem sancionou</div>
           <div className="mt-0.5 text-base font-bold">{p.executive?.name ?? "Não informado"}</div>
           <div className="text-muted-foreground text-[13px]">
-            <PartyBadge party={p.executive?.party ?? null} /> · {p.executive?.office}
+            <PartyBadge party={p.executive?.party ?? null} year={p.year} /> · {p.executive?.office}
           </div>
         </div>
       </div>
@@ -103,7 +116,7 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
         </div>
       ))}
       <ShareButtons p={p} />
-      <p className="text-muted-foreground m-0 text-xs">Partido de quem propôs é o da época da proposta. Partido de quem sancionou é um dado separado.</p>
+      <p className="text-muted-foreground m-0 text-xs">Partido de quem propôs é o da época da proposta. Partido de quem sancionou é um dado separado. Nos gráficos, cada partido aparece com o nome de hoje.</p>
     </>
   );
 }
