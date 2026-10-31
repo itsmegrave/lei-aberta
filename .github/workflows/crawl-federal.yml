@@ -34,17 +34,6 @@ jobs:
       # A pre-EC 32 reissued MP, and a sample of a recent year of every type.
       - run: npm run crawl:federal -- --from 1999 --to 1999 --types MPV --only 1858 --dry-run
       - run: npm run crawl:federal -- --from 2025 --to 2025 --limit 5 --dry-run
-      - name: Diagnose Planalto access
-        continue-on-error: true
-        run: |
-          for u in https://www.planalto.gov.br/ccivil_03/leis/l8080.htm https://legislacao.presidencia.gov.br/ http://www.planalto.gov.br/ccivil_03/leis/l8080.htm; do
-            echo "== $u"
-            curl -sS -m 30 -o /tmp/p.html -w "http %{http_code} ip %{remote_ip} ssl_verify %{ssl_verify_result} bytes %{size_download}\n" -A "Mozilla/5.0 (compatible; LeiAberta/0.1)" "$u" || true
-            head -c 300 /tmp/p.html 2>/dev/null | tr -d '\0'; echo
-          done
-          echo | openssl s_client -connect www.planalto.gov.br:443 -servername www.planalto.gov.br 2>&1 | grep -E "Verify return|issuer=|subject=" | head -5 || true
-          node -e "fetch('https://www.planalto.gov.br/ccivil_03/leis/l8080.htm').then(r=>console.log('node', r.status)).catch(e=>console.log('node error', e.message, e.cause?.code, e.cause?.message))"
-          node --use-system-ca -e "fetch('https://www.planalto.gov.br/ccivil_03/leis/l8080.htm').then(r=>console.log('node system-ca', r.status)).catch(e=>console.log('node system-ca error', e.message, e.cause?.code, e.cause?.message))"
       - name: Check the hand-written sample's links
         run: npm run check:links
         continue-on-error: true
