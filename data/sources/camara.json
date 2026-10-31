@@ -15,10 +15,10 @@
     "medida provisória"
   ],
   "description": "Projetos de lei da Câmara, com autores, partidos e andamento.",
-  "status": "building",
+  "status": "active",
   "since": 1988,
-  "records": null,
-  "lastRun": null,
-  "lastSuccess": null,
-  "crawler": null
+  "records": 2299,
+  "lastRun": "2026-10-31T17:29:55Z",
+  "lastSuccess": "2026-10-31T18:51:08Z",
+  "crawler": "crawlers/federal/run.ts"
 }

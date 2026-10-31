@@ -1,0 +1,3461 @@
+[
+  {
+    "id": "federal-lc-58-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "58",
+    "title": "Lei Complementar nº 58/1988",
+    "summary": "Dispõe sobre aposentadoria voluntária, nas condições que especifica, aos servidores civis que trabalham em estabelecimentos industriais da União, produtores de munições e explosivos.",
+    "year": 1988,
+    "signedAt": "1988-01-21",
+    "presentedAt": "1987-09-02",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLP 10/1987",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 58/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:1988-01-21;58"
+      },
+      {
+        "label": "PLC 57/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20735"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-59-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "59",
+    "title": "Lei Complementar nº 59/1988",
+    "summary": "Dá nova redação ao § 3º do art. 91 da Lei nº 5.172, de 25 de outubro de 1966 (Código Tributário Nacional).",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1988-09-13",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "OSVALDO BENDER",
+        "kind": "deputy",
+        "party": "PDS",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PDS"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLP 28/1988",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 59/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:1988-12-22;59"
+      },
+      {
+        "label": "PLC 60/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20824"
+      },
+      {
+        "label": "PLP 28/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=233349"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7647-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.647",
+    "title": "Lei nº 7.647/1988",
+    "summary": "Altera dispositivos da Lei nº 4.504, de 30 de novembro de 1964 (Estatuto da Terra).",
+    "year": 1988,
+    "signedAt": "1988-01-19",
+    "presentedAt": "1987-10-22",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 241/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.647/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-01-19;7647"
+      },
+      {
+        "label": "PLC 58/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20763"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7648-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.648",
+    "title": "Lei nº 7.648/1988",
+    "summary": "Fixa o efetivo da Polícia Militar do Território Federal do Amapá e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-01-21",
+    "presentedAt": "1987-07-27",
+    "status": "sancionada",
+    "areas": [
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 183/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.648/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-01-21;7648"
+      },
+      {
+        "label": "PLC 51/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20550"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7649-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.649",
+    "title": "Lei Henfil",
+    "summary": "Estabelece a obrigatoriedade do cadastramento dos doadores de sangue bem como a realização de exames laboratoriais no sangue coletado, visando a prevenir a propagação de doenças, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-01-25",
+    "presentedAt": "1985-09-09",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Gastão Müller",
+        "kind": "senator",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLS 257/1985",
+    "sources": [
+      {
+        "label": "Lei nº 7.649/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-01-25;7649"
+      },
+      {
+        "label": "PLS 257/1985 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/30383"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7650-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.650",
+    "title": "Lei nº 7.650/1988",
+    "summary": "Autoriza a doação de fração ideal de imóvel situado no Município de Juiz de Fora, Estado de Minas Gerais.",
+    "year": 1988,
+    "signedAt": "1988-02-03",
+    "presentedAt": "1987-07-07",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 178/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.650/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-03;7650"
+      },
+      {
+        "label": "PLC 55/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20672"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7651-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.651",
+    "title": "Lei nº 7.651/1988",
+    "summary": "Autoriza o Poder Executivo a atualizar, anualmente, os valores da subvenção concedida ao Instituto Histórico e Geográfico Brasileiro através da Lei nº 2.956, de 17 de novembro de 1956.",
+    "year": 1988,
+    "signedAt": "1988-02-03",
+    "presentedAt": "1987-07-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 179/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.651/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-03;7651"
+      },
+      {
+        "label": "PLC 56/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20704"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7652-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.652",
+    "title": "Lei nº 7.652/1988",
+    "summary": "Dispõe sobre o registro da Propriedade Marítima e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-02-03",
+    "presentedAt": "1985-10-18",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 6694/1985",
+    "sources": [
+      {
+        "label": "Lei nº 7.652/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-03;7652"
+      },
+      {
+        "label": "PLC 156/1986 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/22911"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7653-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.653",
+    "title": "Lei Fragelli",
+    "summary": "Altera a redação dos arts. 18, 27, 33 e 34 da Lei nº 5.197, de 03 de janeiro de 1967, que dispõe sobre a proteção à fauna, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-02-12",
+    "presentedAt": "1986-04-24",
+    "status": "sancionada",
+    "areas": [
+      "meio-ambiente"
+    ],
+    "authors": [
+      {
+        "name": "José Fragelli",
+        "kind": "senator",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLS 73/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.653/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-12;7653"
+      },
+      {
+        "label": "PLS 73/1986 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/26593"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7654-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.654",
+    "title": "Lei nº 7.654/1988",
+    "summary": "Concede pensão especial a Benedito Moreira Lopes, pioneiro do esporte automobilístico brasileiro.",
+    "year": 1988,
+    "signedAt": "1988-02-24",
+    "presentedAt": "1987-11-23",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 266/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.654/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-24;7654"
+      },
+      {
+        "label": "PLC 3/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19034"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7655-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.655",
+    "title": "Lei nº 7.655/1988",
+    "summary": "Concede pensão especial a Gilson da Silva Martins e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-02-24",
+    "presentedAt": "1987-12-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 302/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.655/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-24;7655"
+      },
+      {
+        "label": "PLC 2/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19002"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7656-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.656",
+    "title": "Lei nº 7.656/1988",
+    "summary": "Concede pensão especial a Dona Maria Carolina Vasconcelos Freire.",
+    "year": 1988,
+    "signedAt": "1988-02-24",
+    "presentedAt": "1987-12-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 303/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.656/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-02-24;7656"
+      },
+      {
+        "label": "PLC 1/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/18970"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7657-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.657",
+    "title": "Lei nº 7.657/1988",
+    "summary": "Altera dispositivos da Lei nº 5.682, de 21 de junho de 1971.",
+    "year": 1988,
+    "signedAt": "1988-03-21",
+    "presentedAt": "1988-02-24",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "AIRTON SANDOVAL",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "SP"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 401/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.657/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-03-21;7657"
+      },
+      {
+        "label": "PLC 4/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19067"
+      },
+      {
+        "label": "PL 401/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=176338"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7658-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.658",
+    "title": "Lei nº 7.658/1988",
+    "summary": "Declara feriado nacional, destinado às comemorações do Centenário da Abolição da Ecravatura, o dia 13 de maio de 1988.",
+    "year": 1988,
+    "signedAt": "1988-04-29",
+    "presentedAt": "1988-02-22",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 405/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.658/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-04-29;7658"
+      },
+      {
+        "label": "PLC 12/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19323"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7659-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.659",
+    "title": "Lei nº 7.659/1988",
+    "summary": "Altera o art. 98 da Lei nº 6.880, de 9 de dezembro de 1980, que dispõe sobre o Estatuto dos Militares.",
+    "year": 1988,
+    "signedAt": "1988-05-10",
+    "presentedAt": "1987-09-08",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 215/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.659/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-05-10;7659"
+      },
+      {
+        "label": "PLC 52/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20582"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7660-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.660",
+    "title": "Lei nº 7.660/1988",
+    "summary": "Dispõe sobre a Organização do Quadro de Engenheiros Militares no Ministério do Exército, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-05-10",
+    "presentedAt": "1987-10-28",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 260/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.660/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-05-10;7660"
+      },
+      {
+        "label": "PLC 15/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19420"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7661-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.661",
+    "title": "Lei do Gerenciamento Costeiro",
+    "summary": "Institui o Plano Nacional de Gerenciamento Costeiro e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-05-16",
+    "presentedAt": "1987-09-09",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 216/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.661/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-05-16;7661"
+      },
+      {
+        "label": "PLC 19/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19549"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7662-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.662",
+    "title": "Lei nº 7.662/1988",
+    "summary": "Faculta aos servidores públicos federais a opção pelo regime de que trata a Lei nº 1.711, de 28 de outubro de 1952, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-05-17",
+    "presentedAt": "1987-10-16",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 240/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.662/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-05-17;7662"
+      },
+      {
+        "label": "PLC 5/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19099"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7663-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.663",
+    "title": "Lei nº 7.663/1988",
+    "summary": "Altera os arts. 7º e 71 da Lei nº 4.737, de 15 de julho 1965 - Código Eleitoral, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-05-27",
+    "presentedAt": "1988-03-16",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "GENEBALDO CORREIA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "BA"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 425/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.663/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-05-27;7663"
+      },
+      {
+        "label": "PLC 17/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19485"
+      },
+      {
+        "label": "PL 425/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=176712"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7664-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.664",
+    "title": "Lei de Substituição de Candidatos",
+    "summary": "Estabelece normas para a realização das eleições municipais de 15 de novembro de 1988 e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-06-29",
+    "presentedAt": "1987-08-19",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "GENEBALDO CORREIA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "BA"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 201/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.664/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-06-29;7664"
+      },
+      {
+        "label": "PLC 26/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19770"
+      },
+      {
+        "label": "PL 201/1987 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=173060"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7665-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.665",
+    "title": "Lei nº 7.665/1988",
+    "summary": "Cria Junta de Conciliação e Julgamento na 3ª Região da Justiça do Trabalho.",
+    "year": 1988,
+    "signedAt": "1988-07-19",
+    "presentedAt": "1986-06-19",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Alfredo Campos",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLS 154/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.665/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-07-19;7665"
+      },
+      {
+        "label": "PLS 154/1986 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/28567"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7666-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.666",
+    "title": "Lei nº 7.666/1988",
+    "summary": "Altera dispositivos da Lei nº 6.880, de 9 de dezembro de 1980, que dispõe sobre o Estatuto dos Militares.",
+    "year": 1988,
+    "signedAt": "1988-08-22",
+    "presentedAt": "1987-08-25",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 214/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.666/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-08-22;7666"
+      },
+      {
+        "label": "PLC 53/1987 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20611"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7667-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.667",
+    "title": "Lei nº 7.667/1988",
+    "summary": "Dispõe sobre a estrutura das Categorias Funcionais do Grupo-Atividades de Apoio Judiciário dos Serviços Auxiliares da Justiça do Distrito Federal e dos Territórios e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-08-22",
+    "presentedAt": "1986-08-21",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 8169/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.667/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-08-22;7667"
+      },
+      {
+        "label": "PLC 6/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19132"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7668-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.668",
+    "title": "Lei nº 7.668/1988",
+    "summary": "Autoriza o Poder Executivo a constituir a Fundação Cultural Palmares - FCP e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-08-22",
+    "presentedAt": "1988-03-21",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 549/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.668/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-08-22;7668"
+      },
+      {
+        "label": "PLC 30/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19893"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7669-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.669",
+    "title": "Lei nº 7.669/1988",
+    "summary": "Dispõe sobre a criação de cargos na Secretaria do Tribunal de Justiça do Distrito Federal e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-08-23",
+    "presentedAt": "1988-02-02",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 381/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.669/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-08-23;7669"
+      },
+      {
+        "label": "PLC 14/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19387"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7670-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.670",
+    "title": "Lei nº 7.670/1988",
+    "summary": "Estende aos portadores da Síndrome da Imunodeficiência Adquirida (SIDA/AIDS) os benefícios que especifica e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-09-08",
+    "presentedAt": "1988-04-13",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "MAURILIO FERREIRA LIMA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "PE"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 478/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.670/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-09-08;7670"
+      },
+      {
+        "label": "PLC 37/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20115"
+      },
+      {
+        "label": "PL 478/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=177560"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7671-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.671",
+    "title": "Lei nº 7.671/1988",
+    "summary": "Cria a 16ª Região da Justiça do Trabalho e o respectivo Tribunal Regional do Trabalho, institui a correspondente Procuradoria Regional do Ministério Público da União junto à Justiça do Trabalho, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-09-21",
+    "presentedAt": "1986-10-29",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 8387/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.671/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-09-21;7671"
+      },
+      {
+        "label": "PLC 7/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19164"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7672-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.672",
+    "title": "Lei nº 7.672/1988",
+    "summary": "Altera dispositivos da Lei nº 6.923, de 29 de junho de 1981, que dispõe sobre o Serviço de Assistência Religiosa nas Forças Armadas.",
+    "year": 1988,
+    "signedAt": "1988-09-23",
+    "presentedAt": "1988-05-10",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 665/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.672/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-09-23;7672"
+      },
+      {
+        "label": "PLC 32/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19953"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7673-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.673",
+    "title": "Lei nº 7.673/1988",
+    "summary": "Modifica a redação do inciso I do art. 28 da Lei nº 7664, de 29 de junho de 1988, estabelecendo novo horário para veiculação de propaganda eleitoral para as eleições municipais de 15 de novembro de 1988.",
+    "year": 1988,
+    "signedAt": "1988-09-29",
+    "presentedAt": "1988-09-12",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "MENDES RIBEIRO",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 869/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.673/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-09-29;7673"
+      },
+      {
+        "label": "PLC 39/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20177"
+      },
+      {
+        "label": "PL 869/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=183707"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7674-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.674",
+    "title": "Lei nº 7.674/1988",
+    "summary": "Autoriza o Instituto de Administração Financeira da Previdência e Assistência Social - IAPAS a doar à Academia Nacional de Medicina imóveis destinados à instalação de centros de estudo e pesquisa.",
+    "year": 1988,
+    "signedAt": "1988-10-04",
+    "presentedAt": "1988-04-11",
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 558A/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.674/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-10-04;7674"
+      },
+      {
+        "label": "PLC 38/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20146"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7675-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.675",
+    "title": "Lei nº 7.675/1988",
+    "summary": "Atribui ao Tribunal de Contas da União, a partir do exercício de 1986, a fiscalização da aplicação pelos Estados, Distrito Federal, Territórios e Municípios, inclusive por suas entidades da Administração Indireta e Fundações, das transferências de recursos federais.",
+    "year": 1988,
+    "signedAt": "1988-10-04",
+    "presentedAt": "1986-05-29",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 7679/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.675/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-10-04;7675"
+      },
+      {
+        "label": "PLC 105/1986 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/22030"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7676-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.676",
+    "title": "Lei nº 7.676/1988",
+    "summary": "Autoriza o Poder Executivo a criar a Universidade Federal de Cruz Alta, no estado do Rio Grande do Sul, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-10-06",
+    "presentedAt": "1984-04-16",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "RUBENS ARDENGHI",
+        "kind": "deputy",
+        "party": "PDS",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PDS"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 3319/1984",
+    "sources": [
+      {
+        "label": "Lei nº 7.676/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-10-06;7676"
+      },
+      {
+        "label": "PLC 53/1986 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20610"
+      },
+      {
+        "label": "PL 3319/1984 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=211646"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7677-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.677",
+    "title": "Lei nº 7.677/1988",
+    "summary": "Dispõe sobre a criação, pelo Poder Executivo, de entidade destinada a promover o desenvolvimento da tecnologia mineral e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-10-21",
+    "presentedAt": "1988-08-10",
+    "status": "sancionada",
+    "areas": [
+      "tecnologia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 843/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.677/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-10-21;7677"
+      },
+      {
+        "label": "PLC 48/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20457"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7678-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.678",
+    "title": "Lei do Vinho",
+    "summary": "Dispõe sobre a produção, circulação e comercialização do vinho e derivados da uva e vinho, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-08",
+    "presentedAt": "1986-06-13",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 7861/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.678/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-11-08;7678"
+      },
+      {
+        "label": "PLC 46/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20395"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7679-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.679",
+    "title": "Lei nº 7.679/1988",
+    "summary": "Dispõe sobre a proibição da pesca de espécies em períodos de reprodução e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-23",
+    "presentedAt": "1988-10-21",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 10/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.679/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-11-23;7679"
+      },
+      {
+        "label": "MPV 10/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11596"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7680-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.680",
+    "title": "Lei nº 7.680/1988",
+    "summary": "Altera valores da taxa de fiscalização da instalação dos serviços de Telecomunicações, constantes do Anexo I à Lei nº 5.070, de 07 de julho de 1966.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [
+      "tecnologia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 11/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.680/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7680"
+      },
+      {
+        "label": "MPV 11/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11608"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7681-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.681",
+    "title": "Lei nº 7.681/1988",
+    "summary": "Dispõe sobre prazo para liquidação de débitos que menciona.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 12/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.681/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7681"
+      },
+      {
+        "label": "MPV 12/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11619"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7682-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.682",
+    "title": "Lei nº 7.682/1988",
+    "summary": "Altera o Decreto-lei nº 2.406, de 5 de janeiro de 1988, e dá outras providência.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 14/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.682/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7682"
+      },
+      {
+        "label": "MPV 14/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11643"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7683-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.683",
+    "title": "Lei nº 7.683/1988",
+    "summary": "Altera disposição da legislação aduaneira e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 15/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.683/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7683"
+      },
+      {
+        "label": "MPV 15/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11655"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7684-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.684",
+    "title": "Lei nº 7.684/1988",
+    "summary": "Estabelece as condições para emissão de Letras Hipotecárias.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 16/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.684/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7684"
+      },
+      {
+        "label": "MPV 16/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11667"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7685-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.685",
+    "title": "Lei nº 7.685/1988",
+    "summary": "Dispõe sobre o registro provisório para o estrangeiro em situação ilegal em território nacional.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 19/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.685/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7685"
+      },
+      {
+        "label": "MPV 19/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11735"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7686-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.686",
+    "title": "Lei nº 7.686/1988",
+    "summary": "Dispõe sobre reposição, no mês de novembro de 1988, do reajuste que especifica e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-02",
+    "presentedAt": "1988-11-14",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 20/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.686/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-02;7686"
+      },
+      {
+        "label": "MPV 20/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11757"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7687-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.687",
+    "title": "Lei nº 7.687/1988",
+    "summary": "Fixa o efetivo da Polícia Militar do Distrito Federal, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-13",
+    "presentedAt": "1988-07-12",
+    "status": "sancionada",
+    "areas": [
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MSF 147/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.687/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-13;7687"
+      },
+      {
+        "label": "MSF 147/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/5177"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7688-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.688",
+    "title": "Lei nº 7.688/1988",
+    "summary": "Autoriza o Poder Executivo a abrir créditos adicionais até o limite de CZ$ 3.586.086.605.000,00 (três trilhões, quinhentos e oitenta e seis bilhões, oitenta e seis milhões e seiscentos e cinco mil cruzados), e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-15",
+    "presentedAt": "1988-12-01",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1220/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.688/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-15;7688"
+      },
+      {
+        "label": "PLC 65/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20969"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7689-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.689",
+    "title": "Lei nº 7.689/1988",
+    "summary": "Institui contribuição social sobre o lucro das pessoas jurídicas e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-15",
+    "presentedAt": "1988-12-06",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 22/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.689/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-15;7689"
+      },
+      {
+        "label": "MPV 22/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11800"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7690-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.690",
+    "title": "Lei nº 7.690/1988",
+    "summary": "Dá nova redação ao art. 10 da Lei nº 2.145, de 29 de dezembro de 1953.",
+    "year": 1988,
+    "signedAt": "1988-12-15",
+    "presentedAt": "1988-12-06",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 23/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.690/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-15;7690"
+      },
+      {
+        "label": "MPV 23/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11811"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7691-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.691",
+    "title": "Lei nº 7.691/1988",
+    "summary": "Dispõe sobre o pagamento de tributos e contribuições federais, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-15",
+    "presentedAt": "1988-12-07",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MPV 24/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.691/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-15;7691"
+      },
+      {
+        "label": "MPV 24/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11822"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7692-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.692",
+    "title": "Lei nº 7.692/1988",
+    "summary": "Dá nova redação ao disposto na Lei nº 6.503, de 13 de dezembro de 1977, que \"dispõe sobre a Educação Física em todos os graus e ramos de ensino\".",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1987-12-11",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 304/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.692/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7692"
+      },
+      {
+        "label": "PLC 13/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19354"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7693-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.693",
+    "title": "Lei nº 7.693/1988",
+    "summary": "Altera o § 8º do art. 2º do Decreto-lei nº 61, de 21 de novembro de 1966, que \"altera a legislação relativa ao Imposto Único sobre Lubrificantes e Combustíveis Gasosos e dá outras providências\".",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-02-12",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 400/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.693/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7693"
+      },
+      {
+        "label": "PLC 27/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19799"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7694-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.694",
+    "title": "Lei nº 7.694/1988",
+    "summary": "Autoriza o Instituto de Administração Financeira da Previdência e Assistência Social - IAPAS a doar imóveis à Prefeitura Municipal do Rio de Janeiro, para assentamento de famílias carentes.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-04-29",
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 615/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.694/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7694"
+      },
+      {
+        "label": "PLC 31/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/19923"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7695-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.695",
+    "title": "Lei nº 7.695/1988",
+    "summary": "Dá nova redação ao art. 2º do Decreto-Lei nº 2.056, de 19 de agosto de 1983, que dispõe sobre a redistribuição dos serviços de registro do comércio e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-04-04",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 548/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.695/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7695"
+      },
+      {
+        "label": "PLC 41/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20239"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7696-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.696",
+    "title": "Lei nº 7.696/1988",
+    "summary": "Acrescenta o termo \"Universitário\" na denominação do Hospital Professor Edgard Santos, da Universidade Federal da Bahia.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-04-04",
+    "status": "sancionada",
+    "areas": [
+      "saude",
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 547/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.696/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7696"
+      },
+      {
+        "label": "PLC 50/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20521"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7697-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.697",
+    "title": "Lei nº 7.697/1988",
+    "summary": "Autoriza o Poder Executivo a abrir ao Ministério do Trabalho o crédito especial até o limite de Cz$ 1.703.004.000,00 (um bilhão, setecentos e três milhões e quatro mil cruzados), para o fim que especifica.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-04-04",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 545/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.697/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7697"
+      },
+      {
+        "label": "PLC 54/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20643"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7698-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.698",
+    "title": "Lei nº 7.698/1988",
+    "summary": "Altera dispositivos da Lei nº 6.880, de 9 de dezembro de 1980, que dispõe sobre o Estatuto dos Militares.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-04-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 546/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.698/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7698"
+      },
+      {
+        "label": "PLC 59/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20796"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7699-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.699",
+    "title": "Lei nº 7.699/1988",
+    "summary": "Prorroga o prazo estabelecido no art. 1º da Lei nº 5.972, de 11 de dezembro de 1973, que regula o procedimento para o registro de propriedade de bens imóveis discriminados administrativamente ou possuídos pela União.",
+    "year": 1988,
+    "signedAt": "1988-12-20",
+    "presentedAt": "1988-06-01",
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 719/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.699/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-20;7699"
+      },
+      {
+        "label": "PLC 61/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20852"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7700-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.700",
+    "title": "Lei nº 7.700/1988",
+    "summary": "Cria o Adicional de Tarifa Portuária - ATP e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-11-07",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Mauro Benevides",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "CE"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLS 87/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.700/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7700"
+      },
+      {
+        "label": "PLS 87/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/26989"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7701-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.701",
+    "title": "Lei nº 7.701/1988",
+    "summary": "Dispõe sobre a especialização de Turmas dos Tribunais do Trabalho em processos coletivos e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-02-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 399/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.701/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7701"
+      },
+      {
+        "label": "PLC 53/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20612"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7702-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.702",
+    "title": "Lei nº 7.702/1988",
+    "summary": "Dispõe sobre a remuneração dos integrantes da Carreira Policial Civil do Distrito Federal e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-11-24",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1202/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.702/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7702"
+      },
+      {
+        "label": "PLC 67/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21029"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7703-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.703",
+    "title": "Lei nº 7.703/1988",
+    "summary": "Autoriza o Poder Executivo a instituir a Fundação Universidade Federal do Planalto do Araxá.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-02-03",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "JOSE SANTANA DE VASCONCELLOS",
+        "kind": "deputy",
+        "party": "PFL",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PFL"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 396/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.703/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7703"
+      },
+      {
+        "label": "PLC 36/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20083"
+      },
+      {
+        "label": "PL 396/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=176258"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7704-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.704",
+    "title": "Lei nº 7.704/1988",
+    "summary": "Altera a Lei nº 7.681, de 2 de dezembro de 1988, que dispõe sobre prazo para liquidação de débitos que menciona.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-12-06",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Jarbas Passarinho",
+        "kind": "senator",
+        "party": "PDS",
+        "uf": "PA"
+      }
+    ],
+    "parties": [
+      "PDS"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLS 101/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.704/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7704"
+      },
+      {
+        "label": "PLS 101/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/27351"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7705-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.705",
+    "title": "Lei nº 7.705/1988",
+    "summary": "Concede pensão especial a JACIRA BRAGA ;de oliveira, rosa braga e belchior beltrão zica, Trinetos de Joaquim José da Silva Xavier, o Tiradentes.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1986-06-10",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 7835/1986",
+    "sources": [
+      {
+        "label": "Lei nº 7.705/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7705"
+      },
+      {
+        "label": "PLC 45/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20363"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7706-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.706",
+    "title": "Lei nº 7.706/1988",
+    "summary": "Dispõe sobre a revisão dos vencimentos, salários, soldos e proventos dos servidores, civis e militares, da Administração Federal Direta, das autarquias, dos extintos Territórios Federais e das fundações públicas e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-12-15",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1411/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.706/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7706"
+      },
+      {
+        "label": "PLC 94/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21776"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7707-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.707",
+    "title": "Lei nº 7.707/1988",
+    "summary": "Inclui a Categoria Funcional de Inspetor de Segurança Judiciária no Grupo-Atividades de Apoio Judiciário do Quadro Permanente da Secretaria do Supremo Tribunal Federal, fixa os respectivos valores de vencimentos e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1988-06-24",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "SUPREMO TRIBUNAL FEDERAL",
+        "kind": "other",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 796/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.707/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7707"
+      },
+      {
+        "label": "PLC 49/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20490"
+      },
+      {
+        "label": "PL 796/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=182565"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7708-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.708",
+    "title": "Lei nº 7.708/1988",
+    "summary": "Autoriza o Poder Executivo a instituir a Fundação Universidade Federal de Gurupi, no Estado do Tocantins, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-21",
+    "presentedAt": "1984-06-04",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "IRAM SARAIVA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "GO"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 3622/1984",
+    "sources": [
+      {
+        "label": "Lei nº 7.708/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-21;7708"
+      },
+      {
+        "label": "PLC 167/1985 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/23009"
+      },
+      {
+        "label": "PL 3622/1984 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=214427"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7709-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.709",
+    "title": "Lei nº 7.709/1988",
+    "summary": "Dispõe sobre a contagem do tempo de serviço prestado à Administração Federal pelos servidores alcançados pelo Decreto-Lei nº 2.347, de 23 de julho de 1987.",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1987-11-03",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 261/1987",
+    "sources": [
+      {
+        "label": "Lei nº 7.709/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-22;7709"
+      },
+      {
+        "label": "PLC 75/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21264"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7710-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.710",
+    "title": "Lei nº 7.710/1988",
+    "summary": "Dispõe sobre a eleição para prefeitos, vice-prefeitos e vereadores dos municípios novos criados até 15 de julho de 1988, e determina outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1988-12-01",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "JALLES FONTOURA",
+        "kind": "deputy",
+        "party": "PFL",
+        "uf": "GO"
+      }
+    ],
+    "parties": [
+      "PFL"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1210/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.710/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-22;7710"
+      },
+      {
+        "label": "PLC 80/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21403"
+      },
+      {
+        "label": "PL 1210/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=189073"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7711-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.711",
+    "title": "Lei nº 7.711/1988",
+    "summary": "Dispõe sobre formas de melhoria da administração tributária e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1988-02-12",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1410/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.711/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-22;7711"
+      },
+      {
+        "label": "PLC 93/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21750"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7712-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.712",
+    "title": "Lei nº 7.712/1988",
+    "summary": "Dispõe sobre a cobrança de pedágio nas Rodovias Federais e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1988-12-05",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1316/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.712/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-22;7712"
+      },
+      {
+        "label": "PLC 89/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21643"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7713-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.713",
+    "title": "Lei nº 7.713/1988",
+    "summary": "Altera a legislação do imposto de renda e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-22",
+    "presentedAt": "1988-09-20",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1064/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.713/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-22;7713"
+      },
+      {
+        "label": "PLC 64/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20938"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7714-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.714",
+    "title": "Lei nº 7.714/1988",
+    "summary": "Altera a legislação dos incentivos fiscais relacionados com o imposto de renda.",
+    "year": 1988,
+    "signedAt": "1988-12-29",
+    "presentedAt": "1988-12-09",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "GENEBALDO CORREIA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "BA"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1412/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.714/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1988-12-29;7714"
+      },
+      {
+        "label": "PLC 95/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21801"
+      },
+      {
+        "label": "PL 1412/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=191808"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-10-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "10",
+    "title": "Medida Provisória nº 10/1988",
+    "summary": "Dispõe sobre a proibição da pesca de espécies em períodos de reprodução e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-10-21",
+    "presentedAt": "1988-10-21",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7679-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 10/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-10-21;10"
+      },
+      {
+        "label": "MPV 10/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11596"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-11-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "11",
+    "title": "Medida Provisória nº 11/1988",
+    "summary": "Altera valores da taxa de fiscalização da instalação dos Serviços de Telecomunicações, constantes do Anexo I à Lei nº 5.070, de 7 de julho de 1966.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [
+      "tecnologia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7680-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 11/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;11"
+      },
+      {
+        "label": "MPV 11/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11608"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-12-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "12",
+    "title": "Medida Provisória nº 12/1988",
+    "summary": "Dispõe sobre prazo para liquidação de débitos que menciona",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7681-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 12/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;12"
+      },
+      {
+        "label": "MPV 12/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11619"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-13-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "13",
+    "title": "Medida Provisória nº 13/1988",
+    "summary": "Dispõe sobre a aplicação do Decreto-Lei nº 2.280, de 16 de dezembro de 1985, aos servidores do Tribunal Federal de Recursos, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "rejeitada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "sources": [
+      {
+        "label": "Medida Provisória nº 13/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;13"
+      },
+      {
+        "label": "MPV 13/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11631"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-14-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "14",
+    "title": "Medida Provisória nº 14/1988",
+    "summary": "Altera o Decreto-Lei nº 2.406, de 5 de janeiro de 1988, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7682-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 14/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;14"
+      },
+      {
+        "label": "MPV 14/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11643"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-15-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "15",
+    "title": "Medida Provisória nº 15/1988",
+    "summary": "Altera disposição da legislação aduaneira e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7683-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 15/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;15"
+      },
+      {
+        "label": "MPV 15/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11655"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-16-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "16",
+    "title": "Medida Provisória nº 16/1988",
+    "summary": "Estabelece as condições para emissão de Letras Hipotecárias",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7684-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 16/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;16"
+      },
+      {
+        "label": "MPV 16/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11667"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-17-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "17",
+    "title": "Medida Provisória nº 17/1988",
+    "summary": "Dispõe sobre a redução de impostos incidentes sobre importação e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "perdeu-eficacia",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "sources": [
+      {
+        "label": "Medida Provisória nº 17/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;17"
+      },
+      {
+        "label": "MPV 17/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11678"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-18-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "18",
+    "title": "Medida Provisória nº 18/1988",
+    "summary": "Dá nova redação ao artigo 1º do Decreto-Lei n° 2.442, de 23 de junho de 1988.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "perdeu-eficacia",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "sources": [
+      {
+        "label": "Medida Provisória nº 18/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;18"
+      },
+      {
+        "label": "MPV 18/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11688"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-19-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "19",
+    "title": "Medida Provisória nº 19/1988",
+    "summary": "Dispõe sobre o registro provisório para o estangeiro em situação ilegal em território nacional.",
+    "year": 1988,
+    "signedAt": "1988-11-03",
+    "presentedAt": "1988-11-03",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7685-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 19/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-03;19"
+      },
+      {
+        "label": "MPV 19/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11735"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-20-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "20",
+    "title": "Medida Provisória nº 20/1988",
+    "summary": "Dispõe sobre a reposição, no mês de novembro de 1988, do reajuste que especifica e dá outras providências..",
+    "year": 1988,
+    "signedAt": "1988-11-11",
+    "presentedAt": "1988-11-11",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7686-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 20/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-11-11;20"
+      },
+      {
+        "label": "MPV 20/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11757"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-21-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "21",
+    "title": "Medida Provisória nº 21/1988",
+    "summary": "Altera a legislação dos incentivos fiscais relacionados com o imposto de renda.",
+    "year": 1988,
+    "signedAt": "1988-12-06",
+    "presentedAt": "1988-12-06",
+    "status": "perdeu-eficacia",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "sources": [
+      {
+        "label": "Medida Provisória nº 21/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-12-06;21"
+      },
+      {
+        "label": "MPV 21/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11789"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-22-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "22",
+    "title": "Medida Provisória nº 22/1988",
+    "summary": "Institui contribuição social sobre o lucro das pessoas jurídicas e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-06",
+    "presentedAt": "1988-12-06",
+    "status": "convertida",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7689-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 22/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-12-06;22"
+      },
+      {
+        "label": "MPV 22/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11800"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-23-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "23",
+    "title": "Medida Provisória nº 23/1988",
+    "summary": "Dá nova redação ao art. 10 da Lei nº 2.145, de 29 de dezembro de 1953.",
+    "year": 1988,
+    "signedAt": "1988-12-06",
+    "presentedAt": "1988-12-06",
+    "status": "convertida",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7690-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 23/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-12-06;23"
+      },
+      {
+        "label": "MPV 23/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11811"
+      }
+    ]
+  },
+  {
+    "id": "federal-mp-24-1988",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "medida-provisoria",
+    "number": "24",
+    "title": "Medida Provisória nº 24/1988",
+    "summary": "Dispõe sobre o pagamento de tributos e contribuições federais, e dá outras providências.",
+    "year": 1988,
+    "signedAt": "1988-12-07",
+    "presentedAt": "1988-12-07",
+    "status": "convertida",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "convertedInto": "federal-lei-7691-1988",
+    "sources": [
+      {
+        "label": "Medida Provisória nº 24/1988 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:1988-12-07;24"
+      },
+      {
+        "label": "MPV 24/1988 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/11822"
+      }
+    ]
+  }
+]
