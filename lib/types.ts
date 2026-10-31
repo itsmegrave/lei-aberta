@@ -6,6 +6,11 @@ export interface Author {
   /** Author's party at the time of authorship. */
   party: string | null;
   uf: string | null;
+  /**
+   * How `party` was found when it is not the affiliation on the bill's date: "election" means the party the
+   * author was elected under (TSE), used where the house publishes no affiliation history.
+   */
+  partyBasis?: "authorship" | "election";
 }
 
 /** Head of the executive (president, governor, mayor) who signed the law. Never merged with author party. */

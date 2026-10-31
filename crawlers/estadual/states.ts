@@ -59,7 +59,7 @@ export const STATES: StateHouse[] = [
   { uf: "SC", state: "Santa Catarina", house: "Assembleia Legislativa de Santa Catarina (Alesc)", url: "https://www.alesc.sc.gov.br", adapter: null, note: planned },
   {
     uf: "SP", state: "São Paulo", house: "Assembleia Legislativa de São Paulo (Alesp)", url: "https://www.al.sp.gov.br/dados-abertos/", adapter: "alesp",
-    note: "Leis, leis complementares e emendas à Constituição do estado, com autores. A Alesp não publica o histórico de filiação, então o partido do autor fica em branco.",
+    note: "Leis, leis complementares e emendas à Constituição do estado, com autores. Como a Alesp não publica o histórico de filiação, o partido do deputado é o da eleição (dados do TSE).",
   },
   { uf: "SE", state: "Sergipe", house: "Assembleia Legislativa de Sergipe", url: "https://sapl.al.se.leg.br", adapter: null, note: robots },
   { uf: "TO", state: "Tocantins", house: "Assembleia Legislativa do Tocantins", url: "https://sapl.al.to.leg.br", adapter: "sapl" },

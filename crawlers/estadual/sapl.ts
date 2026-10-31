@@ -238,5 +238,10 @@ export async function crawlSapl(house: StateHouse, years: number[], { concurrenc
       for (const r of rows) if (r) records.push(r);
     }
   }
+  if (!records.length && !errors.length) {
+    // Nothing found: show what the house does hold for that year, to tell "no laws yet" from a type mismatch.
+    const sample = await fetchJson<Page<Norma & { __str__?: string }>>(`${base}/api/norma/normajuridica/?ano=${years.at(-1)}&page_size=5`).catch(() => null);
+    info.push(`no laws matched; ${years.at(-1)} sample: ${sample?.results.map((n) => `tipo ${n.tipo}: ${n.__str__}`).join(" | ") || "none"}`);
+  }
   return { records, errors, info };
 }

@@ -20,8 +20,12 @@ The nightly workflow is `.github/workflows/crawl-estadual.yml` (07:30 UTC). On p
   `lei-complementar` or `emenda-constitucional`. `year` is the year of the law's date.
 - `level` is `estadual`; `jurisdiction` is the state name.
 - `authors[].party` is the deputy's party **on the bill's presentation date** (falling back to the law's date), taken
-  from SAPL's affiliation history. When no affiliation covers that date, or the house does not publish affiliation
-  history (Alesp), the party is `null`. We never use a deputy's current party as a stand-in.
+  from SAPL's affiliation history. When no affiliation covers that date the party is `null`. We never use a deputy's
+  current party as a stand-in.
+- Alesp (SP) publishes no affiliation history, so SP deputies get the party they were **elected under** in the last
+  state election before the law, from TSE candidate data (`consulta_cand_<year>.zip`, matched by ballot or full name;
+  suplentes count; ambiguous names stay `null`). Those authors carry `partyBasis: "election"`. TSE files for past
+  elections are cached in `.cache/tse` (GitHub Actions cache).
 - Bills sent by the governor have an author of kind `executive` with `party: null`.
 - `executive` (the governor who signed) is left `null` here. It comes from TSE election data, as a separate field,
   and is never derived from author data.
@@ -49,7 +53,7 @@ Checked on 2026-10-31. "SAPL" means the house runs Interlegis SAPL 3.x, whose AP
 | PI | Assembleia Legislativa do Piauí | covered | SAPL `sapl.al.pi.leg.br` | API answered |
 | RO | Assembleia Legislativa de Rondônia | covered | SAPL `sapl.al.ro.leg.br` | API answered (12.4k norms) |
 | TO | Assembleia Legislativa do Tocantins | partial | SAPL `sapl.al.to.leg.br` | Laws and authors, but the house publishes no party affiliations, so `party` is null |
-| SP | Assembleia Legislativa de São Paulo | partial | Alesp open data (XML dumps) | Laws and author names; no party history, so `party` is null |
+| SP | Assembleia Legislativa de São Paulo | covered | Alesp open data (XML dumps) + TSE candidates | Authors come from the law record (long lists are cut with "e outros"). Alesp has no affiliation history, so a deputy's party is the one they were elected under in the last state election (TSE), marked `partyBasis: "election"` |
 | AP | Assembleia Legislativa do Amapá | blocked | SAPL `sapl.al.ap.leg.br` | robots.txt disallows automated access |
 | MS | Assembleia Legislativa de Mato Grosso do Sul | blocked | SAPL `sapl.al.ms.leg.br` | robots.txt disallows automated access |
 | SE | Assembleia Legislativa de Sergipe | blocked | SAPL `sapl.al.se.leg.br` | robots.txt disallows automated access |

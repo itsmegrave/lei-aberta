@@ -14,7 +14,7 @@
     "lei complementar",
     "emenda constitucional"
   ],
-  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores. A Alesp não publica o histórico de filiação, então o partido do autor fica em branco.",
+  "description": "Leis, leis complementares e emendas à Constituição do estado, com autores. Como a Alesp não publica o histórico de filiação, o partido do deputado é o da eleição (dados do TSE).",
   "crawler": "crawlers/estadual/run.ts",
   "records": null,
   "since": null,

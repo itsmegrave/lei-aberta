@@ -5,7 +5,8 @@ import path from "node:path";
 import { deflateRawSync } from "node:zlib";
 import { validate } from "../lib/store.ts";
 import { validateSource } from "../../lib/sources.ts";
-import { alespToPolicy, detectRecordTag, parseNorma, parseTipos } from "./alesp.ts";
+import { alespToPolicy, detectRecordTag, parseNorma, parseTipos, splitAuthors } from "./alesp.ts";
+import { PartyAtElection, csvLine, parseCandidates } from "./tse.ts";
 import { bareNumber, lawType, shortTitle, tameCaps } from "./common.ts";
 import { robotsAllows, robotsRules } from "./http.ts";
 import { type AuthorBook, type Autor, type Filiacao, type Materia, type Norma, type TipoNorma, authorKind, partyOn, saplToPolicy, siglaFromStr, targetTypes } from "./sapl.ts";
@@ -164,7 +165,7 @@ test("zip + streaming XML: decodes ISO-8859-1 and finds rows split across chunks
   const zip = makeZip("legislacao_normas.xml", await readFile(fx("alesp-normas.xml")));
   const rows: string[] = [];
   await forEachElement(zipTextChunks(zip, ".xml"), "norma", (x) => rows.push(child(x, "idNorma")));
-  assert.deepEqual(rows, ["190001", "190002", "12", "190003"]);
+  assert.deepEqual(rows, ["190001", "190001", "190002", "12", "190003"]);
 
   async function* tiny() {
     const s = "<root><row><a>1</a></row><row><a>2</a></row></root>";
@@ -175,32 +176,61 @@ test("zip + streaming XML: decodes ISO-8859-1 and finds rows split across chunks
   assert.deepEqual(got, ["1", "2"]);
 });
 
-test("Alesp: detects row tags, filters types and years, maps status and authors", async () => {
+test("Alesp: detects row tags, filters types and years, maps status, authors and party at election", async () => {
   const normasXml = await readFile(fx("alesp-normas.xml"), "utf8");
-  const autoresXml = await readFile(fx("alesp-autores.xml"), "utf8");
   assert.equal(detectRecordTag(normasXml, "idNorma"), "norma");
-  assert.equal(detectRecordTag(autoresXml, "IdDocumento"), "DocumentoAutor");
+  assert.equal(detectRecordTag("<a><DocumentoAutor><IdDocumento>1</IdDocumento></DocumentoAutor></a>", "IdDocumento"), "DocumentoAutor");
+  assert.deepEqual(splitAuthors("Delegado Olim, Altair Moraes, Marcio Nakashima e outros"), ["Delegado Olim", "Altair Moraes", "Marcio Nakashima"]);
+  assert.deepEqual(splitAuthors("Ana Paula e Eduardo Suplicy"), ["Ana Paula", "Eduardo Suplicy"]);
+  assert.deepEqual(splitAuthors(""), []);
 
-  const tipos = new Map([[1, "lei" as const], [2, "lei-complementar" as const]]);
+  const tipos = new Map([[9, "lei" as const], [2, "lei-complementar" as const]]);
   const rows = [...normasXml.matchAll(/<norma>([\s\S]*?)<\/norma>/g)].map((m) => parseNorma(m[1], tipos, { since: 1989, until: 2030 }));
-  assert.equal(rows[1], null, "decrees are skipped");
-  assert.equal(rows[2], null, "pre-1989 laws are skipped");
+  assert.equal(rows[2], null, "decrees are skipped");
+  assert.equal(rows[3], null, "pre-1989 laws are skipped");
   const sp = byUf("SP")!;
-  const lei = alespToPolicy(sp, rows[0]!, ["Fulana de Tal", "Beltrano Souza", "Fulana de Tal"]);
+  const lookups: [string, string | null][] = [];
+  const partyAt = (name: string, date: string | null) => (lookups.push([name, date]), name === "Fulana de Tal" ? "PAA" : null);
+  const lei = alespToPolicy(sp, rows[0]!, partyAt);
   assert.equal(lei.id, "estadual-sp-lei-17890-2024");
   assert.equal(lei.summary, "Institui a Semana Estadual de Conscientização sobre a Água & o Saneamento.");
   assert.equal(lei.status, "sancionada");
-  assert.equal(lei.bill, "PL 403/2023");
+  assert.equal(lei.signedAt, "2024-03-15");
   assert.deepEqual(lei.sources, [{ label: "Alesp: ficha da norma", url: "https://www.al.sp.gov.br/norma/190001" }]);
-  assert.deepEqual(lei.authors.map((a) => [a.name, a.kind, a.party]), [["Fulana de Tal", "state-deputy", null], ["Beltrano Souza", "state-deputy", null]]);
+  assert.deepEqual(lei.authors, [
+    { name: "Fulana de Tal", kind: "state-deputy", party: "PAA", uf: "SP", partyBasis: "election" },
+    { name: "Beltrano Souza", kind: "state-deputy", party: null, uf: "SP" },
+  ]);
+  assert.deepEqual(lei.parties, ["PAA"]);
+  assert.deepEqual(lookups, [["Fulana de Tal", "2024-03-15"], ["Beltrano Souza", "2024-03-15"]]);
   assert.deepEqual(validate(lei), []);
 
-  const lc = alespToPolicy(sp, rows[3]!, ["Governador do Estado"]);
+  const lc = alespToPolicy(sp, rows[4]!, partyAt);
   assert.equal(lc.id, "estadual-sp-lei-complementar-1400-2024");
   assert.equal(lc.status, "promulgada");
   assert.equal(lc.title, "Dispõe sobre o regime próprio de previdência dos servidores públicos");
   assert.deepEqual(lc.authors, [{ name: "Governador do Estado", kind: "executive", party: null, uf: "SP" }]);
   assert.deepEqual(lc.sources[0].url, "https://www.al.sp.gov.br/norma/190003");
+});
+
+test("TSE: parses Latin-1 candidate CSVs and finds the party at the last election before the law", async () => {
+  assert.deepEqual(csvLine('"a";"b ""c""";"";d'), ["a", 'b "c"', "", "d"]);
+  const read = async (f: string, year: number) => parseCandidates(decodeXmlStream([await readFile(fx(f))]), "SP", year);
+  const c2022 = await read("tse-2022.csv", 2022);
+  assert.deepEqual(c2022.map((c) => [c.ballotName, c.party, c.elected, c.substitute]), [
+    ["FULANA DE TAL", "PAA", true, false],
+    ["BELTRANO SOUZA", "PBB", false, true],
+    ["CICRANO", "PCC", false, false],
+  ]);
+  const t = new PartyAtElection([...(await read("tse-2018.csv", 2018)), ...c2022]);
+  assert.deepEqual(t.partyFor("Fulana de Tal", "2024-03-15"), { party: "PAA", election: 2022 });
+  assert.deepEqual(t.partyFor("Deputada Fulana de Tal", "2020-05-01"), { party: "POLD", election: 2018 }, "the 2018 term");
+  assert.deepEqual(t.partyFor("FULANA DE TAL", "2023-01-20"), { party: "POLD", election: 2018 }, "2022 winners take office in 2023");
+  assert.deepEqual(t.partyFor("Beltrano Souza", "2024-01-01"), { party: "PBB", election: 2022 }, "suplentes count");
+  assert.equal(t.partyFor("Cicrano", "2024-01-01"), null, "not elected");
+  assert.equal(t.partyFor("Mesmo Nome", "2020-01-01"), null, "two people, two parties: ambiguous");
+  assert.equal(t.partyFor("Ninguém", "2020-01-01"), null);
+  assert.equal(t.partyFor("Fulana de Tal", "2018-12-01"), null, "no earlier election on file");
 });
 
 test("source manifests in data/sources are valid for every house", async () => {

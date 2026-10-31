@@ -6,14 +6,16 @@
  *   legislacao/legislacao_normas.zip        <norma>: idNorma, idTipo, numero, complemento, data, ementa,
  *                                           situacao (1 em vigor, 2 inconstitucional, 3 suspensa, 4 exaurida,
  *                                           5 revogada, 6 anulada), promulg (E/L), idPropositura, urlFicha
- *   processo_legislativo/documento_autor.zip  <IdDocumento> (= idPropositura), <IdAutor>, <NomeAutor>
  *
- * Alesp's data has no party-affiliation history, so author parties stay null rather than using today's party.
+ * Each norm row carries its authors as text (<Autores>). Alesp has no party-affiliation history, so a deputy's
+ * party comes from TSE: the party they were elected under in the last state election before the law
+ * (`partyBasis: "election"`). Unmatched names keep party null; we never use today's party.
  */
 import type { Author } from "../../lib/types.ts";
 import { type AdapterResult, type LawType, bareNumber, fold, https, lawType, toPolicy } from "./common.ts";
 import { fetchBuffer } from "./http.ts";
 import type { StateHouse } from "./states.ts";
+import { loadPartyAtElection } from "./tse.ts";
 import { child, decodeXml, decodeXmlStream, forEachElement, zipTextChunks } from "./zip.ts";
 
 const BASE = "https://www.al.sp.gov.br/repositorioDados";
@@ -96,9 +98,18 @@ export interface AlespNorma {
   date: string | null;
   ementa: string;
   status: string;
-  idPropositura: string;
+  /** <Autores>: "Delegado Olim, Altair Moraes, Marcio Nakashima e outros" (the list can be cut with "e outros"). */
+  authors: string[];
   propositura: string;
   urlFicha: string;
+}
+
+/** "A, B, C e outros" -> ["A", "B", "C"]; "A e B" -> ["A", "B"]. */
+export function splitAuthors(text: string): string[] {
+  return text
+    .split(/\s*,\s*|\s+e\s+(?=[A-ZÀ-Ýa-z])/)
+    .map((s) => s.trim().replace(/\.$/, ""))
+    .filter((s) => s && !/^(e\s+)?outr[oa]s$/i.test(s));
 }
 
 /** Parses one <norma> row; returns null for types or years we do not collect. */
@@ -116,15 +127,23 @@ export function parseNorma(xml: string, tipos: Map<number, LawType>, years: { si
     date,
     ementa: child(xml, "ementa"),
     status: situacaoStatus(child(xml, "situacao"), child(xml, "promulg")),
-    idPropositura: child(xml, "idPropositura"),
+    authors: splitAuthors(child(xml, "Autores")),
     propositura: child(xml, "propositura"),
     urlFicha: child(xml, "urlFicha"),
   };
 }
 
-export function alespToPolicy(house: StateHouse, n: AlespNorma, authorNames: string[]) {
+/**
+ * `partyAt` looks up a deputy's party at the last election before the law (TSE data); null when unknown.
+ * Alesp publishes no affiliation history, so this is the closest available stand-in for the party at authorship.
+ */
+export function alespToPolicy(house: StateHouse, n: AlespNorma, partyAt?: (name: string, date: string | null) => string | null) {
   const ficha = n.urlFicha && /^https?:\/\/([a-z0-9-]+\.)*al\.sp\.gov\.br\//i.test(n.urlFicha) ? https(n.urlFicha) : `https://www.al.sp.gov.br/norma/${n.idNorma}`;
-  const authors: Author[] = [...new Set(authorNames)].map((name) => ({ name, kind: alespAuthorKind(name), party: null, uf: house.uf }));
+  const authors: Author[] = [...new Set(n.authors)].map((name) => {
+    const kind = alespAuthorKind(name);
+    const party = kind === "state-deputy" && partyAt ? partyAt(name, n.date) : null;
+    return party ? { name, kind, party, uf: house.uf, partyBasis: "election" } : { name, kind, party: null, uf: house.uf };
+  });
   return toPolicy({
     house, type: n.type, number: n.number, year: n.year, date: n.date, ementa: n.ementa, status: n.status, bill: n.propositura || null, authors,
     sources: [{ label: "Alesp: ficha da norma", url: ficha }],
@@ -152,33 +171,20 @@ export async function crawlAlesp(house: StateHouse, years: { since: number; unti
     if (n && !byId.has(n.idNorma)) byId.set(n.idNorma, n);
   });
   const normas = [...byId.values()];
-  info.push(`norm rows: ${rows}, kept: ${normas.length}; first kept row: ${keptRow.replace(/\s+/g, " ").slice(0, 1500)}`);
+  info.push(`norm rows: ${rows}, kept: ${normas.length}; first kept row: ${keptRow.replace(/\s+/g, " ").slice(0, 600)}`);
 
-  // Authors are optional: if the file is missing or changed, laws still go out without authors.
-  const authors = new Map<string, string[]>();
-  const wanted = new Set(normas.map((n) => n.idPropositura).filter(Boolean));
-  let authorRows = 0;
-  const sampleDocs: string[] = [];
-  try {
-    const az = await fetchBuffer(`${BASE}/processo_legislativo/documento_autor.zip`);
-    await forEachRow(zipTextChunks(az, ".xml"), "IdDocumento", (xml) => {
-      const doc = child(xml, "IdDocumento");
-      if (authorRows++ < 3) sampleDocs.push(xml.replace(/\s+/g, " ").slice(0, 200));
-      if (!wanted.has(doc)) return;
-      const name = child(xml, "NomeAutor");
-      if (!name) return;
-      if (!authors.has(doc)) authors.set(doc, []);
-      authors.get(doc)!.push(name);
-    });
-  } catch (err) {
-    errors.push(`SP authors: ${err}`);
-  }
-
-  info.push(
-    `author rows: ${authorRows}, bills wanted: ${wanted.size}, bills matched: ${authors.size}`,
-    `sample idPropositura/propositura: ${normas.slice(0, 3).map((n) => `${n.idPropositura}/${n.propositura}`).join("; ")}`,
-    `sample author rows: ${sampleDocs.join(" | ")}`,
-  );
-  const records = normas.map((n) => alespToPolicy(house, n, authors.get(n.idPropositura) ?? []));
+  // Party at election time from TSE, matched by name. Optional: without it, parties stay null.
+  const tse = await loadPartyAtElection(house.uf).catch((err) => ({ table: null, info: [`TSE: ${err}`] }));
+  info.push(...tse.info);
+  let matched = 0;
+  let deputies = 0;
+  const partyAt = (name: string, date: string | null) => {
+    deputies++;
+    const hit = tse.table?.partyFor(name, date) ?? null;
+    if (hit) matched++;
+    return hit?.party ?? null;
+  };
+  const records = normas.map((n) => alespToPolicy(house, n, partyAt));
+  info.push(`deputy authors: ${deputies}, party found at election: ${matched}`);
   return { records, errors, info };
 }
