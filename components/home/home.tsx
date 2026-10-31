@@ -17,6 +17,9 @@ import { ThemeToggle } from "./theme-toggle";
 import { LevelPills, TopicGrid } from "./topics";
 import { YearChart } from "./year-chart";
 
+// Linktree of the Lenindragons collective, credited in the footer.
+const LENINDRAGONS_URL = "https://linktr.ee/lenindragonsrpg";
+
 export function Home({ policies, sample, sources }: { policies: Policy[]; updatedAt: string; sample: boolean; sources: DataSource[] }) {
   const [f, setF] = useState<Filters>(EMPTY_FILTERS);
   const [open, setOpen] = useState<Policy | null>(null);
@@ -120,6 +123,13 @@ export function Home({ policies, sample, sources }: { policies: Policy[]; update
         </span>
         {sample && <span>Dados de exemplo: leis federais conhecidas. Estados e municípios chegam com os próximos coletores.</span>}
         <span>Ilustrações: Fluent Emoji (Microsoft, MIT).</span>
+        <span>
+          Mais um projeto vindo da comuna{" "}
+          <a href={LENINDRAGONS_URL} target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold underline underline-offset-2">
+            Lenindragons
+          </a>
+          .
+        </span>
       </footer>
 
       <PolicySheet policy={open} onClose={() => setOpen(null)} />
