@@ -2,6 +2,7 @@
 
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { lawPath } from "@/lib/share";
 import type { Policy } from "@/lib/types";
 import { area, emojiSrc, lawLabel, LEVELS } from "@/lib/vocab";
 
@@ -11,13 +12,19 @@ export function PolicyCard({ p, index, onOpen }: { p: Policy; index: number; onO
   const a = area(p.areas[0]);
   const lvl = LEVELS.find((l) => l.key === p.level)!;
   return (
-    <motion.button
+    // A real link to the law's page (crawlable, opens in a new tab with Ctrl/Cmd-click); a plain click opens the sheet.
+    <motion.a
+      href={lawPath(p.id)}
       layout
       initial={{ y: 14, opacity: 0.001 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: Math.min(index, 12) * 0.04, duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
       whileHover={{ y: -3 }}
-      onClick={onOpen}
+      onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        onOpen();
+      }}
       className="bg-card flex min-w-0 flex-col overflow-hidden rounded-[22px] text-left shadow-[0_1px_0_rgba(23,20,46,0.04),0_10px_30px_-12px_rgba(23,20,46,0.18)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.04)]"
     >
       <div className="flex items-center gap-2.5 px-4 pt-3.5 pb-3" style={{ background: `var(--t-${a.tint}-bg)`, color: `var(--t-${a.tint})` }}>
@@ -40,6 +47,6 @@ export function PolicyCard({ p, index, onOpen }: { p: Policy; index: number; onO
           Ver detalhes e fonte <ArrowRightIcon className="size-3.5" />
         </span>
       </div>
-    </motion.button>
+    </motion.a>
   );
 }

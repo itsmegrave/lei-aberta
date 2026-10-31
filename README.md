@@ -33,6 +33,18 @@ Each law has its own page, `/lei/<id>`, built at deploy time. Next.js (`next/og`
 
 Each law also has a short link, `/l/<code>`, which the share buttons use. The code is 7 characters derived from the law's id (`lib/share.ts`), so it never changes and needs no database or service; the build fails if two laws ever get the same code. The short link page shows the law itself instead of redirecting, so link previews work everywhere, and its canonical URL is the full page. Visits are counted by [Vercel Web Analytics](https://vercel.com/docs/analytics) as `/l/*` page views (turn it on under the project's Analytics tab).
 
+## Search (SEO)
+
+All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and built at deploy time, so crawlers get plain HTML.
+
+- **Site address.** `NEXT_PUBLIC_SITE_URL` sets the address used in canonical links, sitemaps, share links and structured data. Without it, Vercel builds use the project's production domain (`VERCEL_PROJECT_PRODUCTION_URL`, which becomes the custom domain once one is set as primary), and other builds use `https://lei-aberta.vercel.app`.
+- **Titles and descriptions.** Home: "Lei Aberta: as leis do Brasil explicadas em uma frase". Law pages: "<título>: Lei 13.709/2018 · Lei Aberta", with the one-line summary as the description (`lib/seo.ts`).
+- **Sitemaps.** `/sitemap.xml` is a sitemap index pointing to `/sitemaps/paginas.xml` and `/sitemaps/leis-N.xml` (10,000 laws per file, Google allows 50,000), each law with its share image.
+- **robots.txt.** Allows everything and points to the sitemap. Preview deployments (`VERCEL_ENV` other than `production`) disallow everything.
+- **Structured data (JSON-LD).** Home: `WebSite` with a `SearchAction` (`/?q=termo` opens the home with that search) and `Organization`. Law pages: `Legislation` (identifier, type, date, jurisdiction, authors with their party at authorship, official text as `sameAs`) and `BreadcrumbList`. Only facts from the record are stated.
+- **Links.** Law cards on the home are real links to `/lei/<id>`, so crawlers can follow them; a plain click still opens the sheet.
+- **Search Console.** Optional `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and `NEXT_PUBLIC_BING_SITE_VERIFICATION` add the ownership meta tags. After the first production deploy, submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+
 ## Data
 
 `data/index.json` lists every file; records live in `data/<level>/<year>.json`. Each record:

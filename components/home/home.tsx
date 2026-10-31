@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { applyFilters, authorKeys, countBy, EMPTY_FILTERS, executiveKey, perAuthorState, perYear, type Filters } from "@/lib/catalog";
 import type { Policy } from "@/lib/types";
 import type { DataSource } from "@/lib/sources";
@@ -31,6 +31,11 @@ export function Home({ policies, sample, sources }: { policies: Policy[]; update
     setF((s) => ({ ...s, [k]: s[k] === v ? EMPTY_FILTERS[k] : v }));
     setShown(PAGE);
   };
+  // "/?q=..." opens with that search, so search engines' site search box (SearchAction) lands on results.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q")?.trim();
+    if (q) setF((s) => ({ ...s, q }));
+  }, []);
   const view = (skip?: keyof Filters) => applyFilters(policies, f, skip);
 
   const rows = useMemo(() => view(), [policies, f]); // eslint-disable-line react-hooks/exhaustive-deps
