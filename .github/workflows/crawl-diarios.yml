@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 26
       - name: Reachability of the sources from the runner
         run: |
           for u in "https://www.in.gov.br/leiturajornal" "https://api.queridodiario.ok.org.br/cities?city_name=Recife" "https://queridodiario.ok.org.br/"; do
@@ -61,7 +61,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 26
       - name: Crawl
         env:
           SOURCE: ${{ inputs.source || 'all' }}
