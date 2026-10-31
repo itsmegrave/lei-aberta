@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/share";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/lib/seo";
 
 // Google Search Console ownership token for lei-aberta.vercel.app (HTML tag method).
-const GOOGLE_SITE_VERIFICATION = "0Me5lcOL6SwzPs0R4LCSk_bSUgPBLyfU2GEPMs2_Ols";
+const GOOGLE_SITE_VERIFICATION = "7_N2pMysZaz14gWV-xwvvKm3NdHFsHmOUey_XAR3-X4";
 
 // Site-wide search and share metadata (pt-BR). Pages override title, description and canonical.
 export const metadata: Metadata = {
