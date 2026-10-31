@@ -475,7 +475,11 @@ export function surveyKeyAtTime(code: string, year?: number): string | null | un
 
 /** Former codes of a party, as they appear in the alias table (for "also counted as" notes). */
 export function formerCodes(slug: string): string[] {
-  return [...new Set(ALIASES.filter((a) => a.slug === slug).map((a) => a.code))];
+  const p = BY_SLUG.get(slug);
+  const own = new Set(p ? [p.short, p.slug, p.name].map(fold) : []);
+  // Spelling variants of the same code (PT DO B) and the party's own current sigla (UNIÃO) are not former names.
+  const codes = ALIASES.filter((a) => a.slug === slug && !own.has(fold(a.code)) && !a.code.includes(" ")).map((a) => a.code);
+  return [...new Set(codes)];
 }
 
 /** The party a law's code points to, when that code is an older name or a party since merged into another. */

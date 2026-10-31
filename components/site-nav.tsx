@@ -5,7 +5,7 @@ import { ThemeToggle } from "./home/theme-toggle";
 export function SiteNav() {
   return (
     <nav className="flex items-center gap-2.5 py-4">
-      <Link href="/" className="font-display flex items-center gap-2 text-xl font-extrabold tracking-[-0.02em]">
+      <Link href="/" className="font-display flex items-center gap-2 text-xl font-extrabold tracking-[-0.02em] whitespace-nowrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/emoji/scroll.webp" alt="" className="size-8 -rotate-6" />
         Lei Aberta

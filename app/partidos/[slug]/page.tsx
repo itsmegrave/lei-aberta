@@ -184,7 +184,7 @@ export default async function PartyPage({ params }: Props) {
                         <div className="text-muted-foreground flex items-center gap-2 text-[13px] font-semibold">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={emojiSrc(a.emoji)} alt="" className="size-6" />
-                          {lawLabel(law)}/{law.year}
+                          {law.number && law.title.includes(law.number) ? (law.areas[0] ? `${area(law.areas[0]).label} · ${law.year}` : String(law.year)) : `${lawLabel(law)}/${law.year}`}
                         </div>
                         <h3 className="text-[17px] leading-[1.2] font-bold">{law.title}</h3>
                         <p className="text-muted-foreground m-0 line-clamp-2 text-sm">{law.summary}</p>

@@ -79,7 +79,7 @@ test("directory entries are complete and consistent", () => {
     if (p.survey) assert.notEqual(partyScore(p.short), null, p.slug);
   }
   assert.equal(PARTIES.length, 30);
-  assert.deepEqual(formerCodes("uniao").sort(), ["DEM", "DEMOCRATAS", "PFL", "PSL", "UNIÃO"]);
+  assert.deepEqual(formerCodes("uniao").sort(), ["DEM", "DEMOCRATAS", "PFL", "PSL"]);
   assert.equal(partyBySlug("mdb")?.short, "MDB");
 });
 

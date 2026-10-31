@@ -40,22 +40,22 @@ export default async function PartiesPage() {
         <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3.5 p-0">
           {parties.map((p) => {
             const s = stats.get(p.slug)!;
-            const former = formerCodes(p.slug).filter((c) => c.toUpperCase() !== p.short.toUpperCase());
+            const former = formerCodes(p.slug);
             return (
               <li key={p.slug}>
                 <Link href={partyPath(p.slug)} className="group block h-full">
                   <Panel className="flex h-full flex-col gap-2.5 transition-transform group-hover:-translate-y-0.5">
                     <div className="flex items-center gap-2">
                       <PartyDot party={p.short} className="size-3.5" />
-                      <span className="font-display text-[24px] leading-none font-extrabold tracking-[-0.02em]">{p.short}</span>
-                      <span className="bg-secondary text-muted-foreground ml-auto rounded-full px-2.5 py-0.5 text-xs font-bold">nº {p.number}</span>
+                      <span className="font-display min-w-0 truncate text-[24px] leading-none font-extrabold tracking-[-0.02em]">{p.short}</span>
+                      <span className="bg-secondary text-muted-foreground ml-auto shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold whitespace-nowrap">nº {p.number}</span>
                     </div>
                     <div className="text-sm font-semibold">{p.name}</div>
                     {former.length > 0 && <div className="text-muted-foreground text-xs">Inclui: {former.slice(0, 5).join(", ")}{former.length > 5 ? "…" : ""}</div>}
                     <PositionBar party={p.short} compact />
                     <div className="text-muted-foreground mt-auto flex flex-wrap gap-x-3 text-[13px]">
-                      <span><b className="text-foreground">{fmt.format(s.proposed)}</b> propostas</span>
-                      <span><b className="text-foreground">{fmt.format(s.signed)}</b> sancionadas</span>
+                      <span><b className="text-foreground">{fmt.format(s.proposed)}</b> {s.proposed === 1 ? "proposta" : "propostas"}</span>
+                      <span><b className="text-foreground">{fmt.format(s.signed)}</b> {s.signed === 1 ? "sancionada" : "sancionadas"}</span>
                     </div>
                     <span className="text-primary flex items-center gap-1 text-[13px] font-bold">
                       Ver história e leis <ArrowRightIcon className="size-3.5" />
