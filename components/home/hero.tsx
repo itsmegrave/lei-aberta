@@ -25,7 +25,7 @@ const TRY = ["internet", "mulher", "escola", "dados"];
 export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
   const [q, setQ] = useState("");
   return (
-    <header className="grid items-center gap-6 pt-6 pb-2 md:grid-cols-[1.25fr_1fr]">
+    <header className="grid items-center gap-4 pt-2 pb-2 md:gap-6 md:pt-6 md:grid-cols-[1.25fr_1fr]">
       <div className="grid min-w-0 gap-5">
         <span className="bg-card inline-flex w-fit items-center gap-2 rounded-full border py-1 pr-3 pl-1.5 text-[13px] font-semibold text-muted-foreground">
           <b className="bg-highlight rounded-full px-2 text-xs text-[#17142e]">Novo</b>
@@ -74,7 +74,7 @@ export function Hero({ onSearch }: { onSearch: (q: string) => void }) {
           ))}
         </div>
       </div>
-      <div aria-hidden className="relative order-first aspect-square w-full max-w-[260px] justify-self-center md:order-none md:max-w-[420px]">
+      <div aria-hidden className="relative order-first aspect-square w-full max-w-[160px] justify-self-center md:order-none md:max-w-[420px]">
         <div
           className="animate-morph absolute inset-[8%]"
           style={{ background: "radial-gradient(circle at 30% 30%, var(--highlight), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent), transparent 65%), var(--secondary)" }}
