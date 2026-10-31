@@ -32,6 +32,7 @@ export interface Policy {
   presentedAt: string | null;
   status: string;
   areas: string[];
+  /** May be empty when no official source names the author (old laws with no bill on record, Diários Oficiais acts). */
   authors: Author[];
   parties: string[];
   executive?: Executive | null;
