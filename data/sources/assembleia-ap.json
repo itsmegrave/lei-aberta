@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-ap",
+  "name": "Assembleia Legislativa do Amapá",
+  "publisher": "Assembleia Legislativa do Amapá",
+  "url": "https://sapl.al.ap.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "AP"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "O robots.txt do site não permite coleta automática da API; aguardando autorização ou outra fonte.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-df",
+  "name": "Câmara Legislativa do Distrito Federal",
+  "publisher": "Câmara Legislativa do Distrito Federal",
+  "url": "https://www.cl.df.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "DF"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

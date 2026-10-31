@@ -59,6 +59,8 @@ All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and b
 
 The current files are a sample of well-known federal laws. Their Planalto links were written by hand and should be checked before launch.
 
+State laws (`data/estadual/`) come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
+
 ## Data sources manifest
 
 The "De onde vêm os dados" section on the home page is built from `data/sources/<id>.json`, one file per source. Each crawler owns its own file, so crawlers never edit the same file. The type and validation are in `lib/sources.ts`.

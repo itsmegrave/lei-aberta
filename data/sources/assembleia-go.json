@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-go",
+  "name": "Assembleia Legislativa de Goiás",
+  "publisher": "Assembleia Legislativa de Goiás",
+  "url": "https://portal.al.go.leg.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "GO"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

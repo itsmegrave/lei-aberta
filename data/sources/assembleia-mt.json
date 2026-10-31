@@ -1,0 +1,22 @@
+{
+  "id": "assembleia-mt",
+  "name": "Assembleia Legislativa de Mato Grosso",
+  "publisher": "Assembleia Legislativa de Mato Grosso",
+  "url": "https://www.al.mt.gov.br",
+  "levels": [
+    "estadual"
+  ],
+  "coverage": [
+    "MT"
+  ],
+  "covers": [
+    "lei",
+    "lei complementar",
+    "emenda constitucional"
+  ],
+  "description": "Ainda sem coleta automática; fonte de dados em estudo.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

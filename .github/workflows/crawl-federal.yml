@@ -1,0 +1,77 @@
+name: Crawl federal laws and MPs
+
+on:
+  schedule:
+    - cron: "30 6 * * *" # 03:30 in Brasília, every night
+  workflow_dispatch:
+    inputs:
+      from:
+        description: "First year (1988 for a full backfill; empty = last year)"
+        required: false
+      to:
+        description: "Last year (empty = this year)"
+        required: false
+  pull_request:
+    paths:
+      - "crawlers/**"
+      - ".github/workflows/crawl-federal.yml"
+
+jobs:
+  # On pull requests: a small live run against the real APIs, without writing anything.
+  smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+      # Known cases: a Câmara bill (Estatuto do Idoso), a Senate bill (ECA), an executive bill (LDO 2021).
+      - run: npm run crawl:federal -- --from 2003 --to 2003 --types LEI --only 10741 --dry-run
+      - run: npm run crawl:federal -- --from 1990 --to 1990 --types LEI --only 8069 --dry-run
+      - run: npm run crawl:federal -- --from 2020 --to 2020 --types LEI --only 14116 --dry-run
+      # A pre-EC 32 reissued MP, and a sample of a recent year of every type.
+      - run: npm run crawl:federal -- --from 1999 --to 1999 --types MPV --only 1858 --dry-run
+      - run: npm run crawl:federal -- --from 2025 --to 2025 --limit 5 --dry-run
+      - name: Check the hand-written sample's links
+        run: npm run check:links
+        continue-on-error: true
+
+  crawl:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    permissions:
+      contents: write
+    # Shared with the other crawlers so only one job commits to main at a time.
+    concurrency:
+      group: data-commit
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+      - name: Crawl
+        env:
+          FROM: ${{ inputs.from }}
+          TO: ${{ inputs.to }}
+        run: |
+          args=()
+          [ -n "$FROM" ] && args+=(--from "$FROM")
+          [ -n "$TO" ] && args+=(--to "$TO")
+          npm run crawl:federal -- "${args[@]}"
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "lei-aberta-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "data: federal crawl $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

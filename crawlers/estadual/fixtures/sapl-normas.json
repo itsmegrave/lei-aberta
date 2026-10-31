@@ -1,0 +1,5 @@
+{"pagination":{"links":{"next":null,"previous":null},"previous_page":null,"next_page":null,"start_index":1,"end_index":2,"total_entries":2,"total_pages":1,"page":1},
+ "results":[
+  {"id":11912,"__str__":"Lei ordinária nº 5.723, de 04 de janeiro de 2024","link_detail_backend":"/norma/11912","metadata":{},"texto_integral":"http://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2023/11912/l5723.pdf","numero":"5723","ano":2023,"esfera_federacao":"E","data":"2024-01-04","data_publicacao":"2024-01-04","veiculo_publicacao":"DOE","ementa":"Altera o art. 1º da Lei nº 4.165, de 2019, que institui a Semana Estadual da Mãe Atípica, e dá outras providências.","indexacao":"","observacao":"","complemento":null,"tipo":1,"materia":33388,"orgao":null,"assuntos":[],"autores":[]},
+  {"id":4105,"__str__":"Lei ordinária nº 99, de ","texto_integral":null,"numero":"99","ano":1993,"data":null,"data_publicacao":"1993-09-16","ementa":"CONCEDE O TÍTULO DE CIDADÃO DO ESTADO DE RONDÔNIA AO MINISTRO FULANO DE TAL.","observacao":"DEP. EXEMPLO","complemento":null,"tipo":1,"materia":null,"assuntos":[],"autores":[]}
+ ]}

@@ -1,0 +1,88 @@
+name: Crawl state laws
+
+on:
+  schedule:
+    - cron: "30 7 * * *" # 04:30 in Brasília, every night, after the federal crawl
+  workflow_dispatch:
+    inputs:
+      states:
+        description: "UFs to crawl, comma-separated (empty = every house with a crawler)"
+        required: false
+      since:
+        description: "First year (1989 for a full backfill; empty = last year, or 1989 for a house with no data yet)"
+        required: false
+  pull_request:
+    paths:
+      - "crawlers/estadual/**"
+      - "crawlers/lib/**"
+      - ".github/workflows/crawl-estadual.yml"
+
+jobs:
+  # On pull requests: a small live run against the real assembly APIs, without writing anything.
+  smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+      # TSE candidate files for past elections never change; keep them between runs.
+      - uses: actions/cache@v4
+        with:
+          path: .cache/tse
+          key: tse-consulta-cand-v1
+      # One SAPL house per call so a failing house is easy to spot; 3 laws per type and year.
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states PB --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states RO --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AM --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
+      # Acre returned nothing for 2025; look further back.
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AC --since 2018 --until 2024 --limit 1
+      # Alesp: downloads the full dump, keeps 2025, and matches deputies to TSE election data for their party.
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states SP --since 2025 --until 2025
+
+  crawl:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    # A first run backfills every SAPL house from 1989 (one request per law, throttled per host).
+    timeout-minutes: 340
+    permissions:
+      contents: write
+    # Shared with the other crawlers so only one job commits at a time.
+    concurrency:
+      group: data-commit
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+      # TSE candidate files for past elections never change; keep them between runs.
+      - uses: actions/cache@v4
+        with:
+          path: .cache/tse
+          key: tse-consulta-cand-v1
+      - name: Crawl
+        env:
+          STATES: ${{ inputs.states }}
+          SINCE: ${{ inputs.since }}
+        run: |
+          args=()
+          [ -n "$STATES" ] && args+=(--states "$STATES")
+          [ -n "$SINCE" ] && args+=(--since "$SINCE")
+          npm run crawl:estadual -- "${args[@]}"
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "lei-aberta-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "data: state crawl $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1
