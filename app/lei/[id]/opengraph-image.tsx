@@ -1,20 +1,21 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { authorKeys, NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
 import { loadCatalog } from "@/lib/data";
 import { partyScore, spectrumColor } from "@/lib/party-spectrum";
 import { area, lawLabel, LEVELS } from "@/lib/vocab";
 
-// Share image for WhatsApp, X, Instagram and friends. Built once per law at deploy time.
+// Share image for WhatsApp, X, Instagram and friends. Rendered on first request, then cached.
 export const alt = "Resumo da lei no Lei Aberta";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = false;
 
 export async function generateStaticParams() {
-  const { policies } = await loadCatalog();
-  return policies.map((p) => ({ id: p.id }));
+  return [];
 }
 
 // Light-theme topic tints from app/globals.css (Satori cannot read CSS variables).
@@ -52,7 +53,8 @@ function Who({ label, name, party }: { label: string; name: string; party?: stri
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const id = decodeURIComponent((await params).id);
   const { policies } = await loadCatalog();
-  const p = policies.find((x) => x.id === id)!;
+  const p = policies.find((x) => x.id === id);
+  if (!p) notFound();
   const a = area(p.areas[0]);
   const [bg, fg] = TINT[a.tint] ?? TINT.gov;
   const level = LEVELS.find((l) => l.key === p.level)!;
