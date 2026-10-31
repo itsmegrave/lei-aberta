@@ -97,6 +97,7 @@ export interface AlespNorma {
   ementa: string;
   status: string;
   idPropositura: string;
+  propositura: string;
   urlFicha: string;
 }
 
@@ -116,6 +117,7 @@ export function parseNorma(xml: string, tipos: Map<number, LawType>, years: { si
     ementa: child(xml, "ementa"),
     status: situacaoStatus(child(xml, "situacao"), child(xml, "promulg")),
     idPropositura: child(xml, "idPropositura"),
+    propositura: child(xml, "propositura"),
     urlFicha: child(xml, "urlFicha"),
   };
 }
@@ -124,7 +126,7 @@ export function alespToPolicy(house: StateHouse, n: AlespNorma, authorNames: str
   const ficha = n.urlFicha && /^https?:\/\/([a-z0-9-]+\.)*al\.sp\.gov\.br\//i.test(n.urlFicha) ? https(n.urlFicha) : `https://www.al.sp.gov.br/norma/${n.idNorma}`;
   const authors: Author[] = [...new Set(authorNames)].map((name) => ({ name, kind: alespAuthorKind(name), party: null, uf: house.uf }));
   return toPolicy({
-    house, type: n.type, number: n.number, year: n.year, date: n.date, ementa: n.ementa, status: n.status, authors,
+    house, type: n.type, number: n.number, year: n.year, date: n.date, ementa: n.ementa, status: n.status, bill: n.propositura || null, authors,
     sources: [{ label: "Alesp: ficha da norma", url: ficha }],
   });
 }

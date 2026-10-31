@@ -45,6 +45,7 @@ export interface Norma {
 
 export interface Materia {
   id: number;
+  __str__?: string;
   data_apresentacao?: string | null;
   autores?: number[];
 }
@@ -92,15 +93,16 @@ export interface AuthorBook {
 const PAGE_SIZE = 100;
 
 /** Reads every page of a SAPL list endpoint. Accepts both paginated and bare-array responses. */
-export async function listAll<T>(base: string, path: string, params: Record<string, string | number> = {}): Promise<T[]> {
+export async function listAll<T>(base: string, path: string, params: Record<string, string | number> = {}, max = Infinity): Promise<T[]> {
   const out: T[] = [];
-  for (let page = 1; ; page++) {
+  for (let page = 1; out.length < max; page++) {
     const q = new URLSearchParams({ ...Object.fromEntries(Object.entries(params).map(([k, v]) => [k, String(v)])), page: String(page), page_size: String(PAGE_SIZE) });
     const body = await fetchJson<Page<T> | T[]>(`${base}${path}?${q}`);
     if (Array.isArray(body)) return out.concat(body);
     out.push(...body.results);
     if (!body.pagination?.next_page || body.results.length === 0) return out;
   }
+  return out;
 }
 
 /** Picks the house's type ids for the laws we collect. */
@@ -179,10 +181,11 @@ export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia
   const complement = typeof n.complemento === "string" ? n.complemento : null;
   const sources = [{ label: `${house.house} (SAPL)`, url: `${house.url}/norma/${n.id}` }];
   if (n.texto_integral) sources.push({ label: "Texto integral", url: https(n.texto_integral) });
-  return toPolicy({ house, type, number: bareNumber(n.numero, complement), year, date, ementa: n.ementa, presentedAt, authors, sources });
+  return toPolicy({ house, type, number: bareNumber(n.numero, complement), year, date, ementa: n.ementa, presentedAt, bill: materia?.__str__ ?? null, authors, sources });
 }
 
-export async function crawlSapl(house: StateHouse, years: number[], { concurrency = 3 } = {}): Promise<AdapterResult> {
+/** `limit` caps laws per type and year (for smoke tests). */
+export async function crawlSapl(house: StateHouse, years: number[], { concurrency = 3, limit = Infinity } = {}): Promise<AdapterResult> {
   const base = house.url.replace(/\/$/, "");
   const errors: string[] = [];
   const records: AdapterResult["records"] = [];
@@ -195,7 +198,7 @@ export async function crawlSapl(house: StateHouse, years: number[], { concurrenc
     for (const ano of years) {
       let normas: Norma[];
       try {
-        normas = await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano });
+        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).slice(0, limit);
       } catch (err) {
         errors.push(`${house.uf} ${type} ${ano}: ${err}`);
         continue;

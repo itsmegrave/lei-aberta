@@ -1,29 +1,55 @@
 name: Crawl state laws
+
 on:
   schedule:
-    # Nightly, 05:30 UTC (02:30 in Brasília), after the federal crawl.
-    - cron: "30 5 * * *"
+    - cron: "30 7 * * *" # 04:30 in Brasília, every night, after the federal crawl
   workflow_dispatch:
     inputs:
       states:
         description: "UFs to crawl, comma-separated (empty = every house with a crawler)"
         required: false
-        default: ""
       since:
-        description: "First year to crawl, e.g. 1989 for a full backfill (empty = last year)"
+        description: "First year (1989 for a full backfill; empty = last year, or 1989 for a house with no data yet)"
         required: false
-        default: ""
-permissions:
-  contents: write
-# Every data crawler commits to the same branch; run them one at a time.
-concurrency:
-  group: data-commit
-  cancel-in-progress: false
+  pull_request:
+    paths:
+      - "crawlers/estadual/**"
+      - "crawlers/lib/**"
+      - ".github/workflows/crawl-estadual.yml"
+
 jobs:
-  crawl:
+  # On pull requests: a small live run against the real assembly APIs, without writing anything.
+  smoke:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    # A full backfill of the SAPL houses makes one request per law, throttled per host.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # One SAPL house per call so a failing house is easy to spot; 3 laws per type and year.
+      - run: npm run crawl:estadual -- --dry-run --states PB --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --states RO --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --states AM --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
+      # Alesp: downloads the full dumps, keeps 2025.
+      - run: npm run crawl:estadual -- --dry-run --states SP --since 2025 --until 2025
+      # Roraima's API errored when first checked; report, do not block.
+      - run: npm run crawl:estadual -- --dry-run --states RR --since 2025 --until 2025 --limit 2
+        continue-on-error: true
+
+  crawl:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    # A first run backfills every SAPL house from 1989 (one request per law, throttled per host).
     timeout-minutes: 340
+    permissions:
+      contents: write
+    # Shared with the other crawlers so only one job commits at a time.
+    concurrency:
+      group: data-commit
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -39,14 +65,15 @@ jobs:
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           npm run crawl:estadual -- "${args[@]}"
       - name: Commit data
+        if: always()
         run: |
           git config user.name "lei-aberta-bot"
-          git config user.email "lei-aberta-bot@users.noreply.github.com"
-          git add -A data/
-          if git diff --cached --quiet; then
-            echo "No changes."
-            exit 0
-          fi
-          git commit -m "data: state laws ($(date -u +%Y-%m-%d))"
-          git pull --rebase
-          git push
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "data: state crawl $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((2 ** i))
+          done
+          exit 1

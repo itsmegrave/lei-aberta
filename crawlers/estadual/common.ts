@@ -106,6 +106,8 @@ export interface DraftLaw {
   date: string | null;
   ementa: string;
   presentedAt?: string | null;
+  /** Originating bill as the house writes it, e.g. "PL 403/2023". */
+  bill?: string | null;
   status?: string;
   authors?: Author[];
   sources: Policy["sources"];
@@ -133,6 +135,8 @@ export function toPolicy(d: DraftLaw): Policy {
     parties,
     executive: null,
     sources: d.sources,
+    signedAt: d.date,
+    bill: d.bill ? clean(d.bill) : null,
   };
 }
 

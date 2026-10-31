@@ -8,6 +8,7 @@
  *                        no data yet so the first run backfills it, and 1989 for Alesp, whose dump is read whole anyway)
  *   --until YYYY         last year (default: this year)
  *   --data-dir PATH      default data
+ *   --limit N            at most N laws per type and year in SAPL houses (smoke tests)
  *   --dry-run            crawl and print, write nothing
  *   --manifests-only     crawl nothing; only (re)write data/sources/assembleia-*.json
  *
@@ -31,6 +32,7 @@ const { values: args } = parseArgs({
     since: { type: "string" },
     until: { type: "string" },
     "data-dir": { type: "string", default: "data" },
+    limit: { type: "string" },
     "dry-run": { type: "boolean", default: false },
     "manifests-only": { type: "boolean", default: false },
   },
@@ -55,7 +57,8 @@ const hasData = (uf: string) => store.all().some((r) => r.id.startsWith(`estadua
 
 async function crawl(h: StateHouse): Promise<AdapterResult> {
   if (h.adapter === "alesp") return crawlAlesp(h, { since: sinceArg ?? FIRST_YEAR, until });
-  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until));
+  const limit = args.limit ? Number(args.limit) : Infinity;
+  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until), { limit });
 }
 
 interface Outcome {

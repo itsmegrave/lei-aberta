@@ -130,6 +130,8 @@ test("SAPL: law to record", async () => {
     { name: "Deputado Exemplo B", kind: "state-deputy", party: null, uf: "RO" },
   ]);
   assert.deepEqual(p.parties, ["REP"]);
+  assert.equal(p.bill, "PL 123/2023");
+  assert.equal(p.signedAt, "2024-01-04");
   assert.equal(p.executive, null, "governor's party is a separate field, filled from TSE data later");
   assert.deepEqual(p.sources.map((s) => s.url), [
     "https://sapl.al.ro.leg.br/norma/11912",
@@ -180,6 +182,7 @@ test("Alesp: detects row tags, filters types and years, maps status and authors"
   assert.equal(lei.id, "estadual-sp-lei-17890-2024");
   assert.equal(lei.summary, "Institui a Semana Estadual de Conscientização sobre a Água & o Saneamento.");
   assert.equal(lei.status, "sancionada");
+  assert.equal(lei.bill, "PL 403/2023");
   assert.deepEqual(lei.sources, [{ label: "Alesp: ficha da norma", url: "https://www.al.sp.gov.br/norma/190001" }]);
   assert.deepEqual(lei.authors.map((a) => [a.name, a.kind, a.party]), [["Fulana de Tal", "state-deputy", null], ["Beltrano Souza", "state-deputy", null]]);
   assert.deepEqual(validate(lei), []);
