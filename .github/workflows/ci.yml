@@ -23,6 +23,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run lint
+      # Live check of the home's news feeds. Outside sites can break any day, so this never blocks a PR.
+      - name: News feeds
+        continue-on-error: true
+        run: npm run check:news
       # Schema and JSON import against a throwaway Postgres, so a migration or import break shows up here.
       - name: Database migrate + import
         env:

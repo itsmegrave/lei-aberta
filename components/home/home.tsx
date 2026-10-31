@@ -15,6 +15,7 @@ import { Facts } from "./facts";
 import { Hero, Ticker } from "./hero";
 import { PartyPlot } from "./party-plot";
 import { Section } from "./section";
+import { News } from "./news";
 import { LevelPills, TopicGrid } from "./topics";
 import { YearChart } from "./year-chart";
 
@@ -85,6 +86,10 @@ export function Home({
 
       <Section id="fontes" collapsible title="De onde vêm os dados" lead="Cada lei aponta para o texto oficial. Estas são as fontes que coletamos, e quando foi a última coleta.">
         <Sources sources={sources} />
+      </Section>
+
+      <Section id="noticias" title="Notícias da política" lead="As manchetes mais recentes de veículos com linhas editoriais diferentes. Toque para ler no site de cada um.">
+        <News />
       </Section>
 
       <SiteFooter>{sample && <span>Dados de exemplo: leis federais conhecidas. Estados e municípios chegam com os próximos coletores.</span>}</SiteFooter>
