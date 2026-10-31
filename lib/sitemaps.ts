@@ -1,6 +1,7 @@
 import "server-only";
 import { loadCatalog } from "./data";
 import { PARTIES, PARTIES_PATH, partyPath } from "./parties";
+import { SEARCH_PATH } from "./listing.ts";
 import { lawPath } from "./share";
 import { sitemapChunks, type SitemapUrl } from "./seo";
 
@@ -13,6 +14,7 @@ export async function sitemapFiles(): Promise<{ name: string; lastmod: string; u
     urls: [
       { path: "/", lastmod: updatedAt, image: "/opengraph-image" },
       { path: PARTIES_PATH, lastmod: updatedAt },
+      { path: SEARCH_PATH, lastmod: updatedAt },
       ...PARTIES.map((p) => ({ path: partyPath(p.slug), lastmod: updatedAt })),
     ],
   };

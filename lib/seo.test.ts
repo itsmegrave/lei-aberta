@@ -71,7 +71,7 @@ test("law JSON-LD is schema.org Legislation linked to the official text", () => 
 
 test("site JSON-LD declares the search box", () => {
   const ld = JSON.stringify(siteJsonLd("https://x.org"));
-  assert.match(ld, /"urlTemplate":"https:\/\/x\.org\/\?q=\{search_term_string\}"/);
+  assert.match(ld, /"urlTemplate":"https:\/\/x\.org\/busca\?q=\{search_term_string\}"/);
 });
 
 test("JSON-LD can't close its script tag", () => {

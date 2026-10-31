@@ -104,6 +104,14 @@ export function writeUrlState(filters: Filters, page: number): string {
   return s ? `?${s}` : "";
 }
 
+/** The search page: where every filter, search and law list lives. The home only links into it. */
+export const SEARCH_PATH = "/busca";
+
+/** Link to the search page with these filters, on page 1. */
+export function searchHref(filters: Partial<Filters> = {}): string {
+  return SEARCH_PATH + writeUrlState({ ...EMPTY_FILTERS, ...filters }, 1);
+}
+
 /** Page numbers to show: first, last, and two around the current one, with gaps as null. */
 export function pageWindow(page: number, pages: number): (number | null)[] {
   const keep = new Set([1, pages, page - 2, page - 1, page, page + 1, page + 2].filter((n) => n >= 1 && n <= pages));

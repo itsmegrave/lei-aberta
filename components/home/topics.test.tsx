@@ -1,17 +1,26 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { LevelPills, TopicGrid } from "./topics";
+import { LevelPills, TopicChips, TopicGrid } from "./topics";
 
 describe("TopicGrid", () => {
   it("shows each topic with its count, zero when missing", () => {
-    render(<TopicGrid keys={["saude", "educacao"]} counts={new Map([["saude", 12]])} active="" onPick={() => {}} />);
-    expect(screen.getByRole("button", { name: /Saúde/ })).toHaveTextContent("12");
-    expect(screen.getByRole("button", { name: /Educação/ })).toHaveTextContent("0");
+    render(<TopicGrid keys={["saude", "educacao"]} counts={new Map([["saude", 12]])} href={(k) => `/busca?tema=${k}`} />);
+    expect(screen.getByRole("link", { name: /Saúde/ })).toHaveTextContent("12");
+    expect(screen.getByRole("link", { name: /Educação/ })).toHaveTextContent("0");
   });
 
+  it("links each topic to its search results instead of filtering in place", () => {
+    render(<TopicGrid keys={["saude", "educacao"]} counts={new Map()} href={(k) => `/busca?tema=${k}`} />);
+    expect(screen.getByRole("link", { name: /Saúde/ })).toHaveAttribute("href", "/busca?tema=saude");
+    expect(screen.getByRole("link", { name: /Educação/ })).toHaveAttribute("href", "/busca?tema=educacao");
+  });
+});
+
+describe("TopicChips", () => {
   it("marks the active topic as pressed and reports picks", () => {
     const onPick = vi.fn();
-    render(<TopicGrid keys={["saude", "educacao"]} counts={new Map()} active="educacao" onPick={onPick} />);
+    render(<TopicChips keys={["saude", "educacao"]} counts={new Map([["saude", 4]])} active="educacao" onPick={onPick} />);
+    expect(screen.getByRole("button", { name: /Saúde/ })).toHaveTextContent("4");
     expect(screen.getByRole("button", { name: /Educação/ })).toHaveAttribute("aria-pressed", "true");
     expect(screen.getByRole("button", { name: /Saúde/ })).toHaveAttribute("aria-pressed", "false");
     fireEvent.click(screen.getByRole("button", { name: /Saúde/ }));
