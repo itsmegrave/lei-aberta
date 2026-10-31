@@ -64,6 +64,8 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   const [bg, fg] = TINT[a.tint] ?? TINT.gov;
   const level = LEVELS.find((l) => l.key === p.level)!;
   const emoji = await readFile(path.join(root, "assets/og-emoji", `${a.emoji}.png`));
+  // The topic's icon: large beside the title and small in the topic chip.
+  const emojiData = `data:image/png;base64,${emoji.toString("base64")}`;
   // First author: a lawmaker with their party at authorship, or an institution such as "Poder Executivo".
   // The executive's party is a separate field and is shown separately.
   const first = p.authors[0];
@@ -84,7 +86,13 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             <div style={{ width: 12, height: 12, borderRadius: 6, background: LEVEL_COLOR[p.level] }} />
             {`${level.label} · ${p.jurisdiction}`}
           </div>
-          {p.areas[0] && <div style={{ display: "flex", background: bg, borderRadius: 999, padding: "6px 16px", color: fg }}>{a.label}</div>}
+          {p.areas[0] && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: bg, borderRadius: 999, padding: "4px 16px 4px 8px", color: fg }}>
+              {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+              <img src={emojiData} width={32} height={32} />
+              {a.label}
+            </div>
+          )}
         </div>
 
         <div style={{ display: "flex", flex: 1, alignItems: "center", gap: 40 }}>
@@ -93,7 +101,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             <div style={{ display: "flex", fontSize: 29, lineHeight: 1.3, color: "#e3f5e9" }}>{summary}</div>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-          <img src={`data:image/png;base64,${emoji.toString("base64")}`} width={190} height={190} style={{ transform: "rotate(-6deg)" }} />
+          <img src={emojiData} width={190} height={190} style={{ transform: "rotate(-6deg)" }} />
         </div>
 
         <div style={{ display: "flex", alignItems: "flex-end", gap: 44, background: YELLOW, color: INK, borderRadius: 28, padding: "20px 32px" }}>
