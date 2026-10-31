@@ -97,7 +97,7 @@ At the end of each run a crawler calls `updateSource(id, patch)` from `lib/sourc
 
 ## Party positions
 
-Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Formal renames reuse the same party's score (PMDB→MDB, PFL→DEM, PRN→PTC, and so on, see `lib/party-spectrum.ts`). Parties not in the survey get no position and are listed apart. The palette is violet → gray → ochre, with no red/green so no side reads as "good" or "bad".
+Party colors on the left-right chart come from the expert survey in Bolognesi, Ribeiro & Codato (2023), *A New Ideological Classification of Brazilian Political Parties*, Dados 66(2), [doi:10.1590/dados.2023.66.2.303](https://doi.org/10.1590/dados.2023.66.2.303), Table 1 (0 = left, 10 = right). We do not score parties ourselves. Formal renames reuse the same party's score (PMDB→MDB, PFL→DEM, PRN→PTC, and so on, see `lib/party-spectrum.ts`). Parties not in the survey get no position and are listed apart. The palette runs red (left) → gray (center) → blue (right), following the common convention of red for the left. All stops live in one place, `SPECTRUM_STOPS` in `lib/party-spectrum.ts`, with separate light and dark values; every chart, legend and share image reads from there.
 
 ## Neutrality
 
