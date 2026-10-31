@@ -38,7 +38,7 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
   const Description = inSheet ? SheetDescription : "p";
   const a = area(p.areas[0]);
   const lvl = LEVELS.find((l) => l.key === p.level)!;
-  const author = p.authors[0];
+  const author = p.authors[0] as (typeof p.authors)[number] | undefined;
   return (
     <>
       {inSheet && <div className="bg-border mx-auto mb-1 h-1.5 w-11 rounded-full" />}
@@ -62,11 +62,13 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
         <div className="bg-secondary rounded-2xl px-3.5 py-3">
           <div className="text-muted-foreground text-xs font-bold tracking-[0.06em] uppercase">Quem propôs</div>
           <div className="mt-0.5 text-base font-bold">
-            {author.kind === "executive" ? "Poder Executivo" : author.name}
+            {!author ? "Não informado" : author.kind === "executive" ? "Poder Executivo" : author.name}
             {p.authors.length > 1 && <span className="text-muted-foreground text-sm font-semibold"> e mais {p.authors.length - 1}</span>}
           </div>
           <div className="text-muted-foreground text-[13px]">
-            {!["deputy", "senator", "state-deputy", "councilor"].includes(author.kind) ? (
+            {!author ? (
+              "A publicação oficial não informa a autoria"
+            ) : !["deputy", "senator", "state-deputy", "councilor"].includes(author.kind) ? (
               AUTHOR_KIND[author.kind] ?? AUTHOR_KIND.other
             ) : (
               <>

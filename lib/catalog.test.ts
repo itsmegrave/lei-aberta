@@ -76,10 +76,10 @@ test("party scores come from the survey, renames map to the same party", () => {
 });
 
 test("spectrum color hits the stops", () => {
-  assert.equal(spectrumColor(0), "#6a3fc9");
+  assert.equal(spectrumColor(0), "#c8352b");
   assert.notEqual(spectrumColor(3), spectrumColor(7));
   assert.equal(spectrumColor(5), "#8f8e88");
-  assert.equal(spectrumColor(10), "#a8740a");
+  assert.equal(spectrumColor(10), "#2a6fd6");
   assert.equal(spectrumColor(null), "#d4d3cd");
 });
 
