@@ -61,6 +61,15 @@ The current files are a sample of well-known federal laws. Their Planalto links 
 
 State laws (`data/estadual/`) come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
 
+### Postgres (in progress)
+
+The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Marketplace, free tier). Until the site and crawlers are switched over, `data/` stays the source of truth and the database is a copy.
+
+- Schema: `lib/db/schema.ts` (Drizzle). One `policies` table; filter fields are columns (`level`, `year`, `jurisdiction`, `executive_party`), `areas` and `parties` are indexed arrays, `authors`/`sources`/`executive` are JSON, and `search` is a Portuguese full-text vector over title and summary. `executive_party` is a copy of `executive.party` and is never mixed with `parties`.
+- Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`.
+- `npm run db:import-json` loads every record in `data/` into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
+- Local: any Postgres 16 works, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta`.
+
 ### How the site loads it
 
 The home page never ships the whole catalog. At build time `app/dados/[file]/route.ts` writes static files (see `lib/listing.ts`):
