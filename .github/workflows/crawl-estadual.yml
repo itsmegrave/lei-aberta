@@ -34,14 +34,14 @@ jobs:
           path: .cache/tse
           key: tse-consulta-cand-v1
       # One SAPL house per call so a failing house is easy to spot; 3 laws per type and year.
-      - run: npm run crawl:estadual -- --dry-run --states PB --since 2025 --until 2025 --limit 3
-      - run: npm run crawl:estadual -- --dry-run --states RO --since 2025 --until 2025 --limit 3
-      - run: npm run crawl:estadual -- --dry-run --states AM --since 2025 --until 2025 --limit 3
-      - run: npm run crawl:estadual -- --dry-run --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states PB --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states RO --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AM --since 2025 --until 2025 --limit 3
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AC,AL,PI,TO --since 2025 --until 2025 --limit 2
       # Acre returned nothing for 2025; look further back.
-      - run: npm run crawl:estadual -- --dry-run --states AC --since 2018 --until 2024 --limit 1
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states AC --since 2018 --until 2024 --limit 1
       # Alesp: downloads the full dump, keeps 2025, and matches deputies to TSE election data for their party.
-      - run: npm run crawl:estadual -- --dry-run --states SP --since 2025 --until 2025
+      - run: npm run crawl:estadual -- --dry-run --allow-unavailable --states SP --since 2025 --until 2025
 
   crawl:
     if: github.event_name != 'pull_request'

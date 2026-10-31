@@ -11,7 +11,7 @@ npm run crawl:estadual -- --dry-run --states SP
 npm run crawl:estadual -- --manifests-only     # only rewrite data/sources/assembleia-*.json
 ```
 
-The nightly workflow is `.github/workflows/crawl-estadual.yml` (07:30 UTC). On pull requests it runs a small live dry-run against each house instead. It can be run by hand with `states` and
+The nightly workflow is `.github/workflows/crawl-estadual.yml` (07:30 UTC). On pull requests it runs a small live dry-run against each house instead, with `--allow-unavailable` so a house whose server is down (5xx, timeout) is reported without failing the PR. It can be run by hand with `states` and
 `since` inputs, for example `since=1989` for a full backfill.
 
 ## Record rules

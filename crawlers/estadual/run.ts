@@ -22,7 +22,7 @@ import type { DataSource } from "../../lib/sources.ts";
 import { openStore } from "../lib/store.ts";
 import { crawlAlesp } from "./alesp.ts";
 import type { AdapterResult } from "./common.ts";
-import { RobotsDisallowed } from "./http.ts";
+import { HttpError, RobotsDisallowed } from "./http.ts";
 import { crawlSapl } from "./sapl.ts";
 import { STATES, type StateHouse, sourceId } from "./states.ts";
 
@@ -35,6 +35,9 @@ const { values: args } = parseArgs({
     limit: { type: "string" },
     "dry-run": { type: "boolean", default: false },
     "manifests-only": { type: "boolean", default: false },
+    // Smoke runs on PRs: a house whose server is down (5xx, timeout, network error) is reported, not failed,
+    // so an outage at an assembly can't block an unrelated PR. Parse and format errors still fail.
+    "allow-unavailable": { type: "boolean", default: false },
   },
 });
 
@@ -81,10 +84,20 @@ const outcomes: Outcome[] = await Promise.all(
 const dryRun = args["dry-run"];
 const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
 let failures = 0;
+let unavailable = 0;
 let mergedTotal = 0;
+
+/** True for errors that mean the house's server is down, not that our code is wrong. */
+const isOutage = (e: unknown) =>
+  (e instanceof HttpError && e.status >= 500) || (e instanceof Error && /fetch failed|timeout|aborted|ECONNRESET|ENOTFOUND/i.test(`${e.name} ${e.message}`));
 
 for (const o of outcomes) {
   const { house } = o;
+  if (o.fatal && args["allow-unavailable"] && isOutage(o.fatal)) {
+    unavailable++;
+    console.log(`${house.uf}: UNAVAILABLE (server down, not counted as a failure) ${o.fatal}`);
+    continue;
+  }
   if (o.fatal) {
     failures++;
     console.log(`${house.uf}: FAILED ${o.fatal}`);
@@ -119,7 +132,7 @@ if (!dryRun) {
   await writeManifests();
 }
 
-if (houses.length && failures === houses.length) {
+if (houses.length && failures && failures + unavailable === houses.length) {
   console.error("Every state crawl failed.");
   process.exit(1);
 }
