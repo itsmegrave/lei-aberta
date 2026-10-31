@@ -1,4 +1,5 @@
 // Turns Senado/Câmara API data into Lei Aberta records (lib/types.ts `Policy`).
+import type { Store } from "../lib/store.ts";
 import type { Author, Policy } from "../../lib/types.ts";
 import type { Apis, NormType, SenadoAuthor, SenadoNorm, SenadoProcessSummary } from "./apis.ts";
 import { presidentAt } from "./politics.ts";
@@ -201,4 +202,21 @@ export function mpRecord(editions: SenadoNorm[], proc: SenadoProcessSummary | un
     convertedInto: converted ? recordId(converted.kind.toLowerCase().includes("complementar") ? "LCP" : "LEI", converted.numero, Number(converted.date.slice(0, 4))) : undefined,
     sources,
   };
+}
+
+// Incremental runs.
+
+/** A law already stored with its authors needs no new lookups. */
+export const isResolved = (store: Pick<Store, "get">, id: string) => (store.get(id)?.authors.length ?? 0) > 0;
+
+/** Years of post-EC 32 MPs from the last year that were still open (or unknown) when last crawled. */
+export function openMpYears(records: Policy[], thisYear: number): number[] {
+  return [
+    ...new Set(
+      records
+        .filter((r) => r.type === "medida-provisoria" && r.year >= thisYear - 1 && (r.signedAt ?? "") >= EC32)
+        .filter((r) => r.status === "em-tramitacao" || r.status === "sem-informacao")
+        .map((r) => r.year),
+    ),
+  ];
 }

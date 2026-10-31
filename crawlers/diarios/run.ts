@@ -4,7 +4,7 @@
  *   node --experimental-strip-types crawlers/diarios/run.ts [options]
  *
  *   --source dou|qd|all    which diários to read (default all)
- *   --since YYYY-MM-DD     first publication day (default: 3 days ago for DOU, 7 for Querido Diário)
+ *   --since YYYY-MM-DD     first publication day (default: from the source's last successful run, see below)
  *   --until YYYY-MM-DD     last publication day (default today, UTC)
  *   --territories capitals|all|<ibge,ibge,...>   Querido Diário cities (default capitals)
  *   --max-gazettes N       cap on gazette texts read per run (default 400)
@@ -20,6 +20,7 @@ import type { DataSource } from "../../lib/sources.ts";
 import { crawlDou } from "./dou.ts";
 import { crawlInlabs } from "./inlabs.ts";
 import { CAPITALS, crawlQueridoDiario } from "./querido-diario.ts";
+import { lastSuccess, sinceDay } from "../lib/cursor.ts";
 import { dateRange, daysAgo } from "./text.ts";
 
 const { values: args } = parseArgs({
@@ -55,9 +56,11 @@ interface SourceRun {
   owner: boolean;
 }
 
+const sourcesDir = path.resolve(args["data-dir"]!, "sources");
 const runs: SourceRun[] = [];
 if (args.source === "dou" || args.source === "all") {
-  const since = args.since ?? daysAgo(3);
+  // From the day before the last good run (at least 3 days back, at most 30), so a missed night is caught up.
+  const since = args.since ?? sinceDay(await lastSuccess("dou", sourcesDir), { overlapDays: 1, minDays: 3, maxDays: 30 });
   runs.push({
     name: "DOU", sourceId: "dou", host: "in.gov.br", owner: false,
     manifest: {
@@ -74,7 +77,7 @@ if (args.source === "dou" || args.source === "all") {
 }
 if (args.source === "qd" || args.source === "all") {
   // Querido Diário indexes gazettes a few days after publication, so it looks further back.
-  const since = args.since ?? daysAgo(7);
+  const since = args.since ?? sinceDay(await lastSuccess("querido-diario", sourcesDir), { overlapDays: 7, minDays: 7, maxDays: 60 });
   const res = await crawlQueridoDiario({ territories, since, until, maxGazettes: Number(args["max-gazettes"]) });
   runs.push({
     name: "Querido Diário", sourceId: "querido-diario", host: "queridodiario.ok.org.br", owner: true,

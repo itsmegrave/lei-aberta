@@ -13,7 +13,7 @@
  * When no affiliation covers that date the party stays null; we never fall back to the current party.
  */
 import type { Author } from "../../lib/types.ts";
-import { type AdapterResult, type LawType, fold, bareNumber, https, lawType, toPolicy } from "./common.ts";
+import { type AdapterResult, type LawType, fold, bareNumber, https, lawType, stateId, toPolicy } from "./common.ts";
 import { fetchJson, mapLimit } from "./http.ts";
 import type { StateHouse } from "./states.ts";
 
@@ -181,6 +181,13 @@ async function loadAuthorBook(base: string): Promise<AuthorBook> {
   };
 }
 
+/** The record id a SAPL law will get, known before any per-law request (see saplToPolicy). */
+export function saplId(house: StateHouse, type: LawType, n: Norma): string {
+  const date = n.data ?? n.data_publicacao ?? null;
+  const complement = typeof n.complemento === "string" ? n.complemento : null;
+  return stateId(house.uf, type, bareNumber(n.numero, complement), date ? Number(date.slice(0, 4)) : n.ano);
+}
+
 /** Turns one SAPL law plus its bill into a record. Pure; tested with fixtures. */
 export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia: Materia | null, autorIds: number[], book: AuthorBook) {
   const date = n.data ?? n.data_publicacao ?? null;
@@ -194,8 +201,15 @@ export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia
   return toPolicy({ house, type, number: bareNumber(n.numero, complement), year, date, ementa: n.ementa, presentedAt, bill: materia?.__str__ ?? null, authors, sources });
 }
 
-/** `limit` caps laws per type and year (for smoke tests). */
-export async function crawlSapl(house: StateHouse, years: number[], { concurrency = 3, limit = Infinity } = {}): Promise<AdapterResult> {
+/**
+ * `limit` caps laws per type and year (for smoke tests). `skip(id)` leaves out laws already stored, so a nightly
+ * run only spends per-law requests (bill, authors) on new ones.
+ */
+export async function crawlSapl(
+  house: StateHouse,
+  years: number[],
+  { concurrency = 3, limit = Infinity, skip = () => false }: { concurrency?: number; limit?: number; skip?: (id: string) => boolean } = {},
+): Promise<AdapterResult> {
   const base = house.url.replace(/\/$/, "");
   const errors: string[] = [];
   const records: AdapterResult["records"] = [];
@@ -212,7 +226,7 @@ export async function crawlSapl(house: StateHouse, years: number[], { concurrenc
     for (const ano of years) {
       let normas: Norma[];
       try {
-        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).slice(0, limit);
+        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).filter((n) => !skip(saplId(house, type, n))).slice(0, limit);
       } catch (err) {
         errors.push(`${house.uf} ${type} ${ano}: ${err}`);
         continue;

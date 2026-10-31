@@ -47,3 +47,23 @@ test("save writes year files and index", async () => {
   const again = await openStore(dir);
   assert.equal(again.all().length, 2);
 });
+
+test("an upsert that changes nothing leaves files untouched", async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), "store-"));
+  const a = await openStore(dir);
+  a.upsert(rec, { owner: true });
+  assert.equal(a.changed(), 1);
+  await a.save();
+  const before = await readFile(path.join(dir, "index.json"), "utf8");
+
+  const b = await openStore(dir);
+  // Same record with keys in another order, as a crawler would rebuild it.
+  const reordered = Object.fromEntries(Object.entries(rec).reverse()) as unknown as Policy;
+  b.upsert(reordered, { owner: true });
+  assert.equal(b.changed(), 0);
+  assert.equal(await b.save(), 0);
+  assert.equal(await readFile(path.join(dir, "index.json"), "utf8"), before);
+
+  b.upsert({ ...rec, status: "revogada" }, { owner: true });
+  assert.equal(b.changed(), 1);
+});
