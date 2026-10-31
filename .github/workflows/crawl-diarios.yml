@@ -47,6 +47,7 @@ jobs:
       - name: Dry run against live sources
         env:
           QD_DEBUG: "1"
+          DOU_DEBUG: "1"
           INLABS_EMAIL: ${{ secrets.INLABS_EMAIL }}
           INLABS_PASSWORD: ${{ secrets.INLABS_PASSWORD }}
         run: |
