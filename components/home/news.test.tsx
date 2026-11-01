@@ -28,6 +28,7 @@ describe("News", () => {
     expect(screen.getByText(/feeds públicos de Agência Senado, g1/)).toBeInTheDocument();
     expect(fetch).toHaveBeenCalledWith(NEWS_API);
     expect(screen.getByText("A proposta segue para a Câmara.")).toBeInTheDocument();
+    expect(screen.getByRole("list", { name: /deslize/ }).className).toContain("snap-x");
     expect(document.querySelector('img[src="https://www12.senado.leg.br/i.jpg"]')).not.toBeNull();
     // Only the paywalled outlet gets the warning.
     expect(screen.getAllByText("pode pedir assinatura")).toHaveLength(1);

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { clip, fetchNews, mixNews, NEWS_OUTLETS, parseFeed, readOutlet, type NewsItem } from "./news.ts";
+import { clip, fetchNews, isPolitics, mixNews, NEWS_OUTLETS, parseFeed, POLITICS_FEED, readOutlet, withUtm, type NewsItem } from "./news.ts";
 
 const rss = `<?xml version="1.0"?><rss version="2.0"><channel><title>X</title>
 <item><title><![CDATA[Senado aprova PEC &amp; segue]]></title><link>https://a.com.br/1?x=1&amp;y=2</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><description><![CDATA[<p>texto longo</p>]]></description></item>
@@ -42,14 +42,14 @@ test("clip cuts at a word boundary", () => {
 });
 
 test("readOutlet falls back to the next feed address", async () => {
-  const o = { id: "x", name: "X", feed: "https://x/a", fallbacks: ["https://x/b", "https://x/c"] };
+  const o = { id: "x", name: "X", feed: "https://x/politica/a", fallbacks: ["https://x/politica/b", "https://x/politica/c"] };
   const r = await readOutlet(o, async (url) => {
     if (url.endsWith("a")) throw new Error("HTTP 404");
     return url.endsWith("b") ? "<rss></rss>" : rss;
   });
-  assert.equal(r.feed, "https://x/c");
+  assert.equal(r.feed, "https://x/politica/c");
   assert.equal(r.items.length, 2);
-  await assert.rejects(readOutlet({ ...o, fallbacks: [] }, async () => { throw new Error("HTTP 403"); }), /x\/a: HTTP 403/);
+  await assert.rejects(readOutlet({ ...o, fallbacks: [] }, async () => { throw new Error("HTTP 403"); }), /politica\/a: HTTP 403/);
 });
 
 test("parseFeed flags paywalled outlets", () => {
@@ -79,9 +79,9 @@ test("mixNews drops duplicate links and future dates", () => {
 
 test("fetchNews keeps working feeds when others fail", async () => {
   const outlets = [
-    { id: "ok", name: "OK", feed: "https://ok/feed" },
-    { id: "down", name: "Down", feed: "https://down/feed" },
-    { id: "empty", name: "Empty", feed: "https://empty/feed" },
+    { id: "ok", name: "OK", feed: "https://ok/politica/feed" },
+    { id: "down", name: "Down", feed: "https://down/politica/feed" },
+    { id: "empty", name: "Empty", feed: "https://empty/politica/feed" },
   ];
   const get = async (url: string) => {
     if (url.includes("down")) throw new Error("boom");
@@ -95,4 +95,34 @@ test("fetchNews keeps working feeds when others fail", async () => {
 test("every outlet uses an https feed and a unique id", () => {
   assert.equal(new Set(NEWS_OUTLETS.map((o) => o.id)).size, NEWS_OUTLETS.length);
   for (const o of NEWS_OUTLETS) assert.match(o.feed, /^https:\/\//);
+});
+
+test("isPolitics keeps political stories from general feeds", () => {
+  const n = (url: string, title: string, summary?: string) => ({ url, title, summary });
+  assert.ok(isPolitics(n("https://cnn.com.br/politica/x", "Qualquer coisa")), "politics section in the URL");
+  assert.ok(isPolitics(n("https://x.com/a", "Algo"), ["Política"]), "feed category");
+  assert.ok(isPolitics(n("https://bbc.com/portuguese/articles/1", "Senado aprova PEC da Segurança")));
+  assert.ok(isPolitics(n("https://x.com/a", "Novo anúncio", "O ministro da Fazenda disse...")));
+  assert.ok(!isPolitics(n("https://x.com/esporte/a", "Flamengo vence o clássico"), ["Esportes"]));
+  assert.ok(!isPolitics(n("https://x.com/a", "Receita de bolo de cenoura")));
+  assert.ok(!isPolitics(n("https://x.com/a", "Especial sobre o Pecado e a arte")), "whole words only");
+});
+
+test("general feeds are filtered to politics; politics feeds are not", async () => {
+  const xml = `<rss><channel>
+<item><title>Flamengo vence</title><link>https://x.com/esporte/1</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate><category>Esportes</category></item>
+<item><title>Câmara aprova projeto de lei</title><link>https://x.com/2</link><pubDate>Thu, 29 Oct 2026 20:59:00 GMT</pubDate></item>
+</channel></rss>`;
+  const general = await readOutlet({ id: "x", name: "X", feed: "https://x.com/feed/" }, async () => xml);
+  assert.deepEqual(general.items.map((i) => i.title), ["Câmara aprova projeto de lei"]);
+  const section = await readOutlet({ id: "x", name: "X", feed: "https://x.com/politica/feed/" }, async () => xml);
+  assert.equal(section.items.length, 2);
+  for (const f of ["https://g1.globo.com/rss/g1/politica/", "https://feeds.folha.uol.com.br/poder/rss091.xml", "https://www12.senado.leg.br/noticias/rss"]) assert.match(f, POLITICS_FEED);
+  for (const f of ["https://www.poder360.com.br/feed/", "https://feeds.bbci.co.uk/portuguese/rss.xml", "https://jovempan.com.br/feed"]) assert.doesNotMatch(f, POLITICS_FEED);
+});
+
+test("withUtm tags links with utm_source=lei-aberta, keeping existing params", () => {
+  assert.equal(withUtm("https://a.com/n?id=1"), "https://a.com/n?id=1&utm_source=lei-aberta");
+  assert.equal(withUtm("https://a.com/n?utm_source=rss#x"), "https://a.com/n?utm_source=lei-aberta#x");
+  assert.equal(withUtm("not a url"), "not a url");
 });
