@@ -11,7 +11,7 @@ import type { Level, Policy } from "./types";
  *   - indice.json: one compact Row per law, fetched only once someone filters or searches.
  * The page itself ships page 1 and the unfiltered numbers, so it renders without any fetch.
  */
-export const PAGE_SIZE = 24;
+export const PAGE_SIZE = 10;
 
 export const pageCount = (total: number) => Math.max(1, Math.ceil(total / PAGE_SIZE));
 export const pageFile = (page: number) => `pagina-${page}.json`;

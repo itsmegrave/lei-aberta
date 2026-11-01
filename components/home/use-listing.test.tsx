@@ -5,7 +5,7 @@ import { encodeIndex, PAGE_SIZE, pageFile, toCard } from "@/lib/listing";
 import type { Policy } from "@/lib/types";
 import { law } from "@/test/fixtures";
 
-// 60 laws, newest first: three page files. Every third is about education and by a PT deputy.
+// 60 laws, newest first: six page files. Every third is about education and by a PT deputy.
 const catalog: Policy[] = Array.from({ length: 60 }, (_, i) =>
   law({
     id: `lei-${i}`,
@@ -27,7 +27,7 @@ const fetchMock = vi.fn(async (url: string) => {
 const props = {
   firstPage: catalog.slice(0, PAGE_SIZE).map(toCard),
   overview: overview(rows, EMPTY_FILTERS, 2020).overview,
-  pages: 3,
+  pages: 6,
   lastYear: 2020,
 };
 
@@ -54,7 +54,7 @@ describe("useListing", () => {
   it("unfiltered page 1 renders from props without any fetch", async () => {
     const { result } = await setup();
     expect(result.current.page).toBe(1);
-    expect(result.current.pages).toBe(3);
+    expect(result.current.pages).toBe(6);
     expect(result.current.cards).toBe(props.firstPage);
     expect(result.current.overview).toBe(props.overview);
     expect(result.current.filtered).toBe(false);
@@ -66,7 +66,7 @@ describe("useListing", () => {
     act(() => result.current.goTo(2));
     await waitFor(() => expect(result.current.loading).toBe(false));
     expect(result.current.page).toBe(2);
-    expect(result.current.cards[0].id).toBe("lei-24");
+    expect(result.current.cards[0].id).toBe("lei-10");
     expect(fetched()).toEqual(["/dados/pagina-2.json"]);
     expect(window.location.search).toBe("?pagina=2");
   });
@@ -75,7 +75,7 @@ describe("useListing", () => {
     const { result } = await setup();
     act(() => result.current.goTo(99));
     await waitFor(() => expect(result.current.loading).toBe(false));
-    expect(result.current.page).toBe(3);
+    expect(result.current.page).toBe(6);
   });
 
   it("starts from filters in the address bar and loads the index", async () => {
@@ -84,8 +84,8 @@ describe("useListing", () => {
     await waitFor(() => expect(result.current.loading).toBe(false));
     expect(result.current.filters.area).toBe("educacao");
     expect(result.current.overview!.total).toBe(20);
-    expect(result.current.pages).toBe(1);
-    expect(result.current.cards).toHaveLength(20);
+    expect(result.current.pages).toBe(2);
+    expect(result.current.cards).toHaveLength(10);
     expect(result.current.cards.every((c) => c.areas.includes("educacao"))).toBe(true);
     expect(fetched()).toContain("/dados/indice.json");
   });

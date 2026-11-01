@@ -18,13 +18,13 @@ test("the index round-trips every row", () => {
   assert.ok(file.strings.length < 12, "strings are shared, not repeated");
 });
 
-test("pages are 24 laws, and a position maps to its page file", () => {
+test("pages are 10 laws, and a position maps to its page file", () => {
   assert.equal(pageCount(0), 1);
-  assert.equal(pageCount(24), 1);
-  assert.equal(pageCount(25), 2);
+  assert.equal(pageCount(10), 1);
+  assert.equal(pageCount(11), 2);
   assert.equal(pageOfPos(0), 1);
-  assert.equal(pageOfPos(23), 1);
-  assert.equal(pageOfPos(24), 2);
+  assert.equal(pageOfPos(9), 1);
+  assert.equal(pageOfPos(10), 2);
 });
 
 test("cards drop fields the page never shows", () => {
@@ -58,12 +58,12 @@ test("the pager shows ends, neighbours and gaps", () => {
 
 test("an empty catalog still has one page; page files are 1-based", () => {
   assert.equal(pageCount(0), 1);
-  assert.equal(pageCount(24), 1);
-  assert.equal(pageCount(25), 2);
+  assert.equal(pageCount(10), 1);
+  assert.equal(pageCount(11), 2);
   assert.equal(pageFile(1), "pagina-1.json");
   assert.equal(pageOfPos(0), 1);
-  assert.equal(pageOfPos(23), 1);
-  assert.equal(pageOfPos(24), 2);
+  assert.equal(pageOfPos(9), 1);
+  assert.equal(pageOfPos(10), 2);
 });
 
 test("URL state trims values, skips page 1 and drops blanks", () => {

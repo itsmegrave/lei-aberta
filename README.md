@@ -82,7 +82,7 @@ The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Ma
 
 The home page never ships the whole catalog. At build time `app/dados/[file]/route.ts` writes static files (see `lib/listing.ts`):
 
-- `/dados/pagina-<n>.json`: the cards of page *n*, 24 per page, newest first.
+- `/dados/pagina-<n>.json`: the cards of page *n*, 10 per page, newest first.
 - `/dados/indice.json`: one compact row per law (level, year, topics, author and executive party buckets, states, title text), fetched only when someone filters or searches.
 
 The HTML carries page 1 and the unfiltered chart numbers. Filters and the page live in the URL (`?tema=saude&pagina=2`), so any view can be shared.
