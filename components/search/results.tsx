@@ -14,13 +14,12 @@ import { PolicyCard } from "@/components/home/policy-card";
 import { PolicySheet } from "@/components/home/policy-sheet";
 import { LevelPills, TopicChips } from "@/components/home/topics";
 import { useListing } from "@/components/home/use-listing";
+import { FilterSelects } from "./filter-selects";
 
-/** Filters picked on a home chart (party, state, year) that have no control of their own here: shown as removable chips. */
-const CHIPS: { key: "author" | "executive" | "uf" | "year"; label: (v: string) => string }[] = [
+/** Filters picked on a home chart (party) that have no control of their own here: shown as removable chips. */
+const CHIPS: { key: "author" | "executive"; label: (v: string) => string }[] = [
   { key: "author", label: (v) => `Proposta por: ${v}` },
   { key: "executive", label: (v) => `Sancionada por: ${v}` },
-  { key: "uf", label: (v) => `Estado: ${v}` },
-  { key: "year", label: (v) => `Ano: ${v}` },
 ];
 
 /** Title for what is being shown, e.g. "Leis sobre Saúde" or "Resultados para “escola”". */
@@ -88,6 +87,13 @@ export function Results({
       <div className={cn("mt-4 grid gap-3 transition-opacity", busy && "pointer-events-none opacity-50")} aria-busy={busy}>
         <TopicChips keys={initial.topics.map((t) => t.key)} counts={new Map(ov.topics.map((c) => [c.key, c.value]))} active={f.area} onPick={(k) => toggle("area", k)} />
         <LevelPills counts={new Map(ov.levels.map((c) => [c.key, c.value]))} active={f.level} onPick={(k) => toggle("level", k)} />
+        <FilterSelects
+          years={ov.years}
+          year={f.year}
+          uf={f.uf}
+          onYear={(year) => list.setFilters((s) => ({ ...s, year }))}
+          onUf={(uf) => list.setFilters((s) => ({ ...s, uf }))}
+        />
         {(chips.length > 0 || list.filtered) && (
           <div className="flex flex-wrap items-center gap-2">
             {chips.map((c) => (

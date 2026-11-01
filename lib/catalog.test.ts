@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { applyFilters as filterRows, authorKeys, countBy, EMPTY_FILTERS, executiveKey, isFiltered, NO_PARTY, overview, UNKNOWN_PARTY, perAuthorState as stateRows, perYear, toRow, type Filters } from "./catalog.ts";
+import { applyFilters as filterRows, authorKeys, countBy, EMPTY_FILTERS, executiveKey, isFiltered, lawState, NO_PARTY, overview, UNKNOWN_PARTY, perAuthorState as stateRows, perYear, toRow, type Filters } from "./catalog.ts";
 import { partyScore, spectrumColor } from "./party-spectrum.ts";
 import type { Policy } from "./types.ts";
 
@@ -149,4 +149,22 @@ test("perYear ignores years outside 1988..lastYear", () => {
   const ys = perYear([{ year: 1987, level: "federal" }, { year: 2031, level: "federal" }, { year: 1988, level: "municipal" }], 1990);
   assert.deepEqual(ys[0], { year: 1988, federal: 0, estadual: 0, municipal: 1 });
   assert.equal(ys.reduce((n, y) => n + y.federal, 0), 0);
+});
+
+test("a state or municipal law belongs to its state; federal laws to none", () => {
+  assert.equal(lawState({ level: "federal", jurisdiction: "Brasil" }), "");
+  assert.equal(lawState({ level: "estadual", jurisdiction: "São Paulo" }), "SP");
+  assert.equal(lawState({ level: "estadual", jurisdiction: "Lua" }), "");
+  assert.equal(lawState({ level: "municipal", jurisdiction: "Campinas (SP)" }), "SP");
+  assert.equal(lawState({ level: "municipal", jurisdiction: "Lugar (XX)" }), "");
+});
+
+test("the state filter matches a state's own laws and laws its lawmakers proposed", () => {
+  const governorBill = toRow({ ...base, id: "g", level: "estadual", jurisdiction: "Piauí", authors: [{ name: "Gov", kind: "executive", party: null, uf: null }] }, 0);
+  const deputyBill = toRow({ ...base, id: "d", authors: [{ name: "Ana", kind: "deputy", party: "PT", uf: "PI" }] }, 1);
+  const other = toRow({ ...base, id: "o", authors: [{ name: "Bia", kind: "deputy", party: "PT", uf: "SP" }] }, 2);
+  assert.equal(governorBill.state, "PI");
+  assert.deepEqual(filterRows([governorBill, deputyBill, other], { ...EMPTY_FILTERS, uf: "PI" }).map((r) => r.pos), [0, 1]);
+  // The map still counts only lawmakers' states.
+  assert.deepEqual([...stateRows([governorBill, deputyBill, other])], [["PI", 1], ["SP", 1]]);
 });
