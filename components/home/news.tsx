@@ -4,7 +4,15 @@ import { ExternalLinkIcon, LockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { NewsItem } from "@/lib/news";
 import { timeAgo } from "@/lib/sources";
+import { cn } from "@/lib/utils";
 import { Panel } from "./section";
+
+// Phones: a swipeable carousel, one card plus a peek of the next.
+// `relative` keeps the absolutely placed sr-only text inside the scroller, so the page never scrolls sideways.
+// From md up: a grid. Native scroll snapping, so it works with touch, trackpad and keyboard.
+const LIST =
+  "relative flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-2 [scrollbar-width:none] md:grid md:snap-none md:grid-cols-[repeat(auto-fill,minmax(260px,1fr))] md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden";
+const ITEM = "w-[82%] max-w-[340px] min-w-0 shrink-0 snap-start md:w-auto md:max-w-none";
 
 export const NEWS_API = "/api/noticias";
 
@@ -29,9 +37,9 @@ export function News() {
 
   if (state.status === "loading") {
     return (
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5" aria-busy="true" aria-label="Carregando notícias">
+      <div className={LIST} aria-busy="true" aria-label="Carregando notícias">
         {Array.from({ length: 6 }, (_, i) => (
-          <Panel key={i} className="bg-secondary h-[118px] animate-pulse" />
+          <Panel key={i} className={cn(ITEM, "bg-secondary h-[118px] animate-pulse")} />
         ))}
       </div>
     );
@@ -43,9 +51,9 @@ export function News() {
 
   return (
     <>
-      <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5 p-0">
+      <ul className={cn(LIST, "m-0 list-none")} aria-label="Notícias, deslize para ver mais">
         {state.items.map((n) => (
-          <li key={n.url} className="min-w-0">
+          <li key={n.url} className={ITEM}>
             <a href={n.url} target="_blank" rel="noopener noreferrer" className="group block h-full">
               <Panel className="flex h-full flex-col gap-2 overflow-hidden transition-transform group-hover:-translate-y-0.5">
                 {n.image && <Thumb src={n.image} />}

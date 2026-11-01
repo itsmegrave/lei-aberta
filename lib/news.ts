@@ -95,8 +95,42 @@ function imageOf(block: string): string | undefined {
   return clean && /^https:\/\//.test(clean) ? clean : undefined;
 }
 
-/** Parses RSS 2.0 items or Atom entries into headlines. Items without a title, an http(s) link or a valid date are skipped. */
-export function parseFeed(xml: string, outlet: string, paywall = false): NewsItem[] {
+/** A feed address that is already a politics section (or a legislature's own news), so its items need no topic filter. */
+export const POLITICS_FEED = /politic|\/poder\/|republica|\.leg\.br\//i;
+
+const POLITICS_SECTION = /\/(politica|poder|republica|eleicoes|eleicao)(\/|-|$)/i;
+const POLITICS_CATEGORY = /pol[ií]tica|elei[cç]|congresso|senado|c[aâ]mara|\bstf\b|supremo|planalto|governo federal|partido/i;
+// Whole words or phrases that mark a story as political news when the feed gives no section or category.
+const POLITICS_WORDS =
+  /\b(lula|bolsonaro|congresso|senado|senador(a|es)?|c[aâ]mara dos deputados|deputad[oa]s?|stf|supremo tribunal|tse|ministr[oa]s?|minist[eé]rio|planalto|governador(a|es)?|prefeit[oa]s?|elei[cç](ão|ões)|eleitora(l|is)|pec|projeto de lei|medida provis[oó]ria|partido|oposi[cç][aã]o|base aliada|impeachment|cpi|reforma (tribut[aá]ria|administrativa|pol[ií]tica)|or[cç]amento|alcolumbre|hugo motta)\b/i;
+
+/** Whether an item from a general (all-topics) feed is political news: by URL section, feed category, or headline words. */
+export function isPolitics(item: Pick<NewsItem, "url" | "title" | "summary">, categories: string[] = []): boolean {
+  let path = "";
+  try {
+    path = new URL(item.url).pathname;
+  } catch {}
+  if (POLITICS_SECTION.test(path)) return true;
+  if (categories.some((c) => POLITICS_CATEGORY.test(c))) return true;
+  return POLITICS_WORDS.test(`${item.title} ${item.summary ?? ""}`);
+}
+
+/** Adds utm_source=lei-aberta so outlets can see the visit came from Lei Aberta. */
+export function withUtm(url: string): string {
+  try {
+    const u = new URL(url);
+    u.searchParams.set("utm_source", "lei-aberta");
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+/**
+ * Parses RSS 2.0 items or Atom entries into headlines. Items without a title, an http(s) link or a valid date are skipped.
+ * With `politicsOnly`, items that are not political news (see isPolitics) are dropped too.
+ */
+export function parseFeed(xml: string, outlet: string, paywall = false, politicsOnly = false): NewsItem[] {
   const out: NewsItem[] = [];
   const blocks = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) ?? xml.match(/<entry[\s>][\s\S]*?<\/entry>/gi) ?? [];
   for (const b of blocks) {
@@ -107,9 +141,14 @@ export function parseFeed(xml: string, outlet: string, paywall = false): NewsIte
     if (!title || !link || !/^https?:\/\//.test(link) || Number.isNaN(time)) continue;
     const summary = clip(tag(b, "description") ?? tag(b, "summary") ?? "");
     const image = imageOf(b);
+    const url = link.replace(/&amp;/g, "&");
+    if (politicsOnly) {
+      const categories = [...b.matchAll(/<category\b[^>]*?(?:term="([^"]*)")?[^>]*?(?:\/>|>([\s\S]*?)<\/category>)/gi)].map((m) => decode(m[1] ?? m[2] ?? ""));
+      if (!isPolitics({ url, title, summary }, categories)) continue;
+    }
     out.push({
       title,
-      url: link.replace(/&amp;/g, "&"),
+      url,
       outlet,
       ...(paywall && { paywall }),
       ...(summary && summary !== title && { summary }),
@@ -160,7 +199,8 @@ export async function readOutlet(o: NewsOutlet, get: (url: string) => Promise<st
   const errors: string[] = [];
   for (const feed of [o.feed, ...(o.fallbacks ?? [])]) {
     try {
-      const items = parseFeed(await get(feed), o.name, o.paywall);
+      // General feeds (a fallback, or an outlet without a politics feed) carry every topic: keep only politics.
+      const items = parseFeed(await get(feed), o.name, o.paywall, !POLITICS_FEED.test(feed));
       if (items.length) return { items, feed, errors };
       errors.push(`${feed}: no items`);
     } catch (e) {
