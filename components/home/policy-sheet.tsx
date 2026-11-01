@@ -9,6 +9,7 @@ import { isNoPartyCode, partyOf, partyPath, renamedTo } from "@/lib/parties";
 import type { Policy } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { area, AUTHOR_KIND, emojiSrc, LEVELS, statusLabel } from "@/lib/vocab";
+import { LawMap } from "./law-map";
 import { lawLabel } from "./policy-card";
 import { ShareButtons } from "./share-button";
 import { useDark } from "./use-dark";
@@ -108,6 +109,7 @@ export function PolicyDetails({ p, inSheet = false }: { p: Policy; inSheet?: boo
           </div>
         </div>
       </div>
+      <LawMap p={p} />
       {/* The first source is the main action; the others look secondary. Each link's name says which source it is. */}
       {p.sources.map((s, i) => (
         <div key={s.url} className="grid gap-1">
