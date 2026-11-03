@@ -56,12 +56,64 @@ export function clean(s: string | null | undefined): string {
   return (s ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-/** Some houses keep ementas in ALL CAPS; turn those into sentence case so cards stay readable. */
+const LETTERS = /[^A-Za-zÀ-ÿ]/g;
+const letters = (w: string) => w.replace(LETTERS, "");
+const isUpper = (w: string) => letters(w).length > 0 && letters(w) === letters(w).toLocaleUpperCase("pt-BR");
+const ROMAN = /^X{0,3}(IX|IV|V?I{0,3})$/;
+const PARTICLES = new Set(["a", "à", "ao", "aos", "as", "às", "com", "da", "das", "de", "do", "dos", "e", "em", "na", "nas", "no", "nos", "o", "os", "para", "por"]);
+const upFirst = (s: string) => s.replace(/[A-Za-zÀ-ÿ]/, (c) => c.toLocaleUpperCase("pt-BR"));
+/** Words no case change touches: numbers ("8º-A"), roman numerals ("XII"), "(ADH/PI)", "S/A". */
+const fixedCase = (w: string) => /\d/.test(w) || ROMAN.test(letters(w)) || /^["“]?\(.*\)[,.;:”"]?$/.test(w) || w.includes("/");
+/** Inside a normal sentence, short upper-case words are acronyms too ("SUS", "ASA"). */
+const acronym = (w: string) => fixedCase(w) || (letters(w).length <= 3 && !PARTICLES.has(letters(w).toLocaleLowerCase("pt-BR")));
+const lowerWord = (w: string) => (/^N[º°]S?$/i.test(w.replace(/[,.;:]$/, "")) ? w.toLocaleLowerCase("pt-BR") : fixedCase(w) ? w : w.toLocaleLowerCase("pt-BR"));
+
+/**
+ * Some houses keep ementas in ALL CAPS, or shout part of them ("ao GENERAL DE EXÉRCITO FULANO"). A mostly
+ * upper-case ementa becomes sentence case; a run of shouted words inside a normal sentence is usually a name, so
+ * it becomes title case. Numbers, roman numerals and acronyms keep their case.
+ */
 export function tameCaps(s: string): string {
-  const letters = s.replace(/[^A-Za-zÀ-ÿ]/g, "");
-  if (letters.length < 12 || letters !== letters.toUpperCase()) return s;
-  const lower = s.toLocaleLowerCase("pt-BR");
-  return lower.charAt(0).toLocaleUpperCase("pt-BR") + lower.slice(1);
+  const all = letters(s);
+  const upper = all.replace(/[^A-ZÀ-Ý]/g, "").length;
+  const words = s.split(" ");
+  if (all.length >= 12 && upper / all.length >= 0.8) {
+    return upFirst(words.map(lowerWord).join(" "));
+  }
+  const out = [...words];
+  // A shouted first word ("CONSIDERA como de utilidade pública") is just the verb.
+  if (words[0] && isUpper(words[0]) && !fixedCase(words[0])) out[0] = upFirst(words[0].toLocaleLowerCase("pt-BR"));
+  for (let i = 1; i < words.length; ) {
+    let j = i;
+    while (j < words.length && isUpper(words[j])) j++;
+    const run = words.slice(i, j);
+    // Two or more shouted words with at least one real word in them; a lone upper-case word is an acronym.
+    if (run.length >= 2 && run.some((w) => letters(w).length >= 4 && !acronym(w))) {
+      run.forEach((w, k) => {
+        if (acronym(w)) return;
+        const lower = w.toLocaleLowerCase("pt-BR");
+        out[i + k] = PARTICLES.has(letters(lower)) ? lower : upFirst(lower);
+      });
+    }
+    i = j + 1;
+  }
+  return out.join(" ");
+}
+
+/** Strips the quotes some houses wrap whole ementas in: “altera o “caput” do art. 48.” -> altera o “caput” do art. 48. */
+export function unquote(s: string): string {
+  if (!/^["“]/.test(s)) return s;
+  const inner = s.slice(1);
+  if (/["”](\.?)$/.test(inner)) return inner.replace(/["”](\.?)$/, "$1");
+  return (inner.match(/["“”]/g)?.length ?? 0) % 2 === 0 ? inner : s;
+}
+
+/** Drops a closing quote with no opening one: "... do Estado do Amazonas.”" */
+const dropStrayClose = (s: string) => (/[”"]$/.test(s) && (s.match(/["“”]/g)?.length ?? 0) % 2 === 1 ? s.slice(0, -1) : s);
+
+/** Ementa as shown on cards: no markup, no wrapping quotes, no shouting, capital first letter. */
+export function tidyEmenta(s: string | null | undefined): string {
+  return upFirst(tameCaps(dropStrayClose(unquote(clean(s)))));
 }
 
 /** A short card title from an ementa: its first clause, cut at a word boundary. The full ementa stays in `summary`. */
@@ -115,7 +167,7 @@ export interface DraftLaw {
 
 /** Builds the record. `executive` stays null: governors' parties come from TSE data, never from author data. */
 export function toPolicy(d: DraftLaw): Policy {
-  const ementa = tameCaps(clean(d.ementa));
+  const ementa = tidyEmenta(d.ementa);
   const label = `${TYPE_LABEL[d.type]} nº ${displayNumber(d.number)}/${d.year}`;
   const authors = d.authors ?? [];
   const parties = [...new Set(authors.filter((a) => a.kind !== "executive" && a.party).map((a) => a.party!))].sort();

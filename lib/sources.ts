@@ -1,6 +1,7 @@
 /**
- * Data source manifest. Each crawler owns one file, data/sources/<id>.json, and rewrites it on every run.
- * One file per source means crawlers never edit the same file. The site lists every file at build time.
+ * Data source manifest, one file per source: data/sources/<id>.json, changed through pull requests.
+ * The fields a crawl changes (STATE_FIELDS: status, counts, last run, cursor) are saved in Postgres by the
+ * nightly runs (source_status) and laid over the files by the site, since main only accepts pull requests.
  */
 export type SourceStatus = "active" | "building" | "planned" | "failing";
 export type SourceLevel = "federal" | "estadual" | "municipal";
@@ -34,7 +35,7 @@ export interface DataSource {
 }
 
 export const STATUS_LABEL: Record<SourceStatus, string> = {
-  active: "Coletando",
+  active: "Ativa",
   building: "Em construção",
   planned: "Planejada",
   failing: "Com falha",
@@ -72,4 +73,21 @@ export function timeAgo(iso: string, now = Date.now()): string {
   if (s < 86400) return rtf.format(-Math.round(s / 3600), "hour");
   if (s < 86400 * 45) return rtf.format(-Math.round(s / 86400), "day");
   return rtf.format(-Math.round(s / (86400 * 30)), "month");
+}
+
+/** The fields a crawler run changes. They live in Postgres (source_status); the rest stays in data/sources. */
+export const STATE_FIELDS = ["status", "records", "since", "lastRun", "lastSuccess"] as const;
+export type SourceState = Partial<Pick<DataSource, (typeof STATE_FIELDS)[number]>>;
+
+export function stateOf(s: Partial<DataSource>): SourceState {
+  const out: SourceState = {};
+  for (const k of STATE_FIELDS) if (k in s) (out as Record<string, unknown>)[k] = s[k];
+  return out;
+}
+
+/** The manifest with the latest crawl state laid over it. Keeps the manifest as is when the result is invalid. */
+export function withState(s: DataSource, state: SourceState | undefined): DataSource {
+  if (!state) return s;
+  const next = { ...s, ...stateOf(state) };
+  return validateSource(next).length ? s : next;
 }

@@ -2,6 +2,8 @@
 // nested lists (authors, sources) stay as JSON because they are only read whole.
 import { getTableColumns, sql } from "drizzle-orm";
 import { boolean, check, customType, date, index, integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import type { CrawlRunStatus } from "../crawl-runs.ts";
+import type { SourceState } from "../sources.ts";
 import type { Author, Executive, Policy } from "../types.ts";
 
 const tsvector = customType<{ data: string }>({ dataType: () => "tsvector" });
@@ -57,3 +59,36 @@ export type NewPolicyRow = typeof policies.$inferInsert;
 const { search: _search, ...readable } = getTableColumns(policies);
 export const policyColumns = readable;
 export type PolicyRead = Omit<PolicyRow, "search">;
+
+/**
+ * One row per crawler run, written by the nightly workflows (scripts/crawl-run.ts) when a crawl starts and
+ * when it ends, so the site can say which crawler is collecting right now. `crawler` is the repo path that
+ * data/sources/<id>.json manifests carry in their `crawler` field.
+ */
+export const crawlRuns = pgTable(
+  "crawl_runs",
+  {
+    /** GitHub run id, attempt and crawler, so a start and its finish land on the same row. */
+    id: text("id").primaryKey(),
+    crawler: text("crawler").notNull(),
+    /** running, success, failure or cancelled. */
+    status: text("status").notNull().$type<CrawlRunStatus>(),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    finishedAt: timestamp("finished_at", { withTimezone: true }),
+    /** Link to the GitHub Actions run, shown on the site. */
+    runUrl: text("run_url"),
+  },
+  (t) => [index("crawl_runs_crawler_started_idx").on(t.crawler, t.startedAt)],
+);
+
+/**
+ * What each crawler last wrote about a source: status, record count, first year, last run and last success
+ * (the next incremental run's cursor). The descriptive part of a source (name, description, links) stays in
+ * data/sources/<id>.json, changed through pull requests; main only takes PRs, so crawlers can't commit there.
+ */
+export const sourceStatus = pgTable("source_status", {
+  /** data/sources/<id>.json id. */
+  id: text("id").primaryKey(),
+  state: jsonb("state").notNull().$type<SourceState>(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});

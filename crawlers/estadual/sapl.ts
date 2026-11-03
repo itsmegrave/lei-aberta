@@ -181,17 +181,43 @@ export async function loadAuthorBook(base: string): Promise<AuthorBook> {
   };
 }
 
-/** The record id a SAPL law will get, known before any per-law request (see saplToPolicy). */
-export function saplId(house: StateHouse, type: LawType, n: Norma): string {
-  const date = n.data ?? n.data_publicacao ?? null;
-  const complement = typeof n.complemento === "string" ? n.complemento : null;
-  return stateId(house.uf, type, bareNumber(n.numero, complement), date ? Number(date.slice(0, 4)) : n.ano);
+const FIRST_CATALOG_YEAR = 1988;
+const isDay = (d: string | null | undefined): d is string => !!d && /^\d{4}-\d{2}-\d{2}$/.test(d);
+const inCatalog = (y: number, thisYear: number) => y >= FIRST_CATALOG_YEAR && y <= thisYear;
+
+/**
+ * The law's year and signing date. SAPL's `data` is the law's own date and its `ano` is sometimes off
+ * (RO files laws under the year of the bill), so `data` wins, but `data` has typos too: "0200-06-30",
+ * "1004-12-27", "2055-03-03". A date whose year can't be a law in the catalog gets `ano` as its year, keeping
+ * day and month. A real date before 1988 (an old law filed under a recent `ano`) is out of the catalog: null.
+ */
+export function saplDate(n: Pick<Norma, "ano" | "data" | "data_publicacao">, thisYear = new Date().getUTCFullYear()): { year: number; date: string | null } | null {
+  const ano = Number(n.ano);
+  if (isDay(n.data)) {
+    const y = Number(n.data.slice(0, 4));
+    if (inCatalog(y, thisYear)) return { year: y, date: n.data };
+    if (y >= 1800 && y < FIRST_CATALOG_YEAR) return null;
+    return inCatalog(ano, thisYear) ? { year: ano, date: `${ano}${n.data.slice(4)}` } : null;
+  }
+  if (isDay(n.data_publicacao) && inCatalog(Number(n.data_publicacao.slice(0, 4)), thisYear)) {
+    return { year: Number(n.data_publicacao.slice(0, 4)), date: n.data_publicacao };
+  }
+  return inCatalog(ano, thisYear) ? { year: ano, date: null } : null;
 }
 
-/** Turns one SAPL law plus its bill into a record. Pure; tested with fixtures. */
+/** The record id a SAPL law will get, known before any per-law request (see saplToPolicy). Null: not in the catalog. */
+export function saplId(house: StateHouse, type: LawType, n: Norma): string | null {
+  const when = saplDate(n);
+  if (!when) return null;
+  const complement = typeof n.complemento === "string" ? n.complemento : null;
+  return stateId(house.uf, type, bareNumber(n.numero, complement), when.year);
+}
+
+/** Turns one SAPL law plus its bill into a record, or null for a law dated before the catalog. Pure; tested with fixtures. */
 export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia: Materia | null, autorIds: number[], book: AuthorBook) {
-  const date = n.data ?? n.data_publicacao ?? null;
-  const year = date ? Number(date.slice(0, 4)) : n.ano;
+  const when = saplDate(n);
+  if (!when) return null;
+  const { year, date } = when;
   const presentedAt = materia?.data_apresentacao ?? null;
   const partyDate = presentedAt ?? date;
   const authors = autorIds.map((id) => toAuthor(book, id, house.uf, partyDate)).filter((a): a is Author => a !== null);
@@ -208,7 +234,12 @@ export function saplToPolicy(house: StateHouse, type: LawType, n: Norma, materia
 export async function crawlSapl(
   house: StateHouse,
   years: number[],
-  { concurrency = 3, limit = Infinity, skip = () => false }: { concurrency?: number; limit?: number; skip?: (id: string) => boolean } = {},
+  {
+    concurrency = 3,
+    limit = Infinity,
+    skip = () => false,
+    refetch = [],
+  }: { concurrency?: number; limit?: number; skip?: (id: string) => boolean; refetch?: number[] } = {},
 ): Promise<AdapterResult> {
   const base = house.url.replace(/\/$/, "");
   const errors: string[] = [];
@@ -222,36 +253,56 @@ export async function crawlSapl(
     `authors: ${book.autores.size}, author types: ${[...book.tipos.values()].join("/")}, affiliations: ${[...book.filiacoes.values()].flat().length}, parties: ${book.partidos.size}`,
   ];
 
+  const toRecord = async (n: Norma, type: LawType) => {
+    try {
+      let materia: Materia | null = null;
+      let autorIds = n.autores ?? [];
+      if (n.materia) {
+        materia = await fetchJson<Materia>(`${base}/api/materia/materialegislativa/${n.materia}/`).catch(() => null);
+        if (!autorIds.length) autorIds = materia?.autores ?? [];
+        if (!autorIds.length) {
+          const autorias = await listAll<Autoria>(base, "/api/materia/autoria/", { materia: n.materia }).catch(() => []);
+          autorIds = autorias.sort((a, b) => Number(!!b.primeiro_autor) - Number(!!a.primeiro_autor)).map((a) => a.autor);
+        }
+      }
+      return saplToPolicy(house, type, n, materia, autorIds, book);
+    } catch (err) {
+      errors.push(`${house.uf} norma ${n.id}: ${err}`);
+      return null;
+    }
+  };
+
   for (const [tipoId, type] of types) {
     for (const ano of years) {
       let normas: Norma[];
       try {
-        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).filter((n) => !skip(saplId(house, type, n))).slice(0, limit);
+        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit))
+          .filter((n) => {
+            const id = saplId(house, type, n);
+            return id !== null && !skip(id);
+          })
+          .slice(0, limit);
       } catch (err) {
         errors.push(`${house.uf} ${type} ${ano}: ${err}`);
         continue;
       }
-      const rows = await mapLimit(normas, concurrency, async (n) => {
-        try {
-          let materia: Materia | null = null;
-          let autorIds = n.autores ?? [];
-          if (n.materia) {
-            materia = await fetchJson<Materia>(`${base}/api/materia/materialegislativa/${n.materia}/`).catch(() => null);
-            if (!autorIds.length) autorIds = materia?.autores ?? [];
-            if (!autorIds.length) {
-              const autorias = await listAll<Autoria>(base, "/api/materia/autoria/", { materia: n.materia }).catch(() => []);
-              autorIds = autorias.sort((a, b) => Number(!!b.primeiro_autor) - Number(!!a.primeiro_autor)).map((a) => a.autor);
-            }
-          }
-          return saplToPolicy(house, type, n, materia, autorIds, book);
-        } catch (err) {
-          errors.push(`${house.uf} norma ${n.id}: ${err}`);
-          return null;
-        }
-      });
+      const rows = await mapLimit(normas, concurrency, (n) => toRecord(n, type));
       for (const r of rows) if (r) records.push(r);
     }
   }
+
+  // Laws stored with a broken year (see saplDate) are fetched again by their SAPL id, whatever year they're in.
+  const again = await mapLimit(refetch, concurrency, async (id) => {
+    const n = await fetchJson<Norma>(`${base}/api/norma/normajuridica/${id}/`).catch((err) => {
+      errors.push(`${house.uf} norma ${id}: ${err}`);
+      return null;
+    });
+    const type = n && types.get(n.tipo);
+    return n && type ? toRecord(n, type) : null;
+  });
+  for (const r of again) if (r) records.push(r);
+  if (refetch.length) info.push(`refetched ${refetch.length} law(s) with a broken year, ${again.filter(Boolean).length} kept`);
+
   if (!records.length && !errors.length) {
     // Nothing found: show what the house does hold for that year, to tell "no laws yet" from a type mismatch.
     const sample = await fetchJson<Page<Norma & { __str__?: string }>>(`${base}/api/norma/normajuridica/?ano=${years.at(-1)}&page_size=5`).catch(() => null);
