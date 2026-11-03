@@ -65,8 +65,19 @@ export function titleCase(s: string): string {
     .join(" ");
 }
 
-/** Some câmaras wrap the ementa in quotes. */
-const unquote = (s: string) => s.trim().replace(/^["“”']+\s*/, "").replace(/\s*["“”']+\.?$/, "");
+/**
+ * Some câmaras wrap the ementa in quotes, or start it with the law's own heading
+ * ("LEI COMPLEMENTAR N° 364 DE 19 DE MAIO DE 2026 \"Institui...\"", Rio Branco).
+ */
+export const tidyEmenta = (s: string) =>
+  s
+    .trim()
+    .replace(/^LEI\s+(COMPLEMENTAR\s+)?(MUNICIPAL\s+)?N[º°o.]*\s*[\d.]+(\/\d{2,4})?,?\s*(DE\s+)?\d{1,2}[º°]?\s+DE\s+\S+\s+DE\s+\d{4}[.,:\s–-]*/i, "")
+    .replace(/^["“”']+\s*/, "")
+    .replace(/\s*["“”']+\.?$/, "");
+
+/** "Vereador Dr. Fulano" -> "Dr. Fulano": the kind already says vereador. */
+const dropOffice = (name: string) => name.replace(/^vereador(a)?\s+/i, "");
 
 export interface DraftLaw {
   city: City;
@@ -86,9 +97,9 @@ export interface DraftLaw {
 
 /** Builds the record. `executive` (the mayor) is set by run.ts from TSE data, never from author data. */
 export function toPolicy(d: DraftLaw): Policy {
-  const ementa = tameCaps(unquote(clean(d.ementa)));
+  const ementa = tameCaps(tidyEmenta(clean(d.ementa)));
   const label = `${TYPE_LABEL[d.type]} nº ${displayNumber(d.number)}/${d.year}`;
-  const authors = (d.authors ?? []).map((a) => ({ ...a, name: titleCase(a.name) }));
+  const authors = (d.authors ?? []).map((a) => ({ ...a, name: titleCase(dropOffice(a.name)) }));
   const parties = [...new Set(authors.filter((a) => a.kind !== "executive" && a.party).map((a) => a.party!))].sort();
   return {
     id: municipalId(d.city.ibge, d.type, d.number, d.year),

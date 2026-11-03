@@ -7,7 +7,7 @@ import { CAPITALS } from "../diarios/querido-diario.ts";
 import { municipalId as qdId } from "../diarios/querido-diario.ts";
 import { CITIES, findCity, sourceId } from "./cities.ts";
 import { type LeiAprovada, type Promovente, type Vereador, cmspKind, cmspPartyOn, cmspToPolicy, joinLaws } from "./cmsp.ts";
-import { municipalLawType, normalizeParty, titleCase } from "./common.ts";
+import { municipalLawType, normalizeParty, tidyEmenta, titleCase } from "./common.ts";
 import { MayorTable, mayorName, parseMayors } from "./mayors.ts";
 import { municipalAuthorKind, saplId, saplToPolicy, targetTypes } from "./sapl.ts";
 
@@ -190,4 +190,10 @@ test("planned câmaras still produce valid manifests", () => {
     };
     assert.deepEqual(validateSource(s, `${sourceId(c)}.json`), [], c.name);
   }
+});
+
+test("ementas lose wrapping quotes and a repeated law heading", () => {
+  assert.equal(tidyEmenta('LEI COMPLEMENTAR N° 364 DE 19 DE MAIO DE 2026 "Institui o projeto BEM."'), "Institui o projeto BEM.");
+  assert.equal(tidyEmenta('"Declara de utilidade pública a Associação X."'), "Declara de utilidade pública a Associação X.");
+  assert.equal(tidyEmenta("Altera a Lei nº 3.882, de 11 de dezembro de 1989"), "Altera a Lei nº 3.882, de 11 de dezembro de 1989");
 });

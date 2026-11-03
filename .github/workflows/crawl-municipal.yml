@@ -46,9 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     # A first run backfills every SAPL câmara from 1989 (a few requests per law, throttled per host).
     timeout-minutes: 340
-    permissions:
-      contents: write
-    # Shared with the other crawlers so only one job commits at a time.
+    # Source status lives in Postgres (no commits to main); shared group keeps crawls from overlapping.
     concurrency:
       group: data-commit
       cancel-in-progress: false
@@ -66,6 +64,7 @@ jobs:
           path: .cache/tse
           key: tse-consulta-cand-municipal-v1
       - name: Crawl
+        id: crawl
         env:
           CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CITIES: ${{ inputs.cities }}
@@ -75,17 +74,3 @@ jobs:
           [ -n "$CITIES" ] && args+=(--cities "$CITIES")
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           npm run crawl:municipal -- "${args[@]}"
-      - name: Commit data
-        if: always()
-        run: |
-          git config user.name "lei-aberta-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Laws live in Postgres; only the source manifests (status, counts) are committed.
-          git add data/sources
-          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
-          git commit -m "data: municipal crawl $(date -u +%Y-%m-%d)"
-          for i in 1 2 3 4; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
-            sleep $((2 ** i))
-          done
-          exit 1
