@@ -67,7 +67,13 @@ jobs:
         with:
           path: .cache/tse
           key: tse-consulta-cand-v1
+      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      - name: Mark as collecting
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/estadual/run.ts
       - name: Crawl
+        id: crawl
         env:
           CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           STATES: ${{ inputs.states }}
@@ -77,6 +83,12 @@ jobs:
           [ -n "$STATES" ] && args+=(--states "$STATES")
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           npm run crawl:estadual -- "${args[@]}"
+      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
+      - name: Record the outcome
+        if: always()
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/estadual/run.ts "${{ steps.crawl.outcome }}"
       - name: Commit data
         if: always()
         run: |

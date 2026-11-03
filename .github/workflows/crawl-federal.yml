@@ -66,7 +66,13 @@ jobs:
           cache: npm
       # The store mirrors every save into Postgres, which needs drizzle-orm and postgres.
       - run: npm ci
+      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      - name: Mark as collecting
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/federal/run.ts
       - name: Crawl
+        id: crawl
         env:
           CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           FROM: ${{ inputs.from }}
@@ -78,6 +84,12 @@ jobs:
           [ -n "$TO" ] && args+=(--to "$TO")
           [ "$FULL" = "true" ] && args+=(--full)
           npm run crawl:federal -- "${args[@]}"
+      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
+      - name: Record the outcome
+        if: always()
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/federal/run.ts "${{ steps.crawl.outcome }}"
       - name: Commit data
         if: always()
         run: |

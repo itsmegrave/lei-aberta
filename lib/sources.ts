@@ -34,7 +34,7 @@ export interface DataSource {
 }
 
 export const STATUS_LABEL: Record<SourceStatus, string> = {
-  active: "Coletando",
+  active: "Ativa",
   building: "Em construção",
   planned: "Planejada",
   failing: "Com falha",
