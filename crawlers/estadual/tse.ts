@@ -155,7 +155,7 @@ export async function loadPartyAtElection(uf: string, elections = STATE_ELECTION
       }
     }
     try {
-      const rows = await parseCandidates(zipTextChunks(zip, `_${uf}.csv`), uf, year);
+      const rows = await parseCandidates(zipTextChunks(zip, `_${uf}.csv`, "windows-1252"), uf, year);
       info.push(`TSE ${year}: ${rows.length} candidacies, ${rows.filter((r) => r.elected).length} elected`);
       all.push(...rows);
     } catch (err) {

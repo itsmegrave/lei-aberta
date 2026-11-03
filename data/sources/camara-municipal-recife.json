@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-recife",
+  "name": "Câmara Municipal do Recife",
+  "publisher": "Câmara Municipal do Recife",
+  "url": "https://sapl.recife.pe.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Recife (PE)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Recife, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-macapa",
+  "name": "Câmara Municipal de Macapá",
+  "publisher": "Câmara Municipal de Macapá",
+  "url": "https://www.macapa.ap.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Macapá (AP)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

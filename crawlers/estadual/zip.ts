@@ -48,15 +48,21 @@ function entryData(buf: Buffer, e: Entry): Buffer {
   return buf.subarray(start, start + e.compressedSize);
 }
 
-/** Streams the first entry whose name ends with `suffix` (or the first entry) as decoded text chunks. */
-export async function* zipTextChunks(buf: Buffer, suffix?: string): AsyncGenerator<string> {
+/**
+ * Streams one entry (the first whose name ends with `suffix`, else the first) as text. `encoding` forces a decoder
+ * (TSE's CSVs are Latin-1 with no declaration); without it the XML declaration decides, defaulting to UTF-8.
+ */
+export async function* zipTextChunks(buf: Buffer, suffix?: string, encoding?: "utf-8" | "windows-1252"): AsyncGenerator<string> {
   const entries = zipEntries(buf).filter((e) => !e.name.endsWith("/"));
   const e = (suffix && entries.find((x) => x.name.toLowerCase().endsWith(suffix.toLowerCase()))) || entries[0];
   if (!e) throw new Error("empty zip");
   const data = entryData(buf, e);
   if (e.method !== 0 && e.method !== 8) throw new Error(`unsupported zip method ${e.method}`);
   const stream = e.method === 0 ? Readable.from([data]) : Readable.from([data]).pipe(createInflateRaw());
-  yield* decodeXmlStream(stream);
+  if (!encoding) return yield* decodeXmlStream(stream);
+  const decoder = new TextDecoder(encoding);
+  for await (const chunk of stream) yield decoder.decode(chunk as Buffer, { stream: true });
+  yield decoder.decode();
 }
 
 /** Decodes a byte stream as text, honoring the XML declaration's encoding (UTF-8 or ISO-8859-1/Windows-1252). */

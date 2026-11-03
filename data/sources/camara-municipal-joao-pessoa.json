@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-joao-pessoa",
+  "name": "Câmara Municipal de João Pessoa",
+  "publisher": "Câmara Municipal de João Pessoa",
+  "url": "https://sapl.joaopessoa.pb.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "João Pessoa (PB)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de João Pessoa, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

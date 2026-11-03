@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-goiania",
+  "name": "Câmara Municipal de Goiânia",
+  "publisher": "Câmara Municipal de Goiânia",
+  "url": "https://www.goiania.go.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Goiânia (GO)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

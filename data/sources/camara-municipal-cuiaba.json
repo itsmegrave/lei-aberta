@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-cuiaba",
+  "name": "Câmara Municipal de Cuiabá",
+  "publisher": "Câmara Municipal de Cuiabá",
+  "url": "https://www.camaracuiaba.mt.gov.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Cuiabá (MT)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

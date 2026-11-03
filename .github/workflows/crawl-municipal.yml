@@ -1,0 +1,87 @@
+name: Crawl municipal laws (capitals)
+
+on:
+  schedule:
+    - cron: "30 8 * * *" # 05:30 in Brasília, every night, after the state crawl
+  workflow_dispatch:
+    inputs:
+      cities:
+        description: "Capitals to crawl: IBGE codes, names or UFs, comma-separated (empty = every câmara with a crawler)"
+        required: false
+      since:
+        description: "First year (1989 for a full backfill; empty = last year, or 1989 for a câmara with no data yet)"
+        required: false
+  pull_request:
+    paths:
+      - "crawlers/municipal/**"
+      - "crawlers/estadual/sapl.ts"
+      - "crawlers/estadual/http.ts"
+      - "crawlers/estadual/zip.ts"
+      - "crawlers/lib/**"
+      - ".github/workflows/crawl-municipal.yml"
+
+jobs:
+  # On pull requests: a small live run against the real câmara APIs and TSE, without writing anything.
+  smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+      - uses: actions/cache@v4
+        with:
+          path: .cache/tse
+          key: tse-consulta-cand-municipal-v1
+      # SAPL câmaras, 2 laws per type, with the 2024 mayors from TSE.
+      - run: npm run crawl:municipal -- --dry-run --allow-unavailable --cities Fortaleza,Natal,"João Pessoa" --since 2025 --until 2025 --limit 2 --mayor-elections 2024
+      - run: npm run crawl:municipal -- --dry-run --allow-unavailable --cities "Porto Velho","Rio Branco",Manaus,"Boa Vista",Palmas,Recife --since 2025 --until 2025 --limit 2 --mayor-elections none
+      # São Paulo: the first 40 authors' laws.
+      - run: npm run crawl:municipal -- --dry-run --allow-unavailable --cities "São Paulo" --since 1989 --limit 40 --mayor-elections none
+
+  crawl:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    # A first run backfills every SAPL câmara from 1989 (a few requests per law, throttled per host).
+    timeout-minutes: 340
+    # Source status lives in Postgres (no commits to main); shared group keeps crawls from overlapping.
+    concurrency:
+      group: data-commit
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: npm
+      # The store reads and writes Postgres, which needs drizzle-orm and postgres.
+      - run: npm ci
+      # TSE candidate files for past elections never change; keep them between runs.
+      - uses: actions/cache@v4
+        with:
+          path: .cache/tse
+          key: tse-consulta-cand-municipal-v1
+      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      - name: Mark as collecting
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/municipal/run.ts
+      - name: Crawl
+        id: crawl
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CITIES: ${{ inputs.cities }}
+          SINCE: ${{ inputs.since }}
+        run: |
+          args=()
+          [ -n "$CITIES" ] && args+=(--cities "$CITIES")
+          [ -n "$SINCE" ] && args+=(--since "$SINCE")
+          npm run crawl:municipal -- "${args[@]}"
+      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
+      - name: Record the outcome
+        if: always()
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/municipal/run.ts "${{ steps.crawl.outcome }}"

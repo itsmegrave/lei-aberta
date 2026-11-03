@@ -26,11 +26,11 @@ At the end of each run the crawler updates `data/sources/dou.json` and `data/sou
 ## Rules this crawler keeps
 
 - **Official link on every record.** DOU links are on in.gov.br. Querido Diário serves its own copy of each gazette, so municipal records also carry the city hall's portal (`portals.ts`). Each run checks the portal answers; a city whose portal is down or unknown is skipped and logged, never published without an official link.
-- **Author party and executive party stay apart.** The DOU does not say who wrote a bill, so `authors` is empty for laws until the federal crawler fills it. MPs are authored by "Poder Executivo" with no party. `executive` is never set here: the president comes from the federal crawler, and mayors' parties need TSE data (roadmap).
+- **Author party and executive party stay apart.** The DOU does not say who wrote a bill, so `authors` is empty for laws until the federal crawler fills it. MPs are authored by "Poder Executivo" with no party. `executive` is never set here: the president comes from the federal crawler, and mayors come from the municipal crawler (TSE data).
 - **No areas.** `areas` stays empty for the area classifier.
 
 ## Not covered yet
 
 - **State Diários Oficiais.** There is no common API: each state publishes its DOE on its own system (some only as PDF), so it would take one scraper per state. State laws are crawled from the legislative assemblies instead, in the state-laws crawler.
 - **Municipalities beyond the capitals.** `--territories all` reads every city Querido Diário covers, but only the capitals have an official portal mapped in `portals.ts`. Add a city's portal to include it.
-- **Mayor's party** (`executive` on municipal records): needs the TSE election results.
+- **Mayor's party** (`executive` on municipal records): the municipal crawler (`crawlers/municipal`) fills it for the capitals from TSE results, on these records too.
