@@ -22,7 +22,7 @@ import { updateSource } from "../../lib/sources-store.ts";
 import type { DataSource } from "../../lib/sources.ts";
 import { openStore } from "../lib/store.ts";
 import { crawlAlesp } from "./alesp.ts";
-import type { AdapterResult } from "./common.ts";
+import { type AdapterResult, tidyEmenta } from "./common.ts";
 import { HttpError, RobotsDisallowed } from "./http.ts";
 import { crawlSapl } from "./sapl.ts";
 import { STATES, type StateHouse, sourceId } from "./states.ts";
@@ -58,6 +58,36 @@ const dataDir = path.resolve(args["data-dir"]!);
 const store = await openStore(dataDir);
 const FIRST_YEAR = 1989; // state constitutions were enacted in 1989
 
+const dryRun = args["dry-run"];
+
+// Repairs for records stored before the fixes in saplDate and tidyEmenta. Both are no-ops once the data is clean.
+// 1. A year outside 1988..this year came from a typo in SAPL's date ("0200-06-30"): fetch that law again by its
+//    SAPL id, so it comes back under the right id (or not at all if it predates 1988), and drop the old record
+//    once its house crawled fine.
+const refetch = new Map<string, number[]>();
+const broken = new Map<string, string[]>();
+let dropped = 0;
+for (const r of store.all()) {
+  if (r.level !== "estadual" || (r.year >= 1988 && r.year <= thisYear)) continue;
+  const uf = r.id.split("-")[1].toUpperCase();
+  if (!houses.some((h) => h.uf === uf && h.adapter === "sapl")) continue;
+  const saplId = r.sources.map((s) => s.url.match(/\/norma\/(\d+)\/?$/)?.[1]).find(Boolean);
+  broken.set(uf, [...(broken.get(uf) ?? []), r.id]);
+  if (saplId) refetch.set(uf, [...(refetch.get(uf) ?? []), Number(saplId)]);
+  console.log(`${r.id}: year ${r.year} is not a law year, refetching`);
+}
+// 2. Titles and summaries keep hand edits on upsert, so cleanups of the ementa text reach stored records here.
+let tidied = 0;
+for (const r of store.all()) {
+  if (r.level !== "estadual") continue;
+  const title = tidyEmenta(r.title);
+  const summary = tidyEmenta(r.summary);
+  if (title === r.title && summary === r.summary) continue;
+  tidied++;
+  if (!dryRun) store.upsert({ ...r, title, summary }, { owner: true });
+}
+if (tidied) console.log(`${dryRun ? "would tidy" : "tidied"} the text of ${tidied} stored law(s)`);
+
 const hasData = (uf: string) => store.all().some((r) => r.id.startsWith(`estadual-${uf.toLowerCase()}-`));
 
 async function crawl(h: StateHouse): Promise<AdapterResult> {
@@ -65,7 +95,7 @@ async function crawl(h: StateHouse): Promise<AdapterResult> {
   const limit = args.limit ? Number(args.limit) : Infinity;
   // Laws already stored are skipped: a law's text and authors don't change once it is enacted.
   const skip = (id: string) => !args.full && !args["dry-run"] && store.get(id) !== undefined;
-  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until), { limit, skip });
+  return crawlSapl(h, range(sinceArg ?? (hasData(h.uf) ? thisYear - 1 : FIRST_YEAR), until), { limit, skip, refetch: refetch.get(h.uf) ?? [] });
 }
 
 interface Outcome {
@@ -85,7 +115,6 @@ const outcomes: Outcome[] = await Promise.all(
   }),
 );
 
-const dryRun = args["dry-run"];
 const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
 let failures = 0;
 let unavailable = 0;
@@ -107,6 +136,11 @@ for (const o of outcomes) {
     continue;
   }
   const { records, errors } = o.result!;
+  for (const id of broken.get(house.uf) ?? []) {
+    if (dryRun) continue;
+    store.remove(id);
+    dropped++;
+  }
   let merged = 0;
   for (const r of records) {
     if (dryRun) continue;
@@ -130,7 +164,7 @@ for (const o of outcomes) {
 
 if (!dryRun) {
   // Saving with nothing new would still rewrite index.json, so skip it.
-  if (store.changed()) await store.save();
+  if (store.changed() || dropped) await store.save();
   await writeManifests();
 }
 
