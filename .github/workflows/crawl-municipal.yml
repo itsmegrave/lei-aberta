@@ -63,6 +63,11 @@ jobs:
         with:
           path: .cache/tse
           key: tse-consulta-cand-municipal-v1
+      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      - name: Mark as collecting
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/municipal/run.ts
       - name: Crawl
         id: crawl
         env:
@@ -74,3 +79,9 @@ jobs:
           [ -n "$CITIES" ] && args+=(--cities "$CITIES")
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           npm run crawl:municipal -- "${args[@]}"
+      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
+      - name: Record the outcome
+        if: always()
+        env:
+          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/municipal/run.ts "${{ steps.crawl.outcome }}"

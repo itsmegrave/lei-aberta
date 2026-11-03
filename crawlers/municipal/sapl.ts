@@ -18,6 +18,7 @@ import {
   listAll,
   loadAuthorBook,
   partyOn,
+  saplDate,
 } from "../estadual/sapl.ts";
 import { https } from "../estadual/common.ts";
 import type { City } from "./cities.ts";
@@ -55,19 +56,18 @@ export function toAuthor(book: AuthorBook, autorId: number, uf: string, date: st
   return { name: a.nome.trim(), kind, party, uf };
 }
 
-const lawDate = (n: Norma) => n.data ?? n.data_publicacao ?? null;
+/** Date and year with the state crawler's fixes for typed-in dates (0200-06-30, 2055-03-03); null drops the law. */
+const lawDate = (n: Norma) => saplDate(n);
 const lawNumber = (n: Norma) => bareNumber(n.numero, typeof n.complemento === "string" ? n.complemento : null);
 
 /** The record id a SAPL law will get, known before any per-law request. */
 export function saplId(city: City, type: MunicipalLawType, n: Norma): string {
-  const date = lawDate(n);
-  return municipalId(city.ibge, type, lawNumber(n), date ? Number(date.slice(0, 4)) : n.ano);
+  return municipalId(city.ibge, type, lawNumber(n), lawDate(n)?.year ?? Number(n.ano));
 }
 
 /** One SAPL law plus its bill as a record. Pure; tested with fixtures. */
 export function saplToPolicy(city: City, type: MunicipalLawType, n: Norma, materia: Materia | null, autorIds: number[], book: AuthorBook) {
-  const date = lawDate(n);
-  const year = date ? Number(date.slice(0, 4)) : n.ano;
+  const { date, year } = lawDate(n)!;
   const presentedAt = materia?.data_apresentacao ?? null;
   const authors = autorIds.map((id) => toAuthor(book, id, city.uf, presentedAt ?? date)).filter((a): a is Author => a !== null);
   const sources = [{ label: `${city.house} (SAPL)`, url: `${city.url}/norma/${n.id}` }];
@@ -94,7 +94,7 @@ export async function crawlSaplCity(
     for (const ano of years) {
       let normas: Norma[];
       try {
-        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).filter((n) => !skip(saplId(city, type, n))).slice(0, limit);
+        normas = (await listAll<Norma>(base, "/api/norma/normajuridica/", { tipo: tipoId, ano }, limit)).filter((n) => lawDate(n) && !skip(saplId(city, type, n))).slice(0, limit);
       } catch (err) {
         errors.push(`${city.name} ${type} ${ano}: ${err}`);
         continue;

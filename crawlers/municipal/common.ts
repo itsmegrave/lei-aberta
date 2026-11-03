@@ -1,6 +1,6 @@
 /** Helpers shared by the municipal adapters: law types, ids and the Policy record shape. */
 import type { Author, Executive, Policy } from "../../lib/types.ts";
-import { bareNumber, capSummary, clean, displayNumber, fold, shortTitle, tameCaps } from "../estadual/common.ts";
+import { bareNumber, capSummary, clean, displayNumber, fold, shortTitle, tidyEmenta as tidyStateEmenta } from "../estadual/common.ts";
 import { partyNameAt } from "../federal/politics.ts";
 import type { City } from "./cities.ts";
 
@@ -97,7 +97,7 @@ export interface DraftLaw {
 
 /** Builds the record. `executive` (the mayor) is set by run.ts from TSE data, never from author data. */
 export function toPolicy(d: DraftLaw): Policy {
-  const ementa = tameCaps(tidyEmenta(clean(d.ementa)));
+  const ementa = tidyStateEmenta(tidyEmenta(clean(d.ementa)));
   const label = `${TYPE_LABEL[d.type]} nº ${displayNumber(d.number)}/${d.year}`;
   const authors = (d.authors ?? []).map((a) => ({ ...a, name: titleCase(dropOffice(a.name)) }));
   const parties = [...new Set(authors.filter((a) => a.kind !== "executive" && a.party).map((a) => a.party!))].sort();
