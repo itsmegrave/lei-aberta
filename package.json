@@ -24,7 +24,9 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --experimental-strip-types --no-warnings scripts/db-migrate.ts",
     "db:import-json": "node --experimental-strip-types --no-warnings scripts/db-import-json.ts",
-    "vercel-build": "sh scripts/db-deploy.sh && next build"
+    "vercel-build": "sh scripts/db-deploy.sh && next build",
+    "db:export": "node --experimental-strip-types --no-warnings scripts/db-export.ts",
+    "data:pull": "node --experimental-strip-types --no-warnings scripts/data-pull.ts"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",

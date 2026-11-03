@@ -1,0 +1,1326 @@
+[
+  {
+    "id": "federal-lc-172-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "172",
+    "title": "Lei Complementar nº 172/2020",
+    "summary": "Dispõe sobre a transposição e a transferência de saldos financeiros constantes dos Fundos de Saúde dos Estados, do Distrito Federal e dos Municípios, provenientes de repasses federais.",
+    "year": 2020,
+    "signedAt": "2020-04-15",
+    "presentedAt": "2019-10-08",
+    "status": "sancionada",
+    "areas": [
+      "saude",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Adriana Ventura",
+        "kind": "deputy",
+        "party": "NOVO",
+        "uf": "SP"
+      },
+      {
+        "name": "Afonso Hamm",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "RS"
+      },
+      {
+        "name": "André Janones",
+        "kind": "deputy",
+        "party": "AVANTE",
+        "uf": "MG"
+      },
+      {
+        "name": "Carmen Zanotto",
+        "kind": "deputy",
+        "party": "CIDADANIA",
+        "uf": "SC"
+      },
+      {
+        "name": "Célio Silveira",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "GO"
+      },
+      {
+        "name": "Dr. Frederico",
+        "kind": "deputy",
+        "party": "PATRIOTA",
+        "uf": "MG"
+      },
+      {
+        "name": "Dr. Luiz Antonio Teixeira Jr.",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "RJ"
+      },
+      {
+        "name": "Dr. Luiz Ovando",
+        "kind": "deputy",
+        "party": "PSL",
+        "uf": "MS"
+      },
+      {
+        "name": "Dr. Zacharias Calil",
+        "kind": "deputy",
+        "party": "DEM",
+        "uf": "GO"
+      },
+      {
+        "name": "Dra. Soraya Manato",
+        "kind": "deputy",
+        "party": "PSL",
+        "uf": "ES"
+      },
+      {
+        "name": "Eduardo Braide",
+        "kind": "deputy",
+        "party": "PMN",
+        "uf": "MA"
+      },
+      {
+        "name": "Enéias Reis",
+        "kind": "deputy",
+        "party": "PSL",
+        "uf": "MG"
+      },
+      {
+        "name": "Gildenemyr",
+        "kind": "deputy",
+        "party": "PL",
+        "uf": "MA"
+      },
+      {
+        "name": "Leandre",
+        "kind": "deputy",
+        "party": "PV",
+        "uf": "PR"
+      },
+      {
+        "name": "Milton Vieira",
+        "kind": "deputy",
+        "party": "REPUBLICANOS",
+        "uf": "SP"
+      },
+      {
+        "name": "Olival Marques",
+        "kind": "deputy",
+        "party": "DEM",
+        "uf": "PA"
+      },
+      {
+        "name": "Policial Katia Sastre",
+        "kind": "deputy",
+        "party": "PL",
+        "uf": "SP"
+      },
+      {
+        "name": "Pompeo de Mattos",
+        "kind": "deputy",
+        "party": "PDT",
+        "uf": "RS"
+      },
+      {
+        "name": "Ricardo Barros",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "PR"
+      },
+      {
+        "name": "Sergio Vidigal",
+        "kind": "deputy",
+        "party": "PDT",
+        "uf": "ES"
+      },
+      {
+        "name": "Tereza Nelma",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "AL"
+      }
+    ],
+    "parties": [
+      "NOVO",
+      "PP",
+      "AVANTE",
+      "CIDADANIA",
+      "PSDB",
+      "PATRIOTA",
+      "PSL",
+      "DEM",
+      "PMN",
+      "PL",
+      "PV",
+      "REPUBLICANOS",
+      "PDT"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLP 232/2019",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 172/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2020-04-15;172"
+      },
+      {
+        "label": "PLP 232/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141109"
+      },
+      {
+        "label": "PLP 232/2019 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2224225"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-173-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "173",
+    "title": "Lei Complementar nº 173/2020",
+    "summary": "Estabelece o Programa Federativo de Enfrentamento ao Coronavírus SARS-CoV-2 (Covid-19), altera a Lei Complementar nº 101, de 4 de maio de 2000, e dá outras providências.",
+    "year": 2020,
+    "signedAt": "2020-05-27",
+    "presentedAt": "2020-03-24",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Antonio Anastasia",
+        "kind": "senator",
+        "party": "PSD",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PSD"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLP 39/2020",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 173/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2020-05-27;173"
+      },
+      {
+        "label": "PLP 39/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141188"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-174-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "174",
+    "title": "Lei Complementar nº 174/2020",
+    "summary": "Autoriza a extinção de créditos tributários apurados na forma do Regime Especial Unificado de Arrecadação de Tributos e Contribuições devidos pelas Microempresas e Empresas de Pequeno Porte (Simples Nacional), mediante celebração de transação resolutiva de litígio; e prorroga o prazo para enquadramento no Simples Nacional em todo o território brasileiro, no ano de 2020, para microempresas e empresas de pequeno porte em início de atividade.",
+    "year": 2020,
+    "signedAt": "2020-08-05",
+    "presentedAt": "2020-02-13",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Marco Bertaiolli",
+        "kind": "deputy",
+        "party": "PSD",
+        "uf": "SP"
+      }
+    ],
+    "parties": [
+      "PSD"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLP 9/2020",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 174/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2020-08-05;174"
+      },
+      {
+        "label": "PLP 9/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/142691"
+      },
+      {
+        "label": "PLP 9/2020 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2237331"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-175-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "175",
+    "title": "Lei Complementar nº 175/2020",
+    "summary": "Dispõe sobre o padrão nacional de obrigação acessória do Imposto Sobre Serviços de Qualquer Natureza (ISSQN), de competência dos Municípios e do Distrito Federal, incidente sobre os serviços previstos nos subitens 4.22, 4.23, 5.09, 15.01 e 15.09 da lista de serviços anexa à Lei Complementar nº 116, de 31 de julho de 2003; altera dispositivos da referida Lei Complementar; prevê regra de transição para a partilha do produto da arrecadação do ISSQN entre o Município do local do estabelecimento prestador e o Município do domicílio do tomador relativamente aos serviços de que trata; e dá outras providências.",
+    "year": 2020,
+    "signedAt": "2020-09-23",
+    "presentedAt": "2017-11-17",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Cidinho Santos",
+        "kind": "senator",
+        "party": "PR",
+        "uf": "MT"
+      }
+    ],
+    "parties": [
+      "PR"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLS 445/2017",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 175/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2020-09-23;175"
+      },
+      {
+        "label": "PLS 445/2017 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/131643"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-176-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "176",
+    "title": "Lei Complementar nº 176/2020",
+    "summary": "Institui transferências obrigatórias da União para os Estados, o Distrito Federal e os Municípios, por prazo ou fato determinado; declara atendida a regra de cessação contida no § 2º do art. 91 do Ato das Disposições Constitucionais Transitórias (ADCT); e altera a Lei nº 13.885, de 17 de outubro de 2019.",
+    "year": 2020,
+    "signedAt": "2020-12-29",
+    "presentedAt": "2020-05-22",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Wellington Fagundes",
+        "kind": "senator",
+        "party": "PL",
+        "uf": "MT"
+      }
+    ],
+    "parties": [
+      "PL"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLP 133/2020",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 176/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2020-12-29;176"
+      },
+      {
+        "label": "PLP 133/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/142075"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13974-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.974",
+    "title": "Lei nº 13.974/2020",
+    "summary": "Dispõe sobre o Conselho de Controle de Atividades Financeiras (Coaf), de que trata o art. 14 da Lei nº 9.613, de 3 de março de 1998.",
+    "year": 2020,
+    "signedAt": "2020-01-07",
+    "presentedAt": "2019-08-20",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "MPV 893/2019",
+    "sources": [
+      {
+        "label": "Lei nº 13.974/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-01-07;13974"
+      },
+      {
+        "label": "MPV 893/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/138177"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13975-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.975",
+    "title": "Lei nº 13.975/2020",
+    "summary": "Altera a Lei nº 6.567, de 24 de setembro de 1978, para incluir a exploração de rochas ornamentais e de revestimento e de carbonatos de cálcio e de magnésio no regime de licenciamento ou de autorização e concessão.",
+    "year": 2020,
+    "signedAt": "2020-01-07",
+    "presentedAt": "2015-12-08",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Ricardo Ferraço",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "ES"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLS 773/2015",
+    "sources": [
+      {
+        "label": "Lei nº 13.975/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-01-07;13975"
+      },
+      {
+        "label": "PLS 773/2015 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/124364"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13976-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.976",
+    "title": "Lei nº 13.976/2020",
+    "summary": "Altera a Lei nº 6.189, de 16 de dezembro de 1974, a fim de dispor sobre competência do Comando da Marinha para promover o licenciamento e a fiscalização dos meios navais e suas plantas nucleares embarcadas para propulsão e do transporte de seu combustível nuclear.",
+    "year": 2020,
+    "signedAt": "2020-01-07",
+    "presentedAt": "2019-06-10",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 10771/2018",
+    "sources": [
+      {
+        "label": "Lei nº 13.976/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-01-07;13976"
+      },
+      {
+        "label": "PL 3423/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/137231"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13977-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.977",
+    "title": "Lei Romeo Mion",
+    "summary": "Altera a Lei nº 12.764, de 27 de dezembro de 2012 (Lei Berenice Piana), e a Lei nº 9.265, de 12 de fevereiro de 1996, para instituir a Carteira de Identificação da Pessoa com Transtorno do Espectro Autista (Ciptea), e dá outras providências.",
+    "year": 2020,
+    "signedAt": "2020-01-08",
+    "presentedAt": "2018-04-25",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Rejane Dias",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "PI"
+      }
+    ],
+    "parties": [
+      "PT"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 10119/2018",
+    "sources": [
+      {
+        "label": "Lei nº 13.977/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-01-08;13977"
+      },
+      {
+        "label": "PL 2573/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/136518"
+      },
+      {
+        "label": "PL 10119/2018 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2173274"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13978-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.978",
+    "title": "Lei Orçamentária Anual - LOA",
+    "summary": "Estima a receita e fixa a despesa da União para o exercício financeiro de 2020.",
+    "year": 2020,
+    "signedAt": "2020-01-17",
+    "presentedAt": "2019-08-30",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLN 22/2019",
+    "sources": [
+      {
+        "label": "Lei nº 13.978/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-01-17;13978"
+      },
+      {
+        "label": "PLN 22/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/138432"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13979-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.979",
+    "title": "Lei nº 13.979/2020",
+    "summary": "Dispõe sobre as medidas para enfrentamento da emergência de saúde pública de importância internacional decorrente do coronavírus responsável pelo surto de 2019.",
+    "year": 2020,
+    "signedAt": "2020-02-06",
+    "presentedAt": "2020-02-05",
+    "status": "sancionada",
+    "areas": [
+      "saude",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 23/2020",
+    "sources": [
+      {
+        "label": "Lei nº 13.979/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-02-06;13979"
+      },
+      {
+        "label": "PL 23/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/140490"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13980-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.980",
+    "title": "Lei nº 13.980/2020",
+    "summary": "Altera a Lei nº 11.664, de 29 de abril de 2008, que \"dispõe sobre a efetivação de ações de saúde que assegurem a prevenção, a detecção, o tratamento e o seguimento dos cânceres do colo uterino e de mama, no âmbito do Sistema Único de Saúde - SUS\", para garantir a realização de ultrassonografia mamária.",
+    "year": 2020,
+    "signedAt": "2020-03-11",
+    "presentedAt": "2015-09-08",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Lúcia Vânia",
+        "kind": "senator",
+        "party": "PSB",
+        "uf": "GO"
+      }
+    ],
+    "parties": [
+      "PSB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLS 583/2015",
+    "sources": [
+      {
+        "label": "Lei nº 13.980/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-03-11;13980"
+      },
+      {
+        "label": "PLS 583/2015 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/123037"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13981-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.981",
+    "title": "Lei nº 13.981/2020",
+    "summary": "Altera a Lei nº 8.742, de 7 de dezembro de 1993 (Lei Orgânica da Assistência Social), para elevar o limite de renda familiar per capita para fins de concessão do benefício de prestação continuada.",
+    "year": 2020,
+    "signedAt": "2020-03-23",
+    "presentedAt": "1996-03-27",
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social"
+    ],
+    "authors": [
+      {
+        "name": "Casildo Maldaner",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "SC"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLS 55/1996",
+    "sources": [
+      {
+        "label": "Lei nº 13.981/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-03-23;13981"
+      },
+      {
+        "label": "PLS 55/1996 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/1204"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13982-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.982",
+    "title": "Lei do Auxílio Emergencial",
+    "summary": "Altera a Lei nº 8.742, de 7 de dezembro de 1993, para dispor sobre parâmetros adicionais de caracterização da situação de vulnerabilidade social para fins de elegibilidade ao benefício de prestação continuada (BPC), e estabelece medidas excepcionais de proteção social a serem adotadas durante o período de enfrentamento da emergência de saúde pública de importância internacional decorrente do coronavírus (Covid-19) responsável pelo surto de 2019, a que se refere a Lei nº 13.979, de 6 de fevereiro de 2020.",
+    "year": 2020,
+    "signedAt": "2020-04-02",
+    "presentedAt": "2017-11-29",
+    "status": "sancionada",
+    "areas": [
+      "saude",
+      "assistencia-social",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Eduardo Barbosa",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PSDB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 9236/2017",
+    "sources": [
+      {
+        "label": "Lei nº 13.982/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-02;13982"
+      },
+      {
+        "label": "PL 1066/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141270"
+      },
+      {
+        "label": "PL 9236/2017 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2163972"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13983-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.983",
+    "title": "Lei nº 13.983/2020",
+    "summary": "Altera a Lei nº 13.898, de 11 de novembro de 2019, que dispõe sobre as diretrizes para a elaboração e a execução da Lei Orçamentária de 2020.",
+    "year": 2020,
+    "signedAt": "2020-04-03",
+    "presentedAt": "2020-03-03",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLN 2/2020",
+    "sources": [
+      {
+        "label": "Lei nº 13.983/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-03;13983"
+      },
+      {
+        "label": "PLN 2/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/140867"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13984-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.984",
+    "title": "Lei nº 13.984/2020",
+    "summary": "Altera o art. 22 da Lei nº 11.340, de 7 de agosto de 2006 (Lei Maria da Penha), para estabelecer como medidas protetivas de urgência frequência do agressor a centro de educação e de reabilitação e acompanhamento psicossocial.",
+    "year": 2020,
+    "signedAt": "2020-04-03",
+    "presentedAt": "2016-02-02",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Comissão de Direitos Humanos e Legislação Participativa",
+        "kind": "committee",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PLS 9/2016",
+    "sources": [
+      {
+        "label": "Lei nº 13.984/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-03;13984"
+      },
+      {
+        "label": "PLS 9/2016 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/124675"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13985-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.985",
+    "title": "Lei nº 13.985/2020",
+    "summary": "Institui pensão especial destinada a crianças com Síndrome Congênita do Zika Vírus, nascidas entre 1º de janeiro de 2015 e 31 de dezembro de 2019, beneficiárias do Benefício de Prestação Continuada (BPC).",
+    "year": 2020,
+    "signedAt": "2020-04-07",
+    "presentedAt": "2019-09-05",
+    "status": "sancionada",
+    "areas": [
+      "assistencia-social",
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "MPV 894/2019",
+    "sources": [
+      {
+        "label": "Lei nº 13.985/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-07;13985"
+      },
+      {
+        "label": "MPV 894/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/138553"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13986-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.986",
+    "title": "Lei nº 13.986/2020",
+    "summary": "Institui o Fundo Garantidor Solidário (FGS); dispõe sobre o patrimônio rural em afetação, a Cédula Imobiliária Rural (CIR), a escrituração de títulos de crédito e a concessão de subvenção econômica para empresas cerealistas; altera as Leis nºs 8.427, de 27 de maio de 1992, 8.929, de 22 de agosto de 1994, 11.076, de 30 de dezembro de 2004, 10.931, de 2 de agosto de 2004, 12.865, de 9 de outubro de 2013, 5.709, de 7 de outubro de 1971, 6.634, de 2 de maio de 1979, 6.015, de 31 de dezembro de 1973, 7.827, de 27 de setembro de 1989, 8.212, de 24 de julho de 1991, 10.169, de 29 de dezembro de 2000, 11.116, de 18 de maio de 2005, 12.810, de 15 de maio de 2013, 13.340, de 28 de setembro de 2016, 13.576, de 26 de dezembro de 2017, e o Decreto-Lei nº 167, de 14 de fevereiro de 1967; revoga dispositivos das Leis nºs 4.728, de 14 de julho de 1965, e 13.476, de 28 de agosto de 2017, e dos Decretos-Leis nºs 13, de 18 de julho de 1966; 14, de 29 de julho de 1966; e 73, de 21 de novembro de 1966; e dá outras providências.",
+    "year": 2020,
+    "signedAt": "2020-04-07",
+    "presentedAt": "2019-10-02",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "MPV 897/2019",
+    "sources": [
+      {
+        "label": "Lei nº 13.986/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-07;13986"
+      },
+      {
+        "label": "MPV 897/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/139071"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13987-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.987",
+    "title": "Lei nº 13.987/2020",
+    "summary": "Altera a Lei nº 11.947, de 16 de junho de 2009, para autorizar, em caráter excepcional, durante o período de suspensão das aulas em razão de situação de emergência ou calamidade pública, a distribuição de gêneros alimentícios adquiridos com recursos do Programa Nacional de Alimentação Escolar (Pnae) aos pais ou responsáveis dos estudantes das escolas públicas de educação básica.",
+    "year": 2020,
+    "signedAt": "2020-04-07",
+    "presentedAt": "2020-03-19",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Hildo Rocha",
+        "kind": "deputy",
+        "party": "MDB",
+        "uf": "MA"
+      }
+    ],
+    "parties": [
+      "MDB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 786/2020",
+    "sources": [
+      {
+        "label": "Lei nº 13.987/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-07;13987"
+      },
+      {
+        "label": "PL 786/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141262"
+      },
+      {
+        "label": "PL 786/2020 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2241627"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13988-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.988",
+    "title": "Lei nº 13.988/2020",
+    "summary": "Dispõe sobre a transação nas hipóteses que especifica; e altera as Leis nºs 13.464, de 10 de julho de 2017, e 10.522, de 19 de julho de 2002.",
+    "year": 2020,
+    "signedAt": "2020-04-14",
+    "presentedAt": "2019-10-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "MPV 899/2019",
+    "sources": [
+      {
+        "label": "Lei nº 13.988/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-14;13988"
+      },
+      {
+        "label": "MPV 899/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/139427"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13989-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.989",
+    "title": "Lei nº 13.989/2020",
+    "summary": "Dispõe sobre o uso da telemedicina durante a crise causada pelo coronavírus (SARS-CoV-2).",
+    "year": 2020,
+    "signedAt": "2020-04-15",
+    "presentedAt": "2020-03-18",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Adriana Ventura",
+        "kind": "deputy",
+        "party": "NOVO",
+        "uf": "SP"
+      },
+      {
+        "name": "Alexandre Padilha",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "SP"
+      },
+      {
+        "name": "Carmen Zanotto",
+        "kind": "deputy",
+        "party": "CIDADANIA",
+        "uf": "SC"
+      },
+      {
+        "name": "David Soares",
+        "kind": "deputy",
+        "party": "DEM",
+        "uf": "SP"
+      },
+      {
+        "name": "Diego Garcia",
+        "kind": "deputy",
+        "party": "PODE",
+        "uf": "PR"
+      },
+      {
+        "name": "Dr. Zacharias Calil",
+        "kind": "deputy",
+        "party": "DEM",
+        "uf": "GO"
+      },
+      {
+        "name": "Dra. Soraya Manato",
+        "kind": "deputy",
+        "party": "PSL",
+        "uf": "ES"
+      },
+      {
+        "name": "Evair Vieira de Melo",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "ES"
+      },
+      {
+        "name": "Helder Salomão",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "ES"
+      },
+      {
+        "name": "Hiran Gonçalves",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "RR"
+      },
+      {
+        "name": "Jorge Solla",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "BA"
+      },
+      {
+        "name": "Mariana Carvalho",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "RO"
+      },
+      {
+        "name": "Patricia Ferraz",
+        "kind": "deputy",
+        "party": "PODE",
+        "uf": "AP"
+      },
+      {
+        "name": "Pr. Marco Feliciano",
+        "kind": "deputy",
+        "party": "PODE",
+        "uf": "SP"
+      },
+      {
+        "name": "Rodrigo Agostinho",
+        "kind": "deputy",
+        "party": "PSB",
+        "uf": "SP"
+      },
+      {
+        "name": "Vinicius Poit",
+        "kind": "deputy",
+        "party": "NOVO",
+        "uf": "SP"
+      }
+    ],
+    "parties": [
+      "NOVO",
+      "PT",
+      "CIDADANIA",
+      "DEM",
+      "PODE",
+      "PSL",
+      "PP",
+      "PSDB",
+      "PSB"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 696/2020",
+    "sources": [
+      {
+        "label": "Lei nº 13.989/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-15;13989"
+      },
+      {
+        "label": "PL 696/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141263"
+      },
+      {
+        "label": "PL 696/2020 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2239462"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13990-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.990",
+    "title": "Lei nº 13.990/2020",
+    "summary": "Confere ao Município de Gramado, no Estado do Rio Grande do Sul, o título de Capital Nacional do Chocolate Artesanal.",
+    "year": 2020,
+    "signedAt": "2020-04-17",
+    "presentedAt": "2018-04-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Jerônimo Goergen",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PP"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 9949/2018",
+    "sources": [
+      {
+        "label": "Lei nº 13.990/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-17;13990"
+      },
+      {
+        "label": "PL 4675/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/138280"
+      },
+      {
+        "label": "PL 9949/2018 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2170836"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13991-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.991",
+    "title": "Lei nº 13.991/2020",
+    "summary": "Inscreve o nome de Osvaldo Euclides de Sousa Aranha no Livro dos Heróis e Heroínas da Pátria.",
+    "year": 2020,
+    "signedAt": "2020-04-17",
+    "presentedAt": "2017-02-09",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Pompeo de Mattos",
+        "kind": "deputy",
+        "party": "PDT",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PDT"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 6874/2017",
+    "sources": [
+      {
+        "label": "Lei nº 13.991/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-17;13991"
+      },
+      {
+        "label": "PL 409/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/135102"
+      },
+      {
+        "label": "PL 6874/2017 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2123206"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-13992-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "13.992",
+    "title": "Lei nº 13.992/2020",
+    "summary": "Suspende por 120 (cento e vinte) dias, a contar de 1º de março do corrente ano, a obrigatoriedade da manutenção das metas quantitativas e qualitativas contratualizadas pelos prestadores de serviço de saúde no âmbito do Sistema Único de Saúde (SUS).",
+    "year": 2020,
+    "signedAt": "2020-04-22",
+    "presentedAt": "2020-03-23",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Jorge Solla",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "BA"
+      },
+      {
+        "name": "Pedro Westphalen",
+        "kind": "deputy",
+        "party": "PP",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PT",
+      "PP"
+    ],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "bill": "PL 805/2020",
+    "sources": [
+      {
+        "label": "Lei nº 13.992/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-04-22;13992"
+      },
+      {
+        "label": "PL 805/2020 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/141264"
+      },
+      {
+        "label": "PL 805/2020 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2241654"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-14026-2020",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "14.026",
+    "title": "Marco Legal do Saneamento",
+    "summary": "Atualiza as regras do saneamento básico e fixa metas de água e esgoto.",
+    "year": 2020,
+    "presentedAt": "2019-12-19",
+    "status": "sancionada",
+    "areas": [
+      "saneamento",
+      "meio-ambiente"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Jair Bolsonaro",
+      "office": "Presidente",
+      "party": null
+    },
+    "sources": [
+      {
+        "label": "Lei nº 14.026/2020 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2020-07-15;14026"
+      },
+      {
+        "label": "PL 4162/2019 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/140534"
+      },
+      {
+        "label": "Lei nº 14.026/2020 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm"
+      }
+    ],
+    "curated": true,
+    "signedAt": "2020-07-15",
+    "bill": "PL 4162/2019"
+  }
+]

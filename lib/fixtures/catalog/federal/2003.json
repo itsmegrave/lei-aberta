@@ -1,0 +1,1080 @@
+[
+  {
+    "id": "federal-lc-116-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "116",
+    "title": "Lei do Imposto sobre Serviços de Qualquer Natureza (ISS)",
+    "summary": "Dispõe sobre o Imposto Sobre Serviços de Qualquer Natureza, de competência dos Municípios e do Distrito Federal, e dá outras providências.",
+    "year": 2003,
+    "signedAt": "2003-07-31",
+    "presentedAt": "1989-06-23",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Fernando Henrique Cardoso",
+        "kind": "senator",
+        "party": null,
+        "uf": "SP"
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PLS 161/1989",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 116/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:2003-07-31;116"
+      },
+      {
+        "label": "PLS 161/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/1484"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10638-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.638",
+    "title": "Lei nº 10.638/2003",
+    "summary": "Institui o Programa Permanente de Combate à Seca - PROSECA.",
+    "year": 2003,
+    "signedAt": "2003-01-06",
+    "presentedAt": "1999-12-14",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Waldir Pires",
+        "kind": "deputy",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 2238/1999",
+    "sources": [
+      {
+        "label": "Lei nº 10.638/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-01-06;10638"
+      },
+      {
+        "label": "PLC 57/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/50568"
+      },
+      {
+        "label": "PL 2238/1999 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=17836"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10639-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.639",
+    "title": "Lei nº 10.639/2003",
+    "summary": "Altera a Lei nº 9.394, de 20 de dezembro de 1996, que estabelece as diretrizes e bases da educação nacional, para incluir no currículo oficial da Rede de Ensino a obrigatoriedade da temática \"História e Cultura Afro-Brasileira\", e dá outras providências.",
+    "year": 2003,
+    "signedAt": "2003-01-09",
+    "presentedAt": "1999-03-11",
+    "status": "sancionada",
+    "areas": [
+      "educacao"
+    ],
+    "authors": [
+      {
+        "name": "Ben-hur Ferreira",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "MS"
+      },
+      {
+        "name": "Esther Grossi",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PT"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 259/1999",
+    "sources": [
+      {
+        "label": "Lei nº 10.639/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-01-09;10639"
+      },
+      {
+        "label": "PLC 17/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/49833"
+      },
+      {
+        "label": "PL 259/1999 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=15223"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10640-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.640",
+    "title": "Lei Orçamentária Anual (LOA)",
+    "summary": "Estima a receita e fixa a despesa da União para o exercício de 2003.",
+    "year": 2003,
+    "signedAt": "2003-01-14",
+    "presentedAt": "2002-08-29",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PLN 60/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.640/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-01-14;10640"
+      },
+      {
+        "label": "PLN 60/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/51661"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10641-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.641",
+    "title": "Lei nº 10.641/2003",
+    "summary": "Inscreve o nome de Luís Alves de Lima e Silva, o Duque de Caxias, no \"Livro dos Heróis da Pátria\".",
+    "year": 2003,
+    "signedAt": "2003-01-28",
+    "presentedAt": "2001-05-15",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Maguito Vilela",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "GO"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PLS 82/2001",
+    "sources": [
+      {
+        "label": "Lei nº 10.641/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-01-28;10641"
+      },
+      {
+        "label": "PLS 82/2001 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/47244"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10642-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.642",
+    "title": "Lei nº 10.642/2003",
+    "summary": "Denomina \"Aeroporto de Imperatriz - Prefeito Renato Moreira\" o Aeroporto de Imperatriz, no Estado do Maranhão.",
+    "year": 2003,
+    "signedAt": "2003-03-11",
+    "presentedAt": "2000-08-09",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Pedro Fernandes",
+        "kind": "deputy",
+        "party": "PTB",
+        "uf": "MA"
+      }
+    ],
+    "parties": [
+      "PTB"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 3446/2000",
+    "sources": [
+      {
+        "label": "Lei nº 10.642/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-03-11;10642"
+      },
+      {
+        "label": "PLC 98/2001 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/48558"
+      },
+      {
+        "label": "PL 3446/2000 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=19678"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10643-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.643",
+    "title": "Lei nº 10.643/2003",
+    "summary": "Autoriza o Poder Executivo a doar à República do Paraguai vacinas e equipamentos indispensáveis ao combate à febre aftosa.",
+    "year": 2003,
+    "signedAt": "2003-03-14",
+    "presentedAt": "2002-11-11",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 78/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.643/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-03-14;10643"
+      },
+      {
+        "label": "MPV 78/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53169"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10644-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.644",
+    "title": "Lei nº 10.644/2003",
+    "summary": "Abre crédito extraordinário, em favor de Encargos Financeiros da União e Refinanciamento da Dívida Pública Mobiliária Federal, no valor global de R$ 17.084.740.385,00, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-03-14",
+    "presentedAt": "2002-12-02",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 81/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.644/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-03-14;10644"
+      },
+      {
+        "label": "MPV 81/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53385"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10645-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.645",
+    "title": "Lei nº 10.645/2003",
+    "summary": "Abre crédito extraordinário, em favor do Ministério da Integração Nacional, no valor de R$ 10.000.000,00, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-03-18",
+    "presentedAt": "2002-12-12",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 84/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.645/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-03-18;10645"
+      },
+      {
+        "label": "MPV 84/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53769"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10646-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.646",
+    "title": "Lei nº 10.646/2003",
+    "summary": "Altera as Leis nºs 10.464, de 24 de maio de 2002; 10.177, de 12 de janeiro de 2001; e 10.437, de 25 de abril de 2002; autoriza, para as operações adquiridas pela União sob a égide da Medida Provisória nº 2.196-3, de 24 de agosto de 2001, que se enquadram na Lei nº 10.437, de 25 de abril de 2002, a substituição dos encargos financeiros pactuados; e dispõe sobre reconversão de atividades de mutuários com dívidas junto a bancos oficiais federais; e dá outras providências.",
+    "year": 2003,
+    "signedAt": "2003-03-28",
+    "presentedAt": "2002-10-28",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 77/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.646/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-03-28;10646"
+      },
+      {
+        "label": "MPV 77/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/52846"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10647-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.647",
+    "title": "Lei nº 10.647/2003",
+    "summary": "Denomina \"Aeroporto de Montes Claros/Mário Ribeiro\" o aeroporto da cidade de Montes Claros, Estado de Minas Gerais.",
+    "year": 2003,
+    "signedAt": "2003-04-02",
+    "presentedAt": "1999-12-09",
+    "status": "sancionada",
+    "areas": [
+      "urbanismo"
+    ],
+    "authors": [
+      {
+        "name": "Walfrido Mares Guia",
+        "kind": "deputy",
+        "party": "PTB",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PTB"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 2219/1999",
+    "sources": [
+      {
+        "label": "Lei nº 10.647/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-02;10647"
+      },
+      {
+        "label": "PLC 41/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/50153"
+      },
+      {
+        "label": "PL 2219/1999 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=17807"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10648-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.648",
+    "title": "Lei nº 10.648/2003",
+    "summary": "Altera o art. 5º da Lei nº 8.427, de 27 de maio de 1992, que dispõe sobre a concessão de subvenção econômica nas operações de crédito rural.",
+    "year": 2003,
+    "signedAt": "2003-04-03",
+    "presentedAt": "2002-12-02",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 80/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.648/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-03;10648"
+      },
+      {
+        "label": "MPV 80/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53384"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10649-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.649",
+    "title": "Lei nº 10.649/2003",
+    "summary": "Denomina \"Rodovia Ormeo Junqueira Botelho\" trecho da BR-120, no Estado de Minas Gerais.",
+    "year": 2003,
+    "signedAt": "2003-04-14",
+    "presentedAt": "2001-02-21",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Eliseu Resende",
+        "kind": "deputy",
+        "party": "PFL",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PFL"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 4169/2001",
+    "sources": [
+      {
+        "label": "Lei nº 10.649/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-14;10649"
+      },
+      {
+        "label": "PLC 83/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/51192"
+      },
+      {
+        "label": "PL 4169/2001 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=26386"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10650-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.650",
+    "title": "Lei nº 10.650/2003",
+    "summary": "Dispõe sobre o acesso público aos dados e informações existentes nos órgãos e entidades integrantes do Sisnama.",
+    "year": 2003,
+    "signedAt": "2003-04-16",
+    "presentedAt": "1998-06-24",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Fábio Feldmann",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "SP"
+      },
+      {
+        "name": "Rita Camata",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "ES"
+      }
+    ],
+    "parties": [
+      "PSDB",
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 4649/1998",
+    "sources": [
+      {
+        "label": "Lei nº 10.650/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-16;10650"
+      },
+      {
+        "label": "PLC 93/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53366"
+      },
+      {
+        "label": "PL 4649/1998 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=21026"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10651-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.651",
+    "title": "Lei nº 10.651/2003",
+    "summary": "Dispõe sobre o controle do uso da talidomida.",
+    "year": 2003,
+    "signedAt": "2003-04-16",
+    "presentedAt": "1999-03-31",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Lúcio Alcântara",
+        "kind": "senator",
+        "party": "PSDB",
+        "uf": "CE"
+      }
+    ],
+    "parties": [
+      "PSDB"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PLS 195/1999",
+    "sources": [
+      {
+        "label": "Lei nº 10.651/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-16;10651"
+      },
+      {
+        "label": "PLS 195/1999 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/1553"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10652-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.652",
+    "title": "Lei nº 10.652/2003",
+    "summary": "Abre crédito extraordinário, em favor do Ministério da Integração Nacional, no valor de R$ 45.000.000,00, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-18",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 85/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.652/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10652"
+      },
+      {
+        "label": "MPV 85/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53806"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10653-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.653",
+    "title": "Lei nº 10.653/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 780.039.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-19",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 87/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.653/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10653"
+      },
+      {
+        "label": "MPV 87/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53837"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10654-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.654",
+    "title": "Lei nº 10.654/2003",
+    "summary": "Abre crédito extraordinário ao Orçamento de Investimento para 2002, em favor de diversas empresas do Grupo PETROBRÁS, no valor total de R$ 2.259.122.810,00, e reduz o Orçamento de Investimento das mesmas empresas no valor global de R$ 1.536.449.550,00, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-23",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 88/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.654/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10654"
+      },
+      {
+        "label": "MPV 88/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53859"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10655-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.655",
+    "title": "Lei nº 10.655/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 38.896.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-23",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 89/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.655/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10655"
+      },
+      {
+        "label": "MPV 89/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53860"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10656-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.656",
+    "title": "Lei nº 10.656/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 258.414.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-23",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 90/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.656/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10656"
+      },
+      {
+        "label": "MPV 90/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53876"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10657-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.657",
+    "title": "Lei nº 10.657/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 428.064.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-24",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 92/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.657/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10657"
+      },
+      {
+        "label": "MPV 92/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53878"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10658-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.658",
+    "title": "Lei nº 10.658/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 165.620.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-26",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 93/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.658/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10658"
+      },
+      {
+        "label": "MPV 93/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53879"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10659-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.659",
+    "title": "Lei nº 10.659/2003",
+    "summary": "Dá nova redação ao art. 4º da Lei nº 6.704, de 26 de outubro de 1979, que dispõe sobre o seguro de crédito à exportação e dá outras providências.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-27",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 95/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.659/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10659"
+      },
+      {
+        "label": "MPV 95/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53881"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10660-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.660",
+    "title": "Lei nº 10.660/2003",
+    "summary": "Abre crédito extraordinário no valor de R$ 24.401.000,00, em favor do Ministério dos Transportes, para os fins que especifica.",
+    "year": 2003,
+    "signedAt": "2003-04-22",
+    "presentedAt": "2002-12-27",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "MPV 96/2002",
+    "sources": [
+      {
+        "label": "Lei nº 10.660/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-04-22;10660"
+      },
+      {
+        "label": "MPV 96/2002 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/53882"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-10741-2003",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "10.741",
+    "title": "Estatuto da Pessoa Idosa",
+    "summary": "Garante direitos às pessoas com 60 anos ou mais, como prioridade no atendimento.",
+    "year": 2003,
+    "presentedAt": "1997-08-28",
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos",
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Paulo Paim",
+        "kind": "deputy",
+        "party": "PT",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PT"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 10.741/2003 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2003-10-01;10741"
+      },
+      {
+        "label": "PLC 57/2003 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/60770"
+      },
+      {
+        "label": "PL 3561/1997 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=19849"
+      },
+      {
+        "label": "Lei nº 10.741/2003 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm"
+      }
+    ],
+    "curated": true,
+    "signedAt": "2003-10-01",
+    "bill": "PL 3561/1997"
+  }
+]

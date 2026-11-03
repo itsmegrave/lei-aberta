@@ -1,17 +1,18 @@
-// The JSON path of lib/data.ts (local dev without a database), on the real data/ files.
+// The JSON path of lib/data.ts (local dev without a database), on the sample catalog in lib/fixtures.
 // Runs with --conditions=react-server so the "server-only" guard imports cleanly.
 import { before, test } from "node:test";
 import assert from "node:assert/strict";
 import { PAGE_SIZE } from "./listing.ts";
 
 delete process.env.DATABASE_URL;
+process.env.CATALOG_DIR = "lib/fixtures/catalog";
 let data: typeof import("./data.ts");
 before(async () => {
   data = await import("./data.ts");
 });
 
-test("the catalog reads every file in data/index.json, newest first", async () => {
-  const index = JSON.parse(await (await import("node:fs/promises")).readFile("data/index.json", "utf8")) as { updatedAt: string; files: { count: number }[] };
+test("the catalog reads every file in its index.json, newest first", async () => {
+  const index = JSON.parse(await (await import("node:fs/promises")).readFile("lib/fixtures/catalog/index.json", "utf8")) as { updatedAt: string; files: { count: number }[] };
   const { policies, updatedAt, sample } = await data.loadCatalog();
   assert.equal(policies.length, index.files.reduce((n, f) => n + f.count, 0));
   assert.equal(updatedAt, index.updatedAt);
