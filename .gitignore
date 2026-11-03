@@ -5,3 +5,7 @@ out/
 next-env.d.ts
 .DS_Store
 .cache/
+
+# Laws live in Postgres; `npm run data:pull` unpacks the open-data dump here for local runs.
+/data/*
+!/data/sources/

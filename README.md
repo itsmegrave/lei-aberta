@@ -31,7 +31,7 @@ The repo is linked to a Vercel project. Vercel detects Next.js. `vercel.json` on
 
 - Every push to `main` deploys to production.
 - Every pull request gets a preview URL.
-- The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It only crawls and commits JSON to `data/`; that commit triggers the Vercel deploy. There is no GitHub Pages deploy.
+- The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It writes laws to Postgres and commits only the source manifests in `data/sources/`. There is no GitHub Pages deploy.
 
 ## Sharing
 
@@ -53,7 +53,7 @@ All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and r
 
 ## Data
 
-`data/index.json` lists every file; records live in `data/<level>/<year>.json`. Each record:
+Laws live in Postgres (Neon, via the Vercel Marketplace, free tier). The repo keeps only the source manifests in `data/sources/` and a small sample in `lib/fixtures/catalog/`. Each record:
 
 | field | notes |
 | --- | --- |
@@ -63,20 +63,24 @@ All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and r
 | `executive{name, office, party}` | who signed it (president, governor, mayor). **Separate from author party, never merged** |
 | `sources[{label, url}]` | at least one official URL, always |
 
-The current files are a sample of well-known federal laws. Their Planalto links were written by hand and should be checked before launch.
+State laws come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
 
-State laws (`data/estadual/`) come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
+### Open data
 
-### Postgres (in progress)
+Every day after the crawls, [`export-data.yml`](.github/workflows/export-data.yml) publishes the whole catalog on the [`dados` release](https://github.com/itsmegrave/lei-aberta/releases/tag/dados): `leis.json.gz` (the records above, one array) and `leis.csv.gz` (one row per law, lists joined with ` | `, the executive's party in its own column). `npm run db:export` builds the same files from `DATABASE_URL`.
 
-The catalog is moving from these JSON files to Postgres (Neon, via the Vercel Marketplace, free tier). Until the site and crawlers are switched over, `data/` stays the source of truth and the database is a copy.
+### Postgres
 
 - Schema: `lib/db/schema.ts` (Drizzle). One `policies` table; filter fields are columns (`level`, `year`, `jurisdiction`, `executive_party`), `areas` and `parties` are indexed arrays, `authors`/`sources`/`executive` are JSON, and `search` is a Portuguese full-text vector over title and summary. `executive_party` is a copy of `executive.party` and is never mixed with `parties`.
-- Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`.
-- `npm run db:import-json` loads every record in `data/` into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
-- Neon is installed through the Vercel Marketplace and sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` on the project. On every Vercel deploy `scripts/db-deploy.sh` (the `vercel-build` script) applies migrations and syncs `data/` into the database. Preview deploys get their own Neon branch, so they never touch production data.
-- Crawlers: `crawlers/lib/store.ts` still writes `data/` (committed by the nightly jobs) and, when `CRAWL_DATABASE_URL` is set (the nightly jobs pass the `DATABASE_URL` repo secret), also upserts every changed record into Postgres and deletes removed ones in the same `save()`.
-- Local: any Postgres 16 works, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta`.
+- Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`. Every Vercel deploy runs `scripts/db-deploy.sh` (the `vercel-build` script), which applies pending migrations. Preview deploys get their own Neon branch, so they never touch production data.
+- Crawlers: `crawlers/lib/store.ts` reads and writes Postgres when `CRAWL_DATABASE_URL` is set (the nightly jobs pass the `DATABASE_URL` repo secret): it loads every record once, and `save()` upserts only the records that changed and deletes removed ones. Without it (tests, PR smoke runs, local runs) it uses `data/<level>/<year>.json` files.
+- `npm run db:import-json [dir]` loads a JSON catalog (`index.json` plus `<level>/<year>.json`) into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
+
+### Running locally
+
+- No setup: without `DATABASE_URL` the site reads the sample in `lib/fixtures/catalog/` (75 laws).
+- Full catalog without a database: `npm run data:pull` unpacks the latest dump into `data/` (git-ignored), which the site then reads.
+- With Postgres: any Postgres 16, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta npm run db:migrate`, then `npm run data:pull` and `npm run db:import-json`.
 
 ### How the site loads it
 
@@ -103,7 +107,7 @@ The "De onde vêm os dados" section on the home page is built from `data/sources
   "description": "One plain sentence in Portuguese.",
   "status": "active",                   // active | building | planned | failing
   "since": 1988,                        // optional: first year covered
-  "records": 812,                       // optional: records in data/ from this source
+  "records": 812,                       // optional: records from this source
   "lastRun": "2026-11-01T03:00:00Z",    // optional ISO: any attempt
   "lastSuccess": "2026-11-01T03:00:00Z",// required when status is active
   "crawler": "crawlers/federal/run.ts"  // optional

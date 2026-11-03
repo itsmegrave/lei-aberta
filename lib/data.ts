@@ -1,4 +1,5 @@
 import "server-only";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { desc, eq, max } from "drizzle-orm";
@@ -16,9 +17,15 @@ interface IndexFile {
   files: { level: string; year: number; path: string; count: number }[];
 }
 
-const DATA_DIR = path.join(process.cwd(), "data");
+/**
+ * JSON catalog for runs without a database: CATALOG_DIR, else data/ when a dump was unpacked there
+ * (npm run data:pull), else the small sample in lib/fixtures/catalog so `npm run dev` works out of the box.
+ */
+const DATA_DIR =
+  process.env.CATALOG_DIR ??
+  (existsSync(path.join(process.cwd(), "data", "index.json")) ? path.join(process.cwd(), "data") : path.join(process.cwd(), "lib", "fixtures", "catalog"));
 
-/** Postgres when DATABASE_URL is set (Vercel, CI), otherwise the JSON files in data/ (local dev without a database). */
+/** Postgres when DATABASE_URL is set (Vercel, CI), otherwise the JSON catalog above (local dev without a database). */
 const useDb = () => Boolean(process.env.DATABASE_URL);
 
 /** Every law. Read once per build: the home page, every /dados/ file and the sitemaps share it. */

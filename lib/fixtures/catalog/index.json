@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-10-31",
+  "files": [
+    {
+      "level": "federal",
+      "year": 1990,
+      "path": "federal/1990.json",
+      "count": 25
+    },
+    {
+      "level": "federal",
+      "year": 2003,
+      "path": "federal/2003.json",
+      "count": 25
+    },
+    {
+      "level": "federal",
+      "year": 2020,
+      "path": "federal/2020.json",
+      "count": 25
+    }
+  ]
+}

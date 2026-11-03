@@ -38,11 +38,12 @@ jobs:
       # A pre-EC 32 reissued MP, and a sample of a recent year of every type.
       - run: npm run crawl:federal -- --from 1999 --to 1999 --types MPV --only 1858 --dry-run
       - run: npm run crawl:federal -- --from 2025 --to 2025 --limit 5 --dry-run
-      # The nightly path: incremental, on a copy of the data, so it should skip everything already known.
+      # The nightly path (incremental from the cursor in data/sources) on a copy, writing JSON instead of
+      # Postgres. Laws are no longer in the repo, so cap it: it would otherwise re-crawl the cursor's year.
       - name: Incremental run on a copy of the data
         run: |
           cp -r data "$RUNNER_TEMP/data"
-          npm run crawl:federal -- --data "$RUNNER_TEMP/data"
+          npm run crawl:federal -- --data "$RUNNER_TEMP/data" --limit 5
       - name: Check the hand-written sample's links
         run: npm run check:links
         continue-on-error: true
@@ -82,7 +83,8 @@ jobs:
         run: |
           git config user.name "lei-aberta-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/
+          # Laws live in Postgres; only the source manifests (status, cursors) are committed.
+          git add data/sources
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "data: federal crawl $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4; do

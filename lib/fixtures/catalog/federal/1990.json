@@ -1,0 +1,1066 @@
+[
+  {
+    "id": "federal-lc-63-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "63",
+    "title": "Lei Complementar nº 63/1990",
+    "summary": "Dispõe sobre critérios e prazos de crédito das parcelas do produto da arrecadação de impostos de competência dos Estados e de transferências por estes recebidas, pertencentes aos Municípios, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-11",
+    "presentedAt": "1989-10-19",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "IBSEN PINHEIRO",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLP 177/1989",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 63/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:1990-01-11;63"
+      },
+      {
+        "label": "PLC 77/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21320"
+      },
+      {
+        "label": "PLP 177/1989 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=234218"
+      }
+    ]
+  },
+  {
+    "id": "federal-lc-64-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "64",
+    "title": "Lei das Inelegibilidades",
+    "summary": "Estabelece, de acordo com o art. 14, § 9º, da Constituição Federal, casos de inelegibilidade, prazos de cessação e determina outras providências.",
+    "year": 1990,
+    "signedAt": "1990-05-18",
+    "presentedAt": "1990-04-06",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Jarbas Passarinho",
+        "kind": "senator",
+        "party": "PDS",
+        "uf": "PA"
+      }
+    ],
+    "parties": [
+      "PDS"
+    ],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "PLS 21/1990",
+    "sources": [
+      {
+        "label": "Lei Complementar nº 64/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei.complementar:1990-05-18;64"
+      },
+      {
+        "label": "PLS 21/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/24621"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7991-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.991",
+    "title": "Lei nº 7.991/1990",
+    "summary": "Cria a Procuradoria Regional do Trabalho da 18ª Região da Justiça do Trabalho, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-03",
+    "presentedAt": "1989-04-18",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "MINISTÉRIO PÚBLICO DA UNIÃO",
+        "kind": "other",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 2012/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.991/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-03;7991"
+      },
+      {
+        "label": "PLC 64/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20939"
+      },
+      {
+        "label": "PL 2012/1989 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=198754"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7992-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.992",
+    "title": "Lei nº 7.992/1990",
+    "summary": "Cria cargos no Quadro de Pessoal da Secretaria do Tribunal Superior do Trabalho, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-03",
+    "presentedAt": "1989-02-16",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "TRIBUNAL SUPERIOR DO TRABALHO",
+        "kind": "other",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1453/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.992/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-03;7992"
+      },
+      {
+        "label": "PLC 69/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21090"
+      },
+      {
+        "label": "PL 1453/1989 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=192321"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7993-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.993",
+    "title": "Lei nº 7.993/1990",
+    "summary": "Dá nova redação ao art. 1º da Lei nº 7.792, de 4 de julho de 1989, que limita o número de Zonas de Processamentos de Exportações - ZPEs, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-05",
+    "presentedAt": "1989-08-07",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "JOSE DUTRA",
+        "kind": "deputy",
+        "party": "PMDB",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 3154/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.993/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-05;7993"
+      },
+      {
+        "label": "PLC 93/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21751"
+      },
+      {
+        "label": "PL 3154/1989 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=210132"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7994-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.994",
+    "title": "Lei nº 7.994/1990",
+    "summary": "Inclui a categoria de Inspetor de Segurança Judiciária no Grupo-Atividades de Apoio Judiciário do Quadro de Pessoal Permanente da Secretaria do Tribunal de Justiça do Distrito Federal e dos Territórios, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-05",
+    "presentedAt": "1989-04-03",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Tribunal de Justiça do Distrito Federal e dos Territórios",
+        "kind": "other",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 1828/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.994/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-05;7994"
+      },
+      {
+        "label": "PLC 61/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20853"
+      },
+      {
+        "label": "PL 1828/1989 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=196650"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7995-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.995",
+    "title": "Lei nº 7.995/1990",
+    "summary": "Dispõe sobre a remuneração de servidores civis do Poder Executivo, na Administração Direta e nas autarquias, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-09",
+    "presentedAt": "1989-12-14",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 41/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.995/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-09;7995"
+      },
+      {
+        "label": "PLV 41/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31661"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7996-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.996",
+    "title": "Lei nº 7.996/1990",
+    "summary": "Faculta a utilização, nos exercícios seguintes, do remanescente de autorizações para operações de crédito.",
+    "year": 1990,
+    "signedAt": "1990-01-09",
+    "presentedAt": "1989-12-14",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 42/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.996/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-09;7996"
+      },
+      {
+        "label": "PLV 42/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31663"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7997-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.997",
+    "title": "Lei nº 7.997/1990",
+    "summary": "Autoriza o Poder Executivo a criar o Conselho Nacional do Carvão, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-11",
+    "presentedAt": "1984-09-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "VICTOR FACCIONI",
+        "kind": "deputy",
+        "party": "PDS",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PDS"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 4288/1984",
+    "sources": [
+      {
+        "label": "Lei nº 7.997/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-11;7997"
+      },
+      {
+        "label": "PLC 90/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21671"
+      },
+      {
+        "label": "PL 4288/1984 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=220313"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7998-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.998",
+    "title": "Lei do Fundo de Amparo ao Trabalhador (FAT)",
+    "summary": "Regula o Programa do Seguro-Desemprego, o Abono Salarial, institui o Fundo de Amparo ao Trabalhador - FAT, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-01-11",
+    "presentedAt": "1988-10-11",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "JORGE UEQUED",
+        "kind": "deputy",
+        "party": "PSDB",
+        "uf": "RS"
+      }
+    ],
+    "parties": [
+      "PSDB"
+    ],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PL 991/1988",
+    "sources": [
+      {
+        "label": "Lei nº 7.998/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-11;7998"
+      },
+      {
+        "label": "PLC 92/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/21724"
+      },
+      {
+        "label": "PL 991/1988 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=185613"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-7999-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "7.999",
+    "title": "Lei Orçamentária Anual (LOA)",
+    "summary": "Estima a Receita e fixa e Despesa da União para o exercício financeiro de 1990.",
+    "year": 1990,
+    "signedAt": "1990-01-31",
+    "presentedAt": "1989-08-31",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "MSG 181/1989",
+    "sources": [
+      {
+        "label": "Lei nº 7.999/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-01-31;7999"
+      },
+      {
+        "label": "MSG 181/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/12032"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8000-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.000",
+    "title": "Lei nº 8.000/1990",
+    "summary": "Concede isenção do Imposto sobre Produtos Industrializados - IPI na aquisição de automóveis de passageiros e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-03-13",
+    "presentedAt": "1990-03-06",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 5/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.000/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-13;8000"
+      },
+      {
+        "label": "PLV 5/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31537"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8001-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.001",
+    "title": "Lei da Compensação Financeira pelos Recursos Minerais Renováveis",
+    "summary": "Define os percentuais da distribuição da compensação financeira de que trata a Lei nº 7.990, de 28 de dezembro de 1989, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-03-13",
+    "presentedAt": "1990-03-06",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 3/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.001/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-13;8001"
+      },
+      {
+        "label": "PLV 3/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31523"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8002-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.002",
+    "title": "Lei nº 8.002/1990",
+    "summary": "Dispõe sobre a repressão de infrações atentatórias contra os direitos do consumidor.",
+    "year": 1990,
+    "signedAt": "1990-03-14",
+    "presentedAt": "1990-03-08",
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 6/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.002/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-14;8002"
+      },
+      {
+        "label": "PLV 6/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31544"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8003-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.003",
+    "title": "Lei nº 8.003/1990",
+    "summary": "Altera a legislação dos impostos de importação e sobre produtos industrializados, da taxa de fiscalização instituída pela Lei nº 7.944, de 1989, da contribuição social instituída pela Lei nº 7.689, de 1988, e do Imposto sobre o Lucro Líquido de que trata o art. 35 da Lei nº 7.713, de 1988.",
+    "year": 1990,
+    "signedAt": "1990-03-14",
+    "presentedAt": "1990-03-08",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 7/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.003/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-14;8003"
+      },
+      {
+        "label": "PLV 7/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31552"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8004-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.004",
+    "title": "Lei nº 8.004/1990",
+    "summary": "Dispõe sobre transferência de financiamento no âmbito do Sistema Financiamento da Habitação e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-03-14",
+    "presentedAt": "1990-03-06",
+    "status": "sancionada",
+    "areas": [
+      "urbanismo"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "José Sarney",
+      "office": "Presidente",
+      "party": "PMDB"
+    },
+    "bill": "PLV 4/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.004/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-14;8004"
+      },
+      {
+        "label": "PLV 4/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31530"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8005-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.005",
+    "title": "Lei nº 8.005/1990",
+    "summary": "Dispõe sobre a cobrança e a atualização dos créditos do Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis - IBAMA e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-03-22",
+    "presentedAt": "1990-02-20",
+    "status": "sancionada",
+    "areas": [
+      "meio-ambiente"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "MPV 136/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.005/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-22;8005"
+      },
+      {
+        "label": "MPV 136/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/8325"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8006-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.006",
+    "title": "Lei nº 8.006/1990",
+    "summary": "Autoriza o Poder Executivo a abrir ao Orçamento da União o crédito extraordinário de NCz$ 50.000.000,00, para os fins que especifica.",
+    "year": 1990,
+    "signedAt": "1990-03-22",
+    "presentedAt": "1990-02-20",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "MPV 137/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.006/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-22;8006"
+      },
+      {
+        "label": "MPV 137/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/8352"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8007-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.007",
+    "title": "Lei nº 8.007/1990",
+    "summary": "Dispõe sobre a aplicação dos arts. 4º e 5º da Lei nº 7.988, de 28 de dezembro de 1989.",
+    "year": 1990,
+    "signedAt": "1990-03-22",
+    "presentedAt": "1990-03-19",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "PLV 8/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.007/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-22;8007"
+      },
+      {
+        "label": "PLV 8/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31557"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8008-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.008",
+    "title": "Lei nº 8.008/1990",
+    "summary": "Equipara a venda de produto no mercado interno a exportação, para efeitos fiscais.",
+    "year": 1990,
+    "signedAt": "1990-03-22",
+    "presentedAt": "1990-02-21",
+    "status": "sancionada",
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "MPV 139/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.008/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-22;8008"
+      },
+      {
+        "label": "MPV 139/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/8406"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8009-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.009",
+    "title": "Lei do Bem de Família",
+    "summary": "Dispõe sobre a impenhorabilidade do bem de família.",
+    "year": 1990,
+    "signedAt": "1990-03-29",
+    "presentedAt": "1990-03-23",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "PLV 9/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.009/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-29;8009"
+      },
+      {
+        "label": "PLV 9/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31562"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8010-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.010",
+    "title": "Lei nº 8.010/1990",
+    "summary": "Dispõe sobre importações de bens destinados à pesquisa científica e tecnológica, e dá outras providências.",
+    "year": 1990,
+    "signedAt": "1990-03-29",
+    "presentedAt": "1990-03-07",
+    "status": "sancionada",
+    "areas": [
+      "tecnologia",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "MPV 141/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.010/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-03-29;8010"
+      },
+      {
+        "label": "MPV 141/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/8542"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8011-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.011",
+    "title": "Lei nº 8.011/1990",
+    "summary": "Dispõe sobre a alienação de bens imóveis da União situados em Brasília - DF, e dá outra providências.",
+    "year": 1990,
+    "signedAt": "1990-04-04",
+    "presentedAt": "1990-04-02",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "bill": "PLV 13/1990",
+    "sources": [
+      {
+        "label": "Lei nº 8.011/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-04-04;8011"
+      },
+      {
+        "label": "PLV 13/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/31583"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-8069-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.069",
+    "title": "Estatuto da Criança e do Adolescente (ECA)",
+    "summary": "Define direitos de crianças e adolescentes e a proteção integral pelo Estado, família e sociedade.",
+    "year": 1990,
+    "presentedAt": "1989-06-30",
+    "status": "sancionada",
+    "areas": [
+      "direitos-humanos",
+      "assistencia-social"
+    ],
+    "authors": [
+      {
+        "name": "Ronan Tito",
+        "kind": "senator",
+        "party": "PMDB",
+        "uf": "MG"
+      }
+    ],
+    "parties": [
+      "PMDB"
+    ],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 8.069/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-07-13;8069"
+      },
+      {
+        "label": "PLS 193/1989 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/29333"
+      },
+      {
+        "label": "Lei nº 8.069/1990 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8069.htm"
+      }
+    ],
+    "curated": true,
+    "signedAt": "1990-07-13",
+    "bill": "PLS 193/1989"
+  },
+  {
+    "id": "federal-lei-8080-1990",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "8.080",
+    "title": "Lei Orgânica da Saúde (SUS)",
+    "summary": "Organiza o Sistema Único de Saúde: atendimento público, universal e gratuito.",
+    "year": 1990,
+    "presentedAt": "1989-07-26",
+    "status": "sancionada",
+    "areas": [
+      "saude"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Fernando Collor",
+      "office": "Presidente",
+      "party": "PRN"
+    },
+    "sources": [
+      {
+        "label": "Lei nº 8.080/1990 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:1990-09-19;8080"
+      },
+      {
+        "label": "PLC 50/1990 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/20523"
+      },
+      {
+        "label": "Lei nº 8.080/1990 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8080.htm"
+      }
+    ],
+    "curated": true,
+    "signedAt": "1990-09-19",
+    "bill": "PL 3110/1989"
+  }
+]
