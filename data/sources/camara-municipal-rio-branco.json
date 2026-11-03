@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-rio-branco",
+  "name": "Câmara Municipal de Rio Branco",
+  "publisher": "Câmara Municipal de Rio Branco",
+  "url": "https://sapl.riobranco.ac.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Rio Branco (AC)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Rio Branco, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

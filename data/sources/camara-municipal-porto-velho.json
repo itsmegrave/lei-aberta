@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-porto-velho",
+  "name": "Câmara Municipal de Porto Velho",
+  "publisher": "Câmara Municipal de Porto Velho",
+  "url": "https://sapl.portovelho.ro.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Porto Velho (RO)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Porto Velho, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

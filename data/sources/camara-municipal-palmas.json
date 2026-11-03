@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-palmas",
+  "name": "Câmara Municipal de Palmas",
+  "publisher": "Câmara Municipal de Palmas",
+  "url": "https://sapl.palmas.to.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Palmas (TO)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "A Câmara de Palmas começou a usar o sistema em 2023 e ainda tem poucas leis cadastradas.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

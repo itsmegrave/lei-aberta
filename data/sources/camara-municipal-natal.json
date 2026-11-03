@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-natal",
+  "name": "Câmara Municipal de Natal",
+  "publisher": "Câmara Municipal de Natal",
+  "url": "https://sapl.natal.rn.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Natal (RN)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Natal, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

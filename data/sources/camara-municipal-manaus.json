@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-manaus",
+  "name": "Câmara Municipal de Manaus",
+  "publisher": "Câmara Municipal de Manaus",
+  "url": "https://sapl.cmm.am.gov.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Manaus (AM)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Manaus, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

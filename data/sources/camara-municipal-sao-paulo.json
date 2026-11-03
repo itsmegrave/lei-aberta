@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-sao-paulo",
+  "name": "Câmara Municipal de São Paulo",
+  "publisher": "Câmara Municipal de São Paulo",
+  "url": "https://splegisws.saopaulo.sp.leg.br/ws/ws2.asmx",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "São Paulo (SP)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis aprovadas na Câmara de São Paulo, com autores e o partido de cada vereador na época (histórico de filiação da própria Câmara).",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

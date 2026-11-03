@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-belo-horizonte",
+  "name": "Câmara Municipal de Belo Horizonte",
+  "publisher": "Câmara Municipal de Belo Horizonte",
+  "url": "https://www.cmbh.mg.gov.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Belo Horizonte (MG)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

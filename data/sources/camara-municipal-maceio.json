@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-maceio",
+  "name": "Câmara Municipal de Maceió",
+  "publisher": "Câmara Municipal de Maceió",
+  "url": "https://www.maceio.al.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Maceió (AL)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

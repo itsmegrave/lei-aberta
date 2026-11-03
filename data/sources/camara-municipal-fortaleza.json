@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-fortaleza",
+  "name": "Câmara Municipal de Fortaleza",
+  "publisher": "Câmara Municipal de Fortaleza",
+  "url": "https://sapl.fortaleza.ce.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Fortaleza (CE)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Fortaleza, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-aracaju",
+  "name": "Câmara Municipal de Aracaju",
+  "publisher": "Câmara Municipal de Aracaju",
+  "url": "https://www.aracaju.se.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Aracaju (SE)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

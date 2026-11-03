@@ -60,10 +60,10 @@ Laws live in Postgres (Neon, via the Vercel Marketplace, free tier). The repo ke
 | `id`, `level`, `jurisdiction`, `type`, `number`, `title`, `summary`, `year`, `presentedAt`, `status`, `areas` | `summary` is one or two plain sentences |
 | `authors[{name, kind, party, uf}]` | `party` is the author's party **at the time of authorship** |
 | `parties` | author parties, deduplicated |
-| `executive{name, office, party}` | who signed it (president, governor, mayor). **Separate from author party, never merged** |
+| `executive{name, office, party, basis?, election?}` | who signed it (president, governor, mayor). **Separate from author party, never merged**. `basis: "election"` means it comes from election results (mayors: the one elected for that term, with the party they ran under) |
 | `sources[{label, url}]` | at least one official URL, always |
 
-State laws come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md).
+State laws come from the state legislatures; coverage per state and the crawler rules are in [`crawlers/estadual/README.md`](crawlers/estadual/README.md). Municipal laws of the state capitals come from their Câmaras Municipais (authors, parties) and the Diários Oficiais (Querido Diário); see [`crawlers/municipal/README.md`](crawlers/municipal/README.md).
 
 ### Open data
 

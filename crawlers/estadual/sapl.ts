@@ -159,7 +159,7 @@ export function toAuthor(book: AuthorBook, autorId: number, uf: string, date: st
   return { name: a.nome.trim(), kind, party, uf };
 }
 
-async function loadAuthorBook(base: string): Promise<AuthorBook> {
+export async function loadAuthorBook(base: string): Promise<AuthorBook> {
   // Each list is optional: a house that hides one still yields laws, just with fewer author details.
   const safe = async <T>(p: string) => listAll<T>(base, p).catch(() => [] as T[]);
   const [autores, tipos, filiacoes, partidos] = await Promise.all([

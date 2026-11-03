@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-sao-luis",
+  "name": "Câmara Municipal de São Luís",
+  "publisher": "Câmara Municipal de São Luís",
+  "url": "https://www.cmsaoluis.ma.gov.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "São Luís (MA)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

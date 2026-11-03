@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-boa-vista",
+  "name": "Câmara Municipal de Boa Vista",
+  "publisher": "Câmara Municipal de Boa Vista",
+  "url": "https://sapl.boavista.rr.leg.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Boa Vista (RR)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Leis de Boa Vista, com autores e o partido de cada vereador na época.",
+  "crawler": "crawlers/municipal/run.ts",
+  "records": null,
+  "since": null,
+  "status": "building"
+}

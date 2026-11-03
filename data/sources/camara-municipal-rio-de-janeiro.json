@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-rio-de-janeiro",
+  "name": "Câmara Municipal do Rio de Janeiro",
+  "publisher": "Câmara Municipal do Rio de Janeiro",
+  "url": "https://www.camara.rio",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Rio de Janeiro (RJ)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}

@@ -18,6 +18,13 @@ export interface Executive {
   name: string;
   office: string;
   party: string | null;
+  /**
+   * "election": taken from election results (TSE) rather than from who signed the law. `name` is the elected head
+   * (a vice who took over is not tracked) and `party` the one they were elected under.
+   */
+  basis?: "election";
+  /** Election year the term came from, with basis "election". */
+  election?: number;
 }
 
 export interface Policy {

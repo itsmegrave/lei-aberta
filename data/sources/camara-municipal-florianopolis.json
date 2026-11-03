@@ -1,0 +1,21 @@
+{
+  "id": "camara-municipal-florianopolis",
+  "name": "Câmara Municipal de Florianópolis",
+  "publisher": "Câmara Municipal de Florianópolis",
+  "url": "https://www.cmf.sc.gov.br",
+  "levels": [
+    "municipal"
+  ],
+  "coverage": [
+    "Florianópolis (SC)"
+  ],
+  "covers": [
+    "lei municipal",
+    "lei complementar municipal"
+  ],
+  "description": "Ainda sem coleta automática da Câmara; fonte de dados em estudo. Leis publicadas no Diário Oficial chegam pelo Querido Diário, sem autores.",
+  "crawler": null,
+  "records": null,
+  "since": null,
+  "status": "planned"
+}
