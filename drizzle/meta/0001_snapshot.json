@@ -1,5 +1,5 @@
 {
-  "id": "f2f4adb3-4124-4d23-84b3-cad8cfb4cf40",
+  "id": "9dd39634-f14d-4d15-90b4-91a42de9bdd4",
   "prevId": "07b70a41-9ee1-4b0c-8de5-71f86018e969",
   "version": "7",
   "dialect": "postgresql",
@@ -352,6 +352,38 @@
           "value": "jsonb_array_length(\"policies\".\"sources\") > 0"
         }
       },
+      "isRLSEnabled": false
+    },
+    "public.source_status": {
+      "name": "source_status",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
       "isRLSEnabled": false
     }
   },

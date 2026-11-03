@@ -43,3 +43,15 @@ test("updateSource merges, validates and round-trips", async () => {
   await assert.rejects(updateSource("x", { status: "active" }, dir));
   assert.deepEqual(await readdir(dir), ["senado.json"]);
 });
+
+test("withState lays crawl fields over the manifest and ignores invalid ones", async () => {
+  const { stateOf, withState } = await import("./sources.ts");
+  const s = withState(ok, { status: "active", lastSuccess: "2026-11-03T06:30:00Z", records: 9 });
+  assert.equal(s.status, "active");
+  assert.equal(s.records, 9);
+  assert.equal(s.name, "Senado Federal");
+  // "active" without lastSuccess is invalid: keep the manifest.
+  assert.equal(withState(ok, { status: "active" }).status, "planned");
+  // Only crawl fields are kept.
+  assert.deepEqual(stateOf({ ...ok, records: 3 }), { status: "planned", records: 3 });
+});

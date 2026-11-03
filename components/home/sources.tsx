@@ -4,7 +4,7 @@ import { CheckIcon, ClockIcon, ExternalLinkIcon, HammerIcon, RefreshCwIcon, Tria
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { liveSource, type CrawlRun } from "@/lib/crawl-runs";
-import { STATUS_LABEL, timeAgo, type DataSource, type SourceStatus } from "@/lib/sources";
+import { STATUS_LABEL, timeAgo, withState, type DataSource, type SourceState, type SourceStatus } from "@/lib/sources";
 import { emojiSrc, fmt, LEVELS } from "@/lib/vocab";
 import { Panel } from "./section";
 
@@ -24,34 +24,41 @@ const PLURAL: Record<SourceStatus, string> = { active: "ativas", building: "em c
 const POLL_MS = 60_000;
 export const RUNS_API = "/api/coletas";
 
-/** Latest crawler runs, refreshed while the page is visible. Empty until the first answer, or when it fails. */
-function useCrawlRuns(): CrawlRun[] {
-  const [runs, setRuns] = useState<CrawlRun[]>([]);
+interface Live {
+  runs: CrawlRun[];
+  /** Crawl state per source id, newer than the manifests in the build. */
+  sources: Record<string, SourceState>;
+}
+
+/** Latest crawler runs and source states, refreshed while the page is visible. Empty until the first answer. */
+function useCrawlRuns(): Live {
+  const [live, setLive] = useState<Live>({ runs: [], sources: {} });
   useEffect(() => {
-    let live = true;
+    let active = true;
     const load = () => {
       if (document.visibilityState === "hidden") return;
       fetch(RUNS_API)
         .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-        .then((d: { runs?: CrawlRun[] }) => live && setRuns(d.runs ?? []))
+        .then((d: Partial<Live>) => active && setLive({ runs: d.runs ?? [], sources: d.sources ?? {} }))
         .catch(() => {}); // keep what we have; the manifests still show the last known state
     };
     load();
     const timer = setInterval(load, POLL_MS);
     document.addEventListener("visibilitychange", load);
     return () => {
-      live = false;
+      active = false;
       clearInterval(timer);
       document.removeEventListener("visibilitychange", load);
     };
   }, []);
-  return runs;
+  return live;
 }
 
-export function Sources({ sources }: { sources: DataSource[] }) {
+export function Sources({ sources: built }: { sources: DataSource[] }) {
   // Relative times depend on "now": render them after mount so the static HTML never goes stale.
   const [now, setNow] = useState<number | null>(null);
-  const runs = useCrawlRuns();
+  const { runs, sources: states } = useCrawlRuns();
+  const sources = built.map((s) => withState(s, states[s.id]));
   useEffect(() => {
     setNow(Date.now());
     const t = setInterval(() => setNow(Date.now()), POLL_MS);

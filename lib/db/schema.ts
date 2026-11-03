@@ -3,6 +3,7 @@
 import { getTableColumns, sql } from "drizzle-orm";
 import { boolean, check, customType, date, index, integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import type { CrawlRunStatus } from "../crawl-runs.ts";
+import type { SourceState } from "../sources.ts";
 import type { Author, Executive, Policy } from "../types.ts";
 
 const tsvector = customType<{ data: string }>({ dataType: () => "tsvector" });
@@ -79,3 +80,15 @@ export const crawlRuns = pgTable(
   },
   (t) => [index("crawl_runs_crawler_started_idx").on(t.crawler, t.startedAt)],
 );
+
+/**
+ * What each crawler last wrote about a source: status, record count, first year, last run and last success
+ * (the next incremental run's cursor). The descriptive part of a source (name, description, links) stays in
+ * data/sources/<id>.json, changed through pull requests; main only takes PRs, so crawlers can't commit there.
+ */
+export const sourceStatus = pgTable("source_status", {
+  /** data/sources/<id>.json id. */
+  id: text("id").primaryKey(),
+  state: jsonb("state").notNull().$type<SourceState>(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});

@@ -1,10 +1,23 @@
-// Incremental crawls: each source's data/sources/<id>.json keeps `lastSuccess`, committed with the data,
-// so the next nightly run knows where the previous good run stopped.
+// Incremental crawls: each source keeps `lastSuccess`, so the next nightly run knows where the previous good
+// run stopped. Nightly runs keep it in Postgres (source_status, via CRAWL_DATABASE_URL); without a database it
+// comes from data/sources/<id>.json. The later of the two wins, so the move to Postgres loses no cursor.
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { readSourceStateFrom } from "../../lib/sources-store.ts";
 
 /** The source's last successful run (ISO timestamp), or null if it never succeeded. */
-export async function lastSuccess(sourceId: string, sourcesDir = path.join(process.cwd(), "data", "sources")): Promise<string | null> {
+export async function lastSuccess(
+  sourceId: string,
+  sourcesDir = path.join(process.cwd(), "data", "sources"),
+  databaseUrl = process.env.CRAWL_DATABASE_URL,
+): Promise<string | null> {
+  const fromDb = (await readSourceStateFrom(databaseUrl, sourceId))?.lastSuccess ?? null;
+  const fromFile = await fileLastSuccess(sourceId, sourcesDir);
+  if (!fromDb || !fromFile) return fromDb ?? fromFile;
+  return Date.parse(fromDb) >= Date.parse(fromFile) ? fromDb : fromFile;
+}
+
+async function fileLastSuccess(sourceId: string, sourcesDir: string): Promise<string | null> {
   try {
     const s = JSON.parse(await readFile(path.join(sourcesDir, `${sourceId}.json`), "utf8"));
     return typeof s.lastSuccess === "string" ? s.lastSuccess : null;

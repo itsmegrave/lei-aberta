@@ -12,8 +12,8 @@
     {
       "idx": 1,
       "version": "7",
-      "when": 1793725442013,
-      "tag": "0001_crawl_runs",
+      "when": 1793726815769,
+      "tag": "0001_crawl_status",
       "breakpoints": true
     }
   ]

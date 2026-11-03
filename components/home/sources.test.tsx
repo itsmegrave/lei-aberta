@@ -36,6 +36,13 @@ describe("Sources", () => {
     expect(screen.getByText(/1 coletando agora · 2 ativas/)).toBeInTheDocument();
   });
 
+  it("shows the crawl state saved in the database over the built manifest", async () => {
+    vi.stubGlobal("fetch", vi.fn(() => Promise.resolve({ ok: true, json: async () => ({ runs: [], sources: { "assembleia-pb": { status: "failing", lastRun: new Date().toISOString() } } }) } as Response)));
+    render(<Sources sources={sources} />);
+    expect(await within(card("Assembleia da Paraíba")).findByText("Com falha")).toBeInTheDocument();
+    expect(within(card("Senado Federal")).getByText("Ativa")).toBeInTheDocument();
+  });
+
   it("falls back to the manifests when the status can't load", async () => {
     vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("offline"))));
     render(<Sources sources={sources} />);
