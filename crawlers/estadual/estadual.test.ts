@@ -7,9 +7,9 @@ import { validate } from "../lib/store.ts";
 import { validateSource } from "../../lib/sources.ts";
 import { alespToPolicy, detectRecordTag, parseNorma, parseTipos, splitAuthors } from "./alesp.ts";
 import { PartyAtElection, csvLine, parseCandidates } from "./tse.ts";
-import { bareNumber, lawType, shortTitle, tameCaps } from "./common.ts";
+import { bareNumber, lawType, shortTitle, tameCaps, tidyEmenta } from "./common.ts";
 import { robotsAllows, robotsRules } from "./http.ts";
-import { type AuthorBook, type Autor, type Filiacao, type Materia, type Norma, type TipoNorma, authorKind, partyOn, saplId, saplToPolicy, siglaFromStr, targetTypes } from "./sapl.ts";
+import { type AuthorBook, type Autor, type Filiacao, type Materia, type Norma, type TipoNorma, authorKind, partyOn, saplDate, saplId, saplToPolicy, siglaFromStr, targetTypes } from "./sapl.ts";
 import { STATES, byUf } from "./states.ts";
 import { child, decodeXmlStream, forEachElement, zipTextChunks } from "./zip.ts";
 
@@ -70,6 +70,35 @@ test("helpers: numbers, caps, titles", () => {
   assert.equal(shortTitle("Institui a semana X, e dá outras providências."), "Institui a semana X");
 });
 
+test("ementa cleanup: wrapping quotes, shouted names, acronyms and numbers", () => {
+  assert.equal(
+    tidyEmenta('"Concede o Título de Cidadão do Amazonas ao GENERAL DE EXÉRCITO LUIZ GONZAGA VIANA FILHO.'),
+    "Concede o Título de Cidadão do Amazonas ao General de Exército Luiz Gonzaga Viana Filho.",
+  );
+  assert.equal(tidyEmenta("“altera o “caput” do art. 48, da constituição estadual.”"), "Altera o “caput” do art. 48, da constituição estadual.");
+  assert.equal(tidyEmenta("Acrescenta os incisos XII e XIII ao artigo 2º.”"), "Acrescenta os incisos XII e XIII ao artigo 2º.");
+  assert.equal(
+    tidyEmenta("CONSIDERA de utilidade pública a ASSOCIAÇÃO FOLCLÓRICA VERMELHÃO - AFBBV."),
+    "Considera de utilidade pública a Associação Folclórica Vermelhão - AFBBV.",
+  );
+  assert.equal(tidyEmenta("ALTERA OS §§ 12 e 14 DO ARTIGO 177, ACRESCIDOS PELA EMENDA CONSTITUCIONAL Nº 42/2019."), "Altera os §§ 12 e 14 do artigo 177, acrescidos pela emenda constitucional nº 42/2019.");
+  assert.equal(tidyEmenta("AUTORIZA A AGÊNCIA DE HABITAÇÃO (ADH/PI) A CEDER O IMÓVEL."), "Autoriza a agência de habitação (ADH/PI) a ceder o imóvel.");
+  assert.equal(tidyEmenta("Institui o Dia do SUS no estado."), "Institui o Dia do SUS no estado.");
+  for (const s of ["Concede o Título ao General Fulano.", "Dispõe sobre o ICMS e dá outras providências."]) assert.equal(tidyEmenta(tidyEmenta(s)), tidyEmenta(s));
+});
+
+test("SAPL: typos in a law's date fall back to 'ano'; laws dated before 1988 are left out", () => {
+  const at = (ano: number, data: string | null, data_publicacao: string | null = null) => saplDate({ ano, data, data_publicacao }, 2026);
+  assert.deepEqual(at(2023, "2024-01-04"), { year: 2024, date: "2024-01-04" }, "a good date wins over ano");
+  assert.deepEqual(at(2003, "0200-06-30", "2003-07-09"), { year: 2003, date: "2003-06-30" });
+  assert.deepEqual(at(2004, "1004-12-27"), { year: 2004, date: "2004-12-27" });
+  assert.deepEqual(at(2005, "2055-03-03"), { year: 2005, date: "2005-03-03" });
+  assert.deepEqual(at(2015, "0015-12-30", "0015-12-30"), { year: 2015, date: "2015-12-30" });
+  assert.deepEqual(at(1993, null, "1993-09-16"), { year: 1993, date: "1993-09-16" });
+  assert.deepEqual(at(1993, null), { year: 1993, date: null });
+  assert.equal(at(1996, "1969-11-28"), null, "Lei nº 3.006, de 28 de novembro de 1969, filed under 1996");
+});
+
 test("robots.txt: our group wins over *, longest match, Allow on ties", () => {
   const rules = robotsRules("User-agent: *\nDisallow: /api/\nAllow: /api/norma/\n\nUser-agent: OtherBot\nDisallow: /");
   assert.equal(robotsAllows(rules, "/api/materia/1/"), false);
@@ -126,7 +155,7 @@ test("SAPL: law to record", async () => {
   const page = await json<{ results: Norma[] }>("sapl-normas.json");
   const materia = await json<Materia>("sapl-materia.json");
   const ro = byUf("RO")!;
-  const p = saplToPolicy(ro, "lei", page.results[0], materia, materia.autores!, book);
+  const p = saplToPolicy(ro, "lei", page.results[0], materia, materia.autores!, book)!;
   assert.equal(p.id, "estadual-ro-lei-5723-2024", "year comes from the law's date, not SAPL's 'ano'");
   assert.equal(saplId(ro, "lei", page.results[0]), p.id, "nightly runs skip known laws by this id before fetching the bill");
   assert.equal(p.level, "estadual");
@@ -149,7 +178,7 @@ test("SAPL: law to record", async () => {
   ]);
   assert.deepEqual(validate(p), []);
 
-  const old = saplToPolicy(ro, "lei", page.results[1], null, [], book);
+  const old = saplToPolicy(ro, "lei", page.results[1], null, [], book)!;
   assert.equal(old.id, "estadual-ro-lei-99-1993");
   assert.equal(old.summary, "Concede o título de cidadão do estado de rondônia ao ministro fulano de tal.");
   assert.deepEqual(old.authors, []);
