@@ -16,7 +16,7 @@ const STATUS_STYLE: Record<SourceStatus, { icon: React.ComponentType<{ className
   failing: { icon: TriangleAlertIcon, dot: "#d03b3b" },
 };
 
-const EMOJI: Record<string, string> = { "querido-diario": "scroll", dou: "scroll", "amostra-inicial": "books" };
+const EMOJI: Record<string, string> = { "querido-diario": "scroll", dou: "scroll" };
 
 const PLURAL: Record<SourceStatus, string> = { active: "ativas", building: "em construção", planned: "planejadas", failing: "com falha" };
 
