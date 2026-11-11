@@ -4,7 +4,8 @@ import { mkdtemp, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { sortSources, timeAgo, validateSource, type DataSource } from "./sources.ts";
-import { readSources, updateSource } from "./sources-store.ts";
+import { readFile } from "node:fs/promises";
+import { readSources, readSourcesWithState, updateSource } from "./sources-store.ts";
 
 const ok: DataSource = {
   id: "senado", name: "Senado Federal", publisher: "Senado Federal", url: "https://legis.senado.leg.br/dadosabertos",
@@ -34,7 +35,7 @@ test("timeAgo speaks Portuguese", () => {
 });
 
 test("updateSource merges, validates and round-trips", async () => {
-  const dir = await mkdtemp(path.join(tmpdir(), "src-"));
+  const dir = path.join(await mkdtemp(path.join(tmpdir(), "src-")), "sources");
   await updateSource("senado", { ...ok }, dir);
   await updateSource("senado", { status: "active", records: 5, lastRun: "2026-10-31T03:00:00Z", lastSuccess: "2026-10-31T03:00:00Z" }, dir);
   const [s] = await readSources(dir);
@@ -42,6 +43,25 @@ test("updateSource merges, validates and round-trips", async () => {
   assert.equal(s.name, "Senado Federal");
   await assert.rejects(updateSource("x", { status: "active" }, dir));
   assert.deepEqual(await readdir(dir), ["senado.json"]);
+});
+
+test("crawl state goes to status/sources.json and wins over an older manifest", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "src-"));
+  const dir = path.join(root, "sources");
+  await updateSource("senado", { ...ok }, dir);
+  await updateSource("senado", { status: "active", records: 7, lastRun: "2026-11-10T06:30:00Z", lastSuccess: "2026-11-10T06:30:00Z" }, dir);
+  const state = JSON.parse(await readFile(path.join(root, "status", "sources.json"), "utf8"));
+  assert.deepEqual(state.senado, { status: "active", records: 7, lastRun: "2026-11-10T06:30:00Z", lastSuccess: "2026-11-10T06:30:00Z" });
+  // main's manifest is older (as after a fresh checkout); the build lays the branch's state over it.
+  const { writeFile } = await import("node:fs/promises");
+  await writeFile(path.join(dir, "senado.json"), JSON.stringify(ok));
+  const [s] = await readSourcesWithState(dir);
+  assert.equal(s.status, "active");
+  assert.equal(s.records, 7);
+  assert.equal(s.name, "Senado Federal");
+  // And the next run starts from it, not from the manifest.
+  const { lastSuccess } = await import("../crawlers/lib/cursor.ts");
+  assert.equal(await lastSuccess("senado", dir), "2026-11-10T06:30:00Z");
 });
 
 test("withState lays crawl fields over the manifest and ignores invalid ones", async () => {

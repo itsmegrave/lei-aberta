@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     "/lei/[id]": ["./data/**/*.json"],
     "/lei/[id]/opengraph-image": ["./data/**/*.json", "./assets/og-emoji/**", "./node_modules/@fontsource/**/files/*-latin-{700,800}-normal.woff"],
     "/l/[code]": ["./data/**/*.json"],
+    "/api/coletas": ["./data/status/*.json"],
   },
 };
 

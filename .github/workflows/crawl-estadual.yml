@@ -46,9 +46,12 @@ jobs:
   crawl:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    # Commits the laws and the crawl status to the data branch.
+    permissions:
+      contents: write
     # A first run backfills every SAPL house from 1989 (one request per law, throttled per host).
     timeout-minutes: 340
-    # Shared with the other crawlers so only one job commits at a time.
+    # Every crawler shares this group, so only one of them writes to the data branch at a time.
     concurrency:
       group: data-commit
       cancel-in-progress: false
@@ -57,23 +60,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: npm
-      # The store mirrors every save into Postgres, which needs drizzle-orm and postgres.
-      - run: npm ci
+      # The laws and the crawl status live on the data branch; this copies them into data/.
+      - name: Check out the data branch
+        run: scripts/data-branch.sh checkout
       # TSE candidate files for past elections never change; keep them between runs.
       - uses: actions/cache@v4
         with:
           path: .cache/tse
           key: tse-consulta-cand-v1
-      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      # Tells the site this crawler is collecting now (status/runs.json on the data branch). Never fails the job.
       - name: Mark as collecting
-        env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/estadual/run.ts
+        run: |
+          node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/estadual/run.ts
+          scripts/data-branch.sh push "estadual: collecting" || echo "::warning::status not pushed"
       - name: Crawl
         id: crawl
         env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           STATES: ${{ inputs.states }}
           SINCE: ${{ inputs.since }}
         run: |
@@ -81,9 +83,10 @@ jobs:
           [ -n "$STATES" ] && args+=(--states "$STATES")
           [ -n "$SINCE" ] && args+=(--since "$SINCE")
           npm run crawl:estadual -- "${args[@]}"
-      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
-      - name: Record the outcome
+      # Runs after failures and cancellations too: commits what the crawl saved (each save writes whole files,
+      # so a partial run is consistent) and stops the site showing "coletando agora".
+      - name: Save the laws and the outcome
         if: always()
-        env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/estadual/run.ts "${{ steps.crawl.outcome }}"
+        run: |
+          node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/estadual/run.ts "${{ steps.crawl.outcome }}"
+          scripts/data-branch.sh push "estadual: ${{ steps.crawl.outcome }} (run ${{ github.run_id }})"

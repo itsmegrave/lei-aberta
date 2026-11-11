@@ -1,14 +1,22 @@
-// The JSON path of lib/data.ts (local dev without a database), on the sample catalog in lib/fixtures.
+// lib/data.ts on the sample catalog in lib/fixtures.
 // Runs with --conditions=react-server so the "server-only" guard imports cleanly.
 import { before, test } from "node:test";
 import assert from "node:assert/strict";
 import { PAGE_SIZE } from "./listing.ts";
 
-delete process.env.DATABASE_URL;
 process.env.CATALOG_DIR = "lib/fixtures/catalog";
 let data: typeof import("./data.ts");
 before(async () => {
   data = await import("./data.ts");
+});
+
+// Runs first, before anything loads the whole catalog, so it exercises the one-year-file lookup.
+test("findPolicy finds a law from its level and year file", async () => {
+  const fs = await import("node:fs/promises");
+  const [first] = JSON.parse(await fs.readFile("lib/fixtures/catalog/federal/2003.json", "utf8"));
+  assert.deepEqual(await data.findPolicy(first.id), first);
+  assert.equal(await data.findPolicy("federal-lei-999999-2003"), undefined);
+  assert.equal(await data.findPolicy("nao-existe"), undefined);
 });
 
 test("the catalog reads every file in its index.json, newest first", async () => {
@@ -23,7 +31,7 @@ test("the catalog reads every file in its index.json, newest first", async () =>
   assert.equal(data.loadCatalog(), data.loadCatalog());
 });
 
-test("findPolicy and policyIds work without a database", async () => {
+test("findPolicy and policyIds agree with the catalog", async () => {
   const { policies } = await data.loadCatalog();
   assert.deepEqual(await data.findPolicy(policies[3].id), policies[3]);
   assert.equal(await data.findPolicy("nao-existe"), undefined);

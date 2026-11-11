@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { toCsv } from "./export.ts";
-import type { Policy } from "../types.ts";
+import type { Policy } from "./types.ts";
 
 const p: Policy = {
   id: "federal-lei-1-2000", level: "federal", jurisdiction: "Brasil", type: "lei", number: "1", title: 'Lei "um", com vírgula',

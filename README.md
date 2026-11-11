@@ -23,7 +23,7 @@ npm run build   # production build (npm start serves it)
 
 - `npm run test:unit`: logic in `lib/` and `crawlers/` (`*.test.ts`), on Node's built-in `node:test`.
 - `npm run test:ui`: React components (`components/**/*.test.tsx`) with Vitest, jsdom and React Testing Library. Shared setup is in `test/setup.ts`, and a sample law record is in `test/fixtures.ts`.
-- `npm run test:db`: the Postgres layer (`lib/**/*.db.test.ts`: the upsert and the queries in `lib/data.ts`) against a real, migrated database, one file at a time. It runs only when `TEST_DATABASE_URL` is set, never against `DATABASE_URL`, and it only touches ids that start with `test-db-`. CI runs it against a throwaway Postgres after the migrations.
+- `sh test/data-branch.sh`: `scripts/data-branch.sh` end to end against a throwaway git remote (CI runs it).
 
 ## Hosting (Vercel)
 
@@ -31,7 +31,8 @@ The repo is linked to a Vercel project. Vercel detects Next.js. `vercel.json` on
 
 - Every push to `main` deploys to production.
 - Every pull request gets a preview URL.
-- The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It writes laws to Postgres and commits only the source manifests in `data/sources/`. There is no GitHub Pages deploy.
+- The nightly crawl runs in GitHub Actions (free for public repos, up to 6 hours per run). It commits laws and crawl status to the `data` branch, never to `main`. There is no GitHub Pages deploy.
+- The build (`vercel-build`) first runs `npm run data:pull`, which unpacks the `data` branch into `data/`, so every deploy has the latest catalog. Once a day after the crawls, `export-data.yml` calls a Vercel deploy hook (the `VERCEL_DEPLOY_HOOK` repo secret) to rebuild with the new laws.
 
 ## Sharing
 
@@ -53,7 +54,7 @@ All search metadata is in Portuguese (`lang="pt-BR"`, `og:locale` `pt_BR`) and r
 
 ## Data
 
-Laws live in Postgres (Neon, via the Vercel Marketplace, free tier). The repo keeps only the source manifests in `data/sources/` and a small sample in `lib/fixtures/catalog/`. Each record:
+Laws live as JSON on the [`data` branch](https://github.com/itsmegrave/lei-aberta/tree/data), one file per level and year (`<level>/<year>.json`) plus `index.json`. `main` keeps the source manifests in `data/sources/` and a small sample in `lib/fixtures/catalog/`. Each record:
 
 | field | notes |
 | --- | --- |
@@ -67,20 +68,19 @@ State laws come from the state legislatures; coverage per state and the crawler 
 
 ### Open data
 
-Every day after the crawls, [`export-data.yml`](.github/workflows/export-data.yml) publishes the whole catalog on the [`dados` release](https://github.com/itsmegrave/lei-aberta/releases/tag/dados): `leis.json.gz` (the records above, one array) and `leis.csv.gz` (one row per law, lists joined with ` | `, the executive's party in its own column). `npm run db:export` builds the same files from `DATABASE_URL`.
+Every day after the crawls, [`export-data.yml`](.github/workflows/export-data.yml) publishes the whole catalog on the [`dados` release](https://github.com/itsmegrave/lei-aberta/releases/tag/dados): `leis.json.gz` (the records above, one array) and `leis.csv.gz` (one row per law, lists joined with ` | `, the executive's party in its own column). `npm run data:export [-- data-dir out-dir]` builds the same files from a catalog folder.
 
-### Postgres
+### The data branch
 
-- Schema: `lib/db/schema.ts` (Drizzle). One `policies` table; filter fields are columns (`level`, `year`, `jurisdiction`, `executive_party`), `areas` and `parties` are indexed arrays, `authors`/`sources`/`executive` are JSON, and `search` is a Portuguese full-text vector over title and summary. `executive_party` is a copy of `executive.party` and is never mixed with `parties`.
-- Migrations live in `drizzle/`. After changing the schema run `npm run db:generate`, then `npm run db:migrate`. Every Vercel deploy runs `scripts/db-deploy.sh` (the `vercel-build` script), which applies pending migrations. Preview deploys get their own Neon branch, so they never touch production data.
-- Crawlers: `crawlers/lib/store.ts` reads and writes Postgres when `CRAWL_DATABASE_URL` is set (the nightly jobs pass the `DATABASE_URL` repo secret): it loads every record once, and `save()` upserts only the records that changed and deletes removed ones. Without it (tests, PR smoke runs, local runs) it uses `data/<level>/<year>.json` files.
-- `npm run db:import-json [dir]` loads a JSON catalog (`index.json` plus `<level>/<year>.json`) into `DATABASE_URL` (idempotent; refuses to run if any record fails validation).
+- Layout: `<level>/<year>.json` and `index.json` (written by `crawlers/lib/store.ts`), `status/sources.json` (the crawl state of each source: status, counts, last run and the cursor of incremental crawls) and `status/runs.json` (the latest run of each crawler).
+- Crawl jobs run `scripts/data-branch.sh checkout`, which copies the branch into `data/`, then crawl, then `scripts/data-branch.sh push "<message>"`, which commits `data/` (minus `data/sources`) back and pushes. They also push when a crawl starts, so the site can show it as running. All crawl jobs share the `data-commit` concurrency group.
+- If the branch doesn't exist, the first checkout starts it from the latest dump on the `dados` release.
+- The branch has its own `vercel.json` that turns off deploys for it.
 
 ### Running locally
 
-- No setup: without `DATABASE_URL` the site reads the sample in `lib/fixtures/catalog/` (75 laws).
-- Full catalog without a database: `npm run data:pull` unpacks the latest dump into `data/` (git-ignored), which the site then reads.
-- With Postgres: any Postgres 16, e.g. `DATABASE_URL=postgres://postgres:postgres@localhost:5432/lei_aberta npm run db:migrate`, then `npm run data:pull` and `npm run db:import-json`.
+- No setup: the site reads the sample in `lib/fixtures/catalog/` (75 laws).
+- Full catalog: `npm run data:pull` unpacks the `data` branch into `data/` (git-ignored), which the site then reads.
 
 ### How the site loads it
 
@@ -114,7 +114,7 @@ The "De onde vêm os dados" section on the home page is built from `data/sources
 }
 ```
 
-At the end of each run a crawler calls `updateSource(id, patch)` from `lib/sources-store.ts`. It merges the patch, validates it and writes the file. On success, pass `status: "active"`, `records`, `lastRun` and `lastSuccess`. On failure, pass `status: "failing"` and `lastRun`. The build fails if any file is invalid.
+At the end of each run a crawler calls `updateSource(id, patch)` from `lib/sources-store.ts`. It merges the patch, validates it and writes the file, and writes the crawl fields (`status`, `records`, `since`, `lastRun`, `lastSuccess`) to `data/status/sources.json`, which the crawl jobs commit to the `data` branch. The site lays that state over the manifests (at build time, and live through `/api/coletas`). On success, pass `status: "active"`, `records`, `lastRun` and `lastSuccess`. On failure, pass `status: "failing"` and `lastRun`. The build fails if any file is invalid.
 
 ## Party positions
 

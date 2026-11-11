@@ -6,14 +6,6 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: lei_aberta
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,17 +19,9 @@ jobs:
       - name: News feeds
         continue-on-error: true
         run: npm run check:news
-      # Schema and JSON import against a throwaway Postgres, so a migration or import break shows up here.
-      - name: Database migrate + import
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
-        run: npm run db:migrate && npm run db:import-json -- lib/fixtures/catalog
-      - name: Database tests
-        env:
-          TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
-        run: npm run test:db
-      # The site reads Postgres whenever DATABASE_URL is set, as on Vercel.
-      - name: Build (reading Postgres)
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/lei_aberta
+      # The data-branch script, end to end against a throwaway remote: seed, commit, push, read back.
+      - name: Data branch round trip
+        run: sh test/data-branch.sh
+      # Builds on the 75-law sample in lib/fixtures/catalog; Vercel builds on the full catalog (npm run data:pull).
+      - name: Build
         run: npm run build

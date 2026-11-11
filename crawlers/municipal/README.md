@@ -1,8 +1,8 @@
 # Municipal laws crawler (capitals)
 
 Collects **leis** and **leis complementares** of the 26 state capitals from each Câmara Municipal, with the authors
-and each vereador's party at the time, and writes them through the shared store (`crawlers/lib/store.ts`, Postgres in
-the nightly job). It also sets each record's `executive`: the mayor elected for that term and their party, from TSE.
+and each vereador's party at the time, and writes them through the shared store (`crawlers/lib/store.ts`; the nightly
+job commits them to the `data` branch). It also sets each record's `executive`: the mayor elected for that term and their party, from TSE.
 
 ```sh
 npm run crawl:municipal                                  # nightly default: last year + this year; a câmara with no data backfills from 1989

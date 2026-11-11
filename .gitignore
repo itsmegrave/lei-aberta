@@ -6,6 +6,9 @@ next-env.d.ts
 .DS_Store
 .cache/
 
-# Laws live in Postgres; `npm run data:pull` unpacks the open-data dump here for local runs.
+# Laws live on the `data` branch; `npm run data:pull` unpacks them here (the Vercel build does too).
 /data/*
 !/data/sources/
+
+# Worktree of the data branch (scripts/data-branch.sh).
+/.data-branch/
