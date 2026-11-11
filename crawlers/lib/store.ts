@@ -1,10 +1,8 @@
-// Shared store for every crawler. The nightly jobs read and write Postgres (CRAWL_DATABASE_URL); without a
-// database it uses data/<level>/<year>.json plus data/index.json (tests, local runs, PR smoke runs).
+// Shared store for every crawler: data/<level>/<year>.json plus data/index.json. The nightly jobs copy the
+// `data` branch into data/ before a crawl and commit the result back to it (scripts/data-branch.sh).
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Policy } from "../../lib/types.ts";
-import { fromDbRow, toDbRow } from "../../lib/db/codec.ts";
-import type { PolicyRead } from "../../lib/db/schema.ts";
 
 export interface UpsertOptions {
   /**
@@ -70,11 +68,7 @@ export interface Store {
   /** Number of records added or changed since the store was opened. */
   changed(): number;
   remove(id: string): void;
-  /**
-   * Writes touched files and index.json. Returns the number of files written.
-   * With a database (see StoreOptions) it upserts the changed records and deletes removed ones instead,
-   * and returns the number of records written.
-   */
+  /** Writes touched files and index.json. Returns the number of files written. */
   save(): Promise<number>;
 }
 
@@ -89,58 +83,7 @@ export const sameRecord = (a: Policy, b: Policy) => JSON.stringify(canonical(a))
 
 const fileKey = (p: Pick<Policy, "level" | "year">) => `${p.level}/${p.year}.json`;
 
-export interface StoreOptions {
-  /**
-   * Postgres to read and write instead of the JSON files. Defaults to CRAWL_DATABASE_URL, which only the
-   * nightly crawl jobs set. Without it the store uses data/<level>/<year>.json (tests, local runs, PR smoke).
-   */
-  databaseUrl?: string;
-}
-
-/** Postgres stores no undefined/null distinction for optional fields; compare records in the shape it returns. */
-const asStored = (p: Policy): Policy => fromDbRow({ ...toDbRow(p), updatedAt: new Date() } as PolicyRead);
-
-export async function openStore(dataDir: string, opts: StoreOptions = {}): Promise<Store> {
-  const databaseUrl = "databaseUrl" in opts ? opts.databaseUrl : process.env.CRAWL_DATABASE_URL;
-  return databaseUrl ? openDbStore(databaseUrl) : openFileStore(dataDir);
-}
-
-/** Postgres is the catalog: load every record once (crawlers call get/all a lot), write back only what changed. */
-async function openDbStore(url: string): Promise<Store> {
-  const records = new Map<string, Policy>();
-  for (const r of await readDb(url)) records.set(r.id, r);
-  const changedIds = new Set<string>();
-  const pending = new Set<string>();
-  return {
-    get: (id) => records.get(id),
-    all: () => [...records.values()],
-    upsert(record, opts) {
-      const prev = records.get(record.id);
-      const next = asStored(mergeRecord(prev, record, opts));
-      const errors = validate(next);
-      if (errors.length) throw new Error(`${record.id}: ${errors.join("; ")}`);
-      if (prev && sameRecord(prev, next)) return prev;
-      changedIds.add(next.id);
-      pending.add(next.id);
-      records.set(next.id, next);
-      return next;
-    },
-    changed: () => changedIds.size,
-    remove(id) {
-      if (!records.delete(id)) return;
-      pending.add(id);
-    },
-    async save() {
-      if (!pending.size) return 0;
-      const n = pending.size;
-      await writeDb(url, [...pending].map((id) => records.get(id) ?? id));
-      pending.clear();
-      return n;
-    },
-  };
-}
-
-async function openFileStore(dataDir: string): Promise<Store> {
+export async function openStore(dataDir: string): Promise<Store> {
   const records = new Map<string, Policy>();
   const touched = new Set<string>();
   const changedIds = new Set<string>();
@@ -208,41 +151,4 @@ async function openFileStore(dataDir: string): Promise<Store> {
       return written;
     },
   };
-}
-
-// The database modules are loaded lazily so crawls without a database (PR smoke runs, local dry runs)
-// need no npm install.
-
-async function readDb(url: string): Promise<Policy[]> {
-  const [{ getDb, closeDb }, { policies, policyColumns }] = await Promise.all([
-    import("../../lib/db/client.ts"),
-    import("../../lib/db/schema.ts"),
-  ]);
-  try {
-    const rows = await getDb(url).select(policyColumns).from(policies);
-    console.log(`db: loaded ${rows.length} records`);
-    return rows.map(fromDbRow);
-  } finally {
-    await closeDb();
-  }
-}
-
-/** Upserts records and deletes ids (strings). */
-async function writeDb(url: string, items: (Policy | string)[]): Promise<void> {
-  const [{ getDb, closeDb }, { upsertPolicies }, { policies }, { inArray }] = await Promise.all([
-    import("../../lib/db/client.ts"),
-    import("../../lib/db/upsert.ts"),
-    import("../../lib/db/schema.ts"),
-    import("drizzle-orm"),
-  ]);
-  const db = getDb(url);
-  try {
-    const upserts = items.filter((x): x is Policy => typeof x !== "string");
-    const deletes = items.filter((x): x is string => typeof x === "string");
-    await upsertPolicies(db, upserts);
-    if (deletes.length) await db.delete(policies).where(inArray(policies.id, deletes));
-    console.log(`db: upserted ${upserts.length}, deleted ${deletes.length}`);
-  } finally {
-    await closeDb();
-  }
 }

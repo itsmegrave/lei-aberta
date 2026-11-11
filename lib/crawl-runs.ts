@@ -1,6 +1,6 @@
-// Live crawler status. The nightly workflows record each run in Postgres (crawl_runs); the site reads the latest
-// run per crawler from /api/coletas and lays it over the data/sources manifests, which only change after a run
-// commits. Client-safe: no database code here.
+// Live crawler status. The nightly workflows record each run in data/status/runs.json on the data branch; the site
+// reads the latest run per crawler from /api/coletas and lays it over the manifests in its build.
+// Client-safe: no file system code here (see crawl-runs-store.ts).
 import type { DataSource, SourceStatus } from "./sources.ts";
 
 export type CrawlRunStatus = "running" | "success" | "failure" | "cancelled";
