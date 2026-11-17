@@ -1,0 +1,151 @@
+{
+  "assembleia-ac": {
+    "status": "active",
+    "records": 1430,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-al": {
+    "status": "active",
+    "records": 2996,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-am": {
+    "status": "active",
+    "records": 7548,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-ap": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-ba": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-ce": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-df": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-es": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-go": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-ma": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-mg": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-ms": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-mt": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-pa": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-pb": {
+    "status": "active",
+    "records": 9879,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-pe": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-pi": {
+    "status": "active",
+    "records": 4744,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-pr": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-rj": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-rn": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-ro": {
+    "status": "active",
+    "records": 7847,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z",
+    "lastSuccess": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-rr": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-rs": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-sc": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-se": {
+    "status": "planned",
+    "records": null,
+    "since": null
+  },
+  "assembleia-sp": {
+    "status": "failing",
+    "records": 13035,
+    "since": 1989,
+    "lastRun": "2026-11-17T17:00:17Z"
+  },
+  "assembleia-to": {
+    "status": "failing",
+    "records": 1395,
+    "since": 1998,
+    "lastRun": "2026-11-17T17:00:17Z"
+  }
+}

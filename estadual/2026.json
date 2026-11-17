@@ -10947,6 +10947,41 @@
     "bill": "PROJETO DE LEI COMPLEMENTAR nº 108 de 2026"
   },
   {
+    "id": "estadual-al-lei-complementar-73-2026",
+    "level": "estadual",
+    "jurisdiction": "Alagoas",
+    "type": "lei-complementar",
+    "number": "73",
+    "title": "Altera os arts. 11, 67 e 80 da lei complementar nº 7, de 18 de julho de 1991, que…",
+    "summary": "Altera os arts. 11, 67 e 80 da lei complementar nº 7, de 18 de julho de 1991, que institui a lei orgânica da procuradoria geral do estado - pge, para dispor sobre o afastamento e a cessão de procurador de estado.",
+    "year": 2026,
+    "presentedAt": "2026-10-14",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "PODER EXECUTIVO ESTADUAL",
+        "kind": "executive",
+        "party": null,
+        "uf": "AL"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Alagoas (SAPL)",
+        "url": "https://sapl.al.al.leg.br/norma/4124"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.al.leg.br/media/sapl/public/normajuridica/2026/4124/lei_complementar_no_73_de_12_de_novembro.pdf"
+      }
+    ],
+    "signedAt": "2026-11-12",
+    "bill": "PROJETO DE LEI COMPLEMENTAR nº 109 de 2026"
+  },
+  {
     "id": "estadual-am-emenda-constitucional-143-2026",
     "level": "estadual",
     "jurisdiction": "Amazonas",
@@ -32768,6 +32803,43 @@
     "number": "8.581",
     "signedAt": "2026-11-06",
     "bill": "Projeto de Lei Ordinária nº 770 de 2024"
+  },
+  {
+    "id": "estadual-am-lei-8582-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.582",
+    "title": "Institui o “Dia do Auxiliar Veterinário”",
+    "summary": "Institui o “Dia do Auxiliar Veterinário”.",
+    "year": 2026,
+    "presentedAt": "2022-02-15",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Joana Darc",
+        "kind": "state-deputy",
+        "party": "PL",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "PL"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15225"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15225/8582.pdf"
+      }
+    ],
+    "signedAt": "2026-11-11",
+    "bill": "Projeto de Lei Ordinária nº 57 de 2022"
   },
   {
     "id": "estadual-am-lei-complementar-282-2026",
@@ -70851,6 +70923,41 @@
     "number": "1.350",
     "signedAt": "2026-11-12",
     "bill": "Projeto de Lei Complementar nº 204 de 2026"
+  },
+  {
+    "id": "estadual-ro-lei-complementar-1351-2026",
+    "level": "estadual",
+    "jurisdiction": "Rondônia",
+    "type": "lei-complementar",
+    "number": "1.351",
+    "title": "Altera as Leis Complementares nº 154, de 26 de julho de 1996, nº 1.023 e nº 1.024, ambas…",
+    "summary": "Altera as Leis Complementares nº 154, de 26 de julho de 1996, nº 1.023 e nº 1.024, ambas de 6 de junho de 2019, e revoga o art. 5º da Lei Complementar nº 1.176, de 28 de dezembro de 2022.",
+    "year": 2026,
+    "presentedAt": "2026-11-10",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Tribunal de Contas",
+        "kind": "other-power",
+        "party": null,
+        "uf": "RO"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Rondônia (SAPL)",
+        "url": "https://sapl.al.ro.leg.br/norma/14297"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2026/14297/lc1351.pdf"
+      }
+    ],
+    "signedAt": "2026-11-16",
+    "bill": "Projeto de Lei Complementar nº 209 de 2026"
   },
   {
     "id": "estadual-sp-lei-18387-2026",
