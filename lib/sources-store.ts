@@ -1,11 +1,15 @@
-// Node-only helpers for crawlers and the build: read and write data/sources/<id>.json.
-// With a database URL, the crawl state (status, counts, last run, cursor) is read from and written to
-// Postgres (source_status) instead, because the nightly jobs can no longer commit to main.
+// Node-only helpers for crawlers and the build: data/sources/<id>.json manifests plus their crawl state.
+// Manifests (name, description, coverage...) are committed to main and change through pull requests.
+// The fields a crawl changes (STATE_FIELDS: status, counts, last run, cursor) go to data/status/sources.json,
+// which lives on the `data` branch with the laws, because the nightly jobs can't commit to main.
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { stateOf, validateSource, withState, type DataSource, type SourceState } from "./sources.ts";
 
 export const SOURCES_DIR = path.join(process.cwd(), "data", "sources");
+
+/** Crawl state file that goes with a manifests folder: <data>/status/sources.json next to <data>/sources. */
+export const statusFileFor = (sourcesDir: string) => path.join(sourcesDir, "..", "status", "sources.json");
 
 export async function readSources(dir = SOURCES_DIR): Promise<DataSource[]> {
   let files: string[] = [];
@@ -24,74 +28,53 @@ export async function readSources(dir = SOURCES_DIR): Promise<DataSource[]> {
   return out;
 }
 
+/** Crawl state of every source, by id. Empty when the file is missing or unreadable. */
+export async function readSourceStates(file: string): Promise<Record<string, SourceState>> {
+  try {
+    const all = JSON.parse(await readFile(file, "utf8")) as Record<string, SourceState>;
+    return Object.fromEntries(Object.entries(all).map(([id, s]) => [id, stateOf(s)]));
+  } catch {
+    return {};
+  }
+}
+
+/** Crawl state of one source, or undefined. */
+export async function readSourceState(id: string, sourcesDir = SOURCES_DIR): Promise<SourceState | undefined> {
+  return (await readSourceStates(statusFileFor(sourcesDir)))[id];
+}
+
 /**
- * Crawlers call this at the end of each run. Merges `patch` into the source's file (creating it if needed),
- * validates, and writes it. Example after a successful run:
+ * Crawlers call this at the end of each run. Merges `patch` into the source (manifest plus crawl state),
+ * validates, and writes both the manifest and the crawl state. Example after a successful run:
  *   await updateSource("senado", { status: "active", records: 812, lastRun: now, lastSuccess: now });
  * After a failed run: await updateSource("senado", { status: "failing", lastRun: now });
  */
-export async function updateSource(
-  id: string,
-  patch: Partial<DataSource>,
-  dir = SOURCES_DIR,
-  databaseUrl = process.env.CRAWL_DATABASE_URL,
-): Promise<DataSource> {
+export async function updateSource(id: string, patch: Partial<DataSource>, dir = SOURCES_DIR): Promise<DataSource> {
   const file = path.join(dir, `${id}.json`);
+  const statusFile = statusFileFor(dir);
   let current: Partial<DataSource> = {};
   try {
     current = JSON.parse(await readFile(file, "utf8"));
   } catch {
     /* new source */
   }
-  if (databaseUrl) current = { ...current, ...(await readSourceStateFrom(databaseUrl, id)) };
+  const states = await readSourceStates(statusFile);
+  current = { ...current, ...states[id] };
   const next = { ...current, ...patch, id } as DataSource;
   const errors = validateSource(next, `${id}.json`);
   if (errors.length) throw new Error(`source ${id}: ${errors.join("; ")}`);
-  // A status that can't be saved must not fail a crawl whose laws are already in the database.
-  if (databaseUrl)
-    await withDb(databaseUrl, (db, m) => m.writeSourceState(db, id, stateOf(next))).catch((err) =>
-      console.warn(`::warning::source ${id}: status not saved: ${err instanceof Error ? err.message : err}`),
-    );
-  // Also written in the database case: the PR smoke runs and local runs read the file, and a developer
-  // can commit a manifest change (a new source, a new description) through a pull request.
+  await mkdir(path.dirname(statusFile), { recursive: true });
+  const sorted = Object.fromEntries(Object.entries({ ...states, [id]: stateOf(next) }).sort(([a], [b]) => a.localeCompare(b)));
+  await writeFile(statusFile, JSON.stringify(sorted, null, 2) + "\n");
+  // The manifest is written too: a new source, or a new description from a crawler, reaches main through a
+  // pull request with this file. The nightly jobs only commit data/status to the data branch.
   await mkdir(dir, { recursive: true });
   await writeFile(file, JSON.stringify(next, null, 2) + "\n");
   return next;
 }
 
-/** Crawl state from Postgres for one source; undefined without a database or a row. */
-export async function readSourceStateFrom(databaseUrl: string | undefined, id: string): Promise<SourceState | undefined> {
-  if (!databaseUrl) return undefined;
-  try {
-    return await withDb(databaseUrl, (db, m) => m.readSourceState(db, id));
-  } catch (err) {
-    console.warn(`::warning::source ${id}: status not read, using data/sources: ${err instanceof Error ? err.message : err}`);
-    return undefined;
-  }
-}
-
-/** Manifests with the crawl state from Postgres laid over them (the site's build and /api/coletas). */
-export async function readSourcesWithState(databaseUrl = process.env.DATABASE_URL, dir = SOURCES_DIR): Promise<DataSource[]> {
-  const sources = await readSources(dir);
-  if (!databaseUrl) return sources;
-  try {
-    const { getDb } = await import("./db/client.ts");
-    const { readSourceStates } = await import("./db/source-status.ts");
-    const states = await readSourceStates(getDb(databaseUrl));
-    return sources.map((s) => withState(s, states[s.id]));
-  } catch (err) {
-    console.error("source_status:", err);
-    return sources;
-  }
-}
-
-// Crawlers open and close their own connection per call, like the crawler store, and load the database
-// modules lazily so runs without a database need no npm install.
-async function withDb<T>(url: string, fn: (db: import("./db/client.ts").Db, m: typeof import("./db/source-status.ts")) => Promise<T>): Promise<T> {
-  const [{ getDb, closeDb }, m] = await Promise.all([import("./db/client.ts"), import("./db/source-status.ts")]);
-  try {
-    return await fn(getDb(url), m);
-  } finally {
-    await closeDb();
-  }
+/** Manifests with the crawl state laid over them (the site's build). */
+export async function readSourcesWithState(dir = SOURCES_DIR): Promise<DataSource[]> {
+  const [sources, states] = await Promise.all([readSources(dir), readSourceStates(statusFileFor(dir))]);
+  return sources.map((s) => withState(s, states[s.id]));
 }

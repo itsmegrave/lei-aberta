@@ -1,11 +1,12 @@
-name: Export open data
+name: Publish data
 
-# Publishes every law in Postgres as JSON and CSV on the "dados" release, once a day after the
-# nightly crawls, so the catalog stays open without committing it to the repo.
-#   https://github.com/itsmegrave/lei-aberta/releases/tag/dados
+# Once a day, after the nightly crawls:
+# 1. publishes every law on the data branch as JSON and CSV on the "dados" release, so anyone can download the
+#    catalog in one file: https://github.com/itsmegrave/lei-aberta/releases/tag/dados
+# 2. rebuilds the site, whose home page, charts and sitemaps are built from the data branch.
 on:
   schedule:
-    - cron: "30 13 * * *" # 10:30 in Brasília, after the federal, state and Diários crawls
+    - cron: "30 13 * * *" # 10:30 in Brasília, after the federal, state, municipal and Diários crawls
   workflow_dispatch:
 
 concurrency:
@@ -23,23 +24,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: npm
-      - run: npm ci
+      - name: Check out the data branch
+        run: scripts/data-branch.sh checkout
       - name: Export
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: npm run db:export -- dist/dados
+        run: npm run data:export -- data dist/dados
       - name: Publish on the "dados" release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          notes="Todas as leis do Lei Aberta, exportadas do banco em $(date -u +%F).
+          notes="Todas as leis do Lei Aberta, exportadas em $(date -u +%F) do branch data.
           leis.json.gz: os registros completos (mesmo formato do site).
           leis.csv.gz: uma linha por lei; listas separadas por \" | \". O partido do Executivo fica em coluna própria, separado dos partidos dos autores.
-          Para usar localmente: npm run data:pull"
+          Os mesmos dados, um arquivo por nível e ano: https://github.com/${{ github.repository }}/tree/data"
           if gh release view dados >/dev/null 2>&1; then
             gh release edit dados --notes "$notes"
           else
             gh release create dados --title "Dados abertos" --notes "$notes" --latest=false
           fi
           gh release upload dados dist/dados/leis.json.gz dist/dados/leis.csv.gz --clobber
+      # VERCEL_DEPLOY_HOOK: a deploy hook for main (Vercel project settings > Git > Deploy Hooks).
+      - name: Rebuild the site with today's data
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::warning::VERCEL_DEPLOY_HOOK is not set: the site shows new laws only after its next deploy."
+          else
+            curl -fsS -X POST "$HOOK" >/dev/null && echo "Deploy started."
+          fi

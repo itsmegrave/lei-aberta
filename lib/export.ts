@@ -1,5 +1,5 @@
 // CSV for the open-data dump: one row per law, lists joined with " | ".
-import type { Policy } from "../types.ts";
+import type { Policy } from "./types.ts";
 
 const COLUMNS: [string, (p: Policy) => unknown][] = [
   ["id", (p) => p.id],

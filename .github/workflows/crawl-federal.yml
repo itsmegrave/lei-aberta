@@ -38,8 +38,8 @@ jobs:
       # A pre-EC 32 reissued MP, and a sample of a recent year of every type.
       - run: npm run crawl:federal -- --from 1999 --to 1999 --types MPV --only 1858 --dry-run
       - run: npm run crawl:federal -- --from 2025 --to 2025 --limit 5 --dry-run
-      # The nightly path (incremental from the cursor in data/sources) on a copy, writing JSON instead of
-      # Postgres. Laws are no longer in the repo, so cap it: it would otherwise re-crawl the cursor's year.
+      # The nightly path (incremental from the cursor in data/sources) on a copy. The laws live on the data
+      # branch, not in this checkout, so cap it: it would otherwise re-crawl the cursor's year.
       - name: Incremental run on a copy of the data
         run: |
           cp -r data "$RUNNER_TEMP/data"
@@ -51,8 +51,11 @@ jobs:
   crawl:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    # Commits the laws and the crawl status to the data branch.
+    permissions:
+      contents: write
     timeout-minutes: 340
-    # Shared with the other crawlers so only one job commits to main at a time.
+    # Every crawler shares this group, so only one of them writes to the data branch at a time.
     concurrency:
       group: data-commit
       cancel-in-progress: false
@@ -61,18 +64,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: npm
-      # The store mirrors every save into Postgres, which needs drizzle-orm and postgres.
-      - run: npm ci
-      # Tells the site this crawler is collecting now (crawl_runs in Postgres). Never fails the job.
+      # The laws and the crawl status live on the data branch; this copies them into data/.
+      - name: Check out the data branch
+        run: scripts/data-branch.sh checkout
+      # Tells the site this crawler is collecting now (status/runs.json on the data branch). Never fails the job.
       - name: Mark as collecting
-        env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/federal/run.ts
+        run: |
+          node --experimental-strip-types --no-warnings scripts/crawl-run.ts start crawlers/federal/run.ts
+          scripts/data-branch.sh push "federal: collecting" || echo "::warning::status not pushed"
       - name: Crawl
         id: crawl
         env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
           FROM: ${{ inputs.from }}
           TO: ${{ inputs.to }}
           FULL: ${{ inputs.full }}
@@ -82,9 +84,10 @@ jobs:
           [ -n "$TO" ] && args+=(--to "$TO")
           [ "$FULL" = "true" ] && args+=(--full)
           npm run crawl:federal -- "${args[@]}"
-      # Runs after failures and cancellations too, so the site stops showing "coletando agora".
-      - name: Record the outcome
+      # Runs after failures and cancellations too: commits what the crawl saved (each save writes whole files,
+      # so a partial run is consistent) and stops the site showing "coletando agora".
+      - name: Save the laws and the outcome
         if: always()
-        env:
-          CRAWL_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/federal/run.ts "${{ steps.crawl.outcome }}"
+        run: |
+          node --experimental-strip-types --no-warnings scripts/crawl-run.ts finish crawlers/federal/run.ts "${{ steps.crawl.outcome }}"
+          scripts/data-branch.sh push "federal: ${{ steps.crawl.outcome }} (run ${{ github.run_id }})"

@@ -2,10 +2,6 @@ import "server-only";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { desc, eq, max } from "drizzle-orm";
-import { getDb } from "./db/client.ts";
-import { fromDbRow } from "./db/codec.ts";
-import { policies, policyColumns } from "./db/schema.ts";
 import { EMPTY_FILTERS, overview, toRow, type Overview, type Row } from "./catalog.ts";
 import { encodeIndex, PAGE_SIZE, pageCount, toCard, type IndexFile as RowIndex } from "./listing.ts";
 import { partyStats, type PartyStats } from "./party-stats.ts";
@@ -18,54 +14,55 @@ interface IndexFile {
 }
 
 /**
- * JSON catalog for runs without a database: CATALOG_DIR, else data/ when a dump was unpacked there
- * (npm run data:pull), else the small sample in lib/fixtures/catalog so `npm run dev` works out of the box.
+ * The JSON catalog: CATALOG_DIR, else data/ when the catalog was pulled there (npm run data:pull, which the
+ * Vercel build runs), else the small sample in lib/fixtures/catalog so `npm run dev` works out of the box.
  */
 const DATA_DIR =
   process.env.CATALOG_DIR ??
   (existsSync(path.join(process.cwd(), "data", "index.json")) ? path.join(process.cwd(), "data") : path.join(process.cwd(), "lib", "fixtures", "catalog"));
 
-/** Postgres when DATABASE_URL is set (Vercel, CI), otherwise the JSON catalog above (local dev without a database). */
-const useDb = () => Boolean(process.env.DATABASE_URL);
-
 /** Every law. Read once per build: the home page, every /dados/ file and the sitemaps share it. */
 export function loadCatalog(): Promise<Catalog> {
-  return (catalog ??= useDb() ? readCatalogDb() : readCatalog());
+  return (catalog ??= readCatalog());
 }
 
 type Catalog = { policies: Policy[]; updatedAt: string; sample: boolean };
 let catalog: Promise<Catalog> | undefined;
 
-/** One law by id, for pages rendered on request: a single indexed lookup instead of loading the catalog. */
+const readJson = async <T>(file: string): Promise<T> => JSON.parse(await readFile(path.join(DATA_DIR, file), "utf8")) as T;
+
+/** One <level>/<year>.json file, read once per process. Missing files read as empty. */
+const files = new Map<string, Promise<Policy[]>>();
+function readYear(level: string, year: string): Promise<Policy[]> {
+  const key = `${level}/${year}.json`;
+  if (!files.has(key)) files.set(key, readJson<Policy[]>(key).catch(() => []));
+  return files.get(key)!;
+}
+
+/**
+ * One law by id, for pages rendered on request. Ids start with the level and carry the year
+ * (federal-lei-8069-1990, estadual-sp-lei-17000-2019), so this reads one year file instead of the
+ * whole catalog; anything else falls back to the full catalog.
+ */
 export async function findPolicy(id: string): Promise<Policy | undefined> {
-  if (!useDb()) return (await loadCatalog()).policies.find((p) => p.id === id);
-  const db = getDb();
-  const [row] = await db.select(policyColumns).from(policies).where(eq(policies.id, id)).limit(1);
-  return row ? fromDbRow(row) : undefined;
+  const level = id.split("-")[0];
+  if (catalog || !/^[a-z]+$/.test(level)) return (await loadCatalog()).policies.find((p) => p.id === id);
+  for (const year of new Set(id.match(/\b\d{4}\b/g) ?? [])) {
+    const hit = (await readYear(level, year)).find((p) => p.id === id);
+    if (hit) return hit;
+  }
+  return (await loadCatalog()).policies.find((p) => p.id === id);
 }
 
-/** Every law id, for resolving short links. */
+/** Every law id, for resolving short links: ids.json (written by data:pull) when present, else the catalog. */
 export async function policyIds(): Promise<string[]> {
-  if (!useDb()) return (await loadCatalog()).policies.map((p) => p.id);
-  const rows = await getDb().select({ id: policies.id }).from(policies);
-  return rows.map((r) => r.id);
+  return (ids ??= readJson<string[]>("ids.json").catch(async () => (await loadCatalog()).policies.map((p) => p.id)));
 }
-
-async function readCatalogDb(): Promise<Catalog> {
-  const db = getDb();
-  const [rows, [last]] = await Promise.all([
-    db.select(policyColumns).from(policies).orderBy(desc(policies.year)),
-    db.select({ at: max(policies.updatedAt) }).from(policies),
-  ]);
-  const list = rows.map(fromDbRow).sort((a, b) => b.year - a.year || a.title.localeCompare(b.title, "pt"));
-  return { policies: list, updatedAt: (last?.at ?? new Date()).toISOString(), sample: false };
-}
+let ids: Promise<string[]> | undefined;
 
 async function readCatalog(): Promise<Catalog> {
-  const index = JSON.parse(await readFile(path.join(DATA_DIR, "index.json"), "utf8")) as IndexFile;
-  const chunks = await Promise.all(
-    index.files.map(async (f) => JSON.parse(await readFile(path.join(DATA_DIR, f.path), "utf8")) as Policy[]),
-  );
+  const index = await readJson<IndexFile>("index.json");
+  const chunks = await Promise.all(index.files.map((f) => readJson<Policy[]>(f.path)));
   const policies = chunks.flat().sort((a, b) => b.year - a.year || a.title.localeCompare(b.title, "pt"));
   return { policies, updatedAt: index.updatedAt, sample: Boolean(index.sample) };
 }

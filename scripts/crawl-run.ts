@@ -1,13 +1,12 @@
-// Records a crawl in Postgres so the site can show it live. Called by the crawl workflows:
+// Records a crawl in data/status/runs.json so the site can show it live. Called by the crawl workflows, which then
+// commit data/status to the data branch (scripts/data-branch.sh push):
 //   node scripts/crawl-run.ts start crawlers/federal/run.ts
 //   node scripts/crawl-run.ts finish crawlers/federal/run.ts <steps.crawl.outcome>
-// Uses CRAWL_DATABASE_URL, like the crawler store. Status is a nicety: any problem here is logged and never fails the job.
+// Status is a nicety: any problem here is logged and never fails the job.
 import { outcomeStatus, runId, runUrl } from "../lib/crawl-runs.ts";
-import { closeDb, getDb } from "../lib/db/client.ts";
-import { finishRun, startRun } from "../lib/db/runs.ts";
+import { finishRun, startRun } from "../lib/crawl-runs-store.ts";
 
 const [action, crawler, outcome = "success"] = process.argv.slice(2);
-const url = process.env.CRAWL_DATABASE_URL;
 const id = crawler ? runId(process.env, crawler) : null;
 
 if (!["start", "finish"].includes(action) || !crawler) {
@@ -15,22 +14,19 @@ if (!["start", "finish"].includes(action) || !crawler) {
   process.exit(2);
 }
 
-if (!url || !id) {
-  console.log(`crawl status not recorded (${!url ? "CRAWL_DATABASE_URL is not set" : "not a GitHub Actions run"})`);
+if (!id) {
+  console.log("crawl status not recorded (not a GitHub Actions run)");
 } else {
   try {
-    const db = getDb(url);
     if (action === "start") {
-      await startRun(db, { id, crawler, runUrl: runUrl(process.env) });
+      await startRun({ id, crawler, runUrl: runUrl(process.env) });
       console.log(`${crawler}: marked as collecting (${id})`);
     } else {
       const status = outcomeStatus(outcome);
-      const found = await finishRun(db, id, status);
-      console.log(found ? `${crawler}: ${status}` : `${crawler}: no running row ${id}; nothing to finish`);
+      const found = await finishRun(id, status);
+      console.log(found ? `${crawler}: ${status}` : `${crawler}: no running entry ${id}; nothing to finish`);
     }
   } catch (err) {
     console.warn(`::warning::crawl status not recorded: ${err instanceof Error ? err.message : err}`);
-  } finally {
-    await closeDb().catch(() => {});
   }
 }

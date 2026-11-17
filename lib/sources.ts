@@ -1,7 +1,8 @@
 /**
  * Data source manifest, one file per source: data/sources/<id>.json, changed through pull requests.
- * The fields a crawl changes (STATE_FIELDS: status, counts, last run, cursor) are saved in Postgres by the
- * nightly runs (source_status) and laid over the files by the site, since main only accepts pull requests.
+ * The fields a crawl changes (STATE_FIELDS: status, counts, last run, cursor) are saved by the nightly runs in
+ * data/status/sources.json on the `data` branch and laid over the files by the site, since main only accepts
+ * pull requests.
  */
 export type SourceStatus = "active" | "building" | "planned" | "failing";
 export type SourceLevel = "federal" | "estadual" | "municipal";
@@ -75,7 +76,7 @@ export function timeAgo(iso: string, now = Date.now()): string {
   return rtf.format(-Math.round(s / (86400 * 30)), "month");
 }
 
-/** The fields a crawler run changes. They live in Postgres (source_status); the rest stays in data/sources. */
+/** The fields a crawler run changes. They live in data/status/sources.json; the rest stays in data/sources. */
 export const STATE_FIELDS = ["status", "records", "since", "lastRun", "lastSuccess"] as const;
 export type SourceState = Partial<Pick<DataSource, (typeof STATE_FIELDS)[number]>>;
 
