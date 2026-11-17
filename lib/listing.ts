@@ -28,8 +28,8 @@ export function toCard(p: Policy): Policy {
 export interface IndexFile {
   v: 1;
   strings: string[];
-  /** [level, year, areas, authors, executive, ufs, official (0/1), text] */
-  rows: [number, number, number[], number[], number, number[], 0 | 1, string][];
+  /** [level, year, areas, authors, executive, ufs, official (0/1), text, state] */
+  rows: [number, number, number[], number[], number, number[], 0 | 1, string, number][];
 }
 
 export function encodeIndex(rows: Row[]): IndexFile {
@@ -43,13 +43,13 @@ export function encodeIndex(rows: Row[]): IndexFile {
   return {
     v: 1,
     strings,
-    rows: rows.map((r) => [id(r.level), r.year, r.areas.map(id), r.authors.map(id), id(r.executive), r.ufs.map(id), r.official ? 1 : 0, r.text]),
+    rows: rows.map((r) => [id(r.level), r.year, r.areas.map(id), r.authors.map(id), id(r.executive), r.ufs.map(id), r.official ? 1 : 0, r.text, id(r.state)]),
   };
 }
 
 export function decodeIndex(file: IndexFile): Row[] {
   const s = file.strings;
-  return file.rows.map(([level, year, areas, authors, executive, ufs, official, text], pos) => ({
+  return file.rows.map(([level, year, areas, authors, executive, ufs, official, text, state], pos) => ({
     pos,
     level: s[level] as Level,
     year,
@@ -59,6 +59,7 @@ export function decodeIndex(file: IndexFile): Row[] {
     ufs: ufs.map((i) => s[i]),
     official: official === 1,
     text,
+    state: state == null ? "" : s[state],
   }));
 }
 
@@ -84,6 +85,8 @@ export function readUrlState(search: string): { filters: Filters; page: number }
       if (Number.isInteger(y)) filters.year = y;
     } else if (key === "level") {
       if (v === "federal" || v === "estadual" || v === "municipal") filters.level = v;
+    } else if (key === "uf") {
+      filters.uf = v.toUpperCase();
     } else if (key === "author" || key === "executive") {
       // Links made before charts used current names (?autor=PMDB) still land on the same party.
       filters[key] = currentName(v);

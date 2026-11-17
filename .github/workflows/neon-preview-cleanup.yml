@@ -1,0 +1,22 @@
+# Each Vercel preview gets its own Neon branch (preview/<git branch>). Neon only deletes it when the
+# Vercel deployment expires, so on the free plan the branch limit fills up and previews fail with
+# "Resource provisioning failed". This deletes the branch as soon as the PR is merged or closed.
+# Needs the NEON_PROJECT_ID repository variable and the NEON_API_KEY secret; skipped until both exist.
+name: Neon preview cleanup
+on:
+  pull_request:
+    types: [closed]
+permissions: {}
+jobs:
+  delete-branch:
+    if: vars.NEON_PROJECT_ID != ''
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.NEON_API_KEY != '' }}
+    steps:
+      - if: env.HAS_KEY == 'true'
+        uses: neondatabase/delete-branch-action@v3
+        with:
+          project_id: ${{ vars.NEON_PROJECT_ID }}
+          branch: preview/${{ github.head_ref }}
+          api_key: ${{ secrets.NEON_API_KEY }}

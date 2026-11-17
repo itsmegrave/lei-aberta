@@ -44,6 +44,10 @@ test("filters and page round-trip through the URL in Portuguese", () => {
   assert.equal(writeUrlState(EMPTY_FILTERS, 1), "");
 });
 
+test("state codes in the URL are read in upper case", () => {
+  assert.equal(readUrlState("?uf=sp").filters.uf, "SP");
+});
+
 test("bad URL values fall back to defaults", () => {
   assert.deepEqual(readUrlState("?pagina=abc&nivel=lua&ano=x"), { filters: EMPTY_FILTERS, page: 1 });
   assert.equal(readUrlState("?pagina=0").page, 1);

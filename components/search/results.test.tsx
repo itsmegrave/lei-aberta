@@ -79,6 +79,7 @@ describe("Results", () => {
     fireEvent.click(chip);
     await waitFor(() => expect(screen.getByText(/30 leis, das mais novas/)).toBeInTheDocument());
     expect(window.location.search).toBe("?uf=SP");
+    expect(screen.getByRole("combobox", { name: "Estado" })).toHaveValue("SP");
     fireEvent.click(screen.getByRole("button", { name: "Limpar filtros" }));
     expect(window.location.pathname + window.location.search).toBe("/busca");
   });
@@ -89,5 +90,23 @@ describe("Results", () => {
     fireEvent.change(within(screen.getByRole("search")).getByRole("searchbox"), { target: { value: "número 7" } });
     await waitFor(() => expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Resultados para “número 7”"));
     expect(new URLSearchParams(window.location.search).get("q")).toBe("número 7");
+  });
+
+  it("filters by year and state from the pickers, and keeps both in the address bar", async () => {
+    window.history.replaceState(null, "", "/busca");
+    render(<Results {...props} />);
+    const year = screen.getByRole("combobox", { name: "Ano" });
+    expect(within(year).getByRole("option", { name: "2019 (10)" })).toBeInTheDocument();
+    fireEvent.change(year, { target: { value: "2019" } });
+    await waitFor(() => expect(screen.getByText(/10 leis, das mais novas/)).toBeInTheDocument());
+    expect(new URLSearchParams(window.location.search).get("ano")).toBe("2019");
+    await waitFor(() => expect(cards().map((a) => a.getAttribute("href"))).toContain("/lei/lei-10"));
+
+    fireEvent.change(screen.getByRole("combobox", { name: "Estado" }), { target: { value: "RJ" } });
+    await waitFor(() => expect(screen.getByText(/Nenhuma lei com esses filtros/)).toBeInTheDocument());
+    expect(window.location.search).toBe("?uf=RJ&ano=2019");
+
+    fireEvent.change(screen.getByRole("combobox", { name: "Ano" }), { target: { value: "" } });
+    expect(window.location.search).toBe("?uf=RJ");
   });
 });

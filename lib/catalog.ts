@@ -1,6 +1,16 @@
 import type { Level, Policy } from "./types";
 import { currentName, isNoPartyCode } from "./parties.ts";
-import { area, SEARCH_ALIASES } from "./vocab.ts";
+import { area, SEARCH_ALIASES, STATE_NAMES } from "./vocab.ts";
+
+const UF_BY_NAME = new Map(Object.entries(STATE_NAMES).map(([uf, name]) => [name, uf]));
+
+/** State (UF) a state or municipal law belongs to, e.g. "São Paulo" -> SP, "Campinas (SP)" -> SP. Federal laws have none. */
+export function lawState(p: Pick<Policy, "level" | "jurisdiction">): string {
+  if (p.level === "federal") return "";
+  const j = p.jurisdiction.trim();
+  const code = j.match(/\(([A-Z]{2})\)$/)?.[1] ?? (STATE_NAMES[j] ? j : UF_BY_NAME.get(j));
+  return code && STATE_NAMES[code] ? code : "";
+}
 
 export const NO_PARTY = "Sem partido";
 export const UNKNOWN_PARTY = "Partido não identificado";
@@ -59,6 +69,8 @@ export interface Row {
   executive: string;
   /** States of the proposing lawmakers. */
   ufs: string[];
+  /** lawState(): the state of a state or municipal law, "" for federal. */
+  state: string;
   /** Has at least one official source link. */
   official: boolean;
   /** Normalized search text: title, number and author names. */
@@ -76,6 +88,7 @@ export function toRow(p: Policy, pos = 0): Row {
     authors: authorKeys(p),
     executive: executiveKey(p),
     ufs: [...new Set(p.authors.map((a) => a.uf).filter((u): u is string => Boolean(u)))],
+    state: lawState(p),
     official: p.sources.length > 0,
     text: normalize([p.title, p.number ?? "", ...p.authors.map((a) => a.name)].join(" ")),
   };
@@ -87,7 +100,7 @@ export interface Filters {
   area: string;
   author: string;
   executive: string;
-  /** State (UF) of a proposing lawmaker. */
+  /** State (UF): the state of a state or municipal law, or of a proposing lawmaker. */
   uf: string;
   year: number | null;
 }
@@ -108,7 +121,7 @@ export function applyFilters(rows: Row[], f: Filters, skip?: keyof Filters): Row
       (skip === "author" || !f.author || r.authors.includes(f.author)) &&
       (skip === "executive" || !f.executive || r.executive === f.executive) &&
       (skip === "year" || f.year == null || r.year === f.year) &&
-      (skip === "uf" || !f.uf || r.ufs.includes(f.uf)),
+      (skip === "uf" || !f.uf || r.state === f.uf || r.ufs.includes(f.uf)),
   );
 }
 
