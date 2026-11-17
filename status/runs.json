@@ -7,5 +7,14 @@
     "finishedAt": "2026-11-17T17:00:17.798Z",
     "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44131738746",
     "lastSuccessAt": "2026-11-17T17:00:17.798Z"
+  },
+  "crawlers/municipal/run.ts": {
+    "id": "44140207524-1-crawlers/municipal/run.ts",
+    "crawler": "crawlers/municipal/run.ts",
+    "status": "running",
+    "startedAt": "2026-11-17T17:44:18.362Z",
+    "finishedAt": null,
+    "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44140207524",
+    "lastSuccessAt": null
   }
 }
