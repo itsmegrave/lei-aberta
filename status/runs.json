@@ -1,0 +1,11 @@
+{
+  "crawlers/estadual/run.ts": {
+    "id": "44131738746-1-crawlers/estadual/run.ts",
+    "crawler": "crawlers/estadual/run.ts",
+    "status": "running",
+    "startedAt": "2026-11-17T16:58:22.183Z",
+    "finishedAt": null,
+    "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44131738746",
+    "lastSuccessAt": null
+  }
+}

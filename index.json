@@ -1,0 +1,473 @@
+{
+  "updatedAt": "2026-11-17",
+  "files": [
+    {
+      "level": "estadual",
+      "year": 1989,
+      "path": "estadual/1989.json",
+      "count": 599
+    },
+    {
+      "level": "estadual",
+      "year": 1990,
+      "path": "estadual/1990.json",
+      "count": 751
+    },
+    {
+      "level": "estadual",
+      "year": 1991,
+      "path": "estadual/1991.json",
+      "count": 1119
+    },
+    {
+      "level": "estadual",
+      "year": 1992,
+      "path": "estadual/1992.json",
+      "count": 1093
+    },
+    {
+      "level": "estadual",
+      "year": 1993,
+      "path": "estadual/1993.json",
+      "count": 909
+    },
+    {
+      "level": "estadual",
+      "year": 1994,
+      "path": "estadual/1994.json",
+      "count": 1004
+    },
+    {
+      "level": "estadual",
+      "year": 1995,
+      "path": "estadual/1995.json",
+      "count": 741
+    },
+    {
+      "level": "estadual",
+      "year": 1996,
+      "path": "estadual/1996.json",
+      "count": 634
+    },
+    {
+      "level": "estadual",
+      "year": 1997,
+      "path": "estadual/1997.json",
+      "count": 916
+    },
+    {
+      "level": "estadual",
+      "year": 1998,
+      "path": "estadual/1998.json",
+      "count": 589
+    },
+    {
+      "level": "estadual",
+      "year": 1999,
+      "path": "estadual/1999.json",
+      "count": 789
+    },
+    {
+      "level": "estadual",
+      "year": 2000,
+      "path": "estadual/2000.json",
+      "count": 716
+    },
+    {
+      "level": "estadual",
+      "year": 2001,
+      "path": "estadual/2001.json",
+      "count": 736
+    },
+    {
+      "level": "estadual",
+      "year": 2002,
+      "path": "estadual/2002.json",
+      "count": 982
+    },
+    {
+      "level": "estadual",
+      "year": 2003,
+      "path": "estadual/2003.json",
+      "count": 947
+    },
+    {
+      "level": "estadual",
+      "year": 2004,
+      "path": "estadual/2004.json",
+      "count": 845
+    },
+    {
+      "level": "estadual",
+      "year": 2005,
+      "path": "estadual/2005.json",
+      "count": 1045
+    },
+    {
+      "level": "estadual",
+      "year": 2006,
+      "path": "estadual/2006.json",
+      "count": 1087
+    },
+    {
+      "level": "estadual",
+      "year": 2007,
+      "path": "estadual/2007.json",
+      "count": 1265
+    },
+    {
+      "level": "estadual",
+      "year": 2008,
+      "path": "estadual/2008.json",
+      "count": 1534
+    },
+    {
+      "level": "estadual",
+      "year": 2009,
+      "path": "estadual/2009.json",
+      "count": 1469
+    },
+    {
+      "level": "estadual",
+      "year": 2010,
+      "path": "estadual/2010.json",
+      "count": 1218
+    },
+    {
+      "level": "estadual",
+      "year": 2011,
+      "path": "estadual/2011.json",
+      "count": 1300
+    },
+    {
+      "level": "estadual",
+      "year": 2012,
+      "path": "estadual/2012.json",
+      "count": 1222
+    },
+    {
+      "level": "estadual",
+      "year": 2013,
+      "path": "estadual/2013.json",
+      "count": 1626
+    },
+    {
+      "level": "estadual",
+      "year": 2014,
+      "path": "estadual/2014.json",
+      "count": 1284
+    },
+    {
+      "level": "estadual",
+      "year": 2015,
+      "path": "estadual/2015.json",
+      "count": 1534
+    },
+    {
+      "level": "estadual",
+      "year": 2016,
+      "path": "estadual/2016.json",
+      "count": 1273
+    },
+    {
+      "level": "estadual",
+      "year": 2017,
+      "path": "estadual/2017.json",
+      "count": 1326
+    },
+    {
+      "level": "estadual",
+      "year": 2018,
+      "path": "estadual/2018.json",
+      "count": 1246
+    },
+    {
+      "level": "estadual",
+      "year": 2019,
+      "path": "estadual/2019.json",
+      "count": 1617
+    },
+    {
+      "level": "estadual",
+      "year": 2020,
+      "path": "estadual/2020.json",
+      "count": 1199
+    },
+    {
+      "level": "estadual",
+      "year": 2021,
+      "path": "estadual/2021.json",
+      "count": 1984
+    },
+    {
+      "level": "estadual",
+      "year": 2022,
+      "path": "estadual/2022.json",
+      "count": 1914
+    },
+    {
+      "level": "estadual",
+      "year": 2023,
+      "path": "estadual/2023.json",
+      "count": 2411
+    },
+    {
+      "level": "estadual",
+      "year": 2024,
+      "path": "estadual/2024.json",
+      "count": 2542
+    },
+    {
+      "level": "estadual",
+      "year": 2025,
+      "path": "estadual/2025.json",
+      "count": 3212
+    },
+    {
+      "level": "estadual",
+      "year": 2026,
+      "path": "estadual/2026.json",
+      "count": 2193
+    },
+    {
+      "level": "federal",
+      "year": 1988,
+      "path": "federal/1988.json",
+      "count": 85
+    },
+    {
+      "level": "federal",
+      "year": 1989,
+      "path": "federal/1989.json",
+      "count": 382
+    },
+    {
+      "level": "federal",
+      "year": 1990,
+      "path": "federal/1990.json",
+      "count": 331
+    },
+    {
+      "level": "federal",
+      "year": 1991,
+      "path": "federal/1991.json",
+      "count": 255
+    },
+    {
+      "level": "federal",
+      "year": 1992,
+      "path": "federal/1992.json",
+      "count": 233
+    },
+    {
+      "level": "federal",
+      "year": 1993,
+      "path": "federal/1993.json",
+      "count": 328
+    },
+    {
+      "level": "federal",
+      "year": 1994,
+      "path": "federal/1994.json",
+      "count": 539
+    },
+    {
+      "level": "federal",
+      "year": 1995,
+      "path": "federal/1995.json",
+      "count": 720
+    },
+    {
+      "level": "federal",
+      "year": 1996,
+      "path": "federal/1996.json",
+      "count": 496
+    },
+    {
+      "level": "federal",
+      "year": 1997,
+      "path": "federal/1997.json",
+      "count": 246
+    },
+    {
+      "level": "federal",
+      "year": 1998,
+      "path": "federal/1998.json",
+      "count": 339
+    },
+    {
+      "level": "federal",
+      "year": 1999,
+      "path": "federal/1999.json",
+      "count": 401
+    },
+    {
+      "level": "federal",
+      "year": 2000,
+      "path": "federal/2000.json",
+      "count": 344
+    },
+    {
+      "level": "federal",
+      "year": 2001,
+      "path": "federal/2001.json",
+      "count": 352
+    },
+    {
+      "level": "federal",
+      "year": 2002,
+      "path": "federal/2002.json",
+      "count": 321
+    },
+    {
+      "level": "federal",
+      "year": 2003,
+      "path": "federal/2003.json",
+      "count": 256
+    },
+    {
+      "level": "federal",
+      "year": 2004,
+      "path": "federal/2004.json",
+      "count": 326
+    },
+    {
+      "level": "federal",
+      "year": 2005,
+      "path": "federal/2005.json",
+      "count": 221
+    },
+    {
+      "level": "federal",
+      "year": 2006,
+      "path": "federal/2006.json",
+      "count": 248
+    },
+    {
+      "level": "federal",
+      "year": 2007,
+      "path": "federal/2007.json",
+      "count": 272
+    },
+    {
+      "level": "federal",
+      "year": 2008,
+      "path": "federal/2008.json",
+      "count": 300
+    },
+    {
+      "level": "federal",
+      "year": 2009,
+      "path": "federal/2009.json",
+      "count": 322
+    },
+    {
+      "level": "federal",
+      "year": 2010,
+      "path": "federal/2010.json",
+      "count": 238
+    },
+    {
+      "level": "federal",
+      "year": 2011,
+      "path": "federal/2011.json",
+      "count": 246
+    },
+    {
+      "level": "federal",
+      "year": 2012,
+      "path": "federal/2012.json",
+      "count": 239
+    },
+    {
+      "level": "federal",
+      "year": 2013,
+      "path": "federal/2013.json",
+      "count": 209
+    },
+    {
+      "level": "federal",
+      "year": 2014,
+      "path": "federal/2014.json",
+      "count": 162
+    },
+    {
+      "level": "federal",
+      "year": 2015,
+      "path": "federal/2015.json",
+      "count": 211
+    },
+    {
+      "level": "federal",
+      "year": 2016,
+      "path": "federal/2016.json",
+      "count": 231
+    },
+    {
+      "level": "federal",
+      "year": 2017,
+      "path": "federal/2017.json",
+      "count": 227
+    },
+    {
+      "level": "federal",
+      "year": 2018,
+      "path": "federal/2018.json",
+      "count": 259
+    },
+    {
+      "level": "federal",
+      "year": 2019,
+      "path": "federal/2019.json",
+      "count": 240
+    },
+    {
+      "level": "federal",
+      "year": 2020,
+      "path": "federal/2020.json",
+      "count": 256
+    },
+    {
+      "level": "federal",
+      "year": 2021,
+      "path": "federal/2021.json",
+      "count": 254
+    },
+    {
+      "level": "federal",
+      "year": 2022,
+      "path": "federal/2022.json",
+      "count": 295
+    },
+    {
+      "level": "federal",
+      "year": 2023,
+      "path": "federal/2023.json",
+      "count": 334
+    },
+    {
+      "level": "federal",
+      "year": 2024,
+      "path": "federal/2024.json",
+      "count": 379
+    },
+    {
+      "level": "federal",
+      "year": 2025,
+      "path": "federal/2025.json",
+      "count": 298
+    },
+    {
+      "level": "federal",
+      "year": 2026,
+      "path": "federal/2026.json",
+      "count": 289
+    },
+    {
+      "level": "municipal",
+      "year": 2026,
+      "path": "municipal/2026.json",
+      "count": 10
+    }
+  ]
+}
