@@ -12488,33 +12488,33 @@
     "summary": "Abre crédito extraordinário, em favor do Ministério da Agricultura e Pecuária, da Advocacia-Geral da União, e de Operações Oficiais de Crédito, no valor de R$ 13.285.000.000,00, para os fins que especifica.",
     "year": 2026,
     "presentedAt": "2026-07-16",
-    "status": "em-tramitacao",
+    "status": "perdeu-eficacia",
     "areas": [
       "administracao-publica",
       "economia"
     ],
     "authors": [
       {
-        "uf": null,
-        "kind": "executive",
         "name": "Poder Executivo",
-        "party": null
+        "kind": "executive",
+        "party": null,
+        "uf": null
       }
     ],
     "parties": [],
     "executive": {
       "name": "Luiz Inácio Lula da Silva",
-      "party": "PT",
-      "office": "Presidente"
+      "office": "Presidente",
+      "party": "PT"
     },
     "sources": [
       {
-        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-16;1377",
-        "label": "Medida Provisória nº 1.377/2026 (texto oficial)"
+        "label": "Medida Provisória nº 1.377/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-16;1377"
       },
       {
-        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175215",
-        "label": "MPV 1377/2026 no Senado"
+        "label": "MPV 1377/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175215"
       }
     ],
     "number": "1.377",
@@ -12570,32 +12570,32 @@
     "summary": "Altera a Lei nº 15.473, de 22 de julho de 2026, que altera a Lei nº 9.818, de 23 de agosto de 1999, e a Lei nº 12.712, de 30 de agosto de 2012, para fortalecer e modernizar o sistema brasileiro de apoio oficial ao crédito à exportação.",
     "year": 2026,
     "presentedAt": "2026-07-22",
-    "status": "em-tramitacao",
+    "status": "aprovado-o-projeto-de-lei-de-conversao",
     "areas": [
       "economia"
     ],
     "authors": [
       {
-        "uf": null,
-        "kind": "executive",
         "name": "Poder Executivo",
-        "party": null
+        "kind": "executive",
+        "party": null,
+        "uf": null
       }
     ],
     "parties": [],
     "executive": {
       "name": "Luiz Inácio Lula da Silva",
-      "party": "PT",
-      "office": "Presidente"
+      "office": "Presidente",
+      "party": "PT"
     },
     "sources": [
       {
-        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-22;1379",
-        "label": "Medida Provisória nº 1.379/2026 (texto oficial)"
+        "label": "Medida Provisória nº 1.379/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-22;1379"
       },
       {
-        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175261",
-        "label": "MPV 1379/2026 no Senado"
+        "label": "MPV 1379/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175261"
       }
     ],
     "number": "1.379",
