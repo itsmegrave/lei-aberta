@@ -53535,6 +53535,43 @@
     "bill": "Projeto de Lei Complementar nº 76 de 2026"
   },
   {
+    "id": "estadual-pi-emenda-constitucional-73-2026",
+    "level": "estadual",
+    "jurisdiction": "Piauí",
+    "type": "emenda-constitucional",
+    "number": "73",
+    "title": "Acrescenta o art. 178-A à Constituição do Estado do Piauí, instituindo o Orçamento da…",
+    "summary": "Acrescenta o art. 178-A à Constituição do Estado do Piauí, instituindo o Orçamento da Primeira Infância.",
+    "year": 2026,
+    "presentedAt": "2025-12-02",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Severo Eulálio",
+        "kind": "state-deputy",
+        "party": "MDB",
+        "uf": "PI"
+      }
+    ],
+    "parties": [
+      "MDB"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Piauí (SAPL)",
+        "url": "https://sapl.al.pi.leg.br/norma/7232"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2026/7232/emenda_a_constituicao_73.pdf"
+      }
+    ],
+    "signedAt": "2026-11-17",
+    "bill": "Proposta de Emenda a Constituição nº 2 de 2025"
+  },
+  {
     "id": "estadual-pi-lei-8917-2026",
     "level": "estadual",
     "jurisdiction": "Piauí",

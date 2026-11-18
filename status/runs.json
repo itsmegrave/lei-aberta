@@ -11,11 +11,11 @@
   "crawlers/estadual/run.ts": {
     "id": "44349275849-1-crawlers/estadual/run.ts",
     "crawler": "crawlers/estadual/run.ts",
-    "status": "running",
+    "status": "success",
     "startedAt": "2026-11-18T16:37:11.415Z",
-    "finishedAt": null,
+    "finishedAt": "2026-11-18T16:39:35.247Z",
     "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44349275849",
-    "lastSuccessAt": "2026-11-17T17:00:17.798Z"
+    "lastSuccessAt": "2026-11-18T16:39:35.247Z"
   },
   "crawlers/federal/run.ts": {
     "id": "44340975293-1-crawlers/federal/run.ts",
