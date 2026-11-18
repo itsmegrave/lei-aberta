@@ -147,5 +147,19 @@
     "records": 1395,
     "since": 1998,
     "lastRun": "2026-11-17T17:00:17Z"
+  },
+  "dou": {
+    "status": "active",
+    "records": 10,
+    "since": null,
+    "lastRun": "2026-11-18T15:54:17Z",
+    "lastSuccess": "2026-11-18T15:54:17Z"
+  },
+  "querido-diario": {
+    "status": "failing",
+    "records": null,
+    "since": null,
+    "lastRun": "2026-11-18T15:54:17Z",
+    "lastSuccess": null
   }
 }
