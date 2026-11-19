@@ -10707,21 +10707,44 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.530",
-    "title": "Altera o Anexo V à Lei nº 15.346, de 14 de janeiro de 2026, que estima a receita e fixa a…",
+    "title": "Lei nº 15.530/2026",
     "summary": "Altera o Anexo V à Lei nº 15.346, de 14 de janeiro de 2026, que estima a receita e fixa a despesa da União para o exercício financeiro de 2026.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-03-30",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.530/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15530"
+      },
+      {
+        "label": "PLN 1/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/173378"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 1",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.530-de-18-de-novembro-de-2026-745266989"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 1/2026"
   },
   {
     "id": "federal-lei-15531-2026",
@@ -10729,21 +10752,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.531",
-    "title": "Abre ao Orçamento Fiscal da União, em favor do Ministério da Ciência, Tecnologia e…",
+    "title": "Lei nº 15.531/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor do Ministério da Ciência, Tecnologia e Inovação, crédito suplementar no valor de R$ 13.186.131,00, para reforço de dotação constante da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-04-24",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "tecnologia",
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.531/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15531"
+      },
+      {
+        "label": "PLN 3/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/173739"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 4",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.531-de-18-de-novembro-de-2026-745274163"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 3/2026"
   },
   {
     "id": "federal-lei-15532-2026",
@@ -10751,21 +10799,45 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.532",
-    "title": "Abre ao Orçamento Fiscal da União, em favor do Ministério da Fazenda, crédito suplementar…",
+    "title": "Lei nº 15.532/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor do Ministério da Fazenda, crédito suplementar no valor de R$ 34.000.000,00, para reforço de dotação constante da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-04-24",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.532/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15532"
+      },
+      {
+        "label": "PLN 4/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/173740"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 4",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.532-de-18-de-novembro-de-2026-745266335"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 4/2026"
   },
   {
     "id": "federal-lei-15533-2026",
@@ -10773,21 +10845,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.533",
-    "title": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança…",
+    "title": "Lei nº 15.533/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança Pública e de Minas e Energia, e de Operações Oficiais de Crédito, crédito suplementar no valor de R$ 543.681.108,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-04-24",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "seguranca",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.533/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15533"
+      },
+      {
+        "label": "PLN 6/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/173742"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 5",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.533-de-18-de-novembro-de-2026-745267923"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 6/2026"
   },
   {
     "id": "federal-lei-15534-2026",
@@ -10795,21 +10892,44 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.534",
-    "title": "Altera a Lei nº 15.321, de 31 de dezembro de 2025, que dispõe sobre as diretrizes para a…",
+    "title": "Lei nº 15.534/2026",
     "summary": "Altera a Lei nº 15.321, de 31 de dezembro de 2025, que dispõe sobre as diretrizes para a elaboração e a execução da Lei Orçamentária de 2026.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-04-24",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.534/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15534"
+      },
+      {
+        "label": "PLN 7/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/173743"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 6",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.534-de-18-de-novembro-de-2026-745270700"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 7/2026"
   },
   {
     "id": "federal-lei-15535-2026",
@@ -10817,21 +10937,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.535",
-    "title": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Educação, do…",
+    "title": "Lei nº 15.535/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Educação, do Desenvolvimento, Indústria, Comércio e Serviços, da Justiça e Segurança Pública, e do Planejamento e Orçamento, crédito especial no valor de R$ 11.528.608,00, para os fins que especifica.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-05-08",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "educacao",
+      "administracao-publica",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.535/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15535"
+      },
+      {
+        "label": "PLN 10/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174076"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 7",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.535-de-18-de-novembro-de-2026-745257790"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 10/2026"
   },
   {
     "id": "federal-lei-15536-2026",
@@ -10839,21 +10984,45 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.536",
-    "title": "Abre ao Orçamento Fiscal da União, em favor da Justiça Federal, da Justiça do Trabalho, e…",
+    "title": "Lei nº 15.536/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor da Justiça Federal, da Justiça do Trabalho, e do Ministério Público da União, crédito suplementar no valor de R$ 56.250.092,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-05-08",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.536/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15536"
+      },
+      {
+        "label": "PLN 11/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174077"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 8",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.536-de-18-de-novembro-de-2026-745257013"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 11/2026"
   },
   {
     "id": "federal-lei-15537-2026",
@@ -10861,21 +11030,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.537",
-    "title": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança…",
+    "title": "Lei nº 15.537/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança Pública, das Comunicações, da Cultura e da Integração e do Desenvolvimento Regional, e de Operações Oficiais de Crédito, crédito suplementar no valor de R$ 168.145.850,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-05-08",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "seguranca",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.537/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15537"
+      },
+      {
+        "label": "PLN 12/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174078"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 11",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.537-de-18-de-novembro-de-2026-745271749"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 12/2026"
   },
   {
     "id": "federal-lei-15538-2026",
@@ -10883,21 +11077,45 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.538",
-    "title": "Abre ao Orçamento Fiscal da União, em favor de Encargos Financeiros da União, crédito…",
+    "title": "Lei nº 15.538/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor de Encargos Financeiros da União, crédito suplementar no valor de R$ 488.112.855,00, para reforço de dotação constante da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-05-08",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.538/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15538"
+      },
+      {
+        "label": "PLN 13/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174079"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 14",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.538-de-18-de-novembro-de-2026-745282180"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 13/2026"
   },
   {
     "id": "federal-lei-15539-2026",
@@ -10905,21 +11123,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.539",
-    "title": "Abre aos Orçamentos Fiscal e da Seguridade Social da União, em favor dos Ministérios de…",
+    "title": "Lei nº 15.539/2026",
     "summary": "Abre aos Orçamentos Fiscal e da Seguridade Social da União, em favor dos Ministérios de Minas e Energia, da Saúde, da Integração e do Desenvolvimento Regional, e de Portos e Aeroportos, crédito suplementar no valor de R$ 24.431.895,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-06-16",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "saude",
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.539/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15539"
+      },
+      {
+        "label": "PLN 15/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174653"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 15",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.539-de-18-de-novembro-de-2026-745265428"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 15/2026"
   },
   {
     "id": "federal-lei-15540-2026",
@@ -10927,21 +11170,45 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.540",
-    "title": "Abre ao Orçamento da Seguridade Social da União, em favor do Ministério da Educação…",
+    "title": "Lei nº 15.540/2026",
     "summary": "Abre ao Orçamento da Seguridade Social da União, em favor do Ministério da Educação, crédito especial no valor de R$ 45.369,00, para os fins que especifica.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-06-16",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "educacao",
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.540/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15540"
+      },
+      {
+        "label": "PLN 16/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174654"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 17",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.540-de-18-de-novembro-de-2026-745262104"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 16/2026"
   },
   {
     "id": "federal-lei-15541-2026",
@@ -10949,21 +11216,44 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.541",
-    "title": "Altera o art",
+    "title": "Lei nº 15.541/2026",
     "summary": "Altera o art. 4º da Lei nº 15.346, de 14 de janeiro de 2026, que estima a receita e fixa a despesa da União para o exercício financeiro de 2026.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-06-17",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.541/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15541"
+      },
+      {
+        "label": "PLN 18/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174743"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 18",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.541-de-18-de-novembro-de-2026-745274992"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 18/2026"
   },
   {
     "id": "federal-lei-15542-2026",
@@ -10971,21 +11261,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.542",
-    "title": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Educação, da Justiça e…",
+    "title": "Lei nº 15.542/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Educação, da Justiça e Segurança Pública e dos Transportes, crédito especial no valor de R$ 130.041.737,00, para os fins que especifica.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-07-07",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "educacao",
+      "administracao-publica",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.542/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15542"
+      },
+      {
+        "label": "PLN 19/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174975"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 18",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.542-de-18-de-novembro-de-2026-745271615"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 19/2026"
   },
   {
     "id": "federal-lei-15543-2026",
@@ -10993,21 +11308,46 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.543",
-    "title": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança…",
+    "title": "Lei nº 15.543/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor dos Ministérios da Justiça e Segurança Pública, da Cultura, da Integração e do Desenvolvimento Regional e dos Direitos Humanos e da Cidadania, e de Operações Oficiais de Crédito, crédito suplementar no valor de R$ 520.535.876,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-07-08",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "direitos-humanos",
+      "administracao-publica",
+      "seguranca"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.543/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15543"
+      },
+      {
+        "label": "PLN 20/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175088"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 20",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.543-de-18-de-novembro-de-2026-745282095"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 20/2026"
   },
   {
     "id": "federal-lei-15544-2026",
@@ -11015,21 +11355,44 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.544",
-    "title": "Abre ao Orçamento de Investimento da União, em favor do Serviço Federal de Processamento…",
+    "title": "Lei nº 15.544/2026",
     "summary": "Abre ao Orçamento de Investimento da União, em favor do Serviço Federal de Processamento de Dados, crédito suplementar no valor de R$ 34.941.713,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-07-17",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.544/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15544"
+      },
+      {
+        "label": "PLN 22/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175220"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 22",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.544-de-18-de-novembro-de-2026-745282852"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 22/2026"
   },
   {
     "id": "federal-lei-15545-2026",
@@ -11037,21 +11400,45 @@
     "jurisdiction": "Brasil",
     "type": "lei",
     "number": "15.545",
-    "title": "Abre ao Orçamento Fiscal da União, em favor do Tribunal de Contas da União, das Justiças…",
+    "title": "Lei nº 15.545/2026",
     "summary": "Abre ao Orçamento Fiscal da União, em favor do Tribunal de Contas da União, das Justiças Federal, Eleitoral e do Trabalho, da Defensoria Pública da União, e do Ministério Público da União, crédito especial no valor de R$ 114.969.959,00, para os fins que especifica.",
     "year": 2026,
-    "presentedAt": null,
+    "presentedAt": "2026-10-15",
     "status": "sancionada",
-    "areas": [],
-    "authors": [],
+    "areas": [
+      "administracao-publica",
+      "economia"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
     "parties": [],
-    "executive": null,
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
     "sources": [
+      {
+        "label": "Lei nº 15.545/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-18;15545"
+      },
+      {
+        "label": "PLN 35/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175981"
+      },
       {
         "label": "Diário Oficial da União, 19/11/2026, Seção 1, p. 23",
         "url": "https://www.in.gov.br/web/dou/-/lei-n-15.545-de-18-de-novembro-de-2026-745269579"
       }
-    ]
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "PLN 35/2026"
   },
   {
     "id": "federal-mp-1333-2026",
@@ -12881,33 +13268,33 @@
     "summary": "Abre crédito extraordinário, em favor do Ministério da Previdência Social, no valor de R$ 547.000.000,00, para o fim que especifica.",
     "year": 2026,
     "presentedAt": "2026-07-20",
-    "status": "em-tramitacao",
+    "status": "perdeu-eficacia",
     "areas": [
       "administracao-publica",
       "economia"
     ],
     "authors": [
       {
-        "uf": null,
-        "kind": "executive",
         "name": "Poder Executivo",
-        "party": null
+        "kind": "executive",
+        "party": null,
+        "uf": null
       }
     ],
     "parties": [],
     "executive": {
       "name": "Luiz Inácio Lula da Silva",
-      "party": "PT",
-      "office": "Presidente"
+      "office": "Presidente",
+      "party": "PT"
     },
     "sources": [
       {
-        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-20;1378",
-        "label": "Medida Provisória nº 1.378/2026 (texto oficial)"
+        "label": "Medida Provisória nº 1.378/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:medida.provisoria:2026-07-20;1378"
       },
       {
-        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175246",
-        "label": "MPV 1378/2026 no Senado"
+        "label": "MPV 1378/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175246"
       }
     ],
     "number": "1.378",
