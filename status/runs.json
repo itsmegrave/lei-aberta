@@ -2,11 +2,11 @@
   "crawlers/diarios/run.ts": {
     "id": "44765366916-1-crawlers/diarios/run.ts",
     "crawler": "crawlers/diarios/run.ts",
-    "status": "running",
+    "status": "success",
     "startedAt": "2026-11-20T15:39:06.386Z",
-    "finishedAt": null,
+    "finishedAt": "2026-11-20T15:41:24.365Z",
     "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44765366916",
-    "lastSuccessAt": null
+    "lastSuccessAt": "2026-11-20T15:41:24.365Z"
   },
   "crawlers/estadual/run.ts": {
     "id": "44568739092-1-crawlers/estadual/run.ts",

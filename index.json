@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-20",
   "files": [
     {
       "level": "estadual",
@@ -467,7 +467,7 @@
       "level": "municipal",
       "year": 2026,
       "path": "municipal/2026.json",
-      "count": 10
+      "count": 13
     }
   ]
 }

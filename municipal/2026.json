@@ -234,6 +234,32 @@
     "number": "7.704"
   },
   {
+    "id": "municipal-5002704-lei-7705-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei",
+    "number": "7.705",
+    "title": "Autoriza a abertura de crédito adicional especial no valor de R$ 15.000.000,00",
+    "summary": "Autoriza a abertura de crédito adicional especial no valor de R$ 15.000.000,00.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8535, 17/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-17/1abc053b2e7e01e4e9b6228eafa4b61fc7cda3e2.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
     "id": "municipal-5208707-lei-11733-2026",
     "level": "municipal",
     "jurisdiction": "Goiânia (GO)",
@@ -258,5 +284,57 @@
       }
     ],
     "number": "11.733"
+  },
+  {
+    "id": "municipal-5208707-lei-11738-2026",
+    "level": "municipal",
+    "jurisdiction": "Goiânia (GO)",
+    "type": "lei",
+    "number": "11.738",
+    "title": "Institui o Programa de Fortalecimento dos Valores Cívicos no município de Goiânia, com o…",
+    "summary": "Institui o Programa de Fortalecimento dos Valores Cívicos no município de Goiânia, com o objetivo de promover a educação cívica, o patriotismo e a ética nas escolas municipais, além de ações que incentivem a cidadania. O PODER LEGISLATIVO aprova e eu, PRESIDENTE DA CÂMARA MUNICIPAL DE GOIÂNIA, promulgo a seguinte lei:",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Goiânia nº 8905, 17/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5208707/2026-11-17/16ccd83a951bfd53ad926dfa8228bd2f399888f8.pdf"
+      },
+      {
+        "label": "Prefeitura de Goiânia: portal oficial",
+        "url": "https://www.goiania.go.gov.br"
+      }
+    ]
+  },
+  {
+    "id": "municipal-5208707-lei-11741-2026",
+    "level": "municipal",
+    "jurisdiction": "Goiânia (GO)",
+    "type": "lei",
+    "number": "11.741",
+    "title": "Institui o Dia Municipal do Revendedor de Gás",
+    "summary": "Institui o Dia Municipal do Revendedor de Gás.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Goiânia nº 8903, 13/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5208707/2026-11-13/707bb4138604130375c7984cb04a8bc917ae2154.pdf"
+      },
+      {
+        "label": "Prefeitura de Goiânia: portal oficial",
+        "url": "https://www.goiania.go.gov.br"
+      }
+    ]
   }
 ]
