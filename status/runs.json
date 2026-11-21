@@ -29,9 +29,9 @@
   "crawlers/municipal/run.ts": {
     "id": "44923778363-1-crawlers/municipal/run.ts",
     "crawler": "crawlers/municipal/run.ts",
-    "status": "running",
+    "status": "cancelled",
     "startedAt": "2026-11-21T16:17:53.721Z",
-    "finishedAt": null,
+    "finishedAt": "2026-11-21T21:57:56.982Z",
     "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/44923778363",
     "lastSuccessAt": null
   }
