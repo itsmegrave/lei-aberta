@@ -3,22 +3,22 @@
     "status": "active",
     "records": 1430,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-al": {
     "status": "active",
     "records": 3018,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-am": {
     "status": "active",
     "records": 7552,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-ap": {
     "status": "planned",
@@ -79,8 +79,8 @@
     "status": "active",
     "records": 9879,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-pe": {
     "status": "planned",
@@ -91,8 +91,8 @@
     "status": "active",
     "records": 4745,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-pr": {
     "status": "planned",
@@ -113,8 +113,8 @@
     "status": "active",
     "records": 7847,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z",
-    "lastSuccess": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z",
+    "lastSuccess": "2026-11-22T15:29:51Z"
   },
   "assembleia-rr": {
     "status": "planned",
@@ -140,13 +140,13 @@
     "status": "failing",
     "records": 13035,
     "since": 1989,
-    "lastRun": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z"
   },
   "assembleia-to": {
     "status": "failing",
     "records": 1395,
     "since": 1998,
-    "lastRun": "2026-11-21T15:29:27Z"
+    "lastRun": "2026-11-22T15:29:51Z"
   },
   "camara": {
     "status": "active",
