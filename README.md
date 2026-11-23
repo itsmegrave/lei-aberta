@@ -6,7 +6,7 @@ Open source. UI in Portuguese; code and comments in English.
 
 ## Stack
 
-- Next.js (App Router) on Vercel. The home page, data files and sitemaps are prerendered at build time; each law page, short link and share image renders on its first visit and is then cached (`next.config.ts`), so the build stays fast with tens of thousands of laws
+- Next.js (App Router) on Vercel. The home page, data files and sitemaps are prerendered at build time; each law page, short link and share image renders on request and is then cached on Vercel's CDN rather than with ISR, whose writes the free plan caps (`lib/cdn-cache.ts`), so the build stays fast with tens of thousands of laws
 - TypeScript, Tailwind CSS 4, shadcn/ui (components live in `components/ui`), Recharts via the shadcn chart wrapper
 - Motion for animation (all motion is off when the visitor prefers reduced motion)
 - Fonts: Bricolage Grotesque and Figtree from Fontsource (bundled, no Google Fonts request)
@@ -36,7 +36,7 @@ The repo is linked to a Vercel project. Vercel detects Next.js. `vercel.json` on
 
 ## Sharing
 
-Each law has its own page, `/lei/<id>`, rendered on its first visit and cached until the next deploy. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
+Each law has its own page, `/lei/<id>`, rendered on request and cached on Vercel's CDN until the next deploy. Next.js (`next/og`) draws a 1200x630 share image for every law (`app/lei/[id]/opengraph-image.tsx`): title, summary, year, topic, and who proposed and who signed with their party colors from the left-right survey. WhatsApp, X, Instagram and others show it as the link preview. Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain, so preview links point to it.
 
 Each law also has a short link, `/l/<code>`, which the share buttons use. The code is 7 characters derived from the law's id (`lib/share.ts`), so it never changes and needs no database or service; the build fails if two laws ever get the same code. The short link page shows the law itself instead of redirecting, so link previews work everywhere, and its canonical URL is the full page. Visits are counted by [Vercel Web Analytics](https://vercel.com/docs/analytics) as `/l/*` page views (turn it on under the project's Analytics tab).
 

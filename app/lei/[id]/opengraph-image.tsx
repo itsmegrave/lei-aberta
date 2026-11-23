@@ -2,21 +2,17 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { cdnHeaders, LAW_CACHE } from "@/lib/cdn-cache";
 import { authorKeys, NO_PARTY, UNKNOWN_PARTY } from "@/lib/catalog";
 import { findPolicy } from "@/lib/data";
 import { partyScore, SPECTRUM_STOPS, spectrumColor } from "@/lib/party-spectrum";
 import { area, lawLabel, LEVELS } from "@/lib/vocab";
 
-// Share image for WhatsApp, X, Instagram and friends. Rendered on first request, then cached.
+// Share image for WhatsApp, X, Instagram and friends. Rendered on request, then cached on the CDN.
 export const alt = "Resumo da lei no Lei Aberta";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const dynamicParams = true;
-export const revalidate = false;
-
-export async function generateStaticParams() {
-  return [];
-}
+export const dynamic = "force-dynamic";
 
 // Light-theme topic tints from app/globals.css (Satori cannot read CSS variables).
 const TINT: Record<string, [string, string]> = {
@@ -130,6 +126,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
     ),
     {
       ...size,
+      headers: cdnHeaders(LAW_CACHE),
       fonts: [
         { name: "Figtree", data: await font("figtree", "figtree-latin-700-normal.woff"), weight: 700 },
         { name: "Figtree", data: await font("figtree", "figtree-latin-800-normal.woff"), weight: 800 },

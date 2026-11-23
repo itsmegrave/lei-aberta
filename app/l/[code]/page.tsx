@@ -11,16 +11,13 @@ import { findLaw, lawMetadata, LawView } from "../../lei/law";
  */
 type Props = { params: Promise<{ code: string }> };
 
-// Rendered on first request and then cached, like the law pages (see next.config.ts).
-export const dynamicParams = true;
-export const revalidate = false;
+// Rendered on request and cached on the CDN, like the law pages (see lib/cdn-cache.ts).
+export const dynamic = "force-dynamic";
 
-async function codes() {
-  return assertUniqueCodes(await policyIds());
-}
-
-export async function generateStaticParams() {
-  return [];
+// Every short code, hashed once per server instance rather than on every request.
+let byCode: Promise<Map<string, string>> | undefined;
+function codes() {
+  return (byCode ??= policyIds().then(assertUniqueCodes));
 }
 
 async function lawFor(code: string) {

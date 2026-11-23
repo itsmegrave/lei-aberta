@@ -3,15 +3,17 @@ import { readFile } from "node:fs/promises";
 import { toRuns } from "@/lib/crawl-runs-store";
 import { stateOf } from "@/lib/sources";
 import { DATA_BRANCH_RAW } from "@/lib/data-branch";
+import { cdnHeaders, STATUS_CACHE } from "@/lib/cdn-cache";
 
 // The latest run of each crawler and the crawl state of each source, for the "Fontes" cards. The crawl jobs
 // commit both to the data branch while they run, so this reads them from GitHub rather than from the build.
-// Cached for a minute, so the home can poll it and GitHub sees at most a couple of requests a minute.
-export const revalidate = 60;
+// Cached on the CDN for a minute (not with ISR, whose writes the free plan caps), so the home can poll it and
+// GitHub sees at most a couple of requests a minute.
+export const dynamic = "force-dynamic";
 
 async function readStatus(name: string): Promise<Record<string, unknown>> {
   try {
-    const res = await fetch(`${DATA_BRANCH_RAW}/status/${name}`, { next: { revalidate: 60 } });
+    const res = await fetch(`${DATA_BRANCH_RAW}/status/${name}`, { cache: "no-store" });
     if (res.ok) return await res.json();
     if (res.status !== 404) throw new Error(`HTTP ${res.status}`);
   } catch (err) {
@@ -32,5 +34,5 @@ export async function GET() {
     runs: toRuns(runs as Parameters<typeof toRuns>[0]),
     sources: Object.fromEntries(Object.entries(sources).map(([id, s]) => [id, stateOf(s as object)])),
     updatedAt,
-  });
+  }, { headers: cdnHeaders(STATUS_CACHE) });
 }
