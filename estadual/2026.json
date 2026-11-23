@@ -11720,6 +11720,37 @@
     "bill": "PROJETO DE LEI ORDINÁRIA nº 2141 de 2026"
   },
   {
+    "id": "estadual-al-lei-10120-2026",
+    "level": "estadual",
+    "jurisdiction": "Alagoas",
+    "type": "lei",
+    "number": "10.120",
+    "title": "Altera o inciso X do do art. 1° da lei estadual n° 5.887, de 6 de dezembo de 1996, que…",
+    "summary": "Altera o inciso X do do art. 1° da lei estadual n° 5.887, de 6 de dezembo de 1996, que institui o fundo especial de modernização do poder judiciário do estado de alagoas (FUNJURIS).",
+    "year": 2026,
+    "presentedAt": "2026-10-14",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "PODER JUDICIÁRIO",
+        "kind": "other-power",
+        "party": null,
+        "uf": "AL"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Alagoas (SAPL)",
+        "url": "https://sapl.al.al.leg.br/norma/4148"
+      }
+    ],
+    "signedAt": "2026-11-19",
+    "bill": "PROJETO DE LEI ORDINÁRIA nº 2151 de 2026"
+  },
+  {
     "id": "estadual-al-lei-complementar-72-2026",
     "level": "estadual",
     "jurisdiction": "Alagoas",
