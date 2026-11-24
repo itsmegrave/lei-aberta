@@ -33827,6 +33827,265 @@
     "bill": "Projeto de Lei Ordinária nº 548 de 2021"
   },
   {
+    "id": "estadual-am-lei-8587-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.587",
+    "title": "Dispõe sobre a obrigatoriedade de informação ao consumidor sobre a política de…",
+    "summary": "Dispõe sobre a obrigatoriedade de informação ao consumidor sobre a política de cancelamento e reembolso de pacote turístico nas agências de viagens, no âmbito do Estado do Amazonas.",
+    "year": 2026,
+    "presentedAt": "2024-11-12",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "João Luiz",
+        "kind": "state-deputy",
+        "party": "REPUBLICANOS",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "REPUBLICANOS"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15234"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15234/8587.pdf"
+      }
+    ],
+    "signedAt": "2026-11-16",
+    "bill": "Projeto de Lei Ordinária nº 723 de 2024"
+  },
+  {
+    "id": "estadual-am-lei-8588-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.588",
+    "title": "Dispõe sobre o direito à instalação de pontos de recarga de veículos elétricos e híbridos…",
+    "summary": "Dispõe sobre o direito à instalação de pontos de recarga de veículos elétricos e híbridos em condomínios edilícios residenciais e comerciais no Estado do Amazonas, e dá outras providências.",
+    "year": 2026,
+    "presentedAt": "2026-02-05",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Alessandra Campêlo",
+        "kind": "state-deputy",
+        "party": "PODE",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "PODE"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15235"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15235/8588.pdf"
+      }
+    ],
+    "signedAt": "2026-11-16",
+    "bill": "Projeto de Lei Ordinária nº 32 de 2026"
+  },
+  {
+    "id": "estadual-am-lei-8589-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.589",
+    "title": "Institui, no âmbito do Estado do Amazonas, a Rede Estadual de Empreendedorismo e Inovação…",
+    "summary": "Institui, no âmbito do Estado do Amazonas, a Rede Estadual de Empreendedorismo e Inovação – REEI/AM, destinada ao aproveitamento de imóveis públicos estaduais sem uso específico, para transformá-los em espaços de coworking gratuito e dá outras providências.",
+    "year": 2026,
+    "presentedAt": "2026-02-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Adjuto Afonso",
+        "kind": "state-deputy",
+        "party": "UNIÃO",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "UNIÃO"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15236"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15236/8589.pdf"
+      }
+    ],
+    "signedAt": "2026-11-16",
+    "bill": "Projeto de Lei Ordinária nº 28 de 2026"
+  },
+  {
+    "id": "estadual-am-lei-8590-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.590",
+    "title": "Declara a utilidade pública do Instituto Comunitário de Ações Sociais - INCAS",
+    "summary": "Declara a utilidade pública do Instituto Comunitário de Ações Sociais - INCAS.",
+    "year": 2026,
+    "presentedAt": "2026-10-21",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Wanderley Monteiro",
+        "kind": "state-deputy",
+        "party": "UNIÃO",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "UNIÃO"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15237"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15237/8590.pdf"
+      }
+    ],
+    "signedAt": "2026-11-17",
+    "bill": "Projeto de Lei Ordinária nº 598 de 2026"
+  },
+  {
+    "id": "estadual-am-lei-8591-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.591",
+    "title": "Declara a utilidade pública do Instituto de Saúde e Bem-estar do Amazonas - ISBAM",
+    "summary": "Declara a utilidade pública do Instituto de Saúde e Bem-estar do Amazonas - ISBAM.",
+    "year": 2026,
+    "presentedAt": "2026-10-20",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Wanderley Monteiro",
+        "kind": "state-deputy",
+        "party": "UNIÃO",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "UNIÃO"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15238"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15238/8591.pdf"
+      }
+    ],
+    "signedAt": "2026-11-17",
+    "bill": "Projeto de Lei Ordinária nº 593 de 2026"
+  },
+  {
+    "id": "estadual-am-lei-8593-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.593",
+    "title": "Concede Título de Cidadã do Amazonas a Sra. Marina Pandolphi Brolio",
+    "summary": "Concede Título de Cidadã do Amazonas a Sra. Marina Pandolphi Brolio.",
+    "year": 2026,
+    "presentedAt": "2022-07-07",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Joana Darc",
+        "kind": "state-deputy",
+        "party": "UNIÃO",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "UNIÃO"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15239"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15239/8593.pdf"
+      }
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "Projeto de Lei Ordinária nº 332 de 2022"
+  },
+  {
+    "id": "estadual-am-lei-8594-2026",
+    "level": "estadual",
+    "jurisdiction": "Amazonas",
+    "type": "lei",
+    "number": "8.594",
+    "title": "Institui o Dia Estadual do Paradesporto",
+    "summary": "Institui o Dia Estadual do Paradesporto.",
+    "year": 2026,
+    "presentedAt": "2025-11-04",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Cabo Maciel",
+        "kind": "state-deputy",
+        "party": "PL",
+        "uf": "AM"
+      }
+    ],
+    "parties": [
+      "PL"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Amazonas (SAPL)",
+        "url": "https://sapl.al.am.leg.br/norma/15240"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.am.leg.br/media/sapl/public/normajuridica/2026/15240/8594.pdf"
+      }
+    ],
+    "signedAt": "2026-11-18",
+    "bill": "Projeto de Lei Ordinária nº 937 de 2025"
+  },
+  {
     "id": "estadual-am-lei-complementar-282-2026",
     "level": "estadual",
     "jurisdiction": "Amazonas",
@@ -70679,6 +70938,76 @@
     "number": "6.573",
     "signedAt": "2026-11-13",
     "bill": "Projeto de Lei Ordinária nº 1469 de 2026"
+  },
+  {
+    "id": "estadual-ro-lei-6574-2026",
+    "level": "estadual",
+    "jurisdiction": "Rondônia",
+    "type": "lei",
+    "number": "6.574",
+    "title": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o…",
+    "summary": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o valor de R$ 1.880.000,00, em favor da unidade orçamentária Secretaria de Estado da Juventude, Cultura, Esporte e Lazer - Sejucel.",
+    "year": 2026,
+    "presentedAt": "2026-11-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": "RO"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Rondônia (SAPL)",
+        "url": "https://sapl.al.ro.leg.br/norma/14338"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2026/14338/l6574.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 1591 de 2026"
+  },
+  {
+    "id": "estadual-ro-lei-6575-2026",
+    "level": "estadual",
+    "jurisdiction": "Rondônia",
+    "type": "lei",
+    "number": "6.575",
+    "title": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o…",
+    "summary": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o valor de R$ 120.000,00, em favor da unidade orçamentária Fundação Cultural do Estado de Rondônia - Funcer.",
+    "year": 2026,
+    "presentedAt": "2026-11-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": "RO"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Rondônia (SAPL)",
+        "url": "https://sapl.al.ro.leg.br/norma/14339"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2026/14339/l6575.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 1589 de 2026"
   },
   {
     "id": "estadual-ro-lei-complementar-1315-2026",

@@ -3,22 +3,22 @@
     "status": "active",
     "records": 1430,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-al": {
     "status": "active",
     "records": 3019,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-am": {
     "status": "active",
-    "records": 7552,
+    "records": 7559,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-ap": {
     "status": "planned",
@@ -79,8 +79,8 @@
     "status": "active",
     "records": 9879,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-pe": {
     "status": "planned",
@@ -91,8 +91,8 @@
     "status": "active",
     "records": 4745,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-pr": {
     "status": "planned",
@@ -111,10 +111,10 @@
   },
   "assembleia-ro": {
     "status": "active",
-    "records": 7847,
+    "records": 7849,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z",
-    "lastSuccess": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "assembleia-rr": {
     "status": "planned",
@@ -140,13 +140,14 @@
     "status": "failing",
     "records": 13035,
     "since": 1989,
-    "lastRun": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z"
   },
   "assembleia-to": {
-    "status": "failing",
+    "status": "active",
     "records": 1395,
     "since": 1998,
-    "lastRun": "2026-11-23T19:23:10Z"
+    "lastRun": "2026-11-24T18:59:58Z",
+    "lastSuccess": "2026-11-24T18:59:58Z"
   },
   "camara": {
     "status": "active",
