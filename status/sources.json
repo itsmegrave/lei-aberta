@@ -152,8 +152,8 @@
     "status": "active",
     "records": 2300,
     "since": 1988,
-    "lastRun": "2026-11-23T18:39:12Z",
-    "lastSuccess": "2026-11-23T18:39:12Z"
+    "lastRun": "2026-11-24T18:07:55Z",
+    "lastSuccess": "2026-11-24T18:07:55Z"
   },
   "dou": {
     "status": "active",
@@ -173,7 +173,7 @@
     "status": "active",
     "records": 11708,
     "since": 1988,
-    "lastRun": "2026-11-23T18:39:12Z",
-    "lastSuccess": "2026-11-23T18:39:12Z"
+    "lastRun": "2026-11-24T18:07:55Z",
+    "lastSuccess": "2026-11-24T18:07:55Z"
   }
 }
