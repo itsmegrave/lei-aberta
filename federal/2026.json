@@ -620,6 +620,28 @@
     "bill": "PLP 186/2026"
   },
   {
+    "id": "federal-lc-239-2026",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei-complementar",
+    "number": "239",
+    "title": "Altera a Lei Complementar nº 200, de 30 de agosto de 2023, a Lei Complementar nº 176, de…",
+    "summary": "Altera a Lei Complementar nº 200, de 30 de agosto de 2023, a Lei Complementar nº 176, de 29 de dezembro de 2020, a Lei Complementar nº 235, de 27 de agosto de 2026, a Lei Complementar nº 224, de 26 de dezembro de 2025, a Lei nº 11.540, de 12 de novembro de 2007, e a Lei nº 9.796, de 5 de maio de 1999, para conferir ao Poder Executivo federal novos instrumentos de gestão, com vistas a garantir a…",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial da União, 24/11/2026, Seção 1 (edição extra), p. 1",
+        "url": "https://www.in.gov.br/web/dou/-/lei-complementar-n-239-de-24-de-novembro-de-2026-745996277"
+      }
+    ]
+  },
+  {
     "id": "federal-lei-15322-2026",
     "level": "federal",
     "jurisdiction": "Brasil",
