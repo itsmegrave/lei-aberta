@@ -160,15 +160,15 @@
     "status": "active",
     "records": 35,
     "since": null,
-    "lastRun": "2026-11-24T17:59:57Z",
-    "lastSuccess": "2026-11-24T17:59:57Z"
+    "lastRun": "2026-11-25T17:30:29Z",
+    "lastSuccess": "2026-11-25T17:30:29Z"
   },
   "querido-diario": {
-    "status": "failing",
-    "records": 16,
+    "status": "active",
+    "records": 21,
     "since": null,
-    "lastRun": "2026-11-24T17:59:57Z",
-    "lastSuccess": "2026-11-22T14:47:07Z"
+    "lastRun": "2026-11-25T17:30:29Z",
+    "lastSuccess": "2026-11-25T17:30:29Z"
   },
   "senado": {
     "status": "active",

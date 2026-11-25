@@ -1,5 +1,83 @@
 [
   {
+    "id": "municipal-5002704-lc-567-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei-complementar",
+    "number": "567",
+    "title": "Altera dispositivos da Lei Complementar n",
+    "summary": "Altera dispositivos da Lei Complementar n. 415, de 8 de setembro de 2021, que reestrutura o Regime Próprio de Previdência Social do Município de Campo Grande e dá outras providências.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8541, 23/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-23/d0491354d9591fd29ecf3e2f363cfbeeac0dd405.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
+    "id": "municipal-5002704-lc-568-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei-complementar",
+    "number": "568",
+    "title": "Altera dispositivos da Lei Complementar n",
+    "summary": "Altera dispositivos da Lei Complementar n. 415, de 8 de setembro de 2021, que reestrutura o Regime Próprio de Previdência Social do Município de Campo Grande e dá outras providências.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8541, 23/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-23/d0491354d9591fd29ecf3e2f363cfbeeac0dd405.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
+    "id": "municipal-5002704-lei-7690-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei",
+    "number": "7.690",
+    "title": "Cria o Programa Municipal de Valorização e Garantia de Dignidade ao Servidor Aposentado e…",
+    "summary": "Cria o Programa Municipal de Valorização e Garantia de Dignidade ao Servidor Aposentado e Pensionista do Município de Campo Grande - MS.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8541, 23/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-23/d0491354d9591fd29ecf3e2f363cfbeeac0dd405.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
     "id": "municipal-5002704-lei-7696-2026",
     "level": "municipal",
     "jurisdiction": "Campo Grande (MS)",
@@ -252,6 +330,58 @@
       {
         "label": "Diário Oficial de Campo Grande nº 8535, 17/11/2026",
         "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-17/1abc053b2e7e01e4e9b6228eafa4b61fc7cda3e2.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
+    "id": "municipal-5002704-lei-7706-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei",
+    "number": "7.706",
+    "title": "Cria o Conselho Municipal de Direitos dos Migrantes Internacionais de Campo Grande",
+    "summary": "Cria o Conselho Municipal de Direitos dos Migrantes Internacionais de Campo Grande e dá outras providências.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8543, 24/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-24/0cccaa3e96965405fafa409923e44e4bf4349ddb.pdf"
+      },
+      {
+        "label": "Prefeitura de Campo Grande: portal oficial",
+        "url": "https://www.campogrande.ms.gov.br"
+      }
+    ]
+  },
+  {
+    "id": "municipal-5002704-lei-7707-2026",
+    "level": "municipal",
+    "jurisdiction": "Campo Grande (MS)",
+    "type": "lei",
+    "number": "7.707",
+    "title": "Institui, no Município de Campo Grande - MS, o Dia Municipal de Ação de Graças",
+    "summary": "Institui, no Município de Campo Grande - MS, o Dia Municipal de Ação de Graças.",
+    "year": 2026,
+    "presentedAt": null,
+    "status": "sancionada",
+    "areas": [],
+    "authors": [],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Diário Oficial de Campo Grande nº 8543, 24/11/2026",
+        "url": "https://data.queridodiario.ok.org.br/5002704/2026-11-24/0cccaa3e96965405fafa409923e44e4bf4349ddb.pdf"
       },
       {
         "label": "Prefeitura de Campo Grande: portal oficial",
