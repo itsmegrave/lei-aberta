@@ -3,22 +3,22 @@
     "status": "active",
     "records": 1430,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-al": {
     "status": "active",
     "records": 3019,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-am": {
     "status": "active",
     "records": 7559,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-ap": {
     "status": "planned",
@@ -79,8 +79,8 @@
     "status": "active",
     "records": 9879,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-pe": {
     "status": "planned",
@@ -91,8 +91,8 @@
     "status": "active",
     "records": 4745,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-pr": {
     "status": "planned",
@@ -113,8 +113,8 @@
     "status": "active",
     "records": 7849,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "assembleia-rr": {
     "status": "planned",
@@ -140,14 +140,14 @@
     "status": "failing",
     "records": 13035,
     "since": 1989,
-    "lastRun": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z"
   },
   "assembleia-to": {
     "status": "active",
     "records": 1395,
     "since": 1998,
-    "lastRun": "2026-11-24T18:59:58Z",
-    "lastSuccess": "2026-11-24T18:59:58Z"
+    "lastRun": "2026-11-25T18:04:31Z",
+    "lastSuccess": "2026-11-25T18:04:31Z"
   },
   "camara": {
     "status": "active",
