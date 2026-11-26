@@ -153,8 +153,8 @@
     "status": "active",
     "records": 2300,
     "since": 1988,
-    "lastRun": "2026-11-25T17:30:50Z",
-    "lastSuccess": "2026-11-25T17:30:50Z"
+    "lastRun": "2026-11-26T17:19:24Z",
+    "lastSuccess": "2026-11-26T17:19:24Z"
   },
   "dou": {
     "status": "active",
@@ -172,9 +172,9 @@
   },
   "senado": {
     "status": "active",
-    "records": 11708,
+    "records": 11709,
     "since": 1988,
-    "lastRun": "2026-11-25T17:30:50Z",
-    "lastSuccess": "2026-11-25T17:30:50Z"
+    "lastRun": "2026-11-26T17:19:24Z",
+    "lastSuccess": "2026-11-26T17:19:24Z"
   }
 }
