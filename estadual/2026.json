@@ -54464,6 +54464,41 @@
     "bill": "Projeto de Lei Ordinária nº 7971 de 2026"
   },
   {
+    "id": "estadual-pb-lei-14748-2026",
+    "level": "estadual",
+    "jurisdiction": "Paraíba",
+    "type": "lei",
+    "number": "14.748",
+    "title": "Altera a Lei nº 11.007, de 06 de novembro de 2017, que dispõe sobre o Imposto sobre a…",
+    "summary": "Altera a Lei nº 11.007, de 06 de novembro de 2017, que dispõe sobre o Imposto sobre a Propriedade de Veículos Automotores – IPVA e dá outras providências.",
+    "year": 2026,
+    "presentedAt": "2026-11-13",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Governador do Estado da Paraíba",
+        "kind": "executive",
+        "party": null,
+        "uf": "PB"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa da Paraíba (SAPL)",
+        "url": "https://sapl.al.pb.leg.br/norma/19279"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.pb.leg.br/media/sapl/public/normajuridica/2026/19279/14748.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 8058 de 2026"
+  },
+  {
     "id": "estadual-pb-lei-complementar-219-2026",
     "level": "estadual",
     "jurisdiction": "Paraíba",
@@ -61317,6 +61352,117 @@
     "number": "9.133",
     "signedAt": "2026-11-03",
     "bill": "Projeto de Lei Ordinária nº 48 de 2026"
+  },
+  {
+    "id": "estadual-pi-lei-9134-2026",
+    "level": "estadual",
+    "jurisdiction": "Piauí",
+    "type": "lei",
+    "number": "9.134",
+    "title": "Dispõe sobre o reconhecimento de Utilidade Pública da Associação de Desenvolvimento e…",
+    "summary": "Dispõe sobre o reconhecimento de Utilidade Pública da Associação de Desenvolvimento e Inclusão Social de Padre Marcos - PI (ADISP), e dá outras providências.",
+    "year": 2026,
+    "presentedAt": "2026-08-25",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Henrique Pires",
+        "kind": "state-deputy",
+        "party": "MDB",
+        "uf": "PI"
+      }
+    ],
+    "parties": [
+      "MDB"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Piauí (SAPL)",
+        "url": "https://sapl.al.pi.leg.br/norma/7237"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2026/7237/sei_0027650233_lei_9134.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 166 de 2026"
+  },
+  {
+    "id": "estadual-pi-lei-9136-2026",
+    "level": "estadual",
+    "jurisdiction": "Piauí",
+    "type": "lei",
+    "number": "9.136",
+    "title": "Reconhece de utilidade pública a Associação dos Plantadores das Comunidades Pacheco…",
+    "summary": "Reconhece de utilidade pública a Associação dos Plantadores das Comunidades Pacheco, Santa Rosa, Tanques e demais localidades do município de Jatobá do Piauí.",
+    "year": 2026,
+    "presentedAt": "2026-07-13",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Carlos Augusto",
+        "kind": "state-deputy",
+        "party": "MDB",
+        "uf": "PI"
+      }
+    ],
+    "parties": [
+      "MDB"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Piauí (SAPL)",
+        "url": "https://sapl.al.pi.leg.br/norma/7238"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2026/7238/sei_0027667974_lei_9136.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 148 de 2026"
+  },
+  {
+    "id": "estadual-pi-lei-9137-2026",
+    "level": "estadual",
+    "jurisdiction": "Piauí",
+    "type": "lei",
+    "number": "9.137",
+    "title": "Reconhece a Utilidade Pública da Associação Piauiense de Apoio Social Cultural e…",
+    "summary": "Reconhece a Utilidade Pública da Associação Piauiense de Apoio Social Cultural e Assistencial Tá Kombinado.",
+    "year": 2026,
+    "presentedAt": "2026-07-15",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Gessivaldo Isaías",
+        "kind": "state-deputy",
+        "party": "MDB",
+        "uf": "PI"
+      }
+    ],
+    "parties": [
+      "MDB"
+    ],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa do Piauí (SAPL)",
+        "url": "https://sapl.al.pi.leg.br/norma/7239"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2026/7239/sei_0027680080_lei_9137.pdf"
+      }
+    ],
+    "signedAt": "2026-11-25",
+    "bill": "Projeto de Lei Ordinária nº 149 de 2026"
   },
   {
     "id": "estadual-pi-lei-complementar-332-2026",
