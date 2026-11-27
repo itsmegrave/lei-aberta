@@ -27,12 +27,12 @@
     "lastSuccessAt": "2026-11-27T17:01:03.230Z"
   },
   "crawlers/municipal/run.ts": {
-    "id": "45876815878-1-crawlers/municipal/run.ts",
+    "id": "46048751789-1-crawlers/municipal/run.ts",
     "crawler": "crawlers/municipal/run.ts",
-    "status": "cancelled",
-    "startedAt": "2026-11-26T18:33:11.786Z",
-    "finishedAt": "2026-11-27T00:13:15.189Z",
-    "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/45876815878",
+    "status": "running",
+    "startedAt": "2026-11-27T18:20:51.505Z",
+    "finishedAt": null,
+    "runUrl": "https://github.com/itsmegrave/lei-aberta/actions/runs/46048751789",
     "lastSuccessAt": null
   }
 }
