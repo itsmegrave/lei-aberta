@@ -3,22 +3,22 @@
     "status": "active",
     "records": 1430,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-al": {
     "status": "active",
     "records": 3019,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-am": {
     "status": "active",
     "records": 7559,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-ap": {
     "status": "planned",
@@ -79,8 +79,8 @@
     "status": "active",
     "records": 9880,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-pe": {
     "status": "planned",
@@ -91,8 +91,8 @@
     "status": "active",
     "records": 4748,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-pr": {
     "status": "planned",
@@ -111,10 +111,10 @@
   },
   "assembleia-ro": {
     "status": "active",
-    "records": 7849,
+    "records": 7851,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "assembleia-rr": {
     "status": "planned",
@@ -140,14 +140,14 @@
     "status": "failing",
     "records": 13035,
     "since": 1989,
-    "lastRun": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z"
   },
   "assembleia-to": {
     "status": "active",
     "records": 1395,
     "since": 1998,
-    "lastRun": "2026-11-26T17:50:00Z",
-    "lastSuccess": "2026-11-26T17:50:00Z"
+    "lastRun": "2026-11-27T17:34:32Z",
+    "lastSuccess": "2026-11-27T17:34:32Z"
   },
   "camara": {
     "status": "active",

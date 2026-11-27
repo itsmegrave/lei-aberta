@@ -71156,6 +71156,76 @@
     "bill": "Projeto de Lei Ordinária nº 1589 de 2026"
   },
   {
+    "id": "estadual-ro-lei-6576-2026",
+    "level": "estadual",
+    "jurisdiction": "Rondônia",
+    "type": "lei",
+    "number": "6.576",
+    "title": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por superávit…",
+    "summary": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por superávit financeiro, até o valor de R$ 102.669,24, em favor da unidade orçamentária Secretaria de Estado da Segurança, Defesa e Cidadania - Sesdec.",
+    "year": 2026,
+    "presentedAt": "2026-11-17",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": "RO"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Rondônia (SAPL)",
+        "url": "https://sapl.al.ro.leg.br/norma/14340"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2026/14340/l6576.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 1588 de 2026"
+  },
+  {
+    "id": "estadual-ro-lei-6577-2026",
+    "level": "estadual",
+    "jurisdiction": "Rondônia",
+    "type": "lei",
+    "number": "6.577",
+    "title": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o…",
+    "summary": "Autoriza o Poder Executivo a abrir crédito adicional suplementar por anulação, até o valor de R$ 1.300.000,00, em favor da unidade orçamentária Secretaria de Estado da Mulher, da Família, da Assistência e do Desenvolvimento Social - Seas.",
+    "year": 2026,
+    "presentedAt": "2026-09-15",
+    "status": "sancionada",
+    "areas": [],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": "RO"
+      }
+    ],
+    "parties": [],
+    "executive": null,
+    "sources": [
+      {
+        "label": "Assembleia Legislativa de Rondônia (SAPL)",
+        "url": "https://sapl.al.ro.leg.br/norma/14341"
+      },
+      {
+        "label": "Texto integral",
+        "url": "https://sapl.al.ro.leg.br/media/sapl/public/normajuridica/2026/14341/l6577.pdf"
+      }
+    ],
+    "signedAt": "2026-11-24",
+    "bill": "Projeto de Lei Ordinária nº 1520 de 2026"
+  },
+  {
     "id": "estadual-ro-lei-complementar-1315-2026",
     "level": "estadual",
     "jurisdiction": "Rondônia",
