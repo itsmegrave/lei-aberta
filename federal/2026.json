@@ -11855,6 +11855,95 @@
     "bill": "PLN 33/2026"
   },
   {
+    "id": "federal-lei-15554-2026",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "15.554",
+    "title": "Lei nº 15.554/2026",
+    "summary": "Abre ao Orçamento da Seguridade Social da União, em favor das Justiças Federal e do Trabalho, crédito especial no valor de R$ 21.557.807,00, para os fins que especifica.",
+    "year": 2026,
+    "signedAt": "2026-11-26",
+    "presentedAt": "2026-05-08",
+    "status": "sancionada",
+    "areas": [
+      "administracao-publica"
+    ],
+    "authors": [
+      {
+        "name": "Poder Executivo",
+        "kind": "executive",
+        "party": null,
+        "uf": null
+      }
+    ],
+    "parties": [],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PLN 8/2026",
+    "sources": [
+      {
+        "label": "Lei nº 15.554/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-26;15554"
+      },
+      {
+        "label": "PLN 8/2026 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174074"
+      }
+    ]
+  },
+  {
+    "id": "federal-lei-15555-2026",
+    "level": "federal",
+    "jurisdiction": "Brasil",
+    "type": "lei",
+    "number": "15.555",
+    "title": "Lei nº 15.555/2026",
+    "summary": "Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a obrigatoriedade à educação básica à forma disposta na Constituição Federal.",
+    "year": 2026,
+    "signedAt": "2026-11-26",
+    "presentedAt": "2024-06-06",
+    "status": "sancionada",
+    "areas": [
+      "educacao",
+      "direitos-humanos"
+    ],
+    "authors": [
+      {
+        "name": "Laura Carneiro",
+        "kind": "deputy",
+        "party": "PSD",
+        "uf": "RJ"
+      }
+    ],
+    "parties": [
+      "PSD"
+    ],
+    "executive": {
+      "name": "Luiz Inácio Lula da Silva",
+      "office": "Presidente",
+      "party": "PT"
+    },
+    "bill": "PL 2234/2024",
+    "sources": [
+      {
+        "label": "Lei nº 15.555/2026 (texto oficial)",
+        "url": "https://normas.leg.br/?urn=urn:lex:br:federal:lei:2026-11-26;15555"
+      },
+      {
+        "label": "PL 2234/2024 no Senado",
+        "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/172593"
+      },
+      {
+        "label": "PL 2234/2024 na Câmara",
+        "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2438787"
+      }
+    ]
+  },
+  {
     "id": "federal-mp-1333-2026",
     "level": "federal",
     "jurisdiction": "Brasil",

@@ -151,10 +151,10 @@
   },
   "camara": {
     "status": "active",
-    "records": 2300,
+    "records": 2301,
     "since": 1988,
-    "lastRun": "2026-11-26T17:19:24Z",
-    "lastSuccess": "2026-11-26T17:19:24Z"
+    "lastRun": "2026-11-27T17:00:51Z",
+    "lastSuccess": "2026-11-27T17:00:51Z"
   },
   "dou": {
     "status": "failing",
@@ -172,9 +172,9 @@
   },
   "senado": {
     "status": "active",
-    "records": 11709,
+    "records": 11711,
     "since": 1988,
-    "lastRun": "2026-11-26T17:19:24Z",
-    "lastSuccess": "2026-11-26T17:19:24Z"
+    "lastRun": "2026-11-27T17:00:51Z",
+    "lastSuccess": "2026-11-27T17:00:51Z"
   }
 }
